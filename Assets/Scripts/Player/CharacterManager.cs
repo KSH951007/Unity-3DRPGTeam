@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-
-    private Hero[] heroes;
+    private Hero[] hasHeros;
+    private Hero[] selectHeros;
     private int mainHeroIndex;
     private float changeCooldown;
     private float currentChangeCooldown;
@@ -18,25 +18,28 @@ public class CharacterManager : MonoBehaviour
     {
         changeCooldown = 5f;
         mainHeroIndex = 0;
-        heroes = new Hero[3];
+        selectHeros = new Hero[3];
+        hasHeros = new Hero[50];
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            heroes[i] = transform.GetChild(i).GetComponent<Hero>();
+            hasHeros[i] = transform.GetChild(i).GetComponent<Hero>();
         }
+        selectHeros[mainHeroIndex] = hasHeros[0];
     }
     public Hero GetMainHero()
     {
-        return heroes[mainHeroIndex];
+        return selectHeros[mainHeroIndex];
     }
     public void ChangeCharacter(int index)
     {
-        if (heroes.Length < index)
+        if (selectHeros.Length < index)
             return;
-        if (heroes[index] == null)
+        if (selectHeros[index] == null)
             return;
         if (currentChangeCooldown > 0f)
             return;
+
 
 
 
