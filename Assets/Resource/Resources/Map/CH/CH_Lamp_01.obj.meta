@@ -3,12 +3,17 @@ guid: 4bfeaa54a8ec8444886ca1e3883489b0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CH_Lamp_01_0Mat
+    second: {fileID: 2100000, guid: 5572de65aaf93854ca732b29449adc93, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
