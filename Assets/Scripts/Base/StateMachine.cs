@@ -7,10 +7,14 @@ public class StateMachine<T1, T2> where T1 : Enum where T2 : class
 {
     private List<BaseState<T1, T2>> states;
     private T1 currentState;
+    private Animator animator;
 
-    public StateMachine()
+
+    public Animator GetAnimator { get { return animator; } }
+    public StateMachine(Animator animator)
     {
         states = new List<BaseState<T1, T2>>();
+        this.animator = animator;
     }
     public void AddState(BaseState<T1, T2> state)
     {

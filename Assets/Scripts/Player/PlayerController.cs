@@ -8,14 +8,25 @@ public class PlayerController : MonoBehaviour
 
     private PlayerControls inputs;
     private CharacterManager character;
+    private PlayerMover mover;
     private StateMachine<EnumType.PlayerState, PlayerController> stateMachine;
     public PlayerControls Inputs { get { return inputs; } }
+    public PlayerMover Mover { get { return mover; } }
     private void Awake()
-    { 
+    {
         character = GetComponentInChildren<CharacterManager>();
-        stateMachine = new StateMachine<EnumType.PlayerState, PlayerController>();
+        mover = GetComponent<PlayerMover>();
+        stateMachine = new StateMachine<EnumType.PlayerState, PlayerController>(character.GetMainHero().HeroAnimator);
 
     }
+    private void Start()
+    {
+        stateMachine.AddState(new PlayerIdle(this, stateMachine));
+        stateMachine.AddState(new PlayerRun(this, stateMachine));
+
+        stateMachine.ChangeState(EnumType.PlayerState.Idle);
+    }
+
     private void OnEnable()
     {
         if (inputs == null)
@@ -23,11 +34,7 @@ public class PlayerController : MonoBehaviour
             inputs = new PlayerControls();
         }
         inputs.Enable();
-        inputs.Player.Move.performed += _ =>
-        {
-           
-        };
-     
+
     }
     private void OnDisable()
     {
@@ -36,5 +43,8 @@ public class PlayerController : MonoBehaviour
             inputs.Disable();
         }
     }
-
+    private void Update()
+    {
+        stateMachine?.Update();
+    }
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class EnumType
 {
-    public enum PlayerState {Idle,Run }
+    public enum SceneType { Village, Dungeon }
+    public enum PlayerState { Idle, Run }
 }
