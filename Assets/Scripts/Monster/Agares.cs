@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Agares : Monsters
+public class Agares : BossMonsters
 {
-	private void Awake()
-	{
-		animator = GetComponentInChildren<Animator>();
-	}
-
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Z))

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 77825949}
   - component: {fileID: 77825948}
   - component: {fileID: 77825947}
+  - component: {fileID: 77825950}
   m_Layer: 0
   m_Name: Urbon
   m_TagString: Untagged
@@ -215,6 +216,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017057f80217185468ffdebb77ce01fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  currentHp: 0
+  basicDamage: 0
+  moveSpeed: 0
+  exp: 0
+  target: {fileID: 0}
+  isMelee: 0
+  isStunned: 0
+  isChase: 0
+  isAttack: 0
+  isDead: 0
+--- !u!54 &77825950
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77825945}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &119484361
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -645,6 +684,7 @@ GameObject:
   - component: {fileID: 860479402}
   - component: {fileID: 860479400}
   - component: {fileID: 860479401}
+  - component: {fileID: 860479403}
   m_Layer: 6
   m_Name: Agares
   m_TagString: Enemy
@@ -725,6 +765,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadfd91e95f91384aa778a54abba7872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  currentHp: 0
+  basicDamage: 0
+  moveSpeed: 0
+  exp: 0
+  target: {fileID: 0}
+  isMelee: 0
+  isStunned: 0
+  isChase: 0
+  isAttack: 0
+  isDead: 0
+--- !u!54 &860479403
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860479398}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &916383988
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1027,7 @@ GameObject:
   - component: {fileID: 1194318884}
   - component: {fileID: 1194318883}
   - component: {fileID: 1194318882}
+  - component: {fileID: 1194318885}
   m_Layer: 6
   m_Name: KhururuOrigin
   m_TagString: Enemy
@@ -1029,6 +1108,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e50ebec89f4214f833628cb1ee60ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  currentHp: 0
+  basicDamage: 0
+  moveSpeed: 0
+  exp: 0
+  target: {fileID: 0}
+  isMelee: 0
+  isStunned: 0
+  isChase: 0
+  isAttack: 0
+  isDead: 0
+--- !u!54 &1194318885
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194318880}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &1410890189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1064,6 +1181,7 @@ GameObject:
   - component: {fileID: 1696077300}
   - component: {fileID: 1696077299}
   - component: {fileID: 1696077298}
+  - component: {fileID: 1696077301}
   m_Layer: 6
   m_Name: KhururuTrans
   m_TagString: Enemy
@@ -1144,6 +1262,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf926710dc46914fb50d62804985d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  currentHp: 0
+  basicDamage: 0
+  moveSpeed: 0
+  exp: 0
+  target: {fileID: 0}
+  isMelee: 0
+  isStunned: 0
+  isChase: 0
+  isAttack: 0
+  isDead: 0
+--- !u!54 &1696077301
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696077296}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1820350492
 GameObject:
   m_ObjectHideFlags: 0

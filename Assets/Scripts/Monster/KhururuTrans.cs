@@ -2,18 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KhururuTrans : Monsters
+public class KhururuTrans : BossMonsters
 {
-	private void Awake()
-	{
-		animator = GetComponentInChildren<Animator>();
-	}
-
-	private void OnEnable()
-	{
-		AppearAnimation();
-	}
-
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Q))

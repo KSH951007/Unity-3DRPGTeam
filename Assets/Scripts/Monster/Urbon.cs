@@ -2,18 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Urbon : Monsters
+public class Urbon : BossMonsters
 {
-	private void Awake()
-	{
-		animator = GetComponentInChildren<Animator>();
-	}
-
-	private void OnEnable()
-	{
-		AppearAnimation();
-	}
-
 	private void Update()
 	{
 		// skill3은 이동하면서 사용

@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monsters : MonoBehaviour
+public class BossMonsters : MonoBehaviour
 {
-	protected float maxHp;
-	protected float currentHp;
-	protected float basicDamage;
-	protected float moveSpeed;
-	protected float exp;
+	[SerializeField] protected float maxHp;
+	[SerializeField] protected float currentHp;
+	[SerializeField] protected float basicDamage;
+	[SerializeField] protected float moveSpeed;
+	[SerializeField] protected float exp;
+	[SerializeField] protected Transform target;
 
 	protected GameObject[] dropItem;
 	protected float dropCoin;
 
 	protected Animator animator;
+	protected Rigidbody rb;
 
-	protected bool isStunned;
+	[SerializeField] protected bool isMelee;
+	[SerializeField] protected bool isStunned;
+	[SerializeField] protected bool isChase;
+	[SerializeField] protected bool isAttack;
+	[SerializeField] protected bool isDead;
 
 	protected enum State
 	{
@@ -25,6 +31,16 @@ public class Monsters : MonoBehaviour
 		RunAway
 	}
 
+	protected void Awake()
+	{
+		animator = GetComponentInChildren<Animator>();
+		rb = GetComponent<Rigidbody>();
+	}
+
+	protected void OnEnable()
+	{
+		AppearAnimation();
+	}
 	protected void AppearAnimation()
 	{
 		animator.SetTrigger("Appear");
