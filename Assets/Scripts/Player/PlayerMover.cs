@@ -33,7 +33,6 @@ public class PlayerMover : MonoBehaviour
             agent.ResetPath();
             agent.velocity = Vector3.zero;
             return true;
-
         }
         return false;
     }

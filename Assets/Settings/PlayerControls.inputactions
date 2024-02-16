@@ -6,9 +6,18 @@
             "id": "523c468d-282a-4422-b74f-b9ec9c028c5a",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "ClickAction",
                     "type": "Button",
                     "id": "1510c7d2-6473-4809-8d0d-339ca82e3b66",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeCharacter",
+                    "type": "Button",
+                    "id": "83aea317-ab65-4c6b-b227-acc907b583b4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -23,7 +32,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "ClickAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "591fa695-f81f-49e1-8972-c579133d1a76",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeCharacter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

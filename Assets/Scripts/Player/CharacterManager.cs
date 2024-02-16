@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    private int maxStorageHerosCount;
+    private int maxPlayHeroCount;
     private Hero[] hasHeros;
     private Hero[] selectHeros;
     private int mainHeroIndex;
@@ -16,10 +18,12 @@ public class CharacterManager : MonoBehaviour
    
     private void Awake()
     {
+        maxStorageHerosCount = 50;
+        maxPlayHeroCount = 3;
         changeCooldown = 5f;
         mainHeroIndex = 0;
-        selectHeros = new Hero[3];
-        hasHeros = new Hero[50];
+        selectHeros = new Hero[maxPlayHeroCount];
+        hasHeros = new Hero[maxStorageHerosCount];
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -31,6 +35,10 @@ public class CharacterManager : MonoBehaviour
     {
         return selectHeros[mainHeroIndex];
     }
+    public void AddStorageHero()
+    {
+
+    }
     public void ChangeCharacter(int index)
     {
         if (selectHeros.Length < index)
@@ -39,9 +47,6 @@ public class CharacterManager : MonoBehaviour
             return;
         if (currentChangeCooldown > 0f)
             return;
-
-
-
 
         mainHeroIndex = index;
         onChangeCharacter?.Invoke();
@@ -59,6 +64,16 @@ public class CharacterManager : MonoBehaviour
 
         currentChangeCooldown = 0f;
 
+    }
+    public int nextCharacter()
+    {
+        mainHeroIndex++;
+        if(mainHeroIndex >= maxPlayHeroCount)
+        {
+            mainHeroIndex = 0;
+        }
+
+        return mainHeroIndex;
     }
 
 

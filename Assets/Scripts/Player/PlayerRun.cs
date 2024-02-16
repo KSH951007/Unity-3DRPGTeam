@@ -22,6 +22,7 @@ public class PlayerRun : BaseState<EnumType.PlayerState,PlayerController>
     public override void Update()
     {
         stateMachine.GetAnimator.SetFloat("Move", mover.Agent.remainingDistance);
+ 
         if (mover.Whetherstatus())
         {
             Debug.Log("stop");
