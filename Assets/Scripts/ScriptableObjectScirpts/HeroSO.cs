@@ -6,7 +6,4 @@ public class HeroSO : MonoBehaviour
 {
     protected int damage;
     protected float moveSpeed;
-    protected float attackSpeed;
-
-  
 }

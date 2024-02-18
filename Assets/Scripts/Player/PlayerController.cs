@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,28 +8,28 @@ public class PlayerController : MonoBehaviour
 {
 
     private PlayerControls inputs;
-    private CharacterManager character;
+    private HeroManager heroManager;
     private PlayerMover mover;
+    
     private StateMachine<EnumType.PlayerState, PlayerController> stateMachine;
     public PlayerControls Inputs { get { return inputs; } }
     public PlayerMover Mover { get { return mover; } }
-    private bool isControl;
+    private bool canControl;
     private void Awake()
     {
-        character = GetComponentInChildren<CharacterManager>();
+        heroManager = GetComponentInChildren<HeroManager>();
         mover = GetComponent<PlayerMover>();
-        isControl = true;
-        stateMachine = new StateMachine<EnumType.PlayerState, PlayerController>(character.GetMainHero().HeroAnimator);
+        canControl = true;
+
+       stateMachine = new StateMachine<EnumType.PlayerState, PlayerController>(heroManager.GetMainHero().HeroAnimator);
 
     }
     private void Start()
     {
-        stateMachine.AddState(new PlayerIdle(this, stateMachine));
-        stateMachine.AddState(new PlayerRun(this, stateMachine));
-
+        stateMachine.AddState(new PlayerIdleState(this, stateMachine));
+        stateMachine.AddState(new PlayerRunState(this, stateMachine));
         stateMachine.ChangeState(EnumType.PlayerState.Idle);
-        inputs.Player.ClickAction.performed += _ => ClickActions();
-        inputs.Player.ChangeCharacter.performed += _ => character.ChangeCharacter(character.nextCharacter());
+        inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter(heroManager.nextCharacter());
     }
 
     private void OnEnable()
@@ -50,11 +50,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        stateMachine?.Update();
+        stateMachine?.Update(); 
     }
-    public void ClickActions()
+    public void PointerClickMove()
     {
-        if (!isControl)
+        if (!canControl)
             return;
 
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
@@ -67,10 +67,21 @@ public class PlayerController : MonoBehaviour
                 stateMachine.ChangeState(EnumType.PlayerState.Run);
                 return;
             }
-            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-            {
+        }
+    }
+    public void PointerClickAttack()
+    {
+        if (!canControl)
+            return;
 
-            }
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            hit.point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            transform.LookAt(hit.point);
+            heroManager.GetMainHero().ChangeAnimatorController(EnumType.HeroAnimType.Battle);
+            heroManager.GetMainHero().HeroAnimator.SetInteger("AttackCombo",1);
         }
     }
 }

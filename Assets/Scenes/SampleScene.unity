@@ -307,7 +307,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 848f97f25d43d83458cdf4f08cbd68a6, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -368,6 +368,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e2d95cf7efb6241bb3495b1a36cb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animContorllers:
+  - {fileID: 9100000, guid: 848f97f25d43d83458cdf4f08cbd68a6, type: 2}
+  - {fileID: 9100000, guid: 0a981522f47886440b23444519e903f6, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +801,7 @@ GameObject:
   - component: {fileID: 495789816}
   - component: {fileID: 495789815}
   - component: {fileID: 495789819}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +825,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
