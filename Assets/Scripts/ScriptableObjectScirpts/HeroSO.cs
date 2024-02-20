@@ -6,4 +6,5 @@ public class HeroSO : MonoBehaviour
 {
     protected int damage;
     protected float moveSpeed;
+    protected int basicAttackComboCount;
 }

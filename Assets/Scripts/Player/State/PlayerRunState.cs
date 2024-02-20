@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunState : BaseState<EnumType.PlayerState,PlayerController>
+public class PlayerRunState : BaseState<EnumType.PlayerState, PlayerController>
 {
     private PlayerMover mover;
     public PlayerRunState(PlayerController owner, StateMachine<EnumType.PlayerState, PlayerController> stateMachine) : base(owner, stateMachine)
@@ -30,9 +30,14 @@ public class PlayerRunState : BaseState<EnumType.PlayerState,PlayerController>
         if (mover.Whetherstatus())
         {
             Debug.Log("stop");
-            mover.ResetPath();
-            Debug.Log(mover.Agent.remainingDistance);
+            mover.Cancle();
             stateMachine.ChangeState(EnumType.PlayerState.Idle);
+            return;
+        }
+        else if (owner.Inputs.Player.Attack.WasPressedThisFrame())
+        {
+
+            stateMachine.ChangeState(EnumType.PlayerState.Attack);
             return;
         }
     }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IPlayerAction
 {
+
     public void Cancle();
 }

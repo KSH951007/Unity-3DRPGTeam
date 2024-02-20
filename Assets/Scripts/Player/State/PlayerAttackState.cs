@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : MonoBehaviour
+public class PlayerAttackState : BaseState<EnumType.PlayerState,PlayerController>
 {
-  
-    private void Start()
+    public PlayerAttackState(PlayerController owner, StateMachine<EnumType.PlayerState, PlayerController> stateMachine) : base(owner, stateMachine)
     {
-        
+
     }
 
-
-    private void Update()
+    public override void Enter()
     {
-        
+
     }
+
+    public override void Exit()
+    {
+
+    }
+
+    public override void Update()
+    {
+
+    }
+
+   
 }
