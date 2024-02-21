@@ -11,38 +11,35 @@ public class PlayerController : MonoBehaviour
 
     private PlayerControls inputs;
     private HeroManager heroManager;
-    private StateMachine<EnumType.PlayerState, PlayerController> stateMachine;
     public PlayerControls Inputs { get { return inputs; } }
     private bool canControl;
-    private ActionScheduler scheduler;
-    private PlayerMoveAction moveAction;
-    private PlayerAttackAction attackAction;
-    private NavMeshAgent agent;
+
+    private Hero mainHero;
 
     private void Awake()
     {
         heroManager = GetComponent<HeroManager>();
-        agent = GetComponent<NavMeshAgent>();
         canControl = true;
-        scheduler = new ActionScheduler();
 
 
     }
     private void Start()
     {
-        moveAction = new PlayerMoveAction(heroManager.GetMainHero().HeroAnimator, this, agent, 3.5f);
-        attackAction = new PlayerAttackAction(heroManager.GetMainHero().HeroAnimator, this, heroManager.GetMainHero(), 3);
+        mainHero = heroManager.GetMainHero();
+
+        heroManager.onChangeCharacter += () =>
+            {
+                mainHero = heroManager.GetMainHero();
+
+            };
+
         inputs.Player.Move.performed += _ => PointerClickMove();
         inputs.Player.Attack.performed += _ => PointerClickAttack();
 
-        inputs.Player.ChangeCharacter.performed += _ =>
-        {            
-            heroManager.ChangeCharacter();
-            scheduler.ResetActions();
-            moveAction.ChangeAnimator(heroManager.GetMainHero().HeroAnimator);
-            attackAction.ChangeAnimator(heroManager.GetMainHero().HeroAnimator);
-        };
+        inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter();
+
     }
+
 
     private void OnEnable()
     {
@@ -62,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        scheduler.ProcessAction();
+        mainHero.Scheduler.ProcessAction();
     }
     public void PointerClickMove()
     {
@@ -75,8 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                moveAction.SetMovePoint(hit.point);
-                scheduler.AddAction(moveAction);
+                mainHero.MoveAction(hit.point);
             }
         }
     }
@@ -85,7 +81,11 @@ public class PlayerController : MonoBehaviour
         if (!canControl)
             return;
 
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        //if (SceneLoader.Instance.GetSceneType() == EnumType.SceneType.Village)
+        //    return;
+
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
 
         screenPos.z = 0f;
         Vector3 mousePos = Mouse.current.position.value;
@@ -93,11 +93,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = (mousePos - screenPos).normalized;
 
         Vector3 newDirection = new Vector3(direction.x, 0f, direction.y);
+        mainHero.AttackAction(newDirection);
 
-        if (!attackAction.IsLastAttack())
-        {
-            attackAction.SetTargetTo(newDirection);
-            scheduler.AddAction(attackAction);
-        }
     }
 }

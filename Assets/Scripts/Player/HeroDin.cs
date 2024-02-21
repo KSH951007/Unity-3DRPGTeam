@@ -9,6 +9,8 @@ public class HeroDin : Hero
     {
         base.Awake();
         attackComboCount = 3;
+        moveAction = new PlayerMoveAction(animator, this, agent, 3.5f);
+        attackAction = new PlayerAttackAction(animator, this, 3);
     }
     public override void Atacck()
     {

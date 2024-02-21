@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerAction
 {
-    protected PlayerController owner;
+    protected Hero owner;
     protected Animator animator;
     protected bool isEndAction;
 
@@ -15,7 +15,7 @@ public abstract class PlayerAction
     }
     public bool IsEndAction { get { return isEndAction; } }
     public abstract bool IsCanle(PlayerAction action);
-    public PlayerAction(Animator animator, PlayerController owner)
+    public PlayerAction(Animator animator, Hero owner)
     {
         this.animator = animator;
         this.owner = owner;

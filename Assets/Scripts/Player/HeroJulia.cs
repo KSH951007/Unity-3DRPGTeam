@@ -7,6 +7,8 @@ public class HeroJulia : Hero
     protected override void Awake()
     {
         base.Awake();
+        moveAction = new PlayerMoveAction(animator, this, agent, 3.5f);
+        attackAction = new PlayerAttackAction(animator, this, 2);
     }
     public override void Atacck()
     {

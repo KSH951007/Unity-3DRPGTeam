@@ -9,20 +9,19 @@ public class PlayerAttackAction : PlayerAction
     private int curruntAttackCombo;
     float currentTime;
     float attackClipLength;
-    Hero mainHero;
 
 
-    public PlayerAttackAction(Animator animator, PlayerController owner, Hero mainHero, int maxCombo) : base(animator, owner)
+    public PlayerAttackAction(Animator animator, Hero owner, int maxCombo) : base(animator, owner)
     {
         this.maxCombo = maxCombo;
-        this.mainHero = mainHero;
         curruntAttackCombo = 0;
     }
     public void SetTargetTo(Vector3 targetPos)
     {
         this.targetPos = targetPos;
-        if (mainHero.GetAnimType() != EnumType.HeroAnimType.Battle)
-            mainHero.ChangeAnimatorController(EnumType.HeroAnimType.Battle);
+        if (owner.GetAnimType() != EnumType.HeroAnimType.Battle)
+            owner.ChangeAnimatorController(EnumType.HeroAnimType.Battle);
+
         animator.SetTrigger("Attack");
     }
     public override bool IsCanle(PlayerAction action)
@@ -42,9 +41,7 @@ public class PlayerAttackAction : PlayerAction
         {
             curruntAttackCombo = 0;
         }
-        owner.StartCoroutine(TargetToLoock(targetPos,0.1f));
-        owner.transform.forward = targetPos;
-        //owner.StartCoroutine(TargetToLoock(targetPos,0.1f));
+        owner.StartCoroutine(TargetToLoock(targetPos, 0.05f));
     }
 
     public override void StopAction()
@@ -58,6 +55,8 @@ public class PlayerAttackAction : PlayerAction
 
 
         currentTime += Time.deltaTime;
+
+        Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0]);
         attackClipLength = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         if (currentTime >= attackClipLength)
         {

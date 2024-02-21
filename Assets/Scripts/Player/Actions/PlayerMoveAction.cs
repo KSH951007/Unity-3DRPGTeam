@@ -9,7 +9,7 @@ public class PlayerMoveAction : PlayerAction
     private float moveSpeed;
     private Vector3 targetPoint;
 
-    public PlayerMoveAction(Animator animator, PlayerController owner, NavMeshAgent agent, float moveSpeed) : base(animator, owner)
+    public PlayerMoveAction(Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed) : base(animator, owner)
     {
         this.agent = agent;
         this.moveSpeed = moveSpeed;

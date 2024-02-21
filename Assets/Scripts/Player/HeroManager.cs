@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class HeroManager : MonoBehaviour
     private float changeCooldown;
     private float currentChangeCooldown;
     public event Action onChangeCharacter;
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
 
 
 
@@ -33,6 +35,10 @@ public class HeroManager : MonoBehaviour
         {
             selectHeros[i] = hasHeros[i];
         }
+
+        playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
+        playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
+
     }
     public Hero GetMainHero()
     {
@@ -56,10 +62,17 @@ public class HeroManager : MonoBehaviour
         if (currentChangeCooldown > 0f)
             return;
 
-        Debug.Log(mainHeroIndex);
+        selectHeros[mainHeroIndex].Scheduler.ResetActions();
         selectHeros[mainHeroIndex].gameObject.SetActive(false);
+        Transform prevTr = selectHeros[mainHeroIndex].transform;
         mainHeroIndex = nextIndex;
+        selectHeros[mainHeroIndex].transform.position = prevTr.position;
+        selectHeros[mainHeroIndex].transform.rotation = prevTr.rotation;
         selectHeros[mainHeroIndex].gameObject.SetActive(true);
+
+        playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
+        playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
+
         onChangeCharacter?.Invoke();
         StartCoroutine(ChangeCooldownRoutin());
     }

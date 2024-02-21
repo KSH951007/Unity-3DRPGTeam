@@ -12,4 +12,5 @@ public class SceneSO : ScriptableObject
     public EnumType.SceneType GetSceneType() { return sceneType; }
     public int GetSceneIndex() { return sceneIndex;}
     public string GetSceneName() {  return sceneName;}
+
 }
