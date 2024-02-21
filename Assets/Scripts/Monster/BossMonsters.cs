@@ -5,25 +5,26 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.VFX;
 
-public class BossMonsters : MonoBehaviour
+public class BossMonsters : MonoBehaviour, IHitable
 {
 	[SerializeField] protected float maxHp;
 	[SerializeField] protected float currentHp;
-	[SerializeField] protected float basicDamage;
+	public float basicDamage;
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected float exp;
 	[SerializeField] protected Transform target;
 	[SerializeField] protected float chasingTime;
 	[SerializeField] protected Material takeHitMat;
+	[SerializeField] protected int patience = 0;
 
 	protected GameObject[] dropItem;
 	protected float dropCoin;
 
 	protected Animator animator;
-	protected Rigidbody rb;
 	protected NavMeshAgent nav;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
 	protected SkinnedMeshRenderer currentMeshRenderer;
+	protected Coroutine currentSkillCoroutine;
 	//protected Coroutine usingSkill;
 
 	[SerializeField] protected bool isMelee;
@@ -33,7 +34,7 @@ public class BossMonsters : MonoBehaviour
 	[SerializeField] protected bool isAttack;
 	[SerializeField] protected bool isDead;
 
-	public GameObject[] hitParticles;
+	[SerializeField] public GameObject hitParticle;
 	
 
 	protected enum State
@@ -43,29 +44,20 @@ public class BossMonsters : MonoBehaviour
 		Attack
 	}
 
-	protected enum HitType
-	{
-		None,
-		Stagger,
-		Trip
-	}
-
 	protected State state;
-	protected HitType hitType;
 
 	protected void Awake()
 	{
 		animator = GetComponentInChildren<Animator>();
-		rb = GetComponent<Rigidbody>();
 		nav = GetComponent<NavMeshAgent>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		state = State.Idle;
 	}
 
-	protected void OnEnable()
+	protected virtual void OnEnable()
 	{
-		AppearAnimation();
 	}
+
 	protected void AppearAnimation()
 	{
 		animator.SetTrigger("Appear");
@@ -82,27 +74,36 @@ public class BossMonsters : MonoBehaviour
 	/// <returns></returns>
 	protected void SetChasingTime()
 	{
-		chasingTime = Time.time + Random.Range(1f, 3f);
+		chasingTime = Time.time + Random.Range(0f, 3f);
 	}
 
-	protected void TakeHit(int damage, GameObject hitParticle = null)
+	public void TakeHit(float damage, IHitable.HitType hitType, GameObject hitParticle = null)
 	{
-		if (hitParticle != null)
-		{
-			// TODO : bool property 이름 변경
-			hitParticle.GetComponent<VisualEffect>().SetBool("Hit", true);
-		}
+        if (patience != 0)
+        {
+			patience--;
+			return;
+        }
 
-		if (currentHp - damage > 0)
+        if (patience == 0)
 		{
-			currentHp -= damage;
-			StartCoroutine(ChangeMat());
-		}
-		else if (currentHp - damage <= 0)
-		{
-			currentHp = 0;
-			isDead = true;
-			Die();
+			if (hitParticle != null)
+			{
+				// TODO : bool property 이름 변경
+				hitParticle.GetComponent<VisualEffect>().SetBool("Hit", true);
+			}
+
+			if (currentHp - damage > 0)
+			{
+				currentHp -= damage;
+				StartCoroutine(ChangeMat());
+			}
+			else if (currentHp - damage <= 0)
+			{
+				currentHp = 0;
+				isDead = true;
+				Die();
+			}
 		}
 	}
 
@@ -128,7 +129,7 @@ public class BossMonsters : MonoBehaviour
 	{
 		foreach(GameObject items in dropItem)
 		{
-			Instantiate(items);
+			Instantiate(items, transform.position, Quaternion.identity);
 		}
 
 		return dropCoin;

@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 0ebb6e662795e2e48aa89a22e6d7bc66, type: 2}
 --- !u!1 &77825945
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 77825949}
   - component: {fileID: 77825948}
   - component: {fileID: 77825947}
-  - component: {fileID: 77825950}
   m_Layer: 0
   m_Name: Urbon
   m_TagString: Untagged
@@ -223,41 +222,15 @@ MonoBehaviour:
   exp: 0
   target: {fileID: 0}
   chasingTime: 0
-  takeHitMat: {fileID: 0}
+  takeHitMat: {fileID: 2100000, guid: 8436d4ed78dc6104688943394a03af28, type: 2}
+  patience: 0
   isMelee: 0
   isStunned: 0
   playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
-  hitParticles: []
---- !u!54 &77825950
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77825945}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  hitParticle: {fileID: 0}
 --- !u!136 &119484361
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -344,7 +317,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &240131581
 MeshCollider:
@@ -587,7 +560,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &733540739
 MeshCollider:
@@ -688,7 +661,6 @@ GameObject:
   - component: {fileID: 860479402}
   - component: {fileID: 860479400}
   - component: {fileID: 860479401}
-  - component: {fileID: 860479403}
   m_Layer: 6
   m_Name: Agares
   m_TagString: Enemy
@@ -777,40 +749,14 @@ MonoBehaviour:
   target: {fileID: 0}
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: de5fa68975928f2429e3a32e9ae13872, type: 2}
+  patience: 0
   isMelee: 0
   isStunned: 0
   playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
-  hitParticles: []
---- !u!54 &860479403
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860479398}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  hitParticle: {fileID: 0}
 --- !u!1 &916383988
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,7 +774,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &916383989
 MeshCollider:
@@ -934,7 +880,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &970411945
 MeshCollider:
@@ -1035,7 +981,6 @@ GameObject:
   - component: {fileID: 1194318884}
   - component: {fileID: 1194318883}
   - component: {fileID: 1194318882}
-  - component: {fileID: 1194318885}
   m_Layer: 6
   m_Name: KhururuOrigin
   m_TagString: Enemy
@@ -1121,43 +1066,122 @@ MonoBehaviour:
   basicDamage: 0
   moveSpeed: 0
   exp: 0
-  target: {fileID: 0}
+  target: {fileID: 1225003706}
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: 0c6a786eeb82ad24c9dc1735f664d516, type: 2}
+  patience: 0
   isMelee: 0
   isStunned: 0
   playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
-  hitParticles: []
---- !u!54 &1194318885
-Rigidbody:
+  hitParticle: {fileID: 0}
+--- !u!1 &1225003702
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194318880}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1225003706}
+  - component: {fileID: 1225003705}
+  - component: {fileID: 1225003704}
+  - component: {fileID: 1225003703}
+  m_Layer: 0
+  m_Name: PlayerTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 8
+  m_IsActive: 1
+--- !u!65 &1225003703
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225003702}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1225003704
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225003702}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1225003705
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225003702}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1225003706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225003702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.68, y: 0.8600364, z: 11.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1410890189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1193,7 +1217,6 @@ GameObject:
   - component: {fileID: 1696077300}
   - component: {fileID: 1696077299}
   - component: {fileID: 1696077298}
-  - component: {fileID: 1696077301}
   m_Layer: 6
   m_Name: KhururuTrans
   m_TagString: Enemy
@@ -1281,41 +1304,15 @@ MonoBehaviour:
   exp: 0
   target: {fileID: 0}
   chasingTime: 0
-  takeHitMat: {fileID: 0}
+  takeHitMat: {fileID: 2100000, guid: 668c7f24b7caee2459f69627b7aedd51, type: 2}
+  patience: 0
   isMelee: 0
   isStunned: 0
   playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
-  hitParticles: []
---- !u!54 &1696077301
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696077296}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  hitParticle: {fileID: 0}
 --- !u!1 &1820350492
 GameObject:
   m_ObjectHideFlags: 0
@@ -9231,3 +9228,4 @@ SceneRoots:
   - {fileID: 1194318881}
   - {fileID: 860479399}
   - {fileID: 77825946}
+  - {fileID: 1225003706}

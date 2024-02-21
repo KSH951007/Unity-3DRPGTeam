@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class KhururuOrigin : BossMonsters
 {
-	private bool isAwake = false;
+	protected override void OnEnable()
+	{
+		patience = 1;
+		AppearAnimation();
+	}
 
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.A)) 
 		{
-			animator.SetTrigger("Skill3");
+			animator.SetTrigger("Attack");
 		}
 
 		if (Input.GetKeyDown(KeyCode.S)/*카운터가 성공했다면*/)
@@ -20,11 +24,11 @@ public class KhururuOrigin : BossMonsters
 
 		if(Input.GetMouseButtonDown(0))
 		{
-			TakeHit(1);
+			TakeHit(1, 0);
 		}
 	}
 
-	private void StateControl()
+	private IEnumerator StateControl()
 	{
 		while (!isDead)
 		{
@@ -35,19 +39,21 @@ public class KhururuOrigin : BossMonsters
 					break;
 
 				case State.Chase:
+					yield return new WaitForSeconds(0.5f);
 					Chase();
 					break;
 
 				case State.Attack:
+					yield return new WaitForSeconds(0.5f);
+					Attack();
 					break;
-
 			}
 		}
 	}
 
 	private void Idle()
 	{
-		if (isAwake)
+		if (patience == 0)
 		{
 			state = State.Chase;
 		}
@@ -55,10 +61,11 @@ public class KhururuOrigin : BossMonsters
 
 	private void Chase()
 	{
+		nav.SetDestination(target.position);
+
 		if (nav.remainingDistance > 3f)
 		{
-			nav.SetDestination(target.position);
-			rb.velocity = nav.destination * moveSpeed;
+			transform.position = nav.destination * moveSpeed * Time.deltaTime;
 			animator.SetBool("Move", true);
 		}
 		else if (nav.remainingDistance > 1f && nav.remainingDistance <= 3f)
@@ -66,9 +73,12 @@ public class KhururuOrigin : BossMonsters
 			SetChasingTime();
 			if (Time.time < chasingTime)
 			{
-				nav.SetDestination(target.position);
-				rb.velocity = nav.destination * moveSpeed;
+				transform.position = nav.destination * moveSpeed * Time.deltaTime;
 				animator.SetBool("Move", true);
+			}
+			else
+			{
+				state = State.Attack;
 			}
 		}
 		else
@@ -77,9 +87,27 @@ public class KhururuOrigin : BossMonsters
 		}
 	}
 
-	private void Attack()
+	public void Attack()
 	{
+		if (currentHp / maxHp > 0.8f && nav.remainingDistance < 0.1f)
+		{
+			animator.SetTrigger("Attack");
+			// TODO : 플레이어의 TakeHit 함수 호출, basicDamage, HitType.None 전달.
+		}
+		else if (currentHp / maxHp > 0.3f && currentHp / maxHp < 0.8f && nav.remainingDistance < 1f)
+		{
+			animator.SetTrigger("Skill1");
+		}
+		else if (currentHp / maxHp < 0.3f)
+		{
+			animator.SetTrigger("Skill2");
+		}
+		else if (nav.remainingDistance > 2f)
+		{
+			animator.SetTrigger("Skill3");
+		}
 
+		state = State.Chase;
 	}
 
 	private IEnumerator Skill1()
@@ -118,17 +146,19 @@ public class KhururuOrigin : BossMonsters
 		// TODO : 카운터 판정 콜라이더 끄기
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.CompareTag("PlayerSkill") && !isAwake)
-		{
-			isAwake = true;
-		}
+	//private void OnTriggerEnter(Collider other)
+	//{
+	//	if (other.CompareTag("PlayerSkill") && !isAwake)
+	//	{
+	//		isAwake = true;
+	//	}
 
-		// KhururuOrigin을 깨운 이후부터 데미지를 받음
-		if (other.CompareTag("PlayerSkill") && isAwake)
-		{
-			//TakeHit();
-		}
-	}
+	//	// KhururuOrigin을 깨운 이후부터 데미지를 받음
+	//	if (other.CompareTag("PlayerSkill") && isAwake)
+	//	{
+	//		// TODO : 플레이어의 공격에 따른 데미지를 파라미터로 받아와서 TakeHit함수 실행
+	//		// var (damage, hitType) = Player.Attack();
+	//		//TakeHit(damage, hitType, hitParticle);
+	//	}
+	//}
 }
