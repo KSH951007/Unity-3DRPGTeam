@@ -83,7 +83,12 @@ public class ActionScheduler
     {
         for (int i = 0; i < actions.Length; i++)
         {
-            actions[i] = null;
+            if (actions[i] != null)
+            {
+                actions[i].StopAction();
+                actions[i] = null;
+
+            }
         }
     }
     public int NextIndex()

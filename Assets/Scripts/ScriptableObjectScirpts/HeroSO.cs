@@ -2,9 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroSO : MonoBehaviour
+
+[CreateAssetMenu(fileName = "New Hero", menuName = "ScriptableObject/HeroData")]
+public class HeroSO : ScriptableObject
 {
-    protected int damage;
-    protected float moveSpeed;
-    protected int basicAttackComboCount;
+    [SerializeField] protected int level;
+    [SerializeField] protected int maxHealth;
+    [SerializeField] protected int maxMana;
+    [SerializeField] protected int defensive;
+    [SerializeField] protected int damage;
+    [SerializeField] protected int maxAttackCombo;
+
+
+    public int GetLevel() { return level; }
+    public int GetMaxHealth() { return maxHealth; }
+    public int GetMaxMana() { return maxMana; }
+    public int GetDefensive() { return defensive; }
+    public int GetDamage() { return damage; }
+    public int GetMaxAttackCombo() { return maxAttackCombo; }
 }

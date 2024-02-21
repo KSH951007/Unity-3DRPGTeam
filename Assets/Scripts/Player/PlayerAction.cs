@@ -7,6 +7,12 @@ public abstract class PlayerAction
     protected PlayerController owner;
     protected Animator animator;
     protected bool isEndAction;
+
+    public void ChangeAnimator(Animator newAnimator)
+    {
+        
+        animator = newAnimator;
+    }
     public bool IsEndAction { get { return isEndAction; } }
     public abstract bool IsCanle(PlayerAction action);
     public PlayerAction(Animator animator, PlayerController owner)

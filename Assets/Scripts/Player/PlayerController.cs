@@ -36,8 +36,11 @@ public class PlayerController : MonoBehaviour
         inputs.Player.Attack.performed += _ => PointerClickAttack();
 
         inputs.Player.ChangeCharacter.performed += _ =>
-        {
-            heroManager.ChangeCharacter(heroManager.nextCharacter());
+        {            
+            heroManager.ChangeCharacter();
+            scheduler.ResetActions();
+            moveAction.ChangeAnimator(heroManager.GetMainHero().HeroAnimator);
+            attackAction.ChangeAnimator(heroManager.GetMainHero().HeroAnimator);
         };
     }
 

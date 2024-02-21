@@ -14,8 +14,8 @@ public class HeroManager : MonoBehaviour
     private float currentChangeCooldown;
     public event Action onChangeCharacter;
 
-   
-   
+
+
     private void Awake()
     {
         maxStorageHerosCount = 50;
@@ -29,7 +29,10 @@ public class HeroManager : MonoBehaviour
         {
             hasHeros[i] = transform.GetChild(i).GetComponent<Hero>();
         }
-        selectHeros[mainHeroIndex] = hasHeros[0];
+        for (int i = 0; i < selectHeros.Length; i++)
+        {
+            selectHeros[i] = hasHeros[i];
+        }
     }
     public Hero GetMainHero()
     {
@@ -39,16 +42,24 @@ public class HeroManager : MonoBehaviour
     {
 
     }
-    public void ChangeCharacter(int index)
+    public void ChangeCharacter()
     {
-        if (selectHeros.Length < index)
-            return;
-        if (selectHeros[index] == null)
+        int nextIndex = mainHeroIndex + 1;
+        if (nextIndex >= maxPlayHeroCount)
+        {
+            nextIndex = 0;
+        }
+
+        Debug.Log(selectHeros.Length);
+        if (selectHeros[nextIndex] == null)
             return;
         if (currentChangeCooldown > 0f)
             return;
 
-        mainHeroIndex = index;
+        Debug.Log(mainHeroIndex);
+        selectHeros[mainHeroIndex].gameObject.SetActive(false);
+        mainHeroIndex = nextIndex;
+        selectHeros[mainHeroIndex].gameObject.SetActive(true);
         onChangeCharacter?.Invoke();
         StartCoroutine(ChangeCooldownRoutin());
     }
@@ -68,7 +79,7 @@ public class HeroManager : MonoBehaviour
     public int nextCharacter()
     {
         mainHeroIndex++;
-        if(mainHeroIndex >= maxPlayHeroCount)
+        if (mainHeroIndex >= maxPlayHeroCount)
         {
             mainHeroIndex = 0;
         }
