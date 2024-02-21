@@ -16,4 +16,39 @@ public class Agares : BossMonsters
 			animator.SetTrigger("HpPropotionalAttack");
 		}
 	}
+
+	private void StateControl()
+	{
+		while (!isDead)
+		{
+			switch (state)
+			{
+				case State.Idle:
+					break;
+				case State.Chase:
+					break;
+				case State.Attack:
+					break;
+
+			}
+		}
+	}
+
+	private void Idle()
+	{
+		if (playerFound)
+		{
+			state = State.Chase;
+		}
+	}
+
+	private void Chase()
+	{
+
+	}
+
+	private void Attack()
+	{
+
+	}
 }

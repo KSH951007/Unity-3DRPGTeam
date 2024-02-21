@@ -166,7 +166,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77825945}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.2
   m_Speed: 3.5
@@ -222,11 +222,15 @@ MonoBehaviour:
   moveSpeed: 0
   exp: 0
   target: {fileID: 0}
+  chasingTime: 0
+  takeHitMat: {fileID: 0}
   isMelee: 0
   isStunned: 0
+  playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
+  hitParticles: []
 --- !u!54 &77825950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -738,7 +742,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860479398}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3.4
   m_Speed: 3.5
@@ -771,11 +775,15 @@ MonoBehaviour:
   moveSpeed: 0
   exp: 0
   target: {fileID: 0}
+  chasingTime: 0
+  takeHitMat: {fileID: 2100000, guid: de5fa68975928f2429e3a32e9ae13872, type: 2}
   isMelee: 0
   isStunned: 0
+  playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
+  hitParticles: []
 --- !u!54 &860479403
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1058,7 +1066,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194318880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -1109,16 +1117,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 0
-  currentHp: 0
+  currentHp: 100
   basicDamage: 0
   moveSpeed: 0
   exp: 0
   target: {fileID: 0}
+  chasingTime: 0
+  takeHitMat: {fileID: 2100000, guid: 0c6a786eeb82ad24c9dc1735f664d516, type: 2}
   isMelee: 0
   isStunned: 0
+  playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
+  hitParticles: []
 --- !u!54 &1194318885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1212,7 +1224,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696077296}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.4
   m_Speed: 3.5
@@ -1268,11 +1280,15 @@ MonoBehaviour:
   moveSpeed: 0
   exp: 0
   target: {fileID: 0}
+  chasingTime: 0
+  takeHitMat: {fileID: 0}
   isMelee: 0
   isStunned: 0
+  playerFound: 0
   isChase: 0
   isAttack: 0
   isDead: 0
+  hitParticles: []
 --- !u!54 &1696077301
 Rigidbody:
   m_ObjectHideFlags: 0
