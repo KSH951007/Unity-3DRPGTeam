@@ -48,7 +48,6 @@ public class ActionScheduler
 
             actions[NextIndex()] = action;
 
-            Debug.Log(actions[actionIndex] + "add");
 
         }
 
@@ -64,8 +63,7 @@ public class ActionScheduler
         {
             if (actions[actionIndex].IsEndAction)
             {
-
-                Debug.Log(actions[actionIndex] + "aaa");
+                actions[actionIndex].StopAction();
 
                 ChangeAction();
 

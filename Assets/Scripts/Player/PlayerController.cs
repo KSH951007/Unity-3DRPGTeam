@@ -11,10 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerControls inputs;
     private HeroManager heroManager;
-    private PlayerMover mover;
     private StateMachine<EnumType.PlayerState, PlayerController> stateMachine;
     public PlayerControls Inputs { get { return inputs; } }
-    public PlayerMover Mover { get { return mover; } }
     private bool canControl;
     private ActionScheduler scheduler;
     private PlayerMoveAction moveAction;
@@ -25,7 +23,6 @@ public class PlayerController : MonoBehaviour
     {
         heroManager = GetComponent<HeroManager>();
         agent = GetComponent<NavMeshAgent>();
-        mover = GetComponent<PlayerMover>();
         canControl = true;
         scheduler = new ActionScheduler();
 
@@ -37,7 +34,11 @@ public class PlayerController : MonoBehaviour
         attackAction = new PlayerAttackAction(heroManager.GetMainHero().HeroAnimator, this, heroManager.GetMainHero(), 3);
         inputs.Player.Move.performed += _ => PointerClickMove();
         inputs.Player.Attack.performed += _ => PointerClickAttack();
-        inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter(heroManager.nextCharacter());
+
+        inputs.Player.ChangeCharacter.performed += _ =>
+        {
+            heroManager.ChangeCharacter(heroManager.nextCharacter());
+        };
     }
 
     private void OnEnable()
@@ -83,44 +84,17 @@ public class PlayerController : MonoBehaviour
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        //Debug.Log(screenPos);
+        screenPos.z = 0f;
+        Vector3 mousePos = Mouse.current.position.value;
 
-       
+        Vector3 direction = (mousePos - screenPos).normalized;
 
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
+        Vector3 newDirection = new Vector3(direction.x, 0f, direction.y);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (!attackAction.IsLastAttack())
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            {
-                hit.point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                attackAction.SetTargetTo(hit.point);
-                scheduler.AddAction(attackAction);
-            }
+            attackAction.SetTargetTo(newDirection);
+            scheduler.AddAction(attackAction);
         }
-
-    }
-    public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
-    {
-        Vector3 direction = (targetPos - this.transform.position).normalized;
-        Vector3 velocity = Vector3.zero;
-        while (Vector3.Dot(transform.forward, direction) <= 0.99f)
-        {
-            transform.forward = Vector3.SmoothDamp(transform.forward, direction, ref velocity, smoothTime);
-
-            yield return null;
-        }
-    }
-    public void AttackTo()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
-
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            hit.point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-
-            StartCoroutine(TargetToLoock(hit.point, 0.1f));
-        }
-        heroManager.GetMainHero().HeroAnimator.SetTrigger("Attack");
     }
 }

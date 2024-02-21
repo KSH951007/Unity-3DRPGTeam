@@ -10,6 +10,8 @@ public class PlayerAttackAction : PlayerAction
     float currentTime;
     float attackClipLength;
     Hero mainHero;
+
+
     public PlayerAttackAction(Animator animator, PlayerController owner, Hero mainHero, int maxCombo) : base(animator, owner)
     {
         this.maxCombo = maxCombo;
@@ -25,19 +27,24 @@ public class PlayerAttackAction : PlayerAction
     }
     public override bool IsCanle(PlayerAction action)
     {
-       
+
 
         return false;
     }
     public override void StartAction()
     {
-       
+
 
         isEndAction = false;
         currentTime = 0;
         curruntAttackCombo++;
-        owner.transform.LookAt(targetPos);
-            //owner.StartCoroutine(TargetToLoock(targetPos,0.1f));
+        if (curruntAttackCombo >= maxCombo)
+        {
+            curruntAttackCombo = 0;
+        }
+        owner.StartCoroutine(TargetToLoock(targetPos,0.1f));
+        owner.transform.forward = targetPos;
+        //owner.StartCoroutine(TargetToLoock(targetPos,0.1f));
     }
 
     public override void StopAction()
@@ -48,7 +55,7 @@ public class PlayerAttackAction : PlayerAction
 
     public override void UpdateAction()
     {
-       
+
 
         currentTime += Time.deltaTime;
         attackClipLength = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
@@ -58,19 +65,20 @@ public class PlayerAttackAction : PlayerAction
             return;
         }
 
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
-
     }
     public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
     {
-        Vector3 direction = (targetPos - this.owner.transform.position).normalized;
         Vector3 velocity = Vector3.zero;
-        while (Vector3.Dot(owner.transform.forward, direction) <= 0.99f)
+        while (Vector3.Dot(owner.transform.forward, targetPos) <= 0.99f)
         {
-            owner.transform.forward = Vector3.SmoothDamp(owner.transform.forward, direction, ref velocity, smoothTime);
+            owner.transform.forward = Vector3.SmoothDamp(owner.transform.forward, targetPos, ref velocity, smoothTime);
 
             yield return null;
         }
+    }
+    public bool IsLastAttack()
+    {
+        return curruntAttackCombo >= maxCombo;
     }
 
 

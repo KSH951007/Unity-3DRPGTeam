@@ -13,6 +13,7 @@ public class HeroDin : Hero
     }
     public override void Atacck()
     {
+
     }
 
     public override void Skill1()
@@ -25,6 +26,7 @@ public class HeroDin : Hero
 
     public override void Skill3()
     {
+
     }
 
 }
