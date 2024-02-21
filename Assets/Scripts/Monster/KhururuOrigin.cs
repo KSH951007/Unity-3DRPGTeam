@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class KhururuOrigin : BossMonsters
 {
-	protected override void OnEnable()
-	{
-		patience = 1;
-		AppearAnimation();
-	}
+	//protected void OnEnable()
+	//{
+	//	base.OnEnable();
+	//	patience = 1;
+	//	nav.isStopped = true;
+	//	StartCoroutine(StateControl());
+	//}
 
 	private void Update()
 	{
@@ -26,89 +28,130 @@ public class KhururuOrigin : BossMonsters
 		{
 			TakeHit(1, 0);
 		}
-	}
 
-	private IEnumerator StateControl()
-	{
-		while (!isDead)
-		{
-			switch (state)
-			{
-				case State.Idle:
-					Idle();
-					break;
+        currentState = currentState.DoState(this);
+    }
 
-				case State.Chase:
-					yield return new WaitForSeconds(0.5f);
-					Chase();
-					break;
+	//private IEnumerator StateControl()
+	//{
+ //       AppearAnimation();
 
-				case State.Attack:
-					yield return new WaitForSeconds(0.5f);
-					Attack();
-					break;
-			}
-		}
-	}
+ //       while (!isDead)
+	//	{
+	//		switch (currentState)
+	//		{
+	//			case State.Appear:
 
-	private void Idle()
-	{
-		if (patience == 0)
-		{
-			state = State.Chase;
-		}
-	}
+	//				nav.isStopped = true;
+	//				AfterAppear();
+	//				yield return null;
 
-	private void Chase()
-	{
-		nav.SetDestination(target.position);
+	//				break;
 
-		if (nav.remainingDistance > 3f)
-		{
-			transform.position = nav.destination * moveSpeed * Time.deltaTime;
-			animator.SetBool("Move", true);
-		}
-		else if (nav.remainingDistance > 1f && nav.remainingDistance <= 3f)
-		{
-			SetChasingTime();
-			if (Time.time < chasingTime)
-			{
-				transform.position = nav.destination * moveSpeed * Time.deltaTime;
-				animator.SetBool("Move", true);
-			}
-			else
-			{
-				state = State.Attack;
-			}
-		}
-		else
-		{
-			state = State.Attack;
-		}
-	}
+	//			case State.Idle:
 
-	public void Attack()
-	{
-		if (currentHp / maxHp > 0.8f && nav.remainingDistance < 0.1f)
-		{
-			animator.SetTrigger("Attack");
-			// TODO : 플레이어의 TakeHit 함수 호출, basicDamage, HitType.None 전달.
-		}
-		else if (currentHp / maxHp > 0.3f && currentHp / maxHp < 0.8f && nav.remainingDistance < 1f)
-		{
-			animator.SetTrigger("Skill1");
-		}
-		else if (currentHp / maxHp < 0.3f)
-		{
-			animator.SetTrigger("Skill2");
-		}
-		else if (nav.remainingDistance > 2f)
-		{
-			animator.SetTrigger("Skill3");
-		}
+ //                   Idle();
+ //                   yield return new WaitForSeconds(1f);
 
-		state = State.Chase;
-	}
+ //                   break;
+
+	//			case State.Chase:
+
+ //                   StartCoroutine(Chase());
+ //                   yield return new WaitForSeconds(1f);
+
+ //                   break;
+
+	//			case State.Attack:
+
+	//				nav.isStopped = true;
+	//				StartCoroutine(Attack());
+ //                   yield return new WaitForSeconds(1f);
+
+ //                   break;
+	//		}
+
+	//		print(currentState);
+	//		print(nav.remainingDistance);
+	//	}
+
+ //       yield return null;
+ //   }
+
+ //   protected void AfterAppear()
+ //   {
+	//	if (patience == 1)
+	//	{
+	//		currentState = State.Appear;
+	//	}
+	//	else
+	//	{
+ //           animator.SetTrigger("FirstHit");
+	//		animator.SetTrigger("Trip");
+	//		currentState = State.Idle;
+ //       }
+ //   }
+
+ //   private void Idle()
+	//{
+	//	if (target != null)
+	//	{
+	//		currentState = State.Chase;
+	//	}
+	//}
+
+	//private IEnumerator Chase()
+	//{
+ //       nav.SetDestination(target.position);
+
+ //       if (nav.remainingDistance > 3f)
+	//	{
+ //           nav.isStopped = false;
+ //           MoveAnimation();
+	//		yield return new WaitForSeconds(3f);
+	//	}
+	//	else if (nav.remainingDistance > 1f && nav.remainingDistance <= 3f)
+	//	{
+	//		SetChasingTime();
+	//		if (Time.time < chasingTime)
+	//		{
+ //               nav.isStopped = false;
+ //               MoveAnimation();
+ //               yield return new WaitForSeconds(chasingTime - Time.time);
+ //           }
+	//	}
+
+	//	yield return new WaitForSeconds(0.1f);
+ //       animator.SetBool("Move", false);
+ //       nav.isStopped = true;
+ //       nav.velocity = Vector3.zero;
+	//	currentState = State.Attack;
+ //   }
+
+	//public IEnumerator Attack()
+	//{
+	//	if (currentHp / maxHp > 0.8f && nav.remainingDistance < 0.1f)
+	//	{
+	//		animator.SetTrigger("Attack");
+	//		// TODO : 플레이어의 TakeHit 함수 호출, basicDamage, HitType.None 전달.
+	//	}
+	//	else if (currentHp / maxHp > 0.3f && currentHp / maxHp < 0.8f && nav.remainingDistance < 1f)
+	//	{
+	//		animator.SetTrigger("Skill1");
+	//	}
+	//	else if (currentHp / maxHp < 0.3f && nav.remainingDistance < 2f)
+	//	{
+	//		animator.SetTrigger("Skill2");
+	//	}
+	//	else if (nav.remainingDistance > 2f)
+	//	{
+	//		animator.SetTrigger("Skill3");
+	//	}
+
+ //       yield return new WaitForSeconds(1f);
+
+ //       currentState = State.Chase;
+	//}
 
 	private IEnumerator Skill1()
 	{

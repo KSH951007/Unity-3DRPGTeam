@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.VFX;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class BossMonsters : MonoBehaviour, IHitable
 {
 	[SerializeField] protected float maxHp;
@@ -12,19 +13,21 @@ public class BossMonsters : MonoBehaviour, IHitable
 	public float basicDamage;
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected float exp;
-	[SerializeField] protected Transform target;
-	[SerializeField] protected float chasingTime;
+	[SerializeField] public Transform target;
+	[SerializeField] public float chasingTime;
 	[SerializeField] protected Material takeHitMat;
-	[SerializeField] protected int patience = 0;
+	[SerializeField] public int patience;
 
 	protected GameObject[] dropItem;
 	protected float dropCoin;
 
-	protected Animator animator;
-	protected NavMeshAgent nav;
+	[HideInInspector] public Animator animator;
+    [HideInInspector] public NavMeshAgent nav;
+	public SphereCollider detectColl;
+	public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
 	protected SkinnedMeshRenderer currentMeshRenderer;
-	protected Coroutine currentSkillCoroutine;
+	//protected Coroutine currentSkillCoroutine;
 	//protected Coroutine usingSkill;
 
 	[SerializeField] protected bool isMelee;
@@ -36,43 +39,60 @@ public class BossMonsters : MonoBehaviour, IHitable
 
 	[SerializeField] public GameObject hitParticle;
 	
+	public IBossMonsterState currentState;
+	public AppearState appearState = new AppearState();
+	public IdleState idleState = new IdleState();
+	public ChaseState chaseState = new ChaseState();
+	public AttackState attackState = new AttackState();
+	public DeadState deadState = new DeadState();
 
-	protected enum State
-	{
-		Idle,
-		Chase,
-		Attack
-	}
-
-	protected State state;
 
 	protected void Awake()
 	{
 		animator = GetComponentInChildren<Animator>();
 		nav = GetComponent<NavMeshAgent>();
+		detectColl = transform.Find("DetectRange").GetComponent<SphereCollider>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-		state = State.Idle;
 	}
 
-	protected virtual void OnEnable()
+	protected void OnEnable()
 	{
+		AppearAnimation();
+        currentState = appearState;
+    }
+
+    private void Update()
+    {
+        //currentState = currentState.DoState(this);
+    }
+
+	public float GetHp()
+	{
+		return currentHp / maxHp;
 	}
 
-	protected void AppearAnimation()
+    public IEnumerator ChaseLongDistance()
+    {
+        nav.isStopped = false;
+        yield return new WaitUntil(() => nav.remainingDistance < 6f);
+        nav.isStopped = true;
+    }
+
+    protected void AppearAnimation()
 	{
 		animator.SetTrigger("Appear");
 	}
 
 	protected void MoveAnimation()
 	{
-		animator.SetBool("Move", true);
+		animator.SetBool("Move", true);	
 	}
 
 	/// <summary>
 	/// 일정거리 이하라면 랜덤한 시간 동안만 플레이어를 쫓도록 하기 위한 시간 설정
 	/// </summary>
 	/// <returns></returns>
-	protected void SetChasingTime()
+	public void SetChasingTime()
 	{
 		chasingTime = Time.time + Random.Range(0f, 3f);
 	}

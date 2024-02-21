@@ -18,30 +18,30 @@ public class Urbon : BossMonsters
 		}
 	}
 
-	private void StateControl()
-	{
-		while (!isDead)
-		{
-			switch (state)
-			{
-				case State.Idle:
-					break;
-				case State.Chase:
-					break;
-				case State.Attack:
-					break;
+	//private void StateControl()
+	//{
+	//	while (!isDead)
+	//	{
+	//		switch (currentState)
+	//		{
+	//			case State.Idle:
+	//				break;
+	//			case State.Chase:
+	//				break;
+	//			case State.Attack:
+	//				break;
 
-			}
-		}
-	}
+	//		}
+	//	}
+	//}
 
-	private void Idle()
-	{
-		if (playerFound)
-		{
-			state = State.Chase;
-		}
-	}
+	//private void Idle()
+	//{
+	//	if (playerFound)
+	//	{
+	//		currentState = State.Chase;
+	//	}
+	//}
 
 	private void Chase()
 	{
