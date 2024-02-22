@@ -171,7 +171,7 @@ NavMeshAgent:
   m_Radius: 1.2
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 49
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -225,6 +225,10 @@ MonoBehaviour:
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: 8436d4ed78dc6104688943394a03af28, type: 2}
   patience: 0
+  timeForNextAttack: 0
+  timeForNextChase: 0
+  maxShieldAmount: 15
+  curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 2035222494}
@@ -237,6 +241,8 @@ MonoBehaviour:
   isChase: 0
   isAttack: 0
   isDead: 0
+  hasAttacked: 0
+  shieldBroken: 0
   hitParticle: {fileID: 0}
 --- !u!136 &119484361
 CapsuleCollider:
@@ -780,7 +786,7 @@ NavMeshAgent:
   m_Radius: 3.4
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 49
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -811,6 +817,10 @@ MonoBehaviour:
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: de5fa68975928f2429e3a32e9ae13872, type: 2}
   patience: 0
+  timeForNextAttack: 0
+  timeForNextChase: 0
+  maxShieldAmount: 15
+  curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 286745243}
@@ -823,6 +833,8 @@ MonoBehaviour:
   isChase: 0
   isAttack: 0
   isDead: 0
+  hasAttacked: 0
+  shieldBroken: 0
   hitParticle: {fileID: 0}
 --- !u!1 &916383988
 GameObject:
@@ -1084,7 +1096,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 49
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -1138,6 +1150,10 @@ MonoBehaviour:
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: 0c6a786eeb82ad24c9dc1735f664d516, type: 2}
   patience: 1
+  timeForNextAttack: 0
+  timeForNextChase: 0
+  maxShieldAmount: 15
+  curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 1633415906}
@@ -1150,6 +1166,8 @@ MonoBehaviour:
   isChase: 0
   isAttack: 0
   isDead: 0
+  hasAttacked: 0
+  shieldBroken: 0
   hitParticle: {fileID: 0}
 --- !u!1 &1225003702
 GameObject:
@@ -1164,6 +1182,7 @@ GameObject:
   - component: {fileID: 1225003704}
   - component: {fileID: 1225003703}
   - component: {fileID: 1225003707}
+  - component: {fileID: 1225003708}
   m_Layer: 7
   m_Name: PlayerTest
   m_TagString: Untagged
@@ -1250,13 +1269,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225003702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 8.55, y: 1.71, z: 11.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!195 &1225003707
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1279,6 +1298,18 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1225003708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225003702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3e5406d4576204d93841d0e9e31870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1410890189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1403,7 +1434,7 @@ NavMeshAgent:
   m_Radius: 1.4
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 49
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -1457,6 +1488,10 @@ MonoBehaviour:
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: 668c7f24b7caee2459f69627b7aedd51, type: 2}
   patience: 0
+  timeForNextAttack: 0
+  timeForNextChase: 0
+  maxShieldAmount: 15
+  curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 1951466118}
@@ -1469,6 +1504,8 @@ MonoBehaviour:
   isChase: 0
   isAttack: 0
   isDead: 0
+  hasAttacked: 0
+  shieldBroken: 0
   hitParticle: {fileID: 0}
 --- !u!1 &1820350492
 GameObject:

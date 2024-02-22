@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 public class BossMonsters : MonoBehaviour, IHitable
 {
 	[SerializeField] protected float maxHp;
-	[SerializeField] protected float currentHp;
+	[SerializeField] public float currentHp;
 	public float basicDamage;
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected float exp;
@@ -17,6 +17,11 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] public float chasingTime;
 	[SerializeField] protected Material takeHitMat;
 	[SerializeField] public int patience;
+	[SerializeField] public float timeForNextAttack;
+	[SerializeField] public float timeForNextChase;
+
+	public float maxShieldAmount = 15;
+	public float curShieldAmount;
 
 	protected GameObject[] dropItem;
 	protected float dropCoin;
@@ -36,16 +41,10 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] protected bool isChase;
 	[SerializeField] protected bool isAttack;
 	[SerializeField] protected bool isDead;
+	public bool hasAttacked;
+	public bool shieldBroken;
 
 	[SerializeField] public GameObject hitParticle;
-	
-	public IBossMonsterState currentState;
-	public AppearState appearState = new AppearState();
-	public IdleState idleState = new IdleState();
-	public ChaseState chaseState = new ChaseState();
-	public AttackState attackState = new AttackState();
-	public DeadState deadState = new DeadState();
-
 
 	protected void Awake()
 	{
@@ -55,37 +54,14 @@ public class BossMonsters : MonoBehaviour, IHitable
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 	}
 
-	protected void OnEnable()
-	{
-		AppearAnimation();
-        currentState = appearState;
-    }
-
-    private void Update()
-    {
-        //currentState = currentState.DoState(this);
-    }
-
-	public float GetHp()
-	{
-		return currentHp / maxHp;
-	}
-
-    public IEnumerator ChaseLongDistance()
-    {
-        nav.isStopped = false;
-        yield return new WaitUntil(() => nav.remainingDistance < 6f);
-        nav.isStopped = true;
-    }
-
-    protected void AppearAnimation()
+	protected virtual void OnEnable()
 	{
 		animator.SetTrigger("Appear");
 	}
 
-	protected void MoveAnimation()
+	public float GetHp()
 	{
-		animator.SetBool("Move", true);	
+		return currentHp / maxHp;
 	}
 
 	/// <summary>
@@ -94,7 +70,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 	/// <returns></returns>
 	public void SetChasingTime()
 	{
-		chasingTime = Time.time + Random.Range(0f, 3f);
+		chasingTime = Time.time + Random.Range(3f, 6f);
 	}
 
 	public void TakeHit(float damage, IHitable.HitType hitType, GameObject hitParticle = null)
@@ -115,6 +91,10 @@ public class BossMonsters : MonoBehaviour, IHitable
 
 			if (currentHp - damage > 0)
 			{
+				if (curShieldAmount > 0)
+				{
+					curShieldAmount--;
+				}
 				currentHp -= damage;
 				StartCoroutine(ChangeMat());
 			}
@@ -122,7 +102,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 			{
 				currentHp = 0;
 				isDead = true;
-				Die();
+				StartCoroutine(Die());
 			}
 		}
 	}
@@ -135,9 +115,12 @@ public class BossMonsters : MonoBehaviour, IHitable
 		skinnedMeshRenderer.material = originalMat;
 	}
 
-	protected void Die()
+	protected IEnumerator Die()
 	{
 		animator.SetTrigger("Die");
+		yield return new WaitForSeconds(2.5f);
+		gameObject.SetActive(false);
+		//드랍 아이템
 	}
 
 	/// <summary>
