@@ -43,9 +43,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -119,9 +119,442 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 491
+        width: 57
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd8e0587d0821d40956c3185a14732a
+      internalID: 2050243113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 491
+        width: 57
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd4a51a5905d07a49b5ee0faa7eb4cce
+      internalID: 1898483842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 463
+        width: 60
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5053f366788995d4788586853b4807cc
+      internalID: -1043049146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 462
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a938ea690f3583498511267bff3b198
+      internalID: 2035311670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 346
+        width: 132
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43b15fb82a8412247b991680a86a1919
+      internalID: 1582308783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_5
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 288
+        width: 68
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdbbd4c6129e7c140beb778cbe508593
+      internalID: 669615349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_6
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 288
+        width: 61
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3d34757e04894d4e831d6b3dff98f7f
+      internalID: -697680426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_7
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 288
+        width: 45
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 891f8f5dd57daf34aa45a5a9312d2268
+      internalID: -862903396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 173
+        width: 132
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5946d394210ae204bb5c36b3f6e02b14
+      internalID: -834480381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_9
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 288
+        width: 73
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69e5bf810435c9c4a9bbd9a5de4702f3
+      internalID: -267148351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_10
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 173
+        width: 163
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 64, y: 1, z: 26, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f53ce2627759f4ca8c2b3d28a3acb6
+      internalID: -520051884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_11
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 173
+        width: 97
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3ae7a8914bdb544a8eaf613f89cc167
+      internalID: 235077455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_12
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 173
+        width: 86
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be83c4c34bf49ba41ba28138973e87a4
+      internalID: 1078856751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 132
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c9ab0da847ca5499b163a9f81384ff
+      internalID: 1615859838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_14
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 132
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99314f0674ea7294186b5d2578752a3e
+      internalID: -2015457064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_15
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 115
+        width: 73
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d25a27d5c49d64d96239e8c63ef388
+      internalID: -97657171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_16
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 115
+        width: 72
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ef9d8fe29a0da4daaa15bc920debf9
+      internalID: 1125946986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_17
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 54
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbf3a40d1be9384ba115853f29d9a3d
+      internalID: -1361697444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_18
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 0
+        width: 163
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8df83e4e109a5f49b0d002c08d58b53
+      internalID: 1083001085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Panel_19
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4387da6b6c45b214ba4da786562b9c4d
+      internalID: 1812314872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +565,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Atlas_Panel_0: 2050243113
+      UI_Atlas_Panel_1: 1898483842
+      UI_Atlas_Panel_10: -520051884
+      UI_Atlas_Panel_11: 235077455
+      UI_Atlas_Panel_12: 1078856751
+      UI_Atlas_Panel_13: 1615859838
+      UI_Atlas_Panel_14: -2015457064
+      UI_Atlas_Panel_15: -97657171
+      UI_Atlas_Panel_16: 1125946986
+      UI_Atlas_Panel_17: -1361697444
+      UI_Atlas_Panel_18: 1083001085
+      UI_Atlas_Panel_19: 1812314872
+      UI_Atlas_Panel_2: -1043049146
+      UI_Atlas_Panel_3: 2035311670
+      UI_Atlas_Panel_4: 1582308783
+      UI_Atlas_Panel_5: 669615349
+      UI_Atlas_Panel_6: -697680426
+      UI_Atlas_Panel_7: -862903396
+      UI_Atlas_Panel_8: -834480381
+      UI_Atlas_Panel_9: -267148351
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

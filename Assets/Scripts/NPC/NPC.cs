@@ -11,21 +11,27 @@ public enum NPCState
 }
 public class NPC : MonoBehaviour
 {
+    NPCState state;
+    Animator animator;
+
     public string name;
     public string introduce;// 첫인사
     public string des; // 첫인사 이후
     private int firstMet; // TODO : NPC 첫인사 구현 // chatBubble 클래스
-    public Transform[] moveRnd; //TODO : 총 3방향으로 랜덤 이동 구현 
-    NPCState state;
-    Animator animator;
+    public List<Transform> moveRnd; //TODO : 총 3방향으로 랜덤 이동 구현 
     float InteractRange; // 플레이어 상호작용 범위와 같음
-    ChatBubble bubble;
+    
+    bool needHelp;
+    NPCUI bubble;
+    Quest quest;
 
     private void Awake()
     {
+        InteractRange = 4f;
         state = NPCState.Idle;
         animator = GetComponent<Animator>();
-        bubble = GetComponent<ChatBubble>();
+        bubble = GetComponent<NPCUI>();
+        quest = GetComponent<Quest>();
     }
     private void Update()
     {
@@ -38,15 +44,19 @@ public class NPC : MonoBehaviour
             case NPCState.Talk: // 2
                 break;
         }
-        animator.SetInteger("State", (int)state); // 애니메이터 파라미터 State
+        //animator.SetInteger("State", (int)state); // 애니메이터 파라미터 State
 
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, InteractRange);
         foreach (Collider collider in colliderArray)
         {
             if (collider.TryGetComponent(out Hero player)) // 플레이어가 올때 상호작용에 필요한 
             {
-                bubble.showInteractKey();
+                bubble.pressSpace.SetActive(true);
                 // CHATBUBBLE 클래스의 함수 호출
+            }
+            else
+            {
+                bubble.pressSpace.SetActive(false);
             }
         }
     }

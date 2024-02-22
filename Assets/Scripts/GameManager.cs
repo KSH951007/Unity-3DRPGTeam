@@ -6,8 +6,20 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public Hero player;
+    public PlayerInteract plin;
+    public UiManager ui;
     private void Awake()
     {
-        Instance = this;
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(Instance);
+            return;
+        }
+     
+        ui = GetComponentInChildren<UiManager>();
     }
 }
