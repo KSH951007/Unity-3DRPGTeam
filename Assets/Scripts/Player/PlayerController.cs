@@ -84,7 +84,15 @@ public class PlayerController : MonoBehaviour
         //if (SceneLoader.Instance.GetSceneType() == EnumType.SceneType.Village)
         //    return;
 
+        mainHero.AttackAction(PointerToTarget());
 
+    }
+    public void PressSkill1()
+    {
+
+    }
+    private Vector3 PointerToTarget()
+    {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
 
         screenPos.z = 0f;
@@ -92,8 +100,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = (mousePos - screenPos).normalized;
 
-        Vector3 newDirection = new Vector3(direction.x, 0f, direction.y);
-        mainHero.AttackAction(newDirection);
-
+        return new Vector3(direction.x, 0f, direction.y);
     }
 }

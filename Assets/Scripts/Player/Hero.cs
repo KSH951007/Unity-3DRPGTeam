@@ -4,6 +4,7 @@ using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public abstract class Hero : MonoBehaviour
 {
@@ -67,5 +68,15 @@ public abstract class Hero : MonoBehaviour
     {
         attackAction.SetTargetTo(newDirection);
         scheduler.AddAction(attackAction);
+    }
+    public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
+    {
+        Vector3 velocity = Vector3.zero;
+        while (Vector3.Dot(transform.forward, targetPos) <= 0.99f)
+        {
+            transform.forward = Vector3.SmoothDamp(transform.forward, targetPos, ref velocity, smoothTime);
+
+            yield return null;
+        }
     }
 }
