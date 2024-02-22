@@ -17,8 +17,8 @@ public class NPC : MonoBehaviour
     public string name;
     public string introduce;// 첫인사
     public string des; // 첫인사 이후
-    private int firstMet; // TODO : NPC 첫인사 구현 // chatBubble 클래스
-    public List<Transform> moveRnd; //TODO : 총 3방향으로 랜덤 이동 구현 
+    private int firstMet; // WILLDO : NPC 첫인사 구현 // chatBubble 클래스
+    public List<Transform> moveRnd; //WILLDO : 총 3방향으로 랜덤 이동 구현 
     float InteractRange; // 플레이어 상호작용 범위와 같음
     
     bool needHelp;
@@ -59,6 +59,15 @@ public class NPC : MonoBehaviour
                 bubble.pressSpace.SetActive(false);
             }
         }
+    }
+    IEnumerator walk() // WILLDO : NPC 걷는 로직 완성
+    {
+        yield return null;
+    }
+
+    IEnumerator stateMachine() // WillDO : NPC 상태머신 완성
+    {
+        yield return null;
     }
 
 }
