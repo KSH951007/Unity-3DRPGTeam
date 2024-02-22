@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class ChatBubble : MonoBehaviour
 {
+    public Transform interactBubble;
 
     public static void Create(Transform parent, Vector3 Direction,IconType Icon, string des)
     {
@@ -17,6 +18,11 @@ public class ChatBubble : MonoBehaviour
         }
     }
     
+    public void showInteractKey(Transform parent, Vector3 Direction, IconType Icon, string des)
+    {
+        Transform InteractBubble = Instantiate(interactBubble, parent);
+        InteractBubble.localPosition = Direction;
+    }
 
     public enum IconType
     {

@@ -19,11 +19,13 @@ public class NPC : MonoBehaviour
     NPCState state;
     Animator animator;
     float InteractRange; // 플레이어 상호작용 범위와 같음
+    ChatBubble bubble;
 
     private void Awake()
     {
         state = NPCState.Idle;
         animator = GetComponent<Animator>();
+        bubble = GetComponent<ChatBubble>();
     }
     private void Update()
     {
@@ -36,13 +38,14 @@ public class NPC : MonoBehaviour
             case NPCState.Talk: // 2
                 break;
         }
-        // TODO : 상태머신 구현
+        animator.SetInteger("State", (int)state); // 애니메이터 파라미터 State
 
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, InteractRange);
         foreach (Collider collider in colliderArray)
         {
             if (collider.TryGetComponent(out Hero player)) // 플레이어가 올때 상호작용에 필요한 
             {
+                bubble.showInteractKey();
                 // CHATBUBBLE 클래스의 함수 호출
             }
         }
