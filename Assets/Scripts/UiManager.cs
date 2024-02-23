@@ -8,6 +8,5 @@ public class UiManager : MonoBehaviour
     public QuestUi QUI;
     private void Awake()
     {
-        QUI = GetComponentInChildren<QuestUi>();
     }
 }

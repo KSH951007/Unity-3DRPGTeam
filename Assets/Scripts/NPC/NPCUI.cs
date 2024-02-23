@@ -7,6 +7,7 @@ public class NPCUI : MonoBehaviour // npc가 가지고 있는 UI
     public GameObject interactCanvas;
     public GameObject pressSpace;
 
+
     private void Awake()
     {
         interactCanvas = GameObject.Find("InteractCanvas");

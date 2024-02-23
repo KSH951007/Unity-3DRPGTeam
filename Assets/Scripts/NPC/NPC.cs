@@ -11,12 +11,11 @@ public enum NPCState
 }
 public class NPC : MonoBehaviour
 {
+    public int npcID;
+
     NPCState state;
     Animator animator;
 
-    public string name;
-    public string introduce;// 첫인사
-    public string des; // 첫인사 이후
     private int firstMet; // WILLDO : NPC 첫인사 구현 // chatBubble 클래스
     public List<Transform> moveRnd; //WILLDO : 총 3방향으로 랜덤 이동 구현 
     float InteractRange; // 플레이어 상호작용 범위와 같음
@@ -25,26 +24,23 @@ public class NPC : MonoBehaviour
     NPCUI bubble;
     Quest quest;
 
+    NPCTalkData nTD;
+
     private void Awake()
     {
-        InteractRange = 4f;
+        InteractRange = 2f;
         state = NPCState.Idle;
         animator = GetComponent<Animator>();
         bubble = GetComponent<NPCUI>();
         quest = GetComponent<Quest>();
     }
+    private void Start()
+    {
+        StartCoroutine(stateMachine());
+    }
     private void Update()
     {
-        switch (state)
-        {
-            case NPCState.Idle: // 0
-                break;
-            case NPCState.Walk: // 1
-                break;
-            case NPCState.Talk: // 2
-                break;
-        }
-        //animator.SetInteger("State", (int)state); // 애니메이터 파라미터 State
+        animator.SetInteger("State", (int)state); // 애니메이터 파라미터 State
 
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, InteractRange);
         foreach (Collider collider in colliderArray)
@@ -67,7 +63,20 @@ public class NPC : MonoBehaviour
 
     IEnumerator stateMachine() // WillDO : NPC 상태머신 완성
     {
-        yield return null;
+        while (true)
+        {
+            switch (state)
+            {
+                case NPCState.Idle: // 0
+                    break;
+                case NPCState.Walk: // 1
+                    break;
+                case NPCState.Talk: // 2
+                    state = NPCState.Idle;
+                    break;
+            }
+            yield return null;
+        }
     }
 
 }

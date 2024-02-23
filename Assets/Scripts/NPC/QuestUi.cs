@@ -1,37 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class QuestUi : MonoBehaviour
 {
     GameObject questWindow;
+    bool qwIsOpen = false;
+    
     GameObject questDetail;
+    bool qdIsOpen = false;
+    
     GameObject conversationMenu;
-
+    bool cmIsOpen = false;
+    
+    GameObject talkWindow;
+    bool twIsOpen = false;
+    TextMeshPro NPCname;
 
     private void Awake()
     {
         questWindow = GameObject.Find("QuestPanel");
         questDetail = GameObject.Find("QuestDetail");
         conversationMenu = GameObject.Find("NPCmenu");
+        talkWindow = GameObject.Find("TalkWindow");
+        NPCname = GameObject.Find("Name").GetComponent<TextMeshPro>();
+        qwIsOpen = false;
+        qdIsOpen = false;
+        cmIsOpen = false;
+        twIsOpen = false;
     }
     private void Start()
     {
         questWindow.SetActive(false);
         questDetail.SetActive(false);
         conversationMenu.SetActive(false);
+        talkWindow.SetActive(false);
     }
 
-    public void showQW(bool isOpen)
+    public void showQW()
     {
-        questWindow.SetActive(isOpen);
+        qwIsOpen = !qwIsOpen;
+        questWindow.SetActive(qwIsOpen);
     }
     public void showQD()
     {
-        questDetail.SetActive(false);
+        qdIsOpen = !qdIsOpen;
+        questDetail.SetActive(qdIsOpen);
     }
     public void showConversation()
     {
-        conversationMenu.SetActive(false);
+        cmIsOpen = !cmIsOpen;
+        conversationMenu.SetActive(cmIsOpen);
+    }
+    public void talkWithNPC()
+    {
+        twIsOpen = !twIsOpen;
+        talkWindow.SetActive(twIsOpen);
     }
 }

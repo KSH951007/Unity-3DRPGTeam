@@ -3,38 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public enum questType
+{
+    collect,
+    introduce
+}
 public class Quest : MonoBehaviour
 {
-    public int playProgress; // 플레이 진척도에 따라 // 퀘스트 연계
-    int playerLevel;         // 플레이어 레벨 or 플레이어 진척도 병합전 쓰기위함용
-    private bool needHelp;   // 퀘스트를 보유한 NPC용
-    public bool getHelped;  // 퀘스트 완료(더이상 퀘스트가 뜨지 않음)
+    public QuestData qData;
 
-    public string questString; // 각 엔피씨마다 퀘스트용 텍스트
-    public string questCompleteString; // 퀘스트 완료 텍스트
-    public string questTitle; // 퀘스트 타이틀
-    public string questDetail; // 퀘스트 내용 /ex) 몬스터 10마리 잡기
-    public string playerName; // 플레이어 이름
+    [HideInInspector]
+    public bool isComplete;  // 퀘스트 완료(더이상 퀘스트가 뜨지 않음)
+    private QuestData questData;
 
+    public Quest(QuestData questData)
+    {
+        this.questData = questData;
+    }
 
     private void FixedUpdate()
     {
-        if(playProgress <= playerLevel )
+        if(qData.playProgress <= qData.playerLevel )
         {
-            if (getHelped)
+            if (isComplete)
             {
-                needHelp = false;
+                qData.needHelp = false;
             }
             else
             {
-                needHelp = true;
+                qData.needHelp = true;
             }
         }
     }
     // 퀘스트 보상
     public void GetQuest(int progress, string name) // 진척 상황과 플레이어 닉네임
     {
-        if (needHelp)
+        if (qData.needHelp)
         {
             if (GameManager.Instance.plin.curAmount < GameManager.Instance.plin.requiredAmount)
             {
@@ -54,15 +59,22 @@ public class Quest : MonoBehaviour
 
     public void questAccept()
     {
-        needHelp = false;
+        qData.needHelp = false;
     }
     public void questReject()
     {
-        needHelp = true;
+        qData.needHelp = true;
     }
 
     public void questComplete()
     {
-        getHelped = true;
+        updateProgress();
+        isComplete = true;
+        // 경험치나 골드 보상 획득
+    }
+
+    public void updateProgress()
+    {
+
     }
 }
