@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class KhururuOrigin : BossMonsters
 {
-	private enum State
+
+    private enum State
 	{
 		None,
 		Appear,
@@ -51,7 +52,7 @@ public class KhururuOrigin : BossMonsters
 				break;
 
 			case State.Idle:
-				if (CanSeePlayer() && NextChaseCoolTime())
+				if (CanSeePlayer() && NextChangeCoolTime())
 				{
 					ChangeState(State.Chase);
 				}
@@ -70,12 +71,9 @@ public class KhururuOrigin : BossMonsters
 				break;
 
 			case State.Attack:
-				if (hasAttacked || shieldBroken)
+				if ((hasAttacked || shieldBroken) && NextIdleCoolTime())
 				{
 					ChangeState(State.Idle);
-					//hasAttacked = false;
-					//shieldBroken = false;
-					//animator.SetBool("ShieldBroken", false);
 				}
 				break;
 		}
@@ -158,34 +156,28 @@ public class KhururuOrigin : BossMonsters
 		else return false;
 	}
 
-	private bool NextChaseCoolTime()
+	private bool NextIdleCoolTime()
 	{
-		if (timeForNextChase < Time.time)
+		if (timeForNextIdle < Time.time)
 		{
 			return true;
 		}
 		else return false;
 	}
 
-	//public void HasAttacked()
-	//{
-	//	hasAttacked = true;
-	//	// 이 함수는 skill애니메이션 event로 추가
-	//}
-
-	//public void ShieldBroken()
-	//{
-	//       if (curShieldAmount / maxShieldAmount <= 0)
-	//       {
-	//           shieldBroken = true;
-	//		animator.SetBool("ShieldBroken", true);
-	//       }
-	//   }
-	#endregion
+    private bool NextChangeCoolTime()
+    {
+        if (timeForNextChange < Time.time)
+        {
+            return true;
+        }
+        else return false;
+    }
+    #endregion
 
 
-	// 몬스터가 특정 스킬을 사용할 때 플레이어가 타이밍을 맞춰 (스턴)공격에 성공하면 몬스터 스턴 상태에 돌입
-	protected void CounterStart()
+    // 몬스터가 특정 스킬을 사용할 때 플레이어가 타이밍을 맞춰 (스턴)공격에 성공하면 몬스터 스턴 상태에 돌입
+    protected void CounterStart()
 	{
 		// TODO : 몬스터 몸에서 빛이 번쩍이면서 카운터 타이밍임을 알리는 시각효과
 		// TODO : 몬스터 몸 앞에 카운터가 성공했는지 판정을 할 콜라이더 켜기

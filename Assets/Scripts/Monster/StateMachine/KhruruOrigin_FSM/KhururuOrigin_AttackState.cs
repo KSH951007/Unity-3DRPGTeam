@@ -7,18 +7,21 @@ public class KhururuOrigin_AttackState : BaseState
 {
 	public KhururuOrigin_AttackState(BossMonsters monster) : base(monster) { }
 
-	private float attackWeight = 0.5f;
-	private float skill1Weight = 0.3f;
-	private float skill2Weight = 0.1f;
-	private float skill3Weight = 0.1f;
+    private float attackWeight = 0.5f;
+    private float skill1Weight = 0.35f;
+    private float skill2Weight = 0.05f;
+    private float skill3Weight = 0.1f;
 
-	private float totalWeight;
+    private float totalWeight;
 
 	bool shieldOn;
+	bool attacked = false;
 
 	public override void OnStateEnter()
 	{
         _monster.nav.isStopped = true;
+
+        _monster.timeForNextIdle = Time.time + 2f;
 
         _monster.timeForNextAttack = Time.time + 3f;
 
@@ -45,13 +48,19 @@ public class KhururuOrigin_AttackState : BaseState
 	public override void OnStateUpdate()
 	{
 		ShieldBroken();
-	}
+		if (!attacked)
+		{
+            DetectSkillCollider();
+        }
+    }
 
 	public override void OnStateExit()
 	{
         _monster.hasAttacked = false;
         _monster.shieldBroken = false;
         _monster.animator.SetBool("ShieldBroken", false);
+
+		attacked = false;
     }
 
     private void PlayRandomSkill()
@@ -91,4 +100,41 @@ public class KhururuOrigin_AttackState : BaseState
 			shieldOn = false;
 		}
 	}
+
+    private void DetectSkillCollider()
+    {
+        if (_monster.attack1Collider.enabled)
+        {
+            Vector3 collCenter = _monster.attack1Collider.transform.position + _monster.attack1Collider.center;
+
+            Collider[] detectedColl =
+            Physics.OverlapSphere(collCenter, _monster.attack1Collider.radius, _monster.attackTargetLayer);
+            Debug.Log("Attack1 공격 실행");
+            //Debug.Log("피격 : " + detectedColl[0].name);
+        }
+        else if (_monster.skill1Collider.enabled)
+        {
+            Vector3 collCenter = _monster.skill1Collider.transform.position + _monster.skill1Collider.center;
+
+            Collider[] detectedColl =
+            Physics.OverlapBox(collCenter, _monster.skill1Collider.center, Quaternion.identity, _monster.attackTargetLayer);
+            Debug.Log("Skill1 공격 실행");
+            //Debug.Log("피격 : " + detectedColl[0].name);
+        }
+        else if (_monster.skill3Collider.enabled)
+        {
+            Vector3 collCenter = _monster.skill3Collider.transform.position + _monster.skill3Collider.center;
+
+            Collider[] detectedColl =
+            Physics.OverlapSphere(collCenter, _monster.skill3Collider.radius, _monster.attackTargetLayer);
+            Debug.Log("Skill3 공격 실행");
+            //Debug.Log("피격 : " + detectedColl[0].name);
+        }
+        else
+        {
+            return;
+        }
+
+		attacked = true;
+    }
 }

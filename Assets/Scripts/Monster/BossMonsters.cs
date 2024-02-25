@@ -18,9 +18,11 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] protected Material takeHitMat;
 	[SerializeField] public int patience;
 	[SerializeField] public float timeForNextAttack;
-	[SerializeField] public float timeForNextChase;
+	[SerializeField] public float timeForNextIdle;
+    [SerializeField] public float timeForNextChange;
 
-	public float maxShieldAmount = 15;
+
+    public float maxShieldAmount = 15;
 	public float curShieldAmount;
 
 	protected GameObject[] dropItem;
@@ -28,16 +30,17 @@ public class BossMonsters : MonoBehaviour, IHitable
 
 	[HideInInspector] public Animator animator;
     [HideInInspector] public NavMeshAgent nav;
+
 	public SphereCollider detectColl;
-	public LayerMask attackTargetLayer;
+    public SphereCollider attack1Collider;
+    public BoxCollider skill1Collider;
+    public SphereCollider skill3Collider;
+
+    public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
 	protected SkinnedMeshRenderer currentMeshRenderer;
 
-	[SerializeField] protected bool isMelee;
 	[SerializeField] protected bool isStunned;
-	[SerializeField] protected bool playerFound;
-	[SerializeField] protected bool isChase;
-	[SerializeField] protected bool isAttack;
 	[SerializeField] protected bool isDead;
 	public bool hasAttacked;
 	public bool shieldBroken;

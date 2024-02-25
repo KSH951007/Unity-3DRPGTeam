@@ -29,7 +29,10 @@ public class KhururuOrigin_ChaseState : BaseState
 	private void FaceTarget()
 	{
         var targetDirection = (_monster.nav.steeringTarget - _monster.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-        _monster.transform.rotation = Quaternion.Slerp(_monster.transform.rotation, lookRotation, Time.deltaTime * 5);
+		if (targetDirection != Vector3.zero)
+		{
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
+            _monster.transform.rotation = Quaternion.Slerp(_monster.transform.rotation, lookRotation, Time.deltaTime * 5);
+        }
     }
 }

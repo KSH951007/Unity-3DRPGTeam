@@ -226,20 +226,20 @@ MonoBehaviour:
   takeHitMat: {fileID: 2100000, guid: 8436d4ed78dc6104688943394a03af28, type: 2}
   patience: 0
   timeForNextAttack: 0
-  timeForNextChase: 0
+  timeForNextIdle: 0
+  timeForNextChange: 0
   maxShieldAmount: 15
   curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 2035222494}
+  attack1Collider: {fileID: 0}
+  skill1Collider: {fileID: 0}
+  skill3Collider: {fileID: 0}
   attackTargetLayer:
     serializedVersion: 2
     m_Bits: 128
-  isMelee: 0
   isStunned: 0
-  playerFound: 0
-  isChase: 0
-  isAttack: 0
   isDead: 0
   hasAttacked: 0
   shieldBroken: 0
@@ -818,20 +818,20 @@ MonoBehaviour:
   takeHitMat: {fileID: 2100000, guid: de5fa68975928f2429e3a32e9ae13872, type: 2}
   patience: 0
   timeForNextAttack: 0
-  timeForNextChase: 0
+  timeForNextIdle: 0
+  timeForNextChange: 0
   maxShieldAmount: 15
   curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 286745243}
+  attack1Collider: {fileID: 0}
+  skill1Collider: {fileID: 0}
+  skill3Collider: {fileID: 0}
   attackTargetLayer:
     serializedVersion: 2
     m_Bits: 128
-  isMelee: 0
   isStunned: 0
-  playerFound: 0
-  isChase: 0
-  isAttack: 0
   isDead: 0
   hasAttacked: 0
   shieldBroken: 0
@@ -1074,7 +1074,7 @@ Transform:
   m_GameObject: {fileID: 1173115067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1097,9 +1097,9 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1194318880
 GameObject:
@@ -1207,20 +1207,20 @@ MonoBehaviour:
   takeHitMat: {fileID: 2100000, guid: 0c6a786eeb82ad24c9dc1735f664d516, type: 2}
   patience: 1
   timeForNextAttack: 0
-  timeForNextChase: 0
+  timeForNextIdle: 0
+  timeForNextChange: 0
   maxShieldAmount: 15
   curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 1633415906}
+  attack1Collider: {fileID: 2020710987}
+  skill1Collider: {fileID: 1662378630}
+  skill3Collider: {fileID: 1173115069}
   attackTargetLayer:
     serializedVersion: 2
     m_Bits: 128
-  isMelee: 0
   isStunned: 0
-  playerFound: 0
-  isChase: 0
-  isAttack: 0
   isDead: 0
   hasAttacked: 0
   shieldBroken: 0
@@ -1344,7 +1344,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 51
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -1407,7 +1407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1562773427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1601,7 +1601,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 0.66, z: 1.28}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1623,7 +1623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1696077297
 Transform:
   m_ObjectHideFlags: 0
@@ -1708,20 +1708,20 @@ MonoBehaviour:
   takeHitMat: {fileID: 2100000, guid: 668c7f24b7caee2459f69627b7aedd51, type: 2}
   patience: 0
   timeForNextAttack: 0
-  timeForNextChase: 0
+  timeForNextIdle: 0
+  timeForNextChange: 0
   maxShieldAmount: 15
   curShieldAmount: 0
   animator: {fileID: 0}
   nav: {fileID: 0}
   detectColl: {fileID: 1951466118}
+  attack1Collider: {fileID: 0}
+  skill1Collider: {fileID: 0}
+  skill3Collider: {fileID: 0}
   attackTargetLayer:
     serializedVersion: 2
     m_Bits: 128
-  isMelee: 0
   isStunned: 0
-  playerFound: 0
-  isChase: 0
-  isAttack: 0
   isDead: 0
   hasAttacked: 0
   shieldBroken: 0
@@ -1946,7 +1946,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -6731,8 +6731,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4925c870e27b03d4e947523318baeaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  khururuTransPrefab: {fileID: 1696077296}
   attack1Collider: {fileID: 2020710987}
   skill1Collider: {fileID: 1662378630}
+  skill1Alert: {fileID: 1562773426}
   skill3Collider: {fileID: 1173115069}
 --- !u!95 &5866666021928014421
 Animator:

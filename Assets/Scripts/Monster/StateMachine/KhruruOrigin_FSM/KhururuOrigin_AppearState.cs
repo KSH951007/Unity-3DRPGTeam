@@ -9,7 +9,6 @@ public class KhururuOrigin_AppearState : BaseState
 
 	public override void OnStateEnter()
 	{
-		//_monster.nav.isStopped = true;
 	}
 
 	public override void OnStateUpdate()
