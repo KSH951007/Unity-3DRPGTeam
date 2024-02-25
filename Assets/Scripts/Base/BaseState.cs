@@ -13,6 +13,7 @@ public abstract class BaseState<T1,T2>  where T1 : Enum where T2 : class
         this.stateMachine = stateMachine;
         this.owner = owner;
     }
+    public abstract bool IsTransition();
     public abstract void Enter();
     public abstract void Update();
     public virtual void FixedUpdate()

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerAttackAction : PlayerAction
 {
-    private Vector3 targetPos;
-    private int maxCombo;
-    private int curruntAttackCombo;
-    float currentTime;
-    float attackClipLength;
+    protected Vector3 targetPos;
+    protected int maxCombo;
+    protected int curruntAttackCombo;
+    protected ActionScheduler scheduler;
 
 
-    public PlayerAttackAction(Animator animator, Hero owner, int maxCombo) : base(animator, owner)
+    public bool IsLastAttack()
     {
+        return curruntAttackCombo == maxCombo;
+    }
+    public PlayerAttackAction(ActionScheduler scheduler, Animator animator, Hero owner, int maxCombo) : base(animator, owner)
+    {
+        this.scheduler = scheduler;
         this.maxCombo = maxCombo;
         curruntAttackCombo = 0;
     }
@@ -22,7 +26,6 @@ public class PlayerAttackAction : PlayerAction
         if (owner.GetAnimType() != EnumType.HeroAnimType.Battle)
             owner.ChangeAnimatorController(EnumType.HeroAnimType.Battle);
 
-        animator.SetTrigger("Attack");
     }
     public override bool IsCanle(PlayerAction action)
     {
@@ -32,12 +35,10 @@ public class PlayerAttackAction : PlayerAction
     }
     public override void StartAction()
     {
-
-
+        animator.SetTrigger("Attack");
         isEndAction = false;
-        currentTime = 0;
         curruntAttackCombo++;
-        if (curruntAttackCombo >= maxCombo)
+        if (curruntAttackCombo > maxCombo)
         {
             curruntAttackCombo = 0;
         }
@@ -47,28 +48,30 @@ public class PlayerAttackAction : PlayerAction
     public override void StopAction()
     {
 
-
     }
-
     public override void UpdateAction()
     {
 
-
-        currentTime += Time.deltaTime;
-
-        attackClipLength = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
-        if (currentTime >= attackClipLength)
+        if (scheduler.GetNextAction() == this)
         {
-            Debug.Log(attackClipLength);
-            isEndAction = true;
-            return;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
+            {
+                isEndAction = true;
+                return;
+            }
+        }
+        else
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+            {
+                isEndAction = true;
+                curruntAttackCombo = 0;
+                Debug.Log(curruntAttackCombo);
+                return;
+            }
         }
 
-    }
-   
-    public bool IsLastAttack()
-    {
-        return curruntAttackCombo >= maxCombo;
+
     }
 
 

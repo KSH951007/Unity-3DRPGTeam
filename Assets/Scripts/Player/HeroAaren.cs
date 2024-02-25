@@ -9,24 +9,9 @@ public class HeroAaren : Hero
     {
         base.Awake();
         moveAction = new PlayerMoveAction(animator, this, agent, 3.5f);
-        attackAction = new PlayerAttackAction(animator, this, 2);
+        attackAction = new PlayerAttackAction(scheduler, animator, this, 2);
     }
     
-    public override void Atacck()
-    {
-    }
-
-    public override void Skill1()
-    {
-    }
-
-    public override void Skill2()
-    {
-    }
-
-    public override void Skill3()
-    {
-    }
 
     // Start is called before the first frame update
     void Start()

@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        mainHero.Scheduler.ProcessAction();
+        mainHero?.Scheduler.ProcessAction();
     }
     public void PointerClickMove()
     {

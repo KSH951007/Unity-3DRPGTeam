@@ -7,7 +7,6 @@ public abstract class PlayerAction
     protected Hero owner;
     protected Animator animator;
     protected bool isEndAction;
-
     public void ChangeAnimator(Animator newAnimator)
     {
         

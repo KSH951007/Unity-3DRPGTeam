@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,24 +14,24 @@ public abstract class Hero : MonoBehaviour
     protected CapsuleCollider myCollider;
     protected EnumType.HeroAnimType animType;
     protected HeroAnimEvent animEnvent;
-
     [SerializeField] protected HeroSO heroData;
     protected int attackComboCount;
     protected int currentAttackCombo;
     protected List<Skill> skills;
-    protected ActionScheduler scheduler;
     protected PlayerMoveAction moveAction;
     protected PlayerAttackAction attackAction;
     protected NavMeshAgent agent;
+    protected ActionScheduler scheduler;
 
+    public NavMeshAgent Agent { get { return agent; } }
     public EnumType.HeroAnimType GetAnimType() { return animType; }
     public Animator HeroAnimator { get => animator; }
     public int AttackComboCount { get => attackComboCount; }
     public int CurrentAttackCombo { get => currentAttackCombo; set => currentAttackCombo = value; }
     public HeroAnimEvent AnimEvent { get => animEnvent; }
 
-
     public ActionScheduler Scheduler { get => scheduler; }
+
     public PlayerMoveAction GetMoveAction() { return moveAction; }
     public PlayerAttackAction GetAttackAction() { return attackAction; }
     protected virtual void Awake()
@@ -48,16 +49,12 @@ public abstract class Hero : MonoBehaviour
         scheduler = new ActionScheduler();
 
     }
+
     public void ChangeAnimatorController(EnumType.HeroAnimType newAnimType)
     {
         animType = newAnimType;
         animator.runtimeAnimatorController = animContorllers[(int)animType];
     }
-    public abstract void Atacck();
-
-    public abstract void Skill1();
-    public abstract void Skill2();
-    public abstract void Skill3();
 
     public void MoveAction(Vector3 targetPosition)
     {
@@ -66,8 +63,12 @@ public abstract class Hero : MonoBehaviour
     }
     public void AttackAction(Vector3 newDirection)
     {
-        attackAction.SetTargetTo(newDirection);
-        scheduler.AddAction(attackAction);
+        if (!attackAction.IsLastAttack())
+        {
+            attackAction.SetTargetTo(newDirection);
+            scheduler.AddAction(attackAction);
+        }
+
     }
     public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
     {

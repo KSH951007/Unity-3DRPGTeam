@@ -46,16 +46,16 @@ public class ActionScheduler
                 return;
             }
 
-            actions[NextIndex()] = action;
+            if (actions[NextIndex()] != null)
+            {
+                actions[NextIndex()].StopAction();
+            }
 
+            actions[NextIndex()] = action;
 
         }
 
 
-    }
-    public void ChangeAction()
-    {
-        actions[actionIndex] = null;
     }
     public void ProcessAction()
     {
@@ -65,7 +65,8 @@ public class ActionScheduler
             {
                 actions[actionIndex].StopAction();
 
-                ChangeAction();
+
+                actions[actionIndex] = null;
 
                 actionIndex = NextIndex();
 
@@ -100,6 +101,15 @@ public class ActionScheduler
 
         return nextIndex;
     }
+    public PlayerAction GetNextAction()
+    {
+        int nextIndex = NextIndex();
 
+        if (actions[nextIndex] != null)
+        {
+            return actions[nextIndex];
+        }
+        return null;
+    }
 
 }
