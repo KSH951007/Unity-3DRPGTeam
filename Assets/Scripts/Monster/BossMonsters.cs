@@ -32,8 +32,6 @@ public class BossMonsters : MonoBehaviour, IHitable
 	public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
 	protected SkinnedMeshRenderer currentMeshRenderer;
-	//protected Coroutine currentSkillCoroutine;
-	//protected Coroutine usingSkill;
 
 	[SerializeField] protected bool isMelee;
 	[SerializeField] protected bool isStunned;

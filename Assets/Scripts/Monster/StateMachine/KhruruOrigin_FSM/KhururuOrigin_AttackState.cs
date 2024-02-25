@@ -18,7 +18,9 @@ public class KhururuOrigin_AttackState : BaseState
 
 	public override void OnStateEnter()
 	{
-		_monster.timeForNextAttack = Time.time + 3f;
+        _monster.nav.isStopped = true;
+
+        _monster.timeForNextAttack = Time.time + 3f;
 
 		if (_monster.GetHp() < 0.9f && _monster.GetHp() > 0.4f)
 		{
@@ -47,9 +49,12 @@ public class KhururuOrigin_AttackState : BaseState
 
 	public override void OnStateExit()
 	{
-	}
+        _monster.hasAttacked = false;
+        _monster.shieldBroken = false;
+        _monster.animator.SetBool("ShieldBroken", false);
+    }
 
-	private void PlayRandomSkill()
+    private void PlayRandomSkill()
 	{
 		float randomValue = Random.Range(0f, totalWeight);
 

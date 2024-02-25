@@ -21,7 +21,7 @@ public class KhururuOrigin_IdleState : BaseState
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer);
 			_monster.target = detectedColl[0].transform;
-			Debug.Log(detectedColl[0].name);
+			//Debug.Log(detectedColl[0].name);
 		}
 		else
 		{

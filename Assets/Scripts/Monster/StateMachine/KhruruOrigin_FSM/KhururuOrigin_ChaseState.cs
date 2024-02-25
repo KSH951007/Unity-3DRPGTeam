@@ -8,22 +8,28 @@ public class KhururuOrigin_ChaseState : BaseState
 
 	public override void OnStateEnter()
 	{
-		_monster.nav.SetDestination(_monster.target.position);
-		_monster.nav.isStopped = false;
-		//_monster.nav.
-		_monster.animator.SetBool("Move", true);
+        _monster.nav.isStopped = false;
+
+        _monster.animator.SetBool("Move", true);
 		_monster.SetChasingTime();
 	}
 
 	public override void OnStateUpdate()
 	{
+        _monster.nav.SetDestination(_monster.target.position);
 
+        FaceTarget();
 	}
 
 	public override void OnStateExit()
 	{
-		_monster.nav.isStopped = true;
-		_monster.nav.velocity = Vector3.zero;
 		_monster.animator.SetBool("Move", false);
 	}
+
+	private void FaceTarget()
+	{
+        var targetDirection = (_monster.nav.steeringTarget - _monster.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
+        _monster.transform.rotation = Quaternion.Slerp(_monster.transform.rotation, lookRotation, Time.deltaTime * 5);
+    }
 }
