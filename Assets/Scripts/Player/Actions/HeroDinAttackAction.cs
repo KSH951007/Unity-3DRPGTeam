@@ -31,9 +31,9 @@ public class HeroDinAttackAction : PlayerAttackAction
                 {
                     if(hitObject.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
-                        if (hitObject.transform.gameObject.TryGetComponent(out Health health))
+                        if (hitObject.transform.gameObject.TryGetComponent(out IHitable_Monster health))
                         {
-                            health.TakeHit(512, HitType.None);
+                            health.TakeHit(10, IHitable_Monster.HitType.None);
                         }
                     }
                   

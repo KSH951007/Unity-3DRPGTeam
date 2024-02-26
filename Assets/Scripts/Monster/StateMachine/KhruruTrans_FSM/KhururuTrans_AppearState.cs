@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class KhururuTrans_AppearState : BaseState
 {
-    public KhururuTrans_AppearState(BossMonsters monster) : base(monster) { }
+	public KhururuTrans_AppearState(BossMonsters monster) : base(monster) { }
 
-    public override void OnStateEnter()
-    {
-        
-    }
+	public override void OnStateEnter()
+	{
+		
+	}
 
-    public override void OnStateExit()
-    {
-        
-    }
+	public override void OnStateUpdate()
+	{
 
-    public override void OnStateUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
+	}
+
+	public override void OnStateExit()
+	{
+
+	}
 }

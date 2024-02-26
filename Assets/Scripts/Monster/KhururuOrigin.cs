@@ -32,20 +32,21 @@ public class KhururuOrigin : BossMonsters
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			TakeHit(1, 0);
-		}
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	TakeHit(1, 0);
+		//}
 
 		if (isDead)
 		{
+			nav.isStopped = true;
 			_curState = State.None;
 		}
 
 		switch (_curState)
 		{
 			case State.Appear:
-				if (GetFirstHit())
+				if (GetFirstHit() && NextChangeCoolTime())
 				{
 					ChangeState(State.Idle);
 				}

@@ -19,6 +19,7 @@ public class KhururuTrans : BossMonsters
 
     private void Start()
     {
+        timeForNextChange = Time.time + 5f;
         _curState = State.Appear;
         _fsm = new FSM(new KhururuTrans_AppearState(this));
     }
@@ -32,17 +33,18 @@ public class KhururuTrans : BossMonsters
 
         if (isDead)
         {
+            nav.isStopped = true;
             _curState = State.None;
         }
 
         switch (_curState)
         {
             case State.Appear:
-                if (GetFirstHit())
+                if (NextChangeCoolTime())
                 {
-                    ChangeState(State.Idle);
-                }
-                break;
+					ChangeState(State.Idle);
+				}
+				break;
 
             case State.Idle:
                 if (CanSeePlayer() && NextChangeCoolTime())
@@ -52,7 +54,7 @@ public class KhururuTrans : BossMonsters
                 break;
 
             case State.Chase:
-                if ((ShortDistancePlayer() || ChaseTimeOut()) && NextAttackCoolTime())
+                if (NextChangeCoolTime())
                 {
                     ChangeState(State.Attack);
                 }
@@ -60,11 +62,10 @@ public class KhururuTrans : BossMonsters
                 {
                     ChangeState(State.Idle);
                 }
-
                 break;
 
             case State.Attack:
-                if ((hasAttacked || shieldBroken) && NextIdleCoolTime())
+                if (hasAttacked && NextChangeCoolTime())
                 {
                     ChangeState(State.Idle);
                 }
@@ -72,7 +73,7 @@ public class KhururuTrans : BossMonsters
         }
 
         _fsm.UpdateState();
-        //print(_curState);
+        print(_curState);
     }
 
     private void ChangeState(State nextState)
@@ -80,10 +81,10 @@ public class KhururuTrans : BossMonsters
         _curState = nextState;
         switch (_curState)
         {
-            case State.Appear:
-                _fsm.ChangeState(new KhururuTrans_AppearState(this));
-                break;
-            case State.Idle:
+			case State.Appear:
+				_fsm.ChangeState(new KhururuTrans_IdleState(this));
+				break;
+			case State.Idle:
                 _fsm.ChangeState(new KhururuTrans_IdleState(this));
                 break;
             case State.Chase:
@@ -96,14 +97,6 @@ public class KhururuTrans : BossMonsters
     }
 
     #region State를 바꾸는 조건들
-    private bool GetFirstHit()
-    {
-        if (patience != 0)
-        {
-            return false;
-        }
-        else { return true; }
-    }
 
     private bool CanSeePlayer()
     {

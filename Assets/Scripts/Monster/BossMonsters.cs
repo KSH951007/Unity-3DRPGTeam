@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class BossMonsters : MonoBehaviour, IHitable
+public class BossMonsters : MonoBehaviour, IHitable_Monster
 {
 	[SerializeField] protected float maxHp;
 	[SerializeField] public float currentHp;
@@ -32,9 +32,23 @@ public class BossMonsters : MonoBehaviour, IHitable
     [HideInInspector] public NavMeshAgent nav;
 
 	public SphereCollider detectColl;
+
+	[Header("KhururuOrigin's Colliders")]
     public SphereCollider attack1Collider;
     public BoxCollider skill1Collider;
-    public SphereCollider skill3Collider;
+	public SphereCollider skill3Collider;
+	[Space(10)]
+
+	[Header("KhururuTrans's Colliders")]
+	public SphereCollider t_attack1Collider;
+	public SphereCollider t_attack2Collider;
+	public SphereCollider t_skill1Collider;
+	public SphereCollider t_skill2_1Collider;
+	public MeshCollider t_skill2_2Collider;
+	public SphereCollider t_skill3Collider;
+	public MeshCollider t_skill4Collider;
+	[Space(10)]
+
 
     public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
@@ -51,13 +65,13 @@ public class BossMonsters : MonoBehaviour, IHitable
 	{
 		animator = GetComponentInChildren<Animator>();
 		nav = GetComponent<NavMeshAgent>();
-		detectColl = transform.Find("DetectRange").GetComponent<SphereCollider>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 	}
 
 	protected virtual void OnEnable()
 	{
 		animator.SetTrigger("Appear");
+		nav.isStopped = true;
 	}
 
 	public float GetHp()
@@ -74,7 +88,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 		chasingTime = Time.time + Random.Range(3f, 6f);
 	}
 
-	public void TakeHit(float damage, IHitable.HitType hitType, GameObject hitParticle = null)
+	public void TakeHit(float damage, IHitable_Monster.HitType hitType, GameObject hitParticle = null)
 	{
         if (patience != 0)
         {
