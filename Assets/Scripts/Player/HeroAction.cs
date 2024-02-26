@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class HeroAction
 {
+    public enum HeroActionState {Start,Progress,End }
     protected Hero owner;
     protected Animator animator;
     protected bool isEndAction;
