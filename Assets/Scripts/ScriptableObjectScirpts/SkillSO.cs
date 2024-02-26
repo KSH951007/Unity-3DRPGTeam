@@ -1,7 +1,11 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[CreateAssetMenu(fileName ="New Skill",menuName = "ScriptableObject/SkillSO")]
 public class SkillSO : ScriptableObject
 {
     [SerializeField] protected Sprite skillIcon;

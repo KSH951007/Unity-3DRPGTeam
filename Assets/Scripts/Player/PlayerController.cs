@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
         inputs.Player.Move.performed += _ => PointerClickMove();
         inputs.Player.Attack.performed += _ => PointerClickAttack();
+        inputs.Player.Skill1.performed += _ => PressSkill1();
 
         inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter();
 
@@ -66,14 +67,13 @@ public class PlayerController : MonoBehaviour
         if (!canControl)
             return;
 
+
+
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("Ground")))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            {
-                mainHero.MoveAction(hit.point);
-            }
+            mainHero.MoveAction(hit.point);
         }
     }
     public void PointerClickAttack()
@@ -84,12 +84,13 @@ public class PlayerController : MonoBehaviour
         //if (SceneLoader.Instance.GetSceneType() == EnumType.SceneType.Village)
         //    return;
 
+        
         mainHero.AttackAction(PointerToTarget());
 
     }
     public void PressSkill1()
     {
-
+        mainHero.Skill1Action(PointerToTarget());
     }
     private Vector3 PointerToTarget()
     {

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class ActionScheduler
 {
-    private PlayerAction currentAction;
-    private PlayerAction nextAction;
-    private PlayerAction[] actions;
+    private HeroAction currentAction;
+    private HeroAction nextAction;
+    private HeroAction[] actions;
     private int actionIndex;
     public ActionScheduler()
     {
-        actions = new PlayerAction[2];
+        actions = new HeroAction[2];
         actionIndex = 0;
     }
     public bool IsEmptyAction()
@@ -29,7 +29,7 @@ public class ActionScheduler
         return IsEmptyaction;
     }
 
-    public void AddAction(PlayerAction action)
+    public void AddAction(HeroAction action)
     {
         if (IsEmptyAction())
         {
@@ -101,7 +101,7 @@ public class ActionScheduler
 
         return nextIndex;
     }
-    public PlayerAction GetNextAction()
+    public HeroAction GetNextAction()
     {
         int nextIndex = NextIndex();
 

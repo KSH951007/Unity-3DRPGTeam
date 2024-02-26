@@ -12,7 +12,6 @@ public class HeroAnimEvent : MonoBehaviour
     }
     public void ProgressAttack()
     {
-        Debug.Log("attack");
         onProgressAttack?.Invoke();
     }
 

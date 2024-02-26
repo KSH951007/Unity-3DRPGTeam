@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class HeroDinAttackAction : PlayerAttackAction
+public class HeroDinAttackAction : HeroAttackAction
 {
     GameObject attackEffect;
     Transform attackPoint;
@@ -41,7 +41,7 @@ public class HeroDinAttackAction : PlayerAttackAction
             }
         };
     }
-    public override bool IsCanle(PlayerAction action)
+    public override bool IsCanle(HeroAction action)
     {
 
 

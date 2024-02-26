@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerAction
+public abstract class HeroAction
 {
     protected Hero owner;
     protected Animator animator;
@@ -13,8 +13,8 @@ public abstract class PlayerAction
         animator = newAnimator;
     }
     public bool IsEndAction { get { return isEndAction; } }
-    public abstract bool IsCanle(PlayerAction action);
-    public PlayerAction(Animator animator, Hero owner)
+    public abstract bool IsCanle(HeroAction action);
+    public HeroAction(Animator animator, Hero owner)
     {
         this.animator = animator;
         this.owner = owner;

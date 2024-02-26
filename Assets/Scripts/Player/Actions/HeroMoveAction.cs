@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMoveAction : PlayerAction
+public class HeroMoveAction : HeroAction
 {
     private NavMeshAgent agent;
     private float moveSpeed;
     private Vector3 targetPoint;
 
-    public PlayerMoveAction(Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed) : base(animator, owner)
+    public HeroMoveAction(Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed) : base(animator, owner)
     {
         this.agent = agent;
         this.moveSpeed = moveSpeed;
         agent.speed = this.moveSpeed;
     }
 
-    public override bool IsCanle(PlayerAction action)
+    public override bool IsCanle(HeroAction action)
     {
 
-        if (action is PlayerMoveAction || action is PlayerAttackAction)
+        if (action is HeroMoveAction || action is HeroAttackAction || action is HeroSkillAction)
         {
             return true;
         }

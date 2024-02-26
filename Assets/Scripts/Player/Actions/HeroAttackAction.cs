@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackAction : PlayerAction
+public class HeroAttackAction : HeroAction
 {
     protected Vector3 targetPos;
     protected int maxCombo;
@@ -14,7 +14,7 @@ public class PlayerAttackAction : PlayerAction
     {
         return curruntAttackCombo == maxCombo;
     }
-    public PlayerAttackAction(ActionScheduler scheduler, Animator animator, Hero owner, int maxCombo) : base(animator, owner)
+    public HeroAttackAction(ActionScheduler scheduler, Animator animator, Hero owner, int maxCombo) : base(animator, owner)
     {
         this.scheduler = scheduler;
         this.maxCombo = maxCombo;
@@ -27,7 +27,7 @@ public class PlayerAttackAction : PlayerAction
             owner.ChangeAnimatorController(EnumType.HeroAnimType.Battle);
 
     }
-    public override bool IsCanle(PlayerAction action)
+    public override bool IsCanle(HeroAction action)
     {
 
 

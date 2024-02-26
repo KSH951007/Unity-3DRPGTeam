@@ -17,9 +17,10 @@ public abstract class Hero : MonoBehaviour
     [SerializeField] protected HeroSO heroData;
     protected int attackComboCount;
     protected int currentAttackCombo;
-    protected List<Skill> skills;
-    protected PlayerMoveAction moveAction;
-    protected PlayerAttackAction attackAction;
+    protected Skill[] skills;
+    protected HeroMoveAction moveAction;
+    protected HeroAttackAction attackAction;
+    protected HeroSkillAction[] skillAction;
     protected NavMeshAgent agent;
     protected ActionScheduler scheduler;
 
@@ -32,8 +33,9 @@ public abstract class Hero : MonoBehaviour
 
     public ActionScheduler Scheduler { get => scheduler; }
 
-    public PlayerMoveAction GetMoveAction() { return moveAction; }
-    public PlayerAttackAction GetAttackAction() { return attackAction; }
+    public HeroSO GetHeroData() { return heroData; }
+    public HeroMoveAction GetMoveAction() { return moveAction; }
+    public HeroAttackAction GetAttackAction() { return attackAction; }
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -42,11 +44,13 @@ public abstract class Hero : MonoBehaviour
         animType = EnumType.HeroAnimType.Base;
         ChangeAnimatorController(EnumType.HeroAnimType.Base);
         animEnvent = GetComponentInChildren<HeroAnimEvent>();
-        skills = new List<Skill>(3);
+        skills = new Skill[3];
 
         GetComponent<Health>().SetHealth(heroData.GetMaxHealth());
 
         scheduler = new ActionScheduler();
+
+        skillAction = new HeroSkillAction[3];
 
     }
 
@@ -68,7 +72,11 @@ public abstract class Hero : MonoBehaviour
             attackAction.SetTargetTo(newDirection);
             scheduler.AddAction(attackAction);
         }
-
+    }
+    public void Skill1Action(Vector3 newDirection)
+    {
+        skillAction[0].SetTarget(newDirection);
+        scheduler.AddAction(skillAction[0]);
     }
     public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
     {
