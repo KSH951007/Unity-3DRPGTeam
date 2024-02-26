@@ -17,29 +17,8 @@ public class HeroDinAttackAction : HeroAttackAction
         this.scheduler = scheduler;
         this.maxCombo = maxCombo;
         curruntAttackCombo = 0;
-        owner.AnimEvent.onProgressAttack += () =>
-        {
-            slashEffect.transform.position = attackPoint.position;
-            slashEffect.transform.rotation = attackPoint.rotation;
-            slashEffect.Play();
-            
-            
-            RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.transform.lossyScale/2, owner.transform.forward,Quaternion.identity,1f);
-            if(hits != null)
-            {
-                foreach(RaycastHit hitObject in hits)
-                {
-                    if(hitObject.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                    {
-                        if (hitObject.transform.gameObject.TryGetComponent(out Health health))
-                        {
-                            health.TakeHit(512, HitType.None);
-                        }
-                    }
-                  
-                }
-            }
-        };
+
+        
     }
     public override bool IsCanle(HeroAction action)
     {
@@ -51,13 +30,20 @@ public class HeroDinAttackAction : HeroAttackAction
     {
         base.StartAction();
 
+        owner.AnimEvent.onStartAttack += StartAttack;
+        owner.AnimEvent.onProgressAttack += ProgressAttack;
+        owner.AnimEvent.onEndAttack += EndAttack;
 
 
     }
 
     public override void StopAction()
     {
-
+        owner.AnimEvent.onStartAttack -= StartAttack;
+        owner.AnimEvent.onProgressAttack -= ProgressAttack;
+        owner.AnimEvent.onEndAttack -= EndAttack;
+        isStartAttack = false;
+        isEndAttack = false;
     }
     public override void UpdateAction()
     {
@@ -79,7 +65,35 @@ public class HeroDinAttackAction : HeroAttackAction
             }
         }
 
-
     }
+    public void StartAttack()
+    {
+        isStartAttack = true;
+    }
+    public void EndAttack()
+    {
+        isEndAttack = true;
+    }
+    public void ProgressAttack()
+    {
+        slashEffect.transform.position = attackPoint.position;
+        slashEffect.transform.rotation = attackPoint.rotation;
+        slashEffect.Play();
 
+        RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.transform.lossyScale / 2, owner.transform.forward, Quaternion.identity, 1f);
+        if (hits != null)
+        {
+            foreach (RaycastHit hitObject in hits)
+            {
+                if (hitObject.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    if (hitObject.transform.gameObject.TryGetComponent(out Health health))
+                    {
+                        health.TakeHit(512, HitType.None);
+                    }
+                }
+
+            }
+        }
+    }
 }

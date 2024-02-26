@@ -16,7 +16,6 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         if (false == Init())
             return;
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
         for (int i = 0; i < sceneDatas.Length; i++)
         {
             if (sceneDatas[i].GetSceneIndex() == SceneManager.GetActiveScene().buildIndex)

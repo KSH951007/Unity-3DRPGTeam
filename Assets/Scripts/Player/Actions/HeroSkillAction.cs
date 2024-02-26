@@ -29,21 +29,12 @@ public class HeroSkillAction : HeroAction
         isEndAction = false;
         animator.SetTrigger("Skill1");
         owner.StartCoroutine(owner.TargetToLoock(target, 0.05f));
-        skill.StartSkill();
-
-        if (skill is IDamagable)
-        {
-            animEvent.onProgressAttack += ((IDamagable)skill).TakeDamage;
-        }
-
+        animEvent.onProgressAttack += skill.UseSkill;
     }
 
     public override void StopAction()
     {
-        if (skill is IDamagable)
-        {
-            animEvent.onProgressAttack -= ((IDamagable)skill).TakeDamage;
-        }
+        animEvent.onProgressAttack -= skill.UseSkill;
     }
 
     public override void UpdateAction()

@@ -1,52 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class ChargeSlash : Skill, IDamagable
+public class ChargeSlash : Skill
 {
-    private Vector3 center;
+    private BoxCollider hitCollider;
+
+    [SerializeField] private Hero hero;
+    private Vector3 direciton;
+    private float projectileSpeed;
     private float maxDistance;
-    private Vector3 direction;
-    private int damagePercent;
-    private Transform onwerTr;
-    public ChargeSlash(Transform ownerTr)
+    private float duration;
+    private Vector3 startPos;
+    private VisualEffect effect;
+    private int damage;
+    private Transform parentTr;
+    protected override void Awake()
     {
-        this.onwerTr = ownerTr;
-    }
-
-    public override void EndSkill()
-    {
-
-    }
-
-    public override void StartSkill()
-    {
-        direction = onwerTr.transform.forward;
-        center = onwerTr.transform.position + onwerTr.transform.forward;
-        maxDistance = 1f;
-        damagePercent = 1231;
+        base.Awake();
+        parentTr = transform.parent;
+        hitCollider = GetComponent<BoxCollider>();
+        effect = GetComponentInChildren<VisualEffect>();
+        maxDistance = 10f;
+        projectileSpeed = 5f;
+        damage = 12;
+        duration = maxDistance / projectileSpeed;
+        effect.SetFloat("LifeTime", duration);
 
     }
-
-    public void TakeDamage()
+    private void OnDisable()
     {
-        RaycastHit[] hits = Physics.BoxCastAll(center, Vector3.one, direction, Quaternion.identity, maxDistance, LayerMask.GetMask("Enemy"));
-        if (hits != null)
+    }
+
+
+    public override void UseSkill()
+    {
+        this.gameObject.SetActive(true);
+        transform.parent = null;
+        startPos = transform.position;
+        direciton = hero.transform.forward;
+
+        StartCoroutine(CoolDownRoutine());
+        effect.Play();
+    }
+    private void Update()
+    {
+        if (Vector3.Distance(startPos, transform.position) >= maxDistance)
         {
-            foreach (RaycastHit hit in hits)
+            ResetSkill();
+            gameObject.SetActive(false);
+        }
+        transform.Translate(direciton * projectileSpeed * Time.deltaTime, Space.World);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (other.TryGetComponent(out IHitable enemy))
             {
-                if (hit.collider.gameObject.TryGetComponent(out IHitable enemy))
-                {
-                    enemy.TakeHit(damagePercent, HitType.None);
-                }
+                enemy.TakeHit(damage, HitType.None);
             }
         }
     }
-
-    public override void UpdateSkill()
+    private void ResetSkill()
     {
+        transform.parent = parentTr;
+        transform.position = parentTr.position;
+        transform.rotation = parentTr.rotation;
 
     }
-
-
 }

@@ -13,7 +13,7 @@ public class HeroDin : Hero
         attackComboCount = 3;
         moveAction = new HeroMoveAction(animator, this, agent, 3.5f);
         attackAction = new HeroDinAttackAction(attackPoint,attackEffect,scheduler, animator, this, 3);
-        skills[0] = new ChargeSlash(this.transform);
+       
         skillAction[0] = new HeroSkillAction(skills[0],animator, this);
     }
 

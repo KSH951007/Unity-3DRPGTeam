@@ -8,6 +8,8 @@ public class HeroAttackAction : HeroAction
     protected int maxCombo;
     protected int curruntAttackCombo;
     protected ActionScheduler scheduler;
+    protected bool isStartAttack;
+    protected bool isEndAttack;
 
 
     public bool IsLastAttack()

@@ -3,19 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Skill
+public abstract class Skill : MonoBehaviour
 {
-    
-    
-    private int skillLevel;
-    protected float currentCooldown;
 
-    public Skill()
+    [SerializeField] protected SkillSO skillData;
+    protected int skillLevel;
+    protected float currentCooldown;
+    protected virtual void Awake()
     {
         currentCooldown = 0f;
     }
-    public abstract void StartSkill();
-    public abstract void UpdateSkill();
-    public abstract void EndSkill();
+
+    public abstract void UseSkill();
+
+    public IEnumerator CoolDownRoutine()
+    {
+        currentCooldown = skillData.GetCoolDown();
+
+        while (currentCooldown > 0f)
+        {
+            currentCooldown -= Time.deltaTime;
+            yield return null;
+        }
+        currentCooldown = 0f;
+
+    }
 
 }

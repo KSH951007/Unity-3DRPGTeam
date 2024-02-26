@@ -12,4 +12,10 @@ public class SkillSO : ScriptableObject
     [SerializeField] protected string skillName;
     [SerializeField] protected string skillDescription;
     [SerializeField] protected float skillCooldown;
+
+
+    public Sprite GetIcon() { return skillIcon; }
+    public string GetSkillName() {  return skillName; }
+    public string GetDescription() { return skillDescription; }
+    public float GetCoolDown() {  return skillCooldown; }
 }

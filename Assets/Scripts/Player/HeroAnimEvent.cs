@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class HeroAnimEvent : MonoBehaviour
 {
+    public event Action onStartAttack;
     public event Action onProgressAttack;
+    public event Action onEndAttack;
 
     public void StartAttack()
     {
+        onStartAttack?.Invoke();
     }
     public void ProgressAttack()
     {
@@ -17,5 +20,6 @@ public class HeroAnimEvent : MonoBehaviour
 
     public void EndAttack()
     {
+        onEndAttack?.Invoke();
     }
 }

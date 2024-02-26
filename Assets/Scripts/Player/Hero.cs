@@ -44,13 +44,19 @@ public abstract class Hero : MonoBehaviour
         animType = EnumType.HeroAnimType.Base;
         ChangeAnimatorController(EnumType.HeroAnimType.Base);
         animEnvent = GetComponentInChildren<HeroAnimEvent>();
-        skills = new Skill[3];
+        Transform skillsTr = transform.Find("Skills");
+        Debug.Log(skillsTr.name);
+        skills = new Skill[skillsTr.childCount];
+        for (int i = 0; i < skillsTr.childCount; i++)
+        {           
+            skills[i] = skillsTr.GetChild(i).GetComponent<Skill>();
+        }
 
         GetComponent<Health>().SetHealth(heroData.GetMaxHealth());
 
         scheduler = new ActionScheduler();
 
-        skillAction = new HeroSkillAction[3];
+        skillAction = new HeroSkillAction[skillsTr.childCount];
 
     }
 
