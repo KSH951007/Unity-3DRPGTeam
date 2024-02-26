@@ -39,7 +39,7 @@ public class QuestUi : MonoBehaviour
         talkWindow.SetActive(false);
     }
 
-    public void showQW()
+    public void showQW() // npc가 대화 내용과 퀘스트 내용을 가지고 있으면 파라미터를 쓸 필요 없이 사용가능
     {
         qwIsOpen = !qwIsOpen;
         questWindow.SetActive(qwIsOpen);

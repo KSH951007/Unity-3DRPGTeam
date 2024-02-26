@@ -22,7 +22,6 @@ public class NPC : MonoBehaviour
     
     bool needHelp;
     NPCUI bubble;
-    Quest quest;
 
     NPCTalkData nTD;
 
@@ -32,7 +31,6 @@ public class NPC : MonoBehaviour
         state = NPCState.Idle;
         animator = GetComponent<Animator>();
         bubble = GetComponent<NPCUI>();
-        quest = GetComponent<Quest>();
     }
     private void Start()
     {

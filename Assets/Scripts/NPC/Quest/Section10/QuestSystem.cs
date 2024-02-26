@@ -65,11 +65,18 @@ public class QuestSystem : MonoBehaviour
     {
         questDatatabase = Resources.Load<QuestDatabase>("QuestDatabase");
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
+
+        if (!Load())
+        {
+            foreach (var achievement in achievementDatabase.Quests)
+                Register(achievement);
+        }
     }
 
     private void OnApplicationQuit()
     {
         isApplicationQuitting = true;
+        Save();
     }
 
     public Quest Register(Quest quest)
@@ -114,6 +121,15 @@ public class QuestSystem : MonoBehaviour
             quest.ReceiveReport(category, target, successCount);
     }
 
+    public void CompleteWaitingQuests()
+    {
+        foreach (var quest in activeQuests.ToList())
+        {
+            if (quest.IsComplatable)
+                quest.Complete();
+        }
+    }
+
     public bool ContainsInActiveQuests(Quest quest) => activeQuests.Any(x => x.CodeName == quest.CodeName);
 
     public bool ContainsInCompleteQuests(Quest quest) => completedQuests.Any(x => x.CodeName == quest.CodeName);
@@ -121,6 +137,76 @@ public class QuestSystem : MonoBehaviour
     public bool ContainsInActiveAchievements(Quest quest) => activeAchievements.Any(x => x.CodeName == quest.CodeName);
 
     public bool ContainsInCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
+
+
+    private void Save()
+    {
+        var root = new JObject();
+        root.Add(kActiveQuestsSavePath, CreateSaveDatas(activeQuests));
+        root.Add(kCompletedQuestsSavePath, CreateSaveDatas(completedQuests));
+        root.Add(kActiveAchievementsSavePath, CreateSaveDatas(activeAchievements));
+        root.Add(kCompletedAchievementsSavePath, CreateSaveDatas(completedAchievements));
+
+        PlayerPrefs.SetString(kSaveRootPath, root.ToString());
+        PlayerPrefs.Save();
+    }
+
+    private bool Load()
+    {
+        if (PlayerPrefs.HasKey(kSaveRootPath))
+        {
+            var root = JObject.Parse(PlayerPrefs.GetString(kSaveRootPath));
+
+            LoadSaveDatas(root[kActiveQuestsSavePath], questDatatabase, LoadActiveQuest);
+            LoadSaveDatas(root[kCompletedQuestsSavePath], questDatatabase, LoadCompletedQuest);
+
+            LoadSaveDatas(root[kActiveAchievementsSavePath], achievementDatabase, LoadActiveQuest);
+            LoadSaveDatas(root[kCompletedAchievementsSavePath], achievementDatabase, LoadCompletedQuest);
+
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private JArray CreateSaveDatas(IReadOnlyList<Quest> quests)
+    {
+        var saveDatas = new JArray();
+        foreach (var quest in quests)
+        {
+            if (quest.IsSavable)
+                saveDatas.Add(JObject.FromObject(quest.ToSaveData()));
+        }
+        return saveDatas;
+    }
+
+    private void LoadSaveDatas(JToken datasToken, QuestDatabase database, System.Action<QuestSaveData, Quest> onSuccess)
+    {
+        var datas = datasToken as JArray;
+        foreach (var data in datas)
+        {
+            var saveData = data.ToObject<QuestSaveData>();
+            var quest = database.FindQuestBy(saveData.codeName);
+            onSuccess.Invoke(saveData, quest);
+        }
+    }
+    
+    private void LoadActiveQuest(QuestSaveData saveData, Quest quest)
+    {
+        var newQuest = Register(quest);
+        newQuest.LoadFrom(saveData);
+    }
+
+    private void LoadCompletedQuest(QuestSaveData saveData, Quest quest)
+    {
+        var newQuest = quest.Clone();
+        newQuest.LoadFrom(saveData);
+
+        if (newQuest is Achievement)
+            completedAchievements.Add(newQuest);
+        else
+            completedQuests.Add(newQuest);
+    }
 
     #region Callback
     private void OnQuestCompleted(Quest quest)
