@@ -139,7 +139,7 @@ public class QuestSystem : MonoBehaviour
     public bool ContainsInCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
 
 
-    private void Save()
+    public void Save()
     {
         var root = new JObject();
         root.Add(kActiveQuestsSavePath, CreateSaveDatas(activeQuests));
@@ -151,7 +151,7 @@ public class QuestSystem : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private bool Load()
+    public bool Load()
     {
         if (PlayerPrefs.HasKey(kSaveRootPath))
         {

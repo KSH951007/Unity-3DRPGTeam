@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
@@ -16,15 +17,12 @@ public class NPC : MonoBehaviour
     NPCState state;
     Animator animator;
 
-    private int firstMet; // WILLDO : NPC 첫인사 구현 // chatBubble 클래스
     public List<Transform> moveRnd; //WILLDO : 총 3방향으로 랜덤 이동 구현 
     float InteractRange; // 플레이어 상호작용 범위와 같음
-    
-    bool needHelp;
+    public bool playerIsHere = false;
+    public bool dialogueNow = false;
+
     NPCUI bubble;
-
-    NPCTalkData nTD;
-
     private void Awake()
     {
         InteractRange = 2f;
@@ -45,11 +43,13 @@ public class NPC : MonoBehaviour
         {
             if (collider.TryGetComponent(out Hero player)) // 플레이어가 올때 상호작용에 필요한 
             {
+                playerIsHere = true;
                 bubble.pressSpace.SetActive(true);
                 // CHATBUBBLE 클래스의 함수 호출
             }
             else
             {
+                playerIsHere = false;
                 bubble.pressSpace.SetActive(false);
             }
         }

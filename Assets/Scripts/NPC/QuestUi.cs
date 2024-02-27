@@ -22,7 +22,6 @@ public class QuestUi : MonoBehaviour
     private void Awake()
     {
         questWindow = GameObject.Find("QuestPanel");
-        questDetail = GameObject.Find("QuestDetail");
         conversationMenu = GameObject.Find("NPCmenu");
         talkWindow = GameObject.Find("TalkWindow");
         NPCname = GameObject.Find("Name").GetComponent<TextMeshPro>();
@@ -34,7 +33,6 @@ public class QuestUi : MonoBehaviour
     private void Start()
     {
         questWindow.SetActive(false);
-        questDetail.SetActive(false);
         conversationMenu.SetActive(false);
         talkWindow.SetActive(false);
     }
@@ -43,11 +41,6 @@ public class QuestUi : MonoBehaviour
     {
         qwIsOpen = !qwIsOpen;
         questWindow.SetActive(qwIsOpen);
-    }
-    public void showQD()
-    {
-        qdIsOpen = !qdIsOpen;
-        questDetail.SetActive(qdIsOpen);
     }
     public void showConversation()
     {

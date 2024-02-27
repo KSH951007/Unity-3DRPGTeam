@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Quest Data", menuName = "Scriptable Object/Quest Data", order = int.MinValue)]
-public class QuestData : ScriptableObject
+//[CreateAssetMenu(fileName = "Quest Data", menuName = "Scriptable Object/Quest Data", order = int.MinValue)]
+public class QuestData// : ScriptableObject
 {
     public int questID;
     private int PlayerProgress;
