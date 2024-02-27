@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class KhururuTrans_AttackState : BaseState
+public class Urbon_AttackState : BaseState
 {
-    public KhururuTrans_AttackState(BossMonsters monster) : base(monster) { }
+	public Urbon_AttackState(BossMonsters monster) : base(monster) { }
 
-	private float attack1Weight = 0.2f;
-	private float attack2Weight = 0.2f;
-	private float skill1Weight = 0.15f;
-	private float skill2Weight = 0.15f;
-	private float skill3Weight = 0.15f;
-	private float skill4Weight = 0.15f;
+	//private float attackWeight = 0.25f;
+	//private float skill1Weight = 0.25f;
+	//private float skill2Weight = 0.25f;
+	//private float skill3Weight = 0.25f;
+
+	private float attackWeight = 0f;
+	private float skill1Weight = 1f;
+	private float skill2Weight = 0f;
+	private float skill3Weight = 0f;
 
 	private float totalWeight;
 
@@ -20,18 +22,18 @@ public class KhururuTrans_AttackState : BaseState
 	bool combo = false;
 
 	public override void OnStateEnter()
-    {
-        _monster.nav.isStopped = true;
+	{
+		_monster.nav.isStopped = true;
 
-        _monster.timeForNextChange = Time.time + 4f;
+		_monster.timeForNextChange = Time.time + 4f;
 
-		totalWeight = attack1Weight + attack2Weight + skill1Weight + skill2Weight + skill3Weight + skill4Weight;
+		totalWeight = attackWeight + skill1Weight + skill2Weight + skill3Weight;
 
 		PlayRandomSkill();
 	}
 
 	public override void OnStateUpdate()
-    {
+	{
 		if (!attacked)
 		{
 			DetectSkillCollider();
@@ -53,34 +55,25 @@ public class KhururuTrans_AttackState : BaseState
 	{
 		float randomValue = Random.Range(0f, totalWeight);
 
-		if (randomValue < attack1Weight)
+		if (randomValue < attackWeight)
 		{
-			_monster.animator.SetTrigger("Attack1");
+			_monster.animator.SetTrigger("Attack");
 			_monster.hasAttacked = true;
 		}
-		else if (randomValue < attack1Weight + attack2Weight)
-		{
-			_monster.animator.SetTrigger("Attack2");
-			_monster.hasAttacked = true;
-		}
-		else if (randomValue < attack1Weight + attack2Weight + skill1Weight)
+		else if (randomValue < attackWeight + skill1Weight)
 		{
 			_monster.animator.SetTrigger("Skill1");
 			_monster.hasAttacked = true;
 		}
-		else if (randomValue < attack1Weight + attack2Weight + skill1Weight + skill2Weight)
+		else if (randomValue < attackWeight + skill1Weight + skill2Weight)
 		{
 			_monster.animator.SetTrigger("Skill2");
 			_monster.hasAttacked = true;
 		}
-		else if (randomValue < attack1Weight + attack2Weight + skill1Weight + skill2Weight + skill3Weight)
-		{
-			_monster.animator.SetTrigger("Skill3");
-			_monster.hasAttacked = true;
-		}
 		else
 		{
-			_monster.animator.SetTrigger("Skill4");
+			_monster.animator.SetTrigger("Skill3");
+			_monster.timeForNextChange = Time.time + 4f;
 			_monster.hasAttacked = true;
 		}
 	}
@@ -137,7 +130,6 @@ public class KhururuTrans_AttackState : BaseState
 		}
 		else if (_monster.t_skill3Collider.enabled)
 		{
-
 			Debug.Log("Skill3 공격 실행");
 			//Debug.Log("피격 : " + detectedColl[0].name);
 		}

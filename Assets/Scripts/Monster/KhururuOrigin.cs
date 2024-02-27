@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class KhururuOrigin : BossMonsters
 {
+	public GameObject khururuTransPrefab;
 
     private enum State
 	{
@@ -21,7 +22,14 @@ public class KhururuOrigin : BossMonsters
 	protected override void OnEnable()
 	{
 		base.OnEnable();
+		nav.isStopped = true;
 		maxShieldAmount = 15;
+	}
+
+	private void OnDisable()
+	{
+		khururuTransPrefab.transform.position = transform.position;
+		khururuTransPrefab.SetActive(true);
 	}
 
 	private void Start()
@@ -32,11 +40,6 @@ public class KhururuOrigin : BossMonsters
 
 	private void Update()
 	{
-		//if (Input.GetMouseButtonDown(0))
-		//{
-		//	TakeHit(1, 0);
-		//}
-
 		if (isDead)
 		{
 			nav.isStopped = true;

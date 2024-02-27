@@ -4,52 +4,126 @@ using UnityEngine;
 
 public class Urbon : BossMonsters
 {
+	private enum State
+	{
+		None,
+		Appear,
+		Idle,
+		Chase,
+		Attack
+	}
+
+	private State _curState;
+	private FSM _fsm;
+
+	protected override void OnEnable()
+	{
+		timeForNextChange = Time.time + 3f;
+		_curState = State.Appear;
+		_fsm = new FSM(new Urbon_AppearState(this));
+	}
+
 	private void Update()
 	{
-		// skill3은 이동하면서 사용
-		if (Input.GetKeyDown(KeyCode.O))
+		if (isDead)
 		{
-			animator.SetTrigger("Skill3");
+			nav.isStopped = true;
+			_curState = State.None;
 		}
 
-		if (Input.GetKeyDown(KeyCode.P)/*이동거리가 x 이상이면*/)
+		switch (_curState)
 		{
-			animator.SetTrigger("ExitSkill3");
+			case State.Appear:
+				if (NextChangeCoolTime())
+				{
+					ChangeState(State.Idle);
+				}
+				break;
+
+			case State.Idle:
+				if (CanSeePlayer() && NextChangeCoolTime())
+				{
+					ChangeState(State.Chase);
+				}
+				break;
+
+			case State.Chase:
+				if (NextChangeCoolTime())
+				{
+					ChangeState(State.Attack);
+				}
+				else if (ShortDistancePlayer())
+				{
+					ChangeState(State.Attack);
+				}
+				break;
+
+			case State.Attack:
+				if (hasAttacked && NextChangeCoolTime())
+				{
+					ChangeState(State.Idle);
+				}
+				break;
+		}
+
+		_fsm.UpdateState();
+		//print(_curState);
+		//print(nav.remainingDistance);
+	}
+
+	private void ChangeState(State nextState)
+	{
+		_curState = nextState;
+		switch (_curState)
+		{
+			case State.Appear:
+				_fsm.ChangeState(new Urbon_IdleState(this));
+				break;
+			case State.Idle:
+				_fsm.ChangeState(new Urbon_IdleState(this));
+				break;
+			case State.Chase:
+				_fsm.ChangeState(new Urbon_ChaseState(this));
+				break;
+			case State.Attack:
+				_fsm.ChangeState(new Urbon_AttackState(this));
+				break;
 		}
 	}
 
-	//private void StateControl()
-	//{
-	//	while (!isDead)
-	//	{
-	//		switch (currentState)
-	//		{
-	//			case State.Idle:
-	//				break;
-	//			case State.Chase:
-	//				break;
-	//			case State.Attack:
-	//				break;
+	#region State를 바꾸는 조건들
 
-	//		}
-	//	}
-	//}
-
-	//private void Idle()
-	//{
-	//	if (playerFound)
-	//	{
-	//		currentState = State.Chase;
-	//	}
-	//}
-
-	private void Chase()
+	private bool CanSeePlayer()
 	{
+		// TODO:: 플레이어 탐지 구현
+		if (target != null)
+		{
+			return true;
+		}
+		else return false;
 
 	}
 
-	private void Attack()
+	private bool ShortDistancePlayer()
 	{
-
+		// TODO:: 사정거리 체크 구현
+		if (nav.remainingDistance < 2f)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
+
+	private bool NextChangeCoolTime()
+	{
+		if (timeForNextChange < Time.time)
+		{
+			return true;
+		}
+		else return false;
+	}
+	#endregion
 }

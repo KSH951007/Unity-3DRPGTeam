@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KhururuTrans_ChaseState : BaseState
+public class Urbon_ChaseState : BaseState
 {
-    public KhururuTrans_ChaseState(BossMonsters monster) : base(monster) { }
+	public Urbon_ChaseState(BossMonsters monster) : base(monster) { }
 
-    public override void OnStateEnter()
-    {
+	public override void OnStateEnter()
+	{
 		_monster.SetChasingTime();
 
-		_monster.timeForNextChange = _monster.chasingTime - 1f;
+		_monster.timeForNextChange = _monster.chasingTime - 2f;
 		Debug.Log(_monster.chasingTime);
 		Debug.Log(_monster.timeForNextChange);
 
@@ -18,8 +18,8 @@ public class KhururuTrans_ChaseState : BaseState
 		_monster.animator.SetBool("Move", true);
 	}
 
-    public override void OnStateUpdate()
-    {
+	public override void OnStateUpdate()
+	{
 		_monster.nav.SetDestination(_monster.target.position);
 
 		FaceTarget();
@@ -28,7 +28,6 @@ public class KhururuTrans_ChaseState : BaseState
 	public override void OnStateExit()
 	{
 		_monster.animator.SetBool("Move", false);
-		_monster.nav.isStopped = true;
 	}
 
 	private void FaceTarget()

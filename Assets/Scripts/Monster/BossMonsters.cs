@@ -49,8 +49,13 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	public MeshCollider t_skill4Collider;
 	[Space(10)]
 
+	[Header("Urbon's Colliders")]
+	public SphereCollider u_attackCollider;
+	public SphereCollider u_skill3Collider;
+	[Space(10)]
 
-    public LayerMask attackTargetLayer;
+
+	public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
 	protected SkinnedMeshRenderer currentMeshRenderer;
 
@@ -152,4 +157,15 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 
 		return dropCoin;
 	}
+
+	// KhururuTrans의 skill4 범위 확인
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.red;
+	//	if (t_skill4Collider != null)
+	//	{
+	//		Vector3 temp = t_skill4Collider.bounds.center + new Vector3(0, 0, 2);
+	//		Gizmos.DrawWireCube(t_skill4Collider.transform.position + temp, t_skill4Collider.bounds.extents * 1.6f);
+	//	}
+	//}
 }

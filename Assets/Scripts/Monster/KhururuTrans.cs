@@ -19,18 +19,13 @@ public class KhururuTrans : BossMonsters
 
     private void Start()
     {
-        timeForNextChange = Time.time + 5f;
+        timeForNextChange = Time.time + 3f;
         _curState = State.Appear;
         _fsm = new FSM(new KhururuTrans_AppearState(this));
     }
 
-    private void Update()
+	private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            TakeHit(1, 0);
-        }
-
         if (isDead)
         {
             nav.isStopped = true;
@@ -60,7 +55,7 @@ public class KhururuTrans : BossMonsters
                 }
                 else if (ShortDistancePlayer())
                 {
-                    ChangeState(State.Idle);
+                    ChangeState(State.Attack);
                 }
                 break;
 
@@ -73,7 +68,8 @@ public class KhururuTrans : BossMonsters
         }
 
         _fsm.UpdateState();
-        print(_curState);
+        //print(_curState);
+        //print(nav.remainingDistance);
     }
 
     private void ChangeState(State nextState)
@@ -96,9 +92,9 @@ public class KhururuTrans : BossMonsters
         }
     }
 
-    #region State를 바꾸는 조건들
+	#region State를 바꾸는 조건들
 
-    private bool CanSeePlayer()
+	private bool CanSeePlayer()
     {
         // TODO:: 플레이어 탐지 구현
         if (target != null)
@@ -112,7 +108,7 @@ public class KhururuTrans : BossMonsters
     private bool ShortDistancePlayer()
     {
         // TODO:: 사정거리 체크 구현
-        if (nav.remainingDistance < 1f)
+        if (nav.remainingDistance < 2f)
         {
             return true;
         }
