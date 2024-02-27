@@ -13,6 +13,7 @@ public class SkillManager : MonoBehaviour
     }
     public void AddSkill(Hero hero, Skill[] skill)
     {
+      
         if (!skills.ContainsKey(hero))
         {
             skills[hero] = skill;
