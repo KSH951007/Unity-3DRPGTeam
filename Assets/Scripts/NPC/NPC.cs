@@ -22,7 +22,7 @@ public class NPC : MonoBehaviour
     public bool playerIsHere = false;
     public bool dialogueNow = false;
 
-    NPCUI bubble;
+    public NPCUI bubble;
     private void Awake()
     {
         InteractRange = 2f;

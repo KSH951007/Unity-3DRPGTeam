@@ -12,7 +12,6 @@ public class PlayerInteract : MonoBehaviour, IInteractable
 
     float InteractRange = 2f;
 
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) //TODO : 인풋 시스템 적용//  병합 되기전까지 사용
@@ -33,6 +32,7 @@ public class PlayerInteract : MonoBehaviour, IInteractable
             if (collider.TryGetComponent(out NPC npc))
             {
                 GameManager.Instance.ui.QUI.showConversation();
+                npc.bubble.Ontalk(npc);
             }
         }
     }

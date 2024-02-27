@@ -8,5 +8,4 @@ public class QuestGoal //: ScriptableObject
 {
     public int questID;
 
-
 }

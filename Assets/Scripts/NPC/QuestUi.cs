@@ -17,14 +17,13 @@ public class QuestUi : MonoBehaviour
     
     GameObject talkWindow;
     bool twIsOpen = false;
-    TextMeshPro NPCname;
 
+    public DialogueWindow dia;
     private void Awake()
     {
         questWindow = GameObject.Find("QuestPanel");
         conversationMenu = GameObject.Find("NPCmenu");
         talkWindow = GameObject.Find("TalkWindow");
-        NPCname = GameObject.Find("Name").GetComponent<TextMeshPro>();
         qwIsOpen = false;
         qdIsOpen = false;
         cmIsOpen = false;
