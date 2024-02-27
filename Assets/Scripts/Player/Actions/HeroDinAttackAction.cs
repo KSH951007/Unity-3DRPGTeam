@@ -18,7 +18,7 @@ public class HeroDinAttackAction : HeroAttackAction
         this.maxCombo = maxCombo;
         curruntAttackCombo = 0;
 
-        
+
     }
     public override bool IsCanle(HeroAction action)
     {
@@ -34,7 +34,6 @@ public class HeroDinAttackAction : HeroAttackAction
         owner.AnimEvent.onProgressAttack += ProgressAttack;
         owner.AnimEvent.onEndAttack += EndAttack;
 
-
     }
 
     public override void StopAction()
@@ -42,27 +41,20 @@ public class HeroDinAttackAction : HeroAttackAction
         owner.AnimEvent.onStartAttack -= StartAttack;
         owner.AnimEvent.onProgressAttack -= ProgressAttack;
         owner.AnimEvent.onEndAttack -= EndAttack;
-        isStartAttack = false;
-        isEndAttack = false;
+        isEndAction = false;
+        Debug.Log("end");
     }
     public override void UpdateAction()
     {
-        if (scheduler.GetNextAction() == this)
+        Debug.Log(curruntAttackCombo);
+        if (isEndAction)
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
+            if (scheduler.GetNextAction() != this)
             {
-                isEndAction = true;
-                return;
-            }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
-            {
-                isEndAction = true;
                 curruntAttackCombo = 0;
-                return;
             }
+            scheduler.ChangeAction();
+            return;
         }
 
     }
@@ -72,7 +64,7 @@ public class HeroDinAttackAction : HeroAttackAction
     }
     public void EndAttack()
     {
-        isEndAttack = true;
+        isEndAction = true;
     }
     public void ProgressAttack()
     {

@@ -46,37 +46,27 @@ public class ActionScheduler
                 return;
             }
 
-            if (actions[NextIndex()] != null)
-            {
-                actions[NextIndex()].StopAction();
-            }
+  
 
             actions[NextIndex()] = action;
 
         }
+    }
 
+    public void ChangeAction()
+    {
+        actions[actionIndex].StopAction();
+        actions[actionIndex] = null;
+        actionIndex = NextIndex();
+        actions[actionIndex]?.StartAction();
 
+      
+        return;
     }
     public void ProcessAction()
     {
         if (actions[actionIndex] != null)
         {
-            if (actions[actionIndex].IsEndAction)
-            {
-                actions[actionIndex].StopAction();
-
-
-                actions[actionIndex] = null;
-
-                actionIndex = NextIndex();
-
-                actions[actionIndex]?.StartAction();
-
-
-                return;
-
-            }
-
             actions[actionIndex].UpdateAction();
         }
     }

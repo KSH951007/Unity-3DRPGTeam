@@ -7,7 +7,6 @@ public class HeroAttackAction : HeroAction
     protected Vector3 targetPos;
     protected int maxCombo;
     protected int curruntAttackCombo;
-    protected ActionScheduler scheduler;
     protected bool isStartAttack;
     protected bool isEndAttack;
 
@@ -16,7 +15,7 @@ public class HeroAttackAction : HeroAction
     {
         return curruntAttackCombo == maxCombo;
     }
-    public HeroAttackAction(ActionScheduler scheduler, Animator animator, Hero owner, int maxCombo) : base(animator, owner)
+    public HeroAttackAction(ActionScheduler scheduler, Animator animator, Hero owner, int maxCombo) : base(scheduler,animator, owner)
     {
         this.scheduler = scheduler;
         this.maxCombo = maxCombo;
@@ -49,7 +48,7 @@ public class HeroAttackAction : HeroAction
 
     public override void StopAction()
     {
-
+        isEndAction = false;
     }
     public override void UpdateAction()
     {
@@ -58,7 +57,7 @@ public class HeroAttackAction : HeroAction
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
             {
-                isEndAction = true;
+                scheduler.ChangeAction();
                 return;
             }
         }
@@ -66,12 +65,15 @@ public class HeroAttackAction : HeroAction
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
             {
+                
                 isEndAction = true;
                 curruntAttackCombo = 0;
-                Debug.Log(curruntAttackCombo);
+                scheduler.ChangeAction();
                 return;
             }
         }
+
+        Debug.Log("asd");
 
 
     }

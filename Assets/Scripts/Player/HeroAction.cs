@@ -8,6 +8,7 @@ public abstract class HeroAction
     protected Hero owner;
     protected Animator animator;
     protected bool isEndAction;
+    protected ActionScheduler scheduler;
     public void ChangeAnimator(Animator newAnimator)
     {
         
@@ -15,8 +16,9 @@ public abstract class HeroAction
     }
     public bool IsEndAction { get { return isEndAction; } }
     public abstract bool IsCanle(HeroAction action);
-    public HeroAction(Animator animator, Hero owner)
+    public HeroAction(ActionScheduler scheduler, Animator animator, Hero owner)
     {
+        this.scheduler = scheduler;
         this.animator = animator;
         this.owner = owner;
         isEndAction = false;

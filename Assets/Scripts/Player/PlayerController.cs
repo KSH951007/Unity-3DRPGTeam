@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         inputs.Player.Move.performed += _ => PointerClickMove();
         inputs.Player.Attack.performed += _ => PointerClickAttack();
         inputs.Player.Skill1.performed += _ => PressSkill1();
+        inputs.Player.Skill2.performed += _ => PressSkill2();
 
         inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter();
 
@@ -84,13 +85,23 @@ public class PlayerController : MonoBehaviour
         //if (SceneLoader.Instance.GetSceneType() == EnumType.SceneType.Village)
         //    return;
 
-        
+
         mainHero.AttackAction(PointerToTarget());
 
     }
     public void PressSkill1()
     {
-        mainHero.Skill1Action(PointerToTarget());
+        if (GetComponent<SkillManager>().CanUseSkill(mainHero, 0))
+        {
+               mainHero.SkillAction(0, PointerToTarget());
+        }
+    }
+    public void PressSkill2()
+    {
+        if (GetComponent<SkillManager>().CanUseSkill(mainHero, 1))
+        {
+            mainHero.SkillAction(1, PointerToTarget());
+        }
     }
     private Vector3 PointerToTarget()
     {

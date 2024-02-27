@@ -6,11 +6,14 @@ public class HeroSkillAction : HeroAction
 {
 
     private Vector3 target;
-    private Skill skill;
+    private SkillManager skillmanager;
     private HeroAnimEvent animEvent;
-    public HeroSkillAction(Skill skill, Animator animator, Hero owner) : base(animator, owner)
+    private int skillIndex;
+
+    public HeroSkillAction(ActionScheduler scheduler, SkillManager skillmanager, int skillIndex, Animator animator, Hero owner) : base(scheduler, animator, owner)
     {
-        this.skill = skill;
+        this.skillmanager = skillmanager;
+        this.skillIndex = skillIndex;
         animEvent = animator.gameObject.GetComponent<HeroAnimEvent>();
 
     }
@@ -27,23 +30,36 @@ public class HeroSkillAction : HeroAction
     public override void StartAction()
     {
         isEndAction = false;
-        animator.SetTrigger("Skill1");
+        animator.SetTrigger($"Skill{skillIndex + 1}");
         owner.StartCoroutine(owner.TargetToLoock(target, 0.05f));
-        animEvent.onProgressAttack += skill.UseSkill;
+        animEvent.onProgressAttack += UseSkill;
+        animEvent.onEndAttack += EndAction;
+
     }
 
     public override void StopAction()
     {
-        animEvent.onProgressAttack -= skill.UseSkill;
+        Debug.Log("ASD");
+        animEvent.onProgressAttack -= UseSkill;
+        animEvent.onEndAttack -= EndAction;
+        isEndAction = false;
     }
 
     public override void UpdateAction()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName($"skill1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        if(isEndAction)
         {
-            isEndAction = true;
-            return;
+            scheduler.ChangeAction();
         }
     }
-
+    public void EndAction()
+    {
+        isEndAction = true;
+        Debug.Log("END");
+    }
+    public void UseSkill()
+    {
+        skillmanager.UseSkill(owner, skillIndex);
+        Debug.Log("use");
+    }
 }

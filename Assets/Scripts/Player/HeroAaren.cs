@@ -8,7 +8,7 @@ public class HeroAaren : Hero
     protected override void Awake()
     {
         base.Awake();
-        moveAction = new HeroMoveAction(animator, this, agent, 3.5f);
+        moveAction = new HeroMoveAction(scheduler,animator, this, agent, 3.5f);
         attackAction = new HeroAttackAction(scheduler, animator, this, 2);
     }
     

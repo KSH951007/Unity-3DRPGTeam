@@ -9,7 +9,7 @@ public class HeroMoveAction : HeroAction
     private float moveSpeed;
     private Vector3 targetPoint;
 
-    public HeroMoveAction(Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed) : base(animator, owner)
+    public HeroMoveAction(ActionScheduler scheduler, Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed) : base(scheduler,animator, owner)
     {
         this.agent = agent;
         this.moveSpeed = moveSpeed;
@@ -58,7 +58,7 @@ public class HeroMoveAction : HeroAction
         animator.SetFloat("Move", agent.remainingDistance);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            isEndAction = true;
+            scheduler.ChangeAction();
             return;
         }
     }

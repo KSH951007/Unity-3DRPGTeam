@@ -6,6 +6,7 @@ public class SwiftCharge : Skill
 {
     [SerializeField] private Hero hero;
     private float chargeSpeed;
+
     protected override void Awake()
     {
         base.Awake();
