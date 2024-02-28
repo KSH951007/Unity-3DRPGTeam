@@ -96,7 +96,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		chasingTime = Time.time + Random.Range(3f, 6f);
 	}
 
-	public void TakeHit(float damage, IHitable_Monster.HitType hitType, GameObject hitParticle = null)
+	public void TakeHit(float damage, HitType hitType, GameObject hitParticle = null)
 	{
         if (patience != 0)
         {
