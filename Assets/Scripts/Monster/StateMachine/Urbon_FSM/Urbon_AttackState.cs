@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Urbon_AttackState : BaseState
 {
@@ -12,14 +13,12 @@ public class Urbon_AttackState : BaseState
 	//private float skill3Weight = 0.25f;
 
 	private float attackWeight = 0f;
-	private float skill1Weight = 1f;
+	private float skill1Weight = 0f;
 	private float skill2Weight = 0f;
-	private float skill3Weight = 0f;
-
+	private float skill3Weight = 1f;
 	private float totalWeight;
 
-	bool attacked = false;
-	bool combo = false;
+	private bool Onskill3;
 
 	public override void OnStateEnter()
 	{
@@ -34,21 +33,21 @@ public class Urbon_AttackState : BaseState
 
 	public override void OnStateUpdate()
 	{
-		if (!attacked)
+		DetectSkillCollider();
+
+		_monster.nav.SetDestination(_monster.target.position);
+
+		if (Onskill3 && _monster.timeForNextChange - 3f < Time.time)
 		{
-			DetectSkillCollider();
-		}
-		else if (combo)
-		{
-			DetectSkillCollider();
+			_monster.animator.SetTrigger("ExitSkill3");
+			_monster.hasAttacked = true;
+			Onskill3 = false;
 		}
 	}
 
 	public override void OnStateExit()
 	{
 		_monster.hasAttacked = false;
-		attacked = false;
-		combo = false;
 	}
 
 	private void PlayRandomSkill()
@@ -71,85 +70,39 @@ public class Urbon_AttackState : BaseState
 			_monster.hasAttacked = true;
 		}
 		else
-		{
+		{ 
 			_monster.animator.SetTrigger("Skill3");
-			_monster.timeForNextChange = Time.time + 4f;
-			_monster.hasAttacked = true;
+			Onskill3 = true;
+			_monster.timeForNextChange += 6f;
 		}
 	}
 
 	private void DetectSkillCollider()
 	{
-		if (_monster.t_attack1Collider.enabled)
+		if (_monster.u_attackCollider.enabled)
 		{
-			Vector3 collCenter = _monster.t_attack1Collider.transform.position + _monster.t_attack1Collider.center;
+			Vector3 collCenter = _monster.u_attackCollider.transform.position + _monster.u_attackCollider.center;
 
 			Collider[] detectedColl =
-			Physics.OverlapSphere(collCenter, _monster.t_attack1Collider.radius, _monster.attackTargetLayer);
-			Debug.Log("Attack1 공격 실행");
-			//Debug.Log("피격 : " + detectedColl[0].name);
-		}
-		else if (_monster.t_attack2Collider.enabled)
-		{
-			Vector3 collCenter = _monster.t_attack2Collider.transform.position + _monster.t_attack2Collider.center;
-
-			Collider[] detectedColl =
-			Physics.OverlapSphere(collCenter, _monster.t_attack2Collider.radius, _monster.attackTargetLayer);
-			Debug.Log("Attack2 공격 실행");
-			//Debug.Log("피격 : " + detectedColl[0].name);
-		}
-		else if (_monster.t_skill1Collider.enabled)
-		{
-			Vector3 collCenter = _monster.t_skill1Collider.transform.position + _monster.t_skill1Collider.center;
-
-			Collider[] detectedColl =
-			Physics.OverlapSphere(collCenter, _monster.t_skill1Collider.radius, _monster.attackTargetLayer);
-			Debug.Log("Skill1 공격 실행");
-			//Debug.Log("피격 : " + detectedColl[0].name);
-		}
-		else if (_monster.t_skill2_1Collider.enabled && !combo)
-		{
-			Vector3 collCenter = _monster.t_skill2_1Collider.transform.position + _monster.t_skill2_1Collider.center;
-
-			Collider[] detectedColl =
-			Physics.OverlapSphere(collCenter, _monster.t_skill2_1Collider.radius, _monster.attackTargetLayer);
-			Debug.Log("Skill2_1 공격 실행");
-			combo = true;
-			//Debug.Log("피격 : " + detectedColl[0].name);
-		}
-		else if (_monster.t_skill2_2Collider.enabled)
-		{
-			Vector3 collCenter = _monster.t_skill2_2Collider.transform.position;
-
-			Vector3 collHalfExtents = _monster.t_skill2_2Collider.bounds.extents * 2;
-
-			Collider[] detectedColl =
-			Physics.OverlapBox(collCenter, collHalfExtents, Quaternion.identity, _monster.attackTargetLayer);
-			Debug.Log("Skill2_2 공격 실행");
-			//Debug.Log("피격 : " + detectedColl[0].name);
-		}
-		else if (_monster.t_skill3Collider.enabled)
-		{
-			Debug.Log("Skill3 공격 실행");
-			//Debug.Log("피격 : " + detectedColl[0].name);
-		}
-		else if (_monster.t_skill4Collider.enabled)
-		{
-			Vector3 collCenter = _monster.t_skill4Collider.transform.position + _monster.t_skill4Collider.bounds.center + new Vector3(0, 0, 2);
-
-			Vector3 collHalfExtents = _monster.t_skill4Collider.bounds.extents * 1.6f;
-
-			Collider[] detectedColl =
-			Physics.OverlapBox(collCenter, collHalfExtents, Quaternion.identity, _monster.attackTargetLayer);
-			Debug.Log("Skill4 공격 실행");
+			Physics.OverlapSphere(collCenter, _monster.u_attackCollider.radius, _monster.attackTargetLayer);
+			Debug.Log("Attack 공격 실행");
 			Debug.Log("피격 : " + detectedColl[0].name);
-			combo = true;
+		}
+		else if (_monster.u_skill3Collider.enabled)
+		{
+			Vector3 collCenter = _monster.u_skill3Collider.transform.position + _monster.u_skill3Collider.center;
+
+			Collider[] detectedColl =
+			Physics.OverlapSphere(collCenter, _monster.u_skill3Collider.radius, _monster.attackTargetLayer);
+			Debug.Log("skill3 공격 실행");
+			if (detectedColl.Length > 0)
+			{
+				Debug.Log("피격 : " + detectedColl[0].name);
+			}
 		}
 		else
 		{
 			return;
 		}
-
-		attacked = true;
 	}
 }

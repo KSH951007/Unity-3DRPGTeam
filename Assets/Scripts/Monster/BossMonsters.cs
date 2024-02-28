@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -63,6 +64,8 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	[SerializeField] protected bool isDead;
 	public bool hasAttacked;
 	public bool shieldBroken;
+
+	public UnityEvent onDead;
 
 	[SerializeField] public GameObject hitParticle;
 
@@ -140,6 +143,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		animator.SetTrigger("Die");
 		yield return new WaitForSeconds(2.5f);
 		gameObject.SetActive(false);
+		onDead.Invoke();
 		//드랍 아이템
 	}
 

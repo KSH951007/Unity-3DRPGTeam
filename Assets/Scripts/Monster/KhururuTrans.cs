@@ -19,7 +19,7 @@ public class KhururuTrans : BossMonsters
 
     private void Start()
     {
-        timeForNextChange = Time.time + 3f;
+        timeForNextChange = Time.time + 1f;
         _curState = State.Appear;
         _fsm = new FSM(new KhururuTrans_AppearState(this));
     }

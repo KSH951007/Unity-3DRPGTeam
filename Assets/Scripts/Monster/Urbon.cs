@@ -18,7 +18,7 @@ public class Urbon : BossMonsters
 
 	protected override void OnEnable()
 	{
-		timeForNextChange = Time.time + 3f;
+		timeForNextChange = Time.time + 1f;
 		_curState = State.Appear;
 		_fsm = new FSM(new Urbon_AppearState(this));
 	}
@@ -67,8 +67,8 @@ public class Urbon : BossMonsters
 		}
 
 		_fsm.UpdateState();
-		//print(_curState);
-		//print(nav.remainingDistance);
+		print(_curState);
+		print(timeForNextChange);
 	}
 
 	private void ChangeState(State nextState)

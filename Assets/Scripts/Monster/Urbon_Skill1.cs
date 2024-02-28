@@ -16,6 +16,7 @@ public class Urbon_Skill1 : MonoBehaviour
 
 	private void OnEnable()
 	{
+		startPoint = GameObject.Find("Skill1StartPoint").transform;
 		transform.position = startPoint.position;
 		skill1Collider = GetComponentInChildren<SphereCollider>();
 		StartCoroutine(ResetSkill());

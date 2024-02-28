@@ -1,69 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Urbon_Skill2 : MonoBehaviour
 {
 	private Vector3 targetPos;
 	private int skillDamage;
-	private float fallSpeed = 8f;
+
+	public Transform alertPos;
+	public Transform particlePos;
+	public ParticleSystem particle;
 	public AnimationClip clip;
-	private SphereCollider skill2Collider;
-	private bool hitSomething = false;
 
-	public LayerMask attackTargetLayer;
-
+	public SphereCollider damageCollider;
+	public LayerMask playerLayer;
+	Collider[] hitPlayer = new Collider[1];
 
 	private void OnEnable()
 	{
-		skill2Collider = GetComponentInChildren<SphereCollider>();
-
 		Randomize();
 		StartCoroutine(RockFall());
+		StartCoroutine(OutMap());
 	}
 	private void Update()
 	{
-		HitSomething();
+		DetectPlayer();
 	}
 
 	private void Randomize()
 	{
-		float randSize = Random.Range(0.5f, 3f);
+		float randSize = Random.Range(0.3f, 2f);
 		transform.localScale = new Vector3(randSize, randSize, randSize);
-		targetPos = GameObject.Find("Player").transform.position + Random.insideUnitSphere;
+		targetPos = GameObject.Find("Player").transform.position + (Random.insideUnitSphere * 4);
 		targetPos.y = 6f;
 
 		transform.position = targetPos;
+		alertPos.position = new Vector3(targetPos.x, 0.01f, targetPos.z);
+		particlePos.position = new Vector3(targetPos.x, 0.01f, targetPos.z);
 	}
 
 	IEnumerator RockFall()
 	{
 		yield return new WaitForSeconds(clip.length);
-		while (!hitSomething)
+		particle.Play();
+		yield return null;
+
+		if (hitPlayer.Length != 0 && hitPlayer[0] != null)
 		{
-			transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
+			Debug.Log("ÇÃ·¹ÀÌ¾î ºÎµúÈû");
+
+			if (hitPlayer[0].transform.gameObject.TryGetComponent(out IHitable health))
+			{
+				health.TakeHit(skillDamage, HitType.None);
+				gameObject.SetActive(false);
+			}
 		}
 	}
 
-	private void HitSomething()
+	IEnumerator OutMap()
 	{
-		Vector3 collCenter = skill2Collider.transform.position + skill2Collider.center;
-
-		Collider[] detectedColl =
-		Physics.OverlapSphere(collCenter, skill2Collider.radius, attackTargetLayer);
-
-		if (detectedColl.Length != 0)
+		yield return new WaitForSeconds(3f);
+		if (gameObject.activeSelf)
 		{
-			Debug.Log("ºÎµúÈû");
-
-			if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
-			{
-				health.TakeHit(skillDamage, HitType.None);
-			}
-
-			hitSomething = true;
 			gameObject.SetActive(false);
-
 		}
+	}
+
+	private void DetectPlayer()
+	{
+		damageCollider.transform.position = new Vector3(targetPos.x, 0.01f, targetPos.z);
+
+		Vector3 collCenter = damageCollider.transform.position + damageCollider.center;
+
+		hitPlayer =
+			Physics.OverlapSphere(collCenter, damageCollider.radius, playerLayer);
 	}
 }
