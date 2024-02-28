@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor.Rendering;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class DialogueWindow : MonoBehaviour
 {
@@ -81,7 +83,17 @@ public class DialogueWindow : MonoBehaviour
     {
         StartCoroutine(QuestTyping());
     }
+    public void AddElement(Quest quest, UnityAction<bool> onClicked)
+    {
+        //var element = Instantiate(elementTextPrefab, transform);
+        //element.text = quest.DisplayName;
 
+        //var toggle = element.GetComponent<Toggle>();
+        //toggle.group = toggleGroup;
+        //toggle.onValueChanged.AddListener(onClicked);
+
+        //elementsByQuest.Add(quest, element.gameObject);
+    }
     IEnumerator QuestTyping()
     {
         dialogue.text = "";
