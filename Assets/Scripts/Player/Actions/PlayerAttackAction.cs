@@ -6,7 +6,7 @@ public class PlayerAttackAction : PlayerAction
 {
     private Vector3 targetPos;
     private int maxCombo;
-    private int curruntAttackCombo;
+    protected int curruntAttackCombo;
     float currentTime;
     float attackClipLength;
     Hero mainHero;

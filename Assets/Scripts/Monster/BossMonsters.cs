@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -21,7 +22,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	[SerializeField] public float timeForNextIdle;
     [SerializeField] public float timeForNextChange;
 
-
+	
     public float maxShieldAmount = 15;
 	public float curShieldAmount;
 
@@ -54,6 +55,8 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	public SphereCollider u_skill3Collider;
 	[Space(10)]
 
+	[Header("ForQuest")]
+	public UnityEvent ondead;
 
 	public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
@@ -123,6 +126,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 				currentHp = 0;
 				isDead = true;
 				StartCoroutine(Die());
+			
 			}
 		}
 	}
@@ -140,15 +144,17 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		animator.SetTrigger("Die");
 		yield return new WaitForSeconds(2.5f);
 		gameObject.SetActive(false);
-		//드랍 아이템
-	}
+        ondead.Invoke(); // 유니티 이벤트 ondead 발생
 
-	/// <summary>
-	/// 보스몬스터를 잡으면 아이템과 코인을 떨어트리는 함수
-	/// </summary>
-	/// <param name="dropCoin">각 보스몬스터의 보상코인</param>
-	/// <returns></returns>
-	protected float DropItem(float dropCoin)
+        //드랍 아이템
+    }
+
+    /// <summary>
+    /// 보스몬스터를 잡으면 아이템과 코인을 떨어트리는 함수
+    /// </summary>
+    /// <param name="dropCoin">각 보스몬스터의 보상코인</param>
+    /// <returns></returns>
+    protected float DropItem(float dropCoin)
 	{
 		foreach(GameObject items in dropItem)
 		{
