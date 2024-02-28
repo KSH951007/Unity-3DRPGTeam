@@ -1,3 +1,4 @@
+using Assets.Scripts.Monster.Interface;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ public class Urbon_Skill1 : MonoBehaviour
 			if (detectedColl.Length != 0)
 			{
 				Debug.Log("데미지 가함");
-				if(detectedColl[0].transform.gameObject.TryGetComponent(out IHitable_Monster health))
+				if(detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
 				{
 					health.TakeHit(skillDamage, HitType.None);
 				}

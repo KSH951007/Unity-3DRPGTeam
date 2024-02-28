@@ -1,3 +1,4 @@
+using Assets.Scripts.Monster.Interface;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Search;
@@ -7,7 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class BossMonsters : MonoBehaviour, IHitable_Monster
+public class BossMonsters : MonoBehaviour, IHitable
 {
 	[SerializeField] protected float maxHp;
 	[SerializeField] public float currentHp;
