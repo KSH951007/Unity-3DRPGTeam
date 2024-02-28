@@ -2,10 +2,19 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
+using UnityEngine.VFX.Utility;
 
 public class HeroManager : MonoBehaviour
 {
+
+    [SerializeField] private ChangeEffect changeEffect;
+
+
+    private float changeTime;
+
     private int maxStorageHerosCount;
     private int maxPlayHeroCount;
     private Hero[] hasHeros;
@@ -20,6 +29,8 @@ public class HeroManager : MonoBehaviour
 
     private void Awake()
     {
+        
+        changeTime = 2f;
         maxStorageHerosCount = 50;
         maxPlayHeroCount = 3;
         changeCooldown = 5f;
@@ -40,6 +51,10 @@ public class HeroManager : MonoBehaviour
         playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
 
     }
+    private void Start()
+    {
+        
+    }
     public Hero GetMainHero()
     {
         return selectHeros[mainHeroIndex];
@@ -56,25 +71,26 @@ public class HeroManager : MonoBehaviour
             nextIndex = 0;
         }
 
-        Debug.Log(selectHeros.Length);
         if (selectHeros[nextIndex] == null)
             return;
         if (currentChangeCooldown > 0f)
             return;
-
         selectHeros[mainHeroIndex].Scheduler.ResetActions();
-        selectHeros[mainHeroIndex].gameObject.SetActive(false);
-        Transform prevTr = selectHeros[mainHeroIndex].transform;
-        mainHeroIndex = nextIndex;
-        selectHeros[mainHeroIndex].transform.position = prevTr.position;
-        selectHeros[mainHeroIndex].transform.rotation = prevTr.rotation;
-        selectHeros[mainHeroIndex].gameObject.SetActive(true);
 
-        playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
-        playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
+        changeEffect.ChangeMaterial(ChangeEffect.ChangeType.Appearance, selectHeros[mainHeroIndex].MeshRenderers[1], selectHeros[mainHeroIndex].transform.position,changeTime);
 
-        onChangeCharacter?.Invoke();
-        StartCoroutine(ChangeCooldownRoutin());
+        //selectHeros[mainHeroIndex].gameObject.SetActive(false);
+        //Transform prevTr = selectHeros[mainHeroIndex].transform;
+        //mainHeroIndex = nextIndex;
+        //selectHeros[mainHeroIndex].transform.position = prevTr.position;
+        //selectHeros[mainHeroIndex].transform.rotation = prevTr.rotation;
+        //selectHeros[mainHeroIndex].gameObject.SetActive(true);
+
+        //playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
+        //playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
+
+        //onChangeCharacter?.Invoke();
+        //StartCoroutine(ChangeCooldownRoutin());
     }
     private IEnumerator ChangeCooldownRoutin()
     {
@@ -98,7 +114,6 @@ public class HeroManager : MonoBehaviour
         }
 
         return mainHeroIndex;
-    }
-
+    }  
 
 }

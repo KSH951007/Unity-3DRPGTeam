@@ -15,6 +15,7 @@ public abstract class Hero : MonoBehaviour
     protected EnumType.HeroAnimType animType;
     protected HeroAnimEvent animEnvent;
     [SerializeField] protected HeroSO heroData;
+    [SerializeField] protected SkinnedMeshRenderer[] meshRenderers;
     protected int attackComboCount;
     protected int currentAttackCombo;
     protected HeroMoveAction moveAction;
@@ -36,6 +37,8 @@ public abstract class Hero : MonoBehaviour
     public HeroSO GetHeroData() { return heroData; }
     public HeroMoveAction GetMoveAction() { return moveAction; }
     public HeroAttackAction GetAttackAction() { return attackAction; }
+
+    public SkinnedMeshRenderer[] MeshRenderers { get => meshRenderers; }
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
