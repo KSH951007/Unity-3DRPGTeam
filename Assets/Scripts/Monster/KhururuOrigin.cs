@@ -198,4 +198,9 @@ public class KhururuOrigin : BossMonsters
 	{
 		// TODO : 카운터 판정 콜라이더 끄기
 	}
+	public void willDead()
+	{
+		Debug.Log("123");
+		ondead.Invoke();
+	}
 }

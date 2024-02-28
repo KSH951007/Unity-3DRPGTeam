@@ -69,7 +69,7 @@ public class QuestView : MonoBehaviour
         questDetailView.Hide();
     }
 
-    private void AddQuestToActiveListView(Quest quest)
+    public void AddQuestToActiveListView(Quest quest) // 퀘스트 오류 난다면 private
         => questListViewController.AddQuestToActiveListView(quest, isOn => ShowDetail(isOn, quest));
 
     private void AddQuestToCompletedListView(Quest quest)

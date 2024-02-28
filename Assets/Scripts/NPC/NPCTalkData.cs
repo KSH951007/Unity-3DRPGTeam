@@ -23,9 +23,12 @@ public class NPCTalkData : ScriptableObject
     private bool isMeet = false;
 
 
+    public string[] questDialogue;
+    public Quest npcSubQuest;
+
     public void Run()
     {
-        if(false == isMeet)
+        if (false == isMeet)
         {
             des = introduce;
             isMeet = true;

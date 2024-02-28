@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-  
-
     protected Animator animator;
     protected CapsuleCollider myCollider;
 
    
-    protected virtual void Awake()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         myCollider = GetComponent<CapsuleCollider>();

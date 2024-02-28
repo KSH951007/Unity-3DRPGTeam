@@ -15,4 +15,5 @@ public class QuestGiver : MonoBehaviour
                 QuestSystem.Instance.Register(quest);
         }
     }
+
 }

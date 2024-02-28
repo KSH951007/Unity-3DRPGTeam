@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerInteract : MonoBehaviour, IInteractable
@@ -11,7 +12,7 @@ public class PlayerInteract : MonoBehaviour, IInteractable
     public int requiredAmount;// 수락 가능한 퀘스트 갯수
 
     float InteractRange = 2f;
-
+    bool isDialogue = false;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) //TODO : 인풋 시스템 적용//  병합 되기전까지 사용
@@ -35,6 +36,10 @@ public class PlayerInteract : MonoBehaviour, IInteractable
                 npc.bubble.Ontalk(npc);
             }
         }
+    }
+    public void nextDialogue(NPC npc)
+    {
+        npc.bubble.Ontalk(npc);
     }
 
 }
