@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 public class DialogueWindow : MonoBehaviour
 {
     public TextMeshProUGUI NPCName;
-    public TextMeshProUGUI dialogue;
+    public TextMeshProUGUI dialogue;// 두가지 텍스트바에 텍스트를 대입하자
     public TextMeshProUGUI dialogueSnd;
 
     NPCTalkData talkData;
