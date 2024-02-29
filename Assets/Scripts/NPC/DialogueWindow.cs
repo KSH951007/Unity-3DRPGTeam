@@ -48,7 +48,6 @@ public class DialogueWindow : MonoBehaviour
                 if (talkData.questDialogue.Length == questDialogueInt)
                 {
                     transform.gameObject.SetActive(false);
-                    questDialogueInt = 0;
                     questAcceptWindow.SetActive(true); // TODO : 퀘스트 수락 onclicked 이벤트 사용 사용후 questaccpetwindow는 비활성
                 }
                 isTyping = true;
@@ -91,6 +90,10 @@ public class DialogueWindow : MonoBehaviour
         dialogue.text = nextText;
         nextText = "";
         dialogueSnd.text = nextText;
+    }
+    public void ifSayQuestdenied()
+    {
+        questDialogueInt = 0;
     }
 }
 //            isTyping = true;
