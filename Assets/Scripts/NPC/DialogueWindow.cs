@@ -45,12 +45,12 @@ public class DialogueWindow : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 ++questDialogueInt;
+                isTyping = true;
                 if (talkData.questDialogue.Length == questDialogueInt)
                 {
                     transform.gameObject.SetActive(false);
                     questAcceptWindow.SetActive(true); // TODO : 퀘스트 수락 onclicked 이벤트 사용 사용후 questaccpetwindow는 비활성
                 }
-                isTyping = true;
                 Typing(curText);
             }
         }
