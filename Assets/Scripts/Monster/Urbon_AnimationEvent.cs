@@ -9,10 +9,29 @@ public class Urbon_AnimationEvent : MonoBehaviour
 	public SphereCollider skill3Collider;
 
 	public GameObject skill1;
+	public ParticleSystem skill1Particle;
 	public GameObject[] skill2;
+	public GameObject skill2Effect;
 
 	public NavMeshAgent urbonNav;
 
+	private bool alreadyOn;
+	private float slowDownSpeed = 2f;
+
+	public void PlaySkill1Particle()
+	{
+		skill1Particle.Play();
+	}
+
+	public void OnSkill2Effect()
+	{
+		skill2Effect.SetActive(true);
+	}
+
+	public void OffSkill2Effect()
+	{
+		skill2Effect.SetActive(false);
+	}
 
 	public void OnSkill1()
 	{
@@ -34,6 +53,11 @@ public class Urbon_AnimationEvent : MonoBehaviour
 
 	public void OnSkill3()
 	{
+		if (alreadyOn)
+		{
+			return;
+		}
+		alreadyOn = true;
 		skill3Collider.enabled = true;
 	}
 
@@ -49,12 +73,22 @@ public class Urbon_AnimationEvent : MonoBehaviour
 
 	public void ActiveNav()
 	{
+		if (alreadyOn)
+		{
+			return;
+		}
 		urbonNav.isStopped = false;
+		urbonNav.speed -= slowDownSpeed;
 	}
 
 	public void DeActiveNav()
 	{
 		urbonNav.isStopped = true;
+		urbonNav.speed += slowDownSpeed;
+	}
 
+	public void ResetAlreadyOn()
+	{
+		alreadyOn = false;
 	}
 }

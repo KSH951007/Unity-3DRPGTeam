@@ -5,7 +5,7 @@ using UnityEngine;
 public class Urbon_Skill1 : MonoBehaviour
 {
 	private int skillDamage = 1;
-	private float moveSpeed = 4f;
+	public float moveSpeed = 20f;
 	private Transform player;
 	public Transform startPoint;
 	private Vector3 moveDir;

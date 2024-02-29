@@ -86,15 +86,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.0035971208
+      - time: 0
         functionName: DeActiveNav
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.0071942154
+      - time: 0.0035971224
         functionName: OffSkill3
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.017985584
+        functionName: ResetAlreadyOn
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -295,14 +302,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.043165468
         functionName: OnSkill3
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0
+      - time: 0.04191617
         functionName: ActiveNav
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -340,6 +347,20 @@ ModelImporter:
       events:
       - time: 0.17482518
         functionName: OnSkill2
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.1017964
+        functionName: OnSkill2Effect
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.22155689
+        functionName: OffSkill2Effect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -490,6 +511,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.06451126
+        functionName: PlaySkill1Particle
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.2578377
         functionName: OnSkill1
         data: 
