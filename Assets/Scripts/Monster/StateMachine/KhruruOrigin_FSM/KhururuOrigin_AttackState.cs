@@ -7,12 +7,17 @@ public class KhururuOrigin_AttackState : BaseState
 {
 	public KhururuOrigin_AttackState(BossMonsters monster) : base(monster) { }
 
-    private float attackWeight = 0.5f;
-    private float skill1Weight = 0.35f;
-    private float skill2Weight = 0.05f;
-    private float skill3Weight = 0.1f;
+    //private float attackWeight = 0.5f;
+    //private float skill1Weight = 0.35f;
+    //private float skill2Weight = 0.05f;
+    //private float skill3Weight = 0.1f;
 
-    private float totalWeight;
+	private float attackWeight = 0f;
+	private float skill1Weight = 0f;
+	private float skill2Weight = 0f;
+	private float skill3Weight = 1f;
+
+	private float totalWeight;
 
 	bool shieldOn;
 	bool attacked = false;

@@ -9,7 +9,7 @@ public class KhururuOrigin_IdleState : BaseState
 
 	public override void OnStateEnter()
 	{
-        _monster.timeForNextChange = Time.time + 1f;
+        _monster.timeForNextChange = Time.time + 2f;
 
         _monster.nav.isStopped = true;
 	}

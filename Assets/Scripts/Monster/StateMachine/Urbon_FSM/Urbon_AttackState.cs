@@ -7,15 +7,10 @@ public class Urbon_AttackState : BaseState
 {
 	public Urbon_AttackState(BossMonsters monster) : base(monster) { }
 
-	//private float attackWeight = 0.3f;
-	//private float skill1Weight = 0.3f;
-	//private float skill2Weight = 0.3f;
-	//private float skill3Weight = 0.1f;
-
-	private float attackWeight = 0f;
-	private float skill1Weight = 0f;
-	private float skill2Weight = 0f;
-	private float skill3Weight = 1f;
+	private float attackWeight = 0.3f;
+	private float skill1Weight = 0.3f;
+	private float skill2Weight = 0.3f;
+	private float skill3Weight = 0.1f;
 
 	private float totalWeight;
 
