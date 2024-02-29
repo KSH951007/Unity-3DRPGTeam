@@ -6,13 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerInteract : MonoBehaviour, IInteractable
 {
-    [HideInInspector]
-    public int curAmount; // 현재 수락해놓은 퀘스트 갯수
-    [HideInInspector]
-    public int requiredAmount;// 수락 가능한 퀘스트 갯수
+    public int playerID;
 
     float InteractRange = 2f;
-    bool isDialogue = false;
+    bool isDialogue = false; // TODO : true 일때 움직임 제한
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) //TODO : 인풋 시스템 적용//  병합 되기전까지 사용
@@ -32,6 +29,7 @@ public class PlayerInteract : MonoBehaviour, IInteractable
         {
             if (collider.TryGetComponent(out NPC npc))
             {
+                isDialogue = true;
                 GameManager.Instance.ui.QUI.showConversation();
                 npc.bubble.Ontalk(npc);
             }

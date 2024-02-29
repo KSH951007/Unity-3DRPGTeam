@@ -79,7 +79,6 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	protected virtual void OnEnable()
 	{
 		animator.SetTrigger("Appear");
-		nav.isStopped = true;
 	}
 
 	public float GetHp()

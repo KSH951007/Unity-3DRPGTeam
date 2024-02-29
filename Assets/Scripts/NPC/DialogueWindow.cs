@@ -5,29 +5,28 @@ using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System;
+using System.Runtime.CompilerServices;
 
 public class DialogueWindow : MonoBehaviour
 {
     public TextMeshProUGUI NPCName;
     public TextMeshProUGUI dialogue;
-    public CanvasGroup dGroup;
-    NPCTalkData talkData;
+    public TextMeshProUGUI dialogueSnd;
 
-    public Queue<string> sentence;
-    public string curSentence;
+    NPCTalkData talkData;
     private bool isTyping;
-    public GameObject nextText;
+    string curText;
+    string nextText;
+    int questDialogueInt;
 
     public GameObject questAcceptWindow;
     public QuestView questWindow;
+    //public DialogueWindowView window;
 
     private void Awake()
     {
-        dGroup = GetComponent<CanvasGroup>();
-    }
-    private void Start()
-    {
-        sentence = new Queue<string>();
+
     }
 
     public void GiveComponent(NPCTalkData Data)
@@ -35,93 +34,110 @@ public class DialogueWindow : MonoBehaviour
         Data.Run();
         talkData = Data;
         NPCName.text = Data.Name;
-        dialogue.text = Data.des;
+        curText = Data.des;
     }
-    //public void OnDialogue(string[] lines)
-    //{
-    //    sentence.Clear();
-    //    foreach (string line in lines)
-    //    {
-    //        sentence.Enqueue(line);
-    //    }
-    //    dGroup.alpha = 1;
-    //    dGroup.blocksRaycasts = true;
-    //    nextSentence();
-    //}
-
-    //public void nextSentence()
-    //{
-    //    if (sentence.Count != 0)
-    //    {
-    //        curSentence = dialogue.text;
-    //        isTyping = true;
-    //        nextText.SetActive(false);
-    //        curSentence = sentence.Dequeue();
-    //        StartCoroutine(Typing(curSentence));
-    //    }
-    //    else
-    //    {
-    //        dGroup.alpha = 0;
-    //        dGroup.blocksRaycasts = false;
-    //    }
-
-    //}
-
 
     private void Update()
     {
-        if (!isTyping)
+        dialogue.text = curText;
+        if (GameManager.Instance.plin.playerID >= talkData.questID)
         {
             if (Input.GetKeyDown(KeyCode.KeypadEnter))
             {
-                questDialogueWithNPC();
-            }
-        }
-    }
-
-    public void questDialogueWithNPC() // onclicked 이벤트 사용
-    {
-        StartCoroutine(QuestTyping());
-    }
-    public void AddElement(Quest quest, UnityAction<bool> onClicked)
-    {
-        //var element = Instantiate(elementTextPrefab, transform);
-        //element.text = quest.DisplayName;
-
-        //var toggle = element.GetComponent<Toggle>();
-        //toggle.group = toggleGroup;
-        //toggle.onValueChanged.AddListener(onClicked);
-
-        //elementsByQuest.Add(quest, element.gameObject);
-    }
-    IEnumerator QuestTyping()
-    {
-        dialogue.text = "";
-        foreach (string s in talkData.questDialogue)
-        {
-            talkData.des = s;
-            foreach (char letter in s)
-            {
-                if (isTyping)
+                ++questDialogueInt;
+                if (talkData.questDialogue.Length == questDialogueInt)
                 {
-                    dialogue.text += letter;
+                    transform.gameObject.SetActive(false);
+                    questDialogueInt = 0;
+                    questAcceptWindow.SetActive(true); // TODO : 퀘스트 수락 onclicked 이벤트 사용 사용후 questaccpetwindow는 비활성
                 }
-                yield return new WaitForSeconds(.1f); // 아님 typingspeed 변수 넣어주기 // npc 타이핑 속도
+                isTyping = true;
+                Typing(curText);
             }
-            yield return new WaitForSeconds(10f);                                  // npc가 가진 퀘스트 수락창은 코루틴이 끝나고 함수에서 활성화
         }
-        questAcceptWindow.SetActive(true); // TODO : 퀘스트 수락 onclicked 이벤트 사용 사용후 questaccpetwindow는 비활성화
+        if (isTyping)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Skip();
+            }
+        }
     }
-    private void Skip(string s) // 스킵용
+
+    private void Skip() // 스킵용
     {
-        dialogue.text = s;
+        isTyping = false;
+    }
+    IEnumerator Typing(string st)
+    {
+        foreach (char letter in st)
+        {
+            if (isTyping)
+            {
+                curText += letter;
+            }
+            else // TODO : 스킵 사용
+            {
+                curText = st;
+            }
+            yield return new WaitForSeconds(.1f); // 아님 typingspeed 변수 넣어주기 // npc 타이핑 속도
+        }
         isTyping = false;
     }
 
-    //npc 퀘스트 수락창 onclicked // TODO : 퀘스트 수락후 // questGiver를 통해서 주자
-    public void GetQuest()
+    public void changeDialogue()
     {
-        questWindow.AddQuestToActiveListView(talkData.npcSubQuest);
+        curText = nextText;
+        dialogue.text = nextText;
+        nextText = "";
+        dialogueSnd.text = nextText;
     }
-
 }
+//            isTyping = true;
+//            
+//            
+//        }
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//    }
+//}
+
+//IEnumerator runThree()
+//{
+//    talkData.runForQuest(curText, questDialogueInt);
+//    Typing(curText);
+//    yield return new WaitForSeconds(1);
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+    //
+    //
+    //
+
+    ////npc 퀘스트 수락창 onclicked // TODO : 퀘스트 수락후
+    //public void GetQuest()
+    //{
+    //    if (talkData.npcSubQuest.IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(talkData.npcSubQuest))
+    //           QuestSystem.Instance.Register(talkData.npcSubQuest);
+    //}

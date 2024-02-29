@@ -22,7 +22,6 @@ public class KhururuOrigin : BossMonsters
 	protected override void OnEnable()
 	{
 		base.OnEnable();
-		nav.isStopped = true;
 		maxShieldAmount = 15;
 	}
 
@@ -42,7 +41,6 @@ public class KhururuOrigin : BossMonsters
 	{
 		if (isDead)
 		{
-			nav.isStopped = true;
 			_curState = State.None;
 		}
 

@@ -9,14 +9,13 @@ public class QuestUi : MonoBehaviour
     GameObject questWindow;
     bool qwIsOpen = false;
     
-    GameObject questDetail;
-    bool qdIsOpen = false;
-    
     GameObject conversationMenu;
     bool cmIsOpen = false;
     
     GameObject talkWindow;
     bool twIsOpen = false;
+    GameObject QuestAccept;
+    bool qaIsOpen = false;
 
     public DialogueWindow dia;
     private void Awake()
@@ -24,16 +23,17 @@ public class QuestUi : MonoBehaviour
         questWindow = GameObject.Find("QuestPanel");
         conversationMenu = GameObject.Find("NPCmenu");
         talkWindow = GameObject.Find("TalkWindow");
+        QuestAccept = GameObject.Find("QuestAccept");
         qwIsOpen = false;
-        qdIsOpen = false;
         cmIsOpen = false;
         twIsOpen = false;
+        qaIsOpen = false;
     }
     private void Start()
     {
-        questWindow.SetActive(false);
         conversationMenu.SetActive(false);
         talkWindow.SetActive(false);
+        QuestAccept.SetActive(false);
     }
 
     public void showQW() // npc가 대화 내용과 퀘스트 내용을 가지고 있으면 파라미터를 쓸 필요 없이 사용가능
@@ -50,5 +50,10 @@ public class QuestUi : MonoBehaviour
     {
         twIsOpen = !twIsOpen;
         talkWindow.SetActive(twIsOpen);
+    }
+    public void AcceptQuest()
+    {
+        qaIsOpen = !qaIsOpen;
+        QuestAccept.SetActive(qaIsOpen);
     }
 }

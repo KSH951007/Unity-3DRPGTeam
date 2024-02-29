@@ -6,22 +6,23 @@ using TMPro;
 using UnityEditor.AssetImporters;
 using Unity.VisualScripting;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "Quest Data", menuName = "Scriptable Object/NPC Talk Data", order = int.MinValue)]
 
 public class NPCTalkData : ScriptableObject
 {
-    public int npcID;
+    public int questID; // 퀘스트 적정 진행도
     public string Name;
+    
     public string introduce;// 첫인사
+    
     [HideInInspector]
     public string des; // 출력되는 string
-    [HideInInspector]
-    public string dialogue; // 첫인사 이후
+    
     public string[] dialogues; // 기본 인사 array
     private int rndInt;
     private bool isMeet = false;
-
 
     public string[] questDialogue;
     public Quest npcSubQuest;
@@ -36,9 +37,13 @@ public class NPCTalkData : ScriptableObject
         else
         {
             rndInt = Random.Range(0, dialogues.Length);
-            dialogue = dialogues[rndInt];
-            des = dialogue;
+            des = dialogues[rndInt];
         }
+    }
+    public string runForQuest(string s,int i)
+    {
+         s = questDialogue[i];
+        return s;
     }
     public void FirstMet() // 첫인사가능
     {
