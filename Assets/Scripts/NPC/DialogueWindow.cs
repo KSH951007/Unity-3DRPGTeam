@@ -17,7 +17,7 @@ public class DialogueWindow : MonoBehaviour
     NPCTalkData talkData;
     private bool isTyping;
     string curText;
-    string nextText;
+    string otherText;
     int questDialogueInt;
 
     public GameObject questAcceptWindow;
@@ -86,10 +86,8 @@ public class DialogueWindow : MonoBehaviour
 
     public void changeDialogue()
     {
-        curText = nextText;
-        dialogue.text = nextText;
-        nextText = "";
-        dialogueSnd.text = nextText;
+        curText = otherText;
+        otherText = "";
     }
     public void ifSayQuestdenied()
     {
