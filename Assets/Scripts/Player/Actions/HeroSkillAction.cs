@@ -30,16 +30,16 @@ public class HeroSkillAction : HeroAction
     public override void StartAction()
     {
         isEndAction = false;
+            
         animator.SetTrigger($"Skill{skillIndex + 1}");
-        owner.StartCoroutine(owner.TargetToLoock(target, 0.05f));
         animEvent.onProgressAttack += UseSkill;
         animEvent.onEndAttack += EndAction;
+        owner.StartCoroutine(owner.TargetToLoock(target, 0.01f));
 
     }
 
     public override void StopAction()
     {
-        Debug.Log("ASD");
         animEvent.onProgressAttack -= UseSkill;
         animEvent.onEndAttack -= EndAction;
         isEndAction = false;
@@ -55,11 +55,9 @@ public class HeroSkillAction : HeroAction
     public void EndAction()
     {
         isEndAction = true;
-        Debug.Log("END");
     }
     public void UseSkill()
     {
         skillmanager.UseSkill(owner, skillIndex);
-        Debug.Log("use");
     }
 }

@@ -13,7 +13,7 @@ public class SkillManager : MonoBehaviour
     }
     public void AddSkill(Hero hero, Skill[] skill)
     {
-      
+
         if (!skills.ContainsKey(hero))
         {
             skills[hero] = skill;
@@ -31,10 +31,8 @@ public class SkillManager : MonoBehaviour
     {
         if (skills.ContainsKey(hero))
         {
-            if (skills[hero][skillIndex].CurrentCooldown <= 0f)
-            {
+            if (skills[hero][skillIndex].CanUseSkill())
                 return true;
-            }
         }
 
         return false;
@@ -44,14 +42,19 @@ public class SkillManager : MonoBehaviour
         if (skills.ContainsKey(hero))
         {
             skills[hero][skillIndex].UseSkill();
-            StartCoroutine(skills[hero][skillIndex].CoolDownRoutine());
             return;
         }
-        Debug.Log("notfind");
     }
-    public void SetCooldownTimer(IEnumerator cooldownRoutin)
+    private void Update()
     {
-        StartCoroutine(cooldownRoutin);
+        foreach (var skill in skills)
+        {
+            for (int i = 0; i < skill.Value.Length; i++)
+            {
+                skill.Value[i].UpdateSkill();
+            }
+        }
     }
+
 
 }

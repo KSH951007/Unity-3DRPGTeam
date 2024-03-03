@@ -46,7 +46,7 @@ public class ActionScheduler
                 return;
             }
 
-  
+
 
             actions[NextIndex()] = action;
 
@@ -60,7 +60,7 @@ public class ActionScheduler
         actionIndex = NextIndex();
         actions[actionIndex]?.StartAction();
 
-      
+
         return;
     }
     public void ProcessAction()
@@ -90,6 +90,14 @@ public class ActionScheduler
             nextIndex = 0;
 
         return nextIndex;
+    }
+    public HeroAction GetCurrentAction()
+    {
+        if (actions[actionIndex] != null)
+        {
+            return actions[actionIndex];
+        }
+        return null;
     }
     public HeroAction GetNextAction()
     {

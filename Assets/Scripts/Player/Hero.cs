@@ -5,18 +5,16 @@ using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public abstract class Hero : MonoBehaviour
 {
     [SerializeField] protected RuntimeAnimatorController[] animContorllers;
+    [SerializeField] protected Transform attackPoint;
     protected Animator animator;
     protected CapsuleCollider myCollider;
     protected EnumType.HeroAnimType animType;
     protected HeroAnimEvent animEnvent;
     [SerializeField] protected HeroSO heroData;
-    [SerializeField] protected SkinnedMeshRenderer[] meshRenderers;
-    protected int attackComboCount;
     protected int currentAttackCombo;
     protected HeroMoveAction moveAction;
     protected HeroAttackAction attackAction;
@@ -28,28 +26,23 @@ public abstract class Hero : MonoBehaviour
     public NavMeshAgent Agent { get { return agent; } }
     public EnumType.HeroAnimType GetAnimType() { return animType; }
     public Animator HeroAnimator { get => animator; }
-    public int AttackComboCount { get => attackComboCount; }
     public int CurrentAttackCombo { get => currentAttackCombo; set => currentAttackCombo = value; }
     public HeroAnimEvent AnimEvent { get => animEnvent; }
 
     public ActionScheduler Scheduler { get => scheduler; }
 
+    public Transform AttackPoint { get => attackPoint; }
     public HeroSO GetHeroData() { return heroData; }
-    public HeroMoveAction GetMoveAction() { return moveAction; }
-    public HeroAttackAction GetAttackAction() { return attackAction; }
 
-    public SkinnedMeshRenderer[] MeshRenderers { get => meshRenderers; }
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
+        animator = transform.Find("Renderer").GetComponent<Animator>();
         myCollider = GetComponent<CapsuleCollider>();
         animType = EnumType.HeroAnimType.Base;
         ChangeAnimatorController(EnumType.HeroAnimType.Base);
         animEnvent = GetComponentInChildren<HeroAnimEvent>();
         skillManager = GetComponentInParent<SkillManager>();
-    
-
 
         scheduler = new ActionScheduler();
 
@@ -68,6 +61,9 @@ public abstract class Hero : MonoBehaviour
     }
     public void AttackAction(Vector3 newDirection)
     {
+        if (animType == EnumType.HeroAnimType.Base)
+            return;
+
         if (!attackAction.IsLastAttack())
         {
             attackAction.SetTargetTo(newDirection);
@@ -76,8 +72,15 @@ public abstract class Hero : MonoBehaviour
     }
     public void SkillAction(int skillIndex, Vector3 newDirection)
     {
+        if (animType == EnumType.HeroAnimType.Base)
+            return;
+
+        if (scheduler.GetNextAction() == skillAction[skillIndex] || scheduler.GetCurrentAction() == skillAction[skillIndex])
+            return;
+
         skillAction[skillIndex].SetTarget(newDirection);
         scheduler.AddAction(skillAction[skillIndex]);
+
     }
     public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
     {

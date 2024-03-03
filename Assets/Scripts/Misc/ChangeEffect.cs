@@ -73,17 +73,16 @@ public class ChangeEffect : MonoBehaviour
         float currentValue = startValue;
         float velocity = 0f;
         spawnEffect.Play();
-        while (!Mathf.Approximately(currentValue, targetValue))
+        while (Mathf.Abs(currentValue -targetValue)> 0.01f)
         {
             currentValue = Mathf.SmoothDamp(currentValue, targetValue, ref velocity, changeTime/4);
             cutEdgeMat.SetFloat("_CutEdge", currentValue);
             meshEffect.SetFloat("Particle Edge", currentValue);
-
             yield return null;
-
         }
+        cutEdgeMat.SetFloat("_CutEdge", targetValue);
+        meshEffect.SetFloat("Particle Edge", targetValue);
 
 
-      
     }
 }

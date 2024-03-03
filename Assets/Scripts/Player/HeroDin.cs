@@ -6,11 +6,9 @@ public class HeroDin : Hero
 {
 
     [SerializeField] GameObject attackEffect;
-    [SerializeField] Transform attackPoint;
     protected override void Awake()
     {
         base.Awake();
-        attackComboCount = 3;
         moveAction = new HeroMoveAction(scheduler,animator, this, agent, 3.5f);
            
      
@@ -24,11 +22,12 @@ public class HeroDin : Hero
             skills[i] = skillsTr.GetChild(i).GetComponent<Skill>();
         }
         skillManager.AddSkill(this, skills);
-        GetComponent<Health>().SetHealth(heroData.GetMaxHealth());
+        GetComponent<Health>().SetHealth(heroData.GetMaxHealth(), heroData.GetDefensive());
         skillAction = new HeroSkillAction[skillsTr.childCount];
-        attackAction = new HeroDinAttackAction(attackPoint, attackEffect, scheduler, animator, this, 3);
+        attackAction = new HeroDinAttackAction(attackEffect, scheduler, animator, this);
 
         skillAction[0] = new HeroSkillAction(scheduler, skillManager, 0, animator, this);
         skillAction[1] = new HeroSkillAction(scheduler, skillManager, 1, animator, this);
+        skillAction[2] = new HeroSkillAction(scheduler, skillManager, 2, animator, this);
     }
 }

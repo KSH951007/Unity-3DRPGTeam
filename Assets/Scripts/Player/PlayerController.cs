@@ -4,11 +4,13 @@ using System.Drawing;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] private ClickMoveArrowEffect moveArrowEffect;
     private PlayerControls inputs;
     private HeroManager heroManager;
     public PlayerControls Inputs { get { return inputs; } }
@@ -35,11 +37,15 @@ public class PlayerController : MonoBehaviour
 
         inputs.Player.Move.performed += _ => PointerClickMove();
         inputs.Player.Attack.performed += _ => PointerClickAttack();
-        inputs.Player.Skill1.performed += _ => PressSkill1();
-        inputs.Player.Skill2.performed += _ => PressSkill2();
+        inputs.Player.Skill1.performed += _ => PressSkill(0);
+        inputs.Player.Skill2.performed += _ => PressSkill(1);
+        inputs.Player.Skill3.performed += _ => PressSkill(2);
 
-        inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter();
-
+        inputs.Player.ChangeCharacter.performed += _ =>
+        {
+            if (mainHero.Scheduler.GetCurrentAction() == null || mainHero.Scheduler.GetCurrentAction() is HeroMoveAction)
+                heroManager.ChangeCharacter();
+        };
     }
 
 
@@ -61,6 +67,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+
         mainHero?.Scheduler.ProcessAction();
     }
     public void PointerClickMove()
@@ -68,50 +75,42 @@ public class PlayerController : MonoBehaviour
         if (!canControl)
             return;
 
-
-
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("Ground")))
         {
-            mainHero.MoveAction(hit.point);
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
+
+                moveArrowEffect.Play(hit.point);
+                mainHero.MoveAction(hit.point);
+            }
         }
     }
     public void PointerClickAttack()
     {
         if (!canControl)
             return;
-
-        //if (SceneLoader.Instance.GetSceneType() == EnumType.SceneType.Village)
-        //    return;
-
-
-        mainHero.AttackAction(PointerToTarget());
-
-    }
-    public void PressSkill1()
-    {
-        if (GetComponent<SkillManager>().CanUseSkill(mainHero, 0))
+        if (EventSystem.current.IsPointerOverGameObject() == false)
         {
-               mainHero.SkillAction(0, PointerToTarget());
+            mainHero.AttackAction(PointerToTarget());
         }
+
+
     }
-    public void PressSkill2()
+    public void PressSkill(int skillIndex)
     {
-        if (GetComponent<SkillManager>().CanUseSkill(mainHero, 1))
+        if (GetComponent<SkillManager>().CanUseSkill(mainHero, skillIndex))
         {
-            mainHero.SkillAction(1, PointerToTarget());
+            mainHero.SkillAction(skillIndex, PointerToTarget());
         }
     }
     private Vector3 PointerToTarget()
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
-
         screenPos.z = 0f;
         Vector3 mousePos = Mouse.current.position.value;
-
         Vector3 direction = (mousePos - screenPos).normalized;
-
         return new Vector3(direction.x, 0f, direction.y);
     }
 }

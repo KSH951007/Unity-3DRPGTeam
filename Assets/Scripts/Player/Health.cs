@@ -7,6 +7,7 @@ public class Health : MonoBehaviour, IHitable
 {
 
     [SerializeField] private int helath;
+    private float defensivePercent;
     private Collider myCollider;
     public enum hitType { NONE, DOWN }
 
@@ -14,6 +15,8 @@ public class Health : MonoBehaviour, IHitable
     public event Action onDie;
     public event Action onDown;
 
+    private bool isinvincibility;
+    public bool IsInvincibility { get { return isinvincibility; } set => isinvincibility = value; }
     private void Awake()
     {
         myCollider = GetComponent<Collider>();
@@ -22,15 +25,19 @@ public class Health : MonoBehaviour, IHitable
     {
         myCollider.enabled = true;
     }
-    public void SetHealth(int newHealth)
+    public void SetHealth(int newHealth,float newDefensivePercent)
     {
         helath = newHealth;
-
+        this.defensivePercent = newDefensivePercent;
     }
     public void TakeHit(int damage, HitType hitType, GameObject hitParticle = null)
     {
+        if (isinvincibility)
+            return;
 
-        helath = Mathf.Max(helath - damage, 0);
+        int compueDamage = damage - (int)(damage * defensivePercent);
+
+        helath = Mathf.Max(helath - compueDamage, 0);
         GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
         damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
         if (helath <= 0)
