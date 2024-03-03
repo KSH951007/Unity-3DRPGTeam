@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class TrashMob_Kkaebuli : TrashMob
 {
+    protected override void Start()
+    {
+        maxHp = 500;
 
+        base.Start();
+    }
 }

@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class TrashMob_ElfWatcher : TrashMob
 {
+    protected override void Start()
+    {
+        maxHp = 600;
 
+        base.Start();
+    }
 }

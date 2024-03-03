@@ -13,7 +13,8 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
 	private float moveSpeed = 2f;
 	private float comebackSpeed = 10f;
 	[SerializeField] private SphereCollider detectCollider;
-	[SerializeField] private Transform spawnedPoint;		// Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
+	[SerializeField] private Transform spawnedPoint;        // Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
+	[SerializeField] private GameObject hpBarUI;
 
 	public LayerMask attackTargetLayer;
     private bool cancelWait;
@@ -21,7 +22,8 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
 
     [HideInInspector] public UnityEvent onDead;
 
-	float HP;
+	public float maxHp;
+	public float currentHp;
 	public float lostDistance;		// lostDistance는 반드시 DetectRange보다 멀게 설정
 
 	enum State
@@ -34,12 +36,12 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
 
 	State state;
 
-	void Start()
+	protected virtual void Start()
 	{		
 		animator = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 
-		HP = 10;
+		currentHp = maxHp;
 		state = State.IDLE;
         StartCoroutine(StateMachine());
 	}
@@ -124,6 +126,7 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
 			nav.speed = moveSpeed;
             nav.stoppingDistance = 1.5f;
 			invincible = false;
+			hpBarUI.SetActive(false);
 			// StateMachine 을 대기로 변경
 			ChangeState(State.IDLE);
 		}
@@ -140,7 +143,7 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
 		nav.isStopped = true;
 		nav.velocity = Vector3.zero;
 		var curAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
+		hpBarUI.SetActive(true);
         // 공격 애니메이션은 공격 후 Idle Battle 로 이동하기 때문에 
         // 코드가 이 지점에 오면 무조건 Attack 을 Play
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("TakeHit") == false);
@@ -220,9 +223,11 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
             GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
             damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, (int)damage);
 
-            HP -= damage;
+            hpBarUI.SetActive(true);
 
-            if (HP <= 0)
+            currentHp -= damage;
+
+            if (currentHp <= 0)
             {
                 target = null;
                 cancelWait = true;

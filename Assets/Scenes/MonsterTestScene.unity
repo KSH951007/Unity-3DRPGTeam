@@ -40574,6 +40574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3e5406d4576204d93841d0e9e31870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1 &1327187864
 GameObject:
   m_ObjectHideFlags: 0
@@ -60482,6 +60483,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1880476203186006274}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1714548549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714548552}
+  - component: {fileID: 1714548551}
+  - component: {fileID: 1714548550}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1714548550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714548549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1714548551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714548549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1714548552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714548549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1748037363
 GameObject:
   m_ObjectHideFlags: 0
@@ -80337,6 +80406,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5811091068807965449, guid: 36c14b4962a567a499592fd313d7063e,
+        type: 3}
+      propertyPath: maxHp
+      value: 35000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811091068807965449, guid: 36c14b4962a567a499592fd313d7063e,
+        type: 3}
+      propertyPath: currentHp
+      value: 35000
+      objectReference: {fileID: 0}
     - target: {fileID: 7299342036440000491, guid: 36c14b4962a567a499592fd313d7063e,
         type: 3}
       propertyPath: m_Name
@@ -80449,11 +80528,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Urbon
       objectReference: {fileID: 0}
-    - target: {fileID: 2648686731237022092, guid: 1a24b419a292f5d4da274c29d1d4a95f,
+    - target: {fileID: 8297249722999940143, guid: 1a24b419a292f5d4da274c29d1d4a95f,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 270657030}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -80605,6 +80684,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7349878111087008647, guid: 8c59a11a75c1be049904092f1af71762,
+        type: 3}
+      propertyPath: maxHp
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349878111087008647, guid: 8c59a11a75c1be049904092f1af71762,
+        type: 3}
+      propertyPath: currentHp
+      value: 10000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -80699,3 +80788,4 @@ SceneRoots:
   - {fileID: 671223560}
   - {fileID: 4425712118083048060}
   - {fileID: 1225003706}
+  - {fileID: 1714548552}

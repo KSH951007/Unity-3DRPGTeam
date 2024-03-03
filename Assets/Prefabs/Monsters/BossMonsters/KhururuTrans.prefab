@@ -3024,7 +3024,7 @@ Transform:
   m_GameObject: {fileID: 7299342036440000491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1520753, y: 0.083333336, z: 4.6212053}
+  m_LocalPosition: {x: 2.46, y: 0.083333336, z: 3.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3062,6 +3062,7 @@ MonoBehaviour:
   timeForNextAttack: 0
   timeForNextIdle: 0
   timeForNextChange: 0
+  bossHpBarUI: {fileID: 0}
   maxShieldAmount: 15
   curShieldAmount: 0
   animator: {fileID: 0}

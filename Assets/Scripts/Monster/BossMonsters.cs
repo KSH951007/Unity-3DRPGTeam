@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BossMonsters : MonoBehaviour, IHitable_Monster
 {
-	[SerializeField] protected float maxHp;
+	public float maxHp;
 	[SerializeField] public float currentHp;
 	public float basicDamage;
 	[SerializeField] protected float moveSpeed;
@@ -21,6 +21,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	[SerializeField] public float timeForNextAttack;
 	[SerializeField] public float timeForNextIdle;
     [SerializeField] public float timeForNextChange;
+	[SerializeField] protected GameObject bossHpBarUI;
 
 
     public float maxShieldAmount = 15;
@@ -98,6 +99,8 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 
 	public void TakeHit(float damage, IHitable_Monster.HitType hitType, GameObject hitParticle = null)
 	{
+		bossHpBarUI.SetActive(true);
+
         if (patience != 0)
         {
 			patience--;
