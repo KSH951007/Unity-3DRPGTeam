@@ -119,7 +119,9 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 					curShieldAmount--;
 				}
 				currentHp -= damage;
-				StartCoroutine(ChangeMat());
+                GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
+                damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, (int)damage);
+                StartCoroutine(ChangeMat());
 			}
 			else if (currentHp - damage <= 0)
 			{

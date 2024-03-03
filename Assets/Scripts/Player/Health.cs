@@ -33,6 +33,7 @@ public class Health : MonoBehaviour, IHitable
         helath = Mathf.Max(helath - damage, 0);
         GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
         damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
+
         if (helath <= 0)
         {
             myCollider.enabled = false;

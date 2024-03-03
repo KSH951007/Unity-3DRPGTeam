@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerTestCon : MonoBehaviour
 {
+	public GameObject enemy;
+
 	void Update()
     {
 		if (Input.GetKey(KeyCode.W))
@@ -24,5 +26,12 @@ public class PlayerTestCon : MonoBehaviour
 			transform.position -= new Vector3(1.0f, 0.0f, 0.0f) * 5 * Time.deltaTime;
 		}
 
+		if (Input.GetMouseButtonDown(0))
+		{
+			if (enemy.TryGetComponent(out IHitable_Monster hit))
+			{
+                hit.TakeHit(1, IHitable_Monster.HitType.None);
+            }
+        }
 	}
 }
