@@ -33,14 +33,21 @@ public class DialogueWindow : MonoBehaviour
         Data.Run();
         talkData = Data;
         NPCName.text = Data.Name;
-        otherText = Data.des;
+        curText = Data.des;
         questDialogue(Data.questDialogue);
     }
 
     private void Update()
     {
+        if (!typingSnd)
+        {
+            dialogue.text = curText;
+        }
+        else
+        {
             dialogueSnd.text = curText;
             dialogue.text = otherText;
+        }
 
         if (isTyping)
         {
@@ -51,7 +58,7 @@ public class DialogueWindow : MonoBehaviour
         }
     }
 
-    private void Skip() // ½ºÅµ¿ë
+    public void Skip() // ½ºÅµ¿ë
     {
         isTyping = false;
     }
@@ -69,11 +76,16 @@ public class DialogueWindow : MonoBehaviour
                 curText += letter;
                 yield return new WaitForSeconds(.2f);
             }
-            else // TODO : ½ºÅµ »ç¿ë
-            {
-                curText = st;
-            }
-            yield return null;
+            //else // TODO : ½ºÅµ »ç¿ë
+            //{
+            //    curText = "";
+            //    curText = st;
+            //}
+            //yield return null;
+        }
+        if(!isTyping)
+        {
+            curText = st;
         }
 
         typingSnd = true;
