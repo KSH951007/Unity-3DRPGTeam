@@ -52,7 +52,7 @@ public class ProjectileBigShot : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent(out IHitable enemy))
             {
-                enemy.TakeHit(computeDamage, HitType.None);
+                enemy.TakeHit(computeDamage);
                 PoolManager.Instance.Get("BigShotHitEffect",other.transform.position);
 
             }

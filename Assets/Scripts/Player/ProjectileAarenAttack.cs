@@ -69,8 +69,7 @@ public class ProjectileAarenAttack : MonoBehaviour
             if (other.gameObject.TryGetComponent(out IHitable enemy))
             {
 
-
-                enemy.TakeHit(damage, HitType.None);
+                enemy.TakeHit(damage, IHitable.HitType.None);
                 Vector3 newPosition = other.transform.position - transform.position;
                 GameObject hitEffect = PoolManager.Instance.Get("AarenAttackHitEffect", other.gameObject.transform.position - newPosition);
                 PoolManager.Instance.ReturnPool(gameObject);

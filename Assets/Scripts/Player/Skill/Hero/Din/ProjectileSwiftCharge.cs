@@ -51,7 +51,7 @@ public class ProjectileSwiftCharge : MonoBehaviour
             {
                 if (other.gameObject.TryGetComponent(out IHitable enemy))
                 {
-                    enemy.TakeHit(computeDamage, HitType.None);
+                    enemy.TakeHit(computeDamage);
                 }
             }
           

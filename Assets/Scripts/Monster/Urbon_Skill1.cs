@@ -41,7 +41,7 @@ public class Urbon_Skill1 : MonoBehaviour
 				Debug.Log("데미지 가함");
 				if(detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
 				{
-					health.TakeHit(skillDamage, HitType.None);
+					health.TakeHit(skillDamage);
 				}
 			}
 		}

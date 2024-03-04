@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class BossMonsters : MonoBehaviour, IHitable_Monster
+public class BossMonsters : MonoBehaviour, IHitable
 {
 	public float maxHp;
 	[SerializeField] public float currentHp;
@@ -97,7 +97,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		chasingTime = Time.time + Random.Range(3f, 6f);
 	}
 
-	public void TakeHit(float damage, IHitable_Monster.HitType hitType, GameObject hitParticle = null)
+	public void TakeHit(int damage, IHitable.HitType hitType, GameObject hitParticle = null)
 	{
 		bossHpBarUI.SetActive(true);
 
@@ -123,7 +123,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 				}
 				currentHp -= damage;
                 GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
-                damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, (int)damage);
+                damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
                 StartCoroutine(ChangeMat());
 			}
 			else if (currentHp - damage <= 0)
