@@ -53,7 +53,7 @@ public class ProjectileForestAura : MonoBehaviour
       
         if (other.gameObject.TryGetComponent(out IHitable enemy))
         {
-            enemy.TakeHit(computeDamage, HitType.None);
+            enemy.TakeHit(computeDamage);
             currentCount--;
             ParticleSystem.Burst burst = particle.emission.GetBurst(0);
             burst.count = currentCount;

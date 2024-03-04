@@ -42,7 +42,7 @@ public class ProjectileJuliaAttack : MonoBehaviour
             if (other.gameObject.TryGetComponent(out IHitable enemy))
             {
 
-                enemy.TakeHit(damage, HitType.None);
+                enemy.TakeHit(damage);
                 //GameObject hitEffect = PoolManager.Instance.Get("AarenAttackHitEffect");
                 //hitEffect.GetComponent<HitEffect>().Init(other.gameObject.transform.position, Vector3.one);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class TrashMob : MonoBehaviour, IHitable_Monster
+public class TrashMob : MonoBehaviour, IHitable
 {
     private NavMeshAgent nav;
 	private Transform target;
@@ -216,7 +216,7 @@ public class TrashMob : MonoBehaviour, IHitable_Monster
             transform.LookAt(target);
     }
 
-    public void TakeHit(float damage, IHitable_Monster.HitType hitType, GameObject hitParticle = null)
+    public void TakeHit(int damage, IHitable.HitType hitType, GameObject hitParticle = null)
     {
         if (!invincible)
         {

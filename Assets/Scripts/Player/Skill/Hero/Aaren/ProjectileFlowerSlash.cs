@@ -45,7 +45,7 @@ public class ProjectileFlowerSlash : MonoBehaviour
                             {
                                 if (hitCollider[i].TryGetComponent(out IHitable enemy))
                                 {
-                                    enemy.TakeHit(damage, HitType.None);
+                                    enemy.TakeHit(damage);
                                     GameObject hitEffect = PoolManager.Instance.Get("AarenAttackHitEffect", hitCollider[i].gameObject.transform.position);
 
                                 }

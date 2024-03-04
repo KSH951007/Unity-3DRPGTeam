@@ -9,7 +9,7 @@ public class Health : MonoBehaviour, IHitable
     [SerializeField] private int helath;
     private float defensivePercent;
     private Collider myCollider;
-    public enum hitType { NONE, DOWN }
+
 
     public event Action onHit;
     public event Action onDie;
@@ -30,7 +30,7 @@ public class Health : MonoBehaviour, IHitable
         helath = newHealth;
         this.defensivePercent = newDefensivePercent;
     }
-    public void TakeHit(int damage, HitType hitType, GameObject hitParticle = null)
+    public void TakeHit(int damage, IHitable.HitType hitType= IHitable.HitType.None, GameObject hitParticle = null)
     {
         if (isinvincibility)
             return;
@@ -54,4 +54,5 @@ public class Health : MonoBehaviour, IHitable
 
         onHit?.Invoke();
     }
+
 }

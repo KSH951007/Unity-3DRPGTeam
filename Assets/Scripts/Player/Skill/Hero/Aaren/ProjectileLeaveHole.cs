@@ -61,7 +61,7 @@ public class ProjectileLeaveHole : MonoBehaviour
                         {
                             if (currentTime >= attractionInterval)
                             {
-                                enemy.TakeHit(attractionDamage, HitType.None);
+                                enemy.TakeHit(attractionDamage);
                                 GameObject hitEffect = PoolManager.Instance.Get("AarenAttackHitParticle", hitCollider[i].gameObject.transform.position);
                                 currentTime = 0f;
                             }
@@ -87,7 +87,7 @@ public class ProjectileLeaveHole : MonoBehaviour
                         {
                             if (hitCollider[i].TryGetComponent(out IHitable enemy))
                             {
-                                enemy.TakeHit(bombDamage, HitType.None);
+                                enemy.TakeHit(bombDamage);
                                 GameObject hitEffect = PoolManager.Instance.Get("AarenAttackHitEffect", hitCollider[i].gameObject.transform.position);
                             }
                         }

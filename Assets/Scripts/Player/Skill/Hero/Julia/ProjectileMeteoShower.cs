@@ -44,7 +44,7 @@ public class ProjectileMeteoShower : MonoBehaviour
         {
             if (target.gameObject.TryGetComponent(out IHitable enemy))
             {
-                enemy.TakeHit(computeDamage, HitType.None);
+                enemy.TakeHit(computeDamage);
                 PoolManager.Instance.Get("RandomMeteoShowerHitEffect", target.transform.position);
             }
 

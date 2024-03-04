@@ -78,7 +78,8 @@ public class ProjectileFireCross : MonoBehaviour
                     {
                         if (col.gameObject.TryGetComponent(out IHitable enemy))
                         {
-                            enemy.TakeHit(computeDamage, HitType.None);
+                            enemy.TakeHit(computeDamage);
+                            Debug.Log(enemy);
 
                             PoolManager.Instance.Get("FireCrossHitEffect", col.transform.position);
                         }

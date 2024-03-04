@@ -53,7 +53,7 @@ public class ProjectileChargeSlash : MonoBehaviour
         {
             if (other.TryGetComponent(out IHitable enemy))
             {
-                enemy.TakeHit(computeDamage, HitType.None);
+                enemy.TakeHit(computeDamage);
             }
         }
     }

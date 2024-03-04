@@ -20,7 +20,7 @@ public class HeroDinAttackAction : HeroAttackAction
     public override bool IsCanle(HeroAction action)
     {
         return false;
-    }   
+    }
     public override void UpdateAction()
     {
         if (isEndAction)
@@ -47,9 +47,10 @@ public class HeroDinAttackAction : HeroAttackAction
             {
                 if (hitObject.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
-                    if (hitObject.transform.gameObject.TryGetComponent(out Health health))
+                    if (hitObject.transform.gameObject.TryGetComponent(out IHitable enemy))
                     {
-                        health.TakeHit(512, HitType.None);
+                        enemy.TakeHit(512, IHitable.HitType.None);
+                        Debug.Log("asd");
                     }
                 }
 

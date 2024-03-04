@@ -52,7 +52,7 @@ public class Urbon_Skill2 : MonoBehaviour
 
 			if (hitPlayer[0].transform.gameObject.TryGetComponent(out IHitable health))
 			{
-				health.TakeHit(skillDamage, HitType.None);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
 				gameObject.SetActive(false);
 			}
 		}

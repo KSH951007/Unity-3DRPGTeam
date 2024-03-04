@@ -28,9 +28,9 @@ public class PlayerTestCon : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			if (enemy.TryGetComponent(out IHitable_Monster hit))
+			if (enemy.TryGetComponent(out IHitable hit))
 			{
-                hit.TakeHit(1, IHitable_Monster.HitType.None);
+                hit.TakeHit(1, IHitable.HitType.None);
             }
         }
 	}
