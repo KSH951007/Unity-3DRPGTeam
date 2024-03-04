@@ -33,7 +33,7 @@ public class DialogueWindow : MonoBehaviour
         Data.Run();
         talkData = Data;
         NPCName.text = Data.Name;
-        curText = Data.des;
+        otherText = Data.des;
         questDialogue(Data.questDialogue);
     }
 
@@ -124,6 +124,8 @@ public class DialogueWindow : MonoBehaviour
     }
     public void isQuit()
     {
+        otherText = "";
+        curText = "";
         isTyping = false;
         typingSnd = false;
     }
