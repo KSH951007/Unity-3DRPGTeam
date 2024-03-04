@@ -28,8 +28,7 @@ public class KhururuTrans_IdleState : BaseState
 	private void SetTarget()
 	{
 		Vector3 collCenter = _monster.detectColl.transform.position + _monster.detectColl.center;
-		if (Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer).Length >= 1 &&
-				_monster.target == null)
+		if (Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer).Length >= 1)
 		{
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer);

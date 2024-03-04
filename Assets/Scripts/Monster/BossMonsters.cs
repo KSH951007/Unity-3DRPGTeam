@@ -36,24 +36,24 @@ public class BossMonsters : MonoBehaviour, IHitable
 	public SphereCollider detectColl;
 
 	[Header("KhururuOrigin's Colliders")]
-    public SphereCollider attack1Collider;
-    public BoxCollider skill1Collider;
-	public SphereCollider skill3Collider;
+	[HideInInspector] public SphereCollider attack1Collider;
+	[HideInInspector] public BoxCollider skill1Collider;
+	[HideInInspector] public SphereCollider skill3Collider;
 	[Space(10)]
 
 	[Header("KhururuTrans's Colliders")]
-	public SphereCollider t_attack1Collider;
-	public SphereCollider t_attack2Collider;
-	public SphereCollider t_skill1Collider;
-	public SphereCollider t_skill2_1Collider;
-	public MeshCollider t_skill2_2Collider;
-	public SphereCollider t_skill3Collider;
-	public MeshCollider t_skill4Collider;
+	[HideInInspector] public SphereCollider t_attack1Collider;
+	[HideInInspector] public SphereCollider t_attack2Collider;
+	[HideInInspector] public SphereCollider t_skill1Collider;
+	[HideInInspector] public SphereCollider t_skill2_1Collider;
+	[HideInInspector] public MeshCollider t_skill2_2Collider;
+	[HideInInspector] public SphereCollider t_skill3Collider;
+	[HideInInspector] public MeshCollider t_skill4Collider;
 	[Space(10)]
 
 	[Header("Urbon's Colliders")]
-	public SphereCollider u_attackCollider;
-	public SphereCollider u_skill3Collider;
+	[HideInInspector] public SphereCollider u_attackCollider;
+	[HideInInspector] public SphereCollider u_skill3Collider;
 	[Space(10)]
 
 
