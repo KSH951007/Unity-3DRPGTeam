@@ -31,13 +31,14 @@ public class PlayerInteract : MonoBehaviour, IInteractable
             {
                 isDialogue = true;
                 GameManager.Instance.ui.QUI.showConversation();
-                npc.bubble.Ontalk(npc);
+                npc.Ontalk(npc);
+                
             }
         }
     }
     public void nextDialogue(NPC npc)
     {
-        npc.bubble.Ontalk(npc);
+        npc.Ontalk(npc);
     }
 
 }

@@ -48,8 +48,7 @@ public class QuestUi : MonoBehaviour
     }
     public void talkWithNPC()
     {
-        twIsOpen = !twIsOpen;
-        talkWindow.SetActive(twIsOpen);
+        talkWindow.SetActive(true);
     }
     public void AcceptQuest()
     {

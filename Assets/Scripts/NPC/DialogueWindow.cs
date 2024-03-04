@@ -16,7 +16,7 @@ public class DialogueWindow : MonoBehaviour
     public TextMeshProUGUI dialogue;// 두가지 텍스트바에 텍스트를 대입하자
     public TextMeshProUGUI dialogueSnd;
 
-    NPCTalkData talkData;
+    NPCData talkData;
     private bool isTyping;// ""
     bool typingSnd; // 대화창 비활성화시 같이
     string curText;
@@ -28,7 +28,7 @@ public class DialogueWindow : MonoBehaviour
     public QuestView questWindow;
     //public DialogueWindowView window;
 
-    public void GiveComponent(NPCTalkData Data)
+    public void GiveComponent(NPCData Data)
     {
         Data.Run();
         talkData = Data;
@@ -108,7 +108,7 @@ public class DialogueWindow : MonoBehaviour
         }
         else
         {
-            curText = "there is nothing";
+            curText = "you can't accept Quest.(Level Issue)";
         }
     }
     private void questDialogue(string[]lines)
@@ -122,20 +122,36 @@ public class DialogueWindow : MonoBehaviour
     }
     public void dialogueFlow()
     {
-        if(questSentence.Count > 0)
+        if (GameManager.Instance.plin.playerID >= talkData.questID)
         {
-            diaText = questSentence.Dequeue();
-            nowTyping();
+            if (questSentence.Count > 0)
+            {
+                diaText = questSentence.Dequeue();
+                nowTyping();
+            }
+            else if (questSentence.Count == 0)
+            {
+                isQuit();
+                questAcceptWindow.SetActive(true);
+                transform.gameObject.SetActive(false);
+            }
         }
-        else if (questSentence.Count == 0)
+        else
         {
             isQuit();
-            questAcceptWindow.SetActive(true);
             transform.gameObject.SetActive(false);
         }
     }
     public void isQuit() // 온클릭 이벤트
     {
+        otherText = "";
+        curText = "";
+        isTyping = false;
+        typingSnd = false;
+    }
+    public void QuestAccept()
+    {
+        QuestSystem.Instance.Register(talkData.npcSubQuest);
         otherText = "";
         curText = "";
         isTyping = false;

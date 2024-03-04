@@ -13,7 +13,7 @@ public class BillboardCanvas : MonoBehaviour
         canvas = GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
     }
-    private void Update()
+    private void Start()
     {
         Quaternion rot = Quaternion.FromToRotation(transform.forward, Camera.main.transform.forward);
         if(rot != Quaternion.identity)
