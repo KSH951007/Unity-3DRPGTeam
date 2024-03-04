@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DamageUI : MonoBehaviour
 {
 
+    private static int count;
     [SerializeField] private Sprite[] damageFonts;
     private List<Image> images;
     private float moveSpeed;
@@ -15,8 +16,11 @@ public class DamageUI : MonoBehaviour
     private float offsetX;
     private int damageCount;
     [SerializeField] private Transform origineTr;
+    private Canvas canvas;
     void Awake()
     {
+        canvas = GetComponent<Canvas>();
+        count = 0;
         images = new List<Image>();
         activeDamageFontTr = this.transform.GetChild(0);
         Transform fonts = transform.Find("DamageImages").transform;
@@ -36,6 +40,8 @@ public class DamageUI : MonoBehaviour
         {
             images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 1f);
         }
+        count++;
+        canvas.sortingOrder = count;
     }
     private void OnDisable()
     {
@@ -102,7 +108,7 @@ public class DamageUI : MonoBehaviour
             yield return null;
         }
 
-
+        count--;
         PoolManager.Instance.ReturnPool(this.gameObject);
     }
 }

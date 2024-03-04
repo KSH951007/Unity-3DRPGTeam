@@ -2,10 +2,20 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
+using UnityEngine.VFX.Utility;
 
 public class HeroManager : MonoBehaviour
 {
+
+    [SerializeField] private ChangeEffect changeEffect;
+
+
+    private float changeTime;
+
     private int maxStorageHerosCount;
     private int maxPlayHeroCount;
     private Hero[] hasHeros;
@@ -20,6 +30,8 @@ public class HeroManager : MonoBehaviour
 
     private void Awake()
     {
+
+        changeTime = 2f;
         maxStorageHerosCount = 50;
         maxPlayHeroCount = 3;
         changeCooldown = 5f;
@@ -40,6 +52,12 @@ public class HeroManager : MonoBehaviour
         playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
 
     }
+    private void Start()
+    {
+        SceneChangeHeroSetting();
+        SceneLoader.Instance.onSceneChanged += SceneChangeHeroSetting;
+
+    }
     public Hero GetMainHero()
     {
         return selectHeros[mainHeroIndex];
@@ -56,13 +74,14 @@ public class HeroManager : MonoBehaviour
             nextIndex = 0;
         }
 
-        Debug.Log(selectHeros.Length);
         if (selectHeros[nextIndex] == null)
             return;
         if (currentChangeCooldown > 0f)
             return;
-
         selectHeros[mainHeroIndex].Scheduler.ResetActions();
+
+        //changeEffect.ChangeMaterial(ChangeEffect.ChangeType.Appearance, selectHeros[mainHeroIndex].MeshRenderers[1], selectHeros[mainHeroIndex].transform.position,changeTime);
+
         selectHeros[mainHeroIndex].gameObject.SetActive(false);
         Transform prevTr = selectHeros[mainHeroIndex].transform;
         mainHeroIndex = nextIndex;
@@ -99,6 +118,19 @@ public class HeroManager : MonoBehaviour
 
         return mainHeroIndex;
     }
+    private void SceneChangeHeroSetting()
+    {
+        for (int i = 0; i < selectHeros.Length; i++)
+        {
+            if (SceneLoader.Instance.GetSceneType() == SceneLoader.SceneType.Dungeon)
+                selectHeros[i].ChangeAnimatorController(EnumType.HeroAnimType.Battle);
+            else
+                selectHeros[i].ChangeAnimatorController(EnumType.HeroAnimType.Base);
 
+            selectHeros[i].gameObject.SetActive(false);
+        }
+        selectHeros[mainHeroIndex].gameObject.SetActive(true);
+
+    }
 
 }

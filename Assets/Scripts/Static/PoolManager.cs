@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PoolManager : Singleton<PoolManager>
 {
 
     [SerializeField] private GameObject[] prefabs;
     private Dictionary<string, Stack<GameObject>> pools;
-    
+
 
     private void Awake()
     {
@@ -20,11 +21,9 @@ public class PoolManager : Singleton<PoolManager>
         {
             pools.Add(prefabs[i].name, new Stack<GameObject>());
         }
-
-
     }
 
-    public GameObject Get(string name)
+    public GameObject Get(string name, Vector3? newPosition = null, Quaternion? newRotation = null)
     {
         if (pools.ContainsKey(name) == false)
         {
@@ -32,9 +31,11 @@ public class PoolManager : Singleton<PoolManager>
         }
         else
         {
+            Vector3 position = newPosition != null ? newPosition.Value : Vector3.zero;
+            Quaternion rotation = newRotation != null ? newRotation.Value : Quaternion.identity;
             if (pools[name].Count <= 0)
             {
-                GameObject newObject = Create(name);
+                GameObject newObject = Create(name, position, rotation);
                 if (newObject != null)
                 {
                     return newObject;
@@ -43,13 +44,16 @@ public class PoolManager : Singleton<PoolManager>
             else
             {
                 GameObject pool = pools[name].Pop();
-                pool.SetActive(true);
                 pool.transform.SetParent(null);
+                pool.transform.position = position;
+                pool.transform.rotation = rotation;
+                pool.SetActive(true);
                 return pool;
             }
         }
         return null;
     }
+
     public void ReturnPool(GameObject poolObject)
     {
         if (pools.ContainsKey(poolObject.name) == false)
@@ -57,25 +61,22 @@ public class PoolManager : Singleton<PoolManager>
 
         poolObject.transform.SetParent(this.transform, false);
         poolObject.SetActive(false);
-
         pools[poolObject.name].Push(poolObject);
-
     }
 
-    private GameObject Create(string name)
+    private GameObject Create(string name, Vector3 newPosition, Quaternion newRotation)
     {
         for (int i = 0; i < prefabs.Length; i++)
         {
             if (prefabs[i].name == name)
             {
-                GameObject newObject = Instantiate(prefabs[i]);
-                newObject.name = prefabs[i].name;
 
+                GameObject newObject = Instantiate(prefabs[i], newPosition, newRotation);
+                newObject.name = prefabs[i].name;
 
                 return newObject;
             }
         }
-
         return null;
     }
 }

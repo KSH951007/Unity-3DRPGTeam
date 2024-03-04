@@ -12,7 +12,7 @@ public class BillboardUI : MonoBehaviour
     }
     private void Update()
     {
-        Quaternion rot = Quaternion.FromToRotation(transform.transform.forward, Camera.main.transform.forward);
+        Quaternion rot = Quaternion.FromToRotation(transform.forward, Camera.main.transform.forward);
         if(rot != Quaternion.identity)
         {
             transform.rotation = rot;

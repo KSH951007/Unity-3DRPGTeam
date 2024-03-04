@@ -3,83 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class HeroDinAttackAction : PlayerAttackAction
+public class HeroDinAttackAction : HeroAttackAction
 {
     GameObject attackEffect;
-    Transform attackPoint;
     VisualEffect slashEffect;
-    public HeroDinAttackAction(Transform attackPoint, GameObject attackEffect, ActionScheduler scheduler, Animator animator, Hero owner, int maxCombo) : base(scheduler, animator, owner, maxCombo)
+    public HeroDinAttackAction(GameObject attackEffect, ActionScheduler scheduler, Animator animator, Hero owner) : base(scheduler, animator, owner)
     {
-        this.attackPoint = attackPoint;
         this.attackEffect = attackEffect;
-        slashEffect = GameObject.Instantiate(attackEffect, attackPoint.position, attackPoint.rotation).GetComponent<VisualEffect>();
+        slashEffect = GameObject.Instantiate(attackEffect, owner.AttackPoint.position, owner.AttackPoint.rotation).GetComponent<VisualEffect>();
 
         this.scheduler = scheduler;
-        this.maxCombo = maxCombo;
         curruntAttackCombo = 0;
-        owner.AnimEvent.onProgressAttack += () =>
-        {
-            slashEffect.transform.position = attackPoint.position;
-            slashEffect.transform.rotation = attackPoint.rotation;
-            slashEffect.Play();
-            
-            
-            RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.transform.lossyScale/2, owner.transform.forward,Quaternion.identity,1f);
-            if(hits != null)
-            {
-                foreach(RaycastHit hitObject in hits)
-                {
-                    if(hitObject.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                    {
-                        if (hitObject.transform.gameObject.TryGetComponent(out IHitable_Monster health))
-                        {
-                            health.TakeHit(10, IHitable_Monster.HitType.None);
-                        }
-                    }
-                  
-                }
-            }
-        };
+
+
     }
-    public override bool IsCanle(PlayerAction action)
+    public override bool IsCanle(HeroAction action)
     {
-
-
         return false;
-    }
-    public override void StartAction()
-    {
-        base.StartAction();
-
-
-
-    }
-
-    public override void StopAction()
-    {
-
-    }
+    }   
     public override void UpdateAction()
     {
-        if (scheduler.GetNextAction() == this)
+        if (isEndAction)
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
+            if (scheduler.GetNextAction() != this)
             {
-                isEndAction = true;
-                return;
-            }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName($"attack{curruntAttackCombo}") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
-            {
-                isEndAction = true;
                 curruntAttackCombo = 0;
-                return;
             }
+            scheduler.ChangeAction();
+            return;
         }
-
 
     }
+    public override void ProgressAttack()
+    {
+        slashEffect.transform.position = owner.AttackPoint.position;
+        slashEffect.transform.rotation = owner.AttackPoint.rotation;
+        slashEffect.Play();
 
+        RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.transform.lossyScale / 2, owner.transform.forward, Quaternion.identity, 1f);
+        if (hits != null)
+        {
+            foreach (RaycastHit hitObject in hits)
+            {
+                if (hitObject.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    if (hitObject.transform.gameObject.TryGetComponent(out Health health))
+                    {
+                        health.TakeHit(512, HitType.None);
+                    }
+                }
+
+            }
+        }
+    }
 }

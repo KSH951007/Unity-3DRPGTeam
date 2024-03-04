@@ -4,101 +4,113 @@ using System.Drawing;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
 
-	private PlayerControls inputs;
-	private HeroManager heroManager;
-	public PlayerControls Inputs { get { return inputs; } }
-	private bool canControl;
+    [SerializeField] private ClickMoveArrowEffect moveArrowEffect;
+    private PlayerControls inputs;
+    private HeroManager heroManager;
+    public PlayerControls Inputs { get { return inputs; } }
+    private bool canControl;
 
-	private Hero mainHero;
+    private Hero mainHero;
 
-	private void Awake()
-	{
-		heroManager = GetComponent<HeroManager>();
-		canControl = true;
-
-
-	}
-	private void Start()
-	{
-		mainHero = heroManager.GetMainHero();
-
-		heroManager.onChangeCharacter += () =>
-			{
-				mainHero = heroManager.GetMainHero();
-
-			};
-
-		inputs.Player.Move.performed += _ => PointerClickMove();
-		inputs.Player.Attack.performed += _ => PointerClickAttack();
-
-		inputs.Player.ChangeCharacter.performed += _ => heroManager.ChangeCharacter();
-
-	}
+    private void Awake()
+    {
+        heroManager = GetComponent<HeroManager>();
+        canControl = true;
 
 
-	private void OnEnable()
-	{
-		if (inputs == null)
-		{
-			inputs = new PlayerControls();
-		}
-		inputs.Enable();
+    }
+    private void Start()
+    {
+        mainHero = heroManager.GetMainHero();
 
-	}
-	private void OnDisable()
-	{
-		if (inputs != null)
-		{
-			inputs.Disable();
-		}
-	}
-	private void Update()
-	{
-		mainHero?.Scheduler.ProcessAction();
-	}
-	public void PointerClickMove()
-	{
-		if (!canControl)
-			return;
+        heroManager.onChangeCharacter += () =>
+            {
+                mainHero = heroManager.GetMainHero();
 
-		Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
+            };
 
-		if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("Ground")))
-		{
+        inputs.Player.Move.performed += _ => PointerClickMove();
+        inputs.Player.Attack.performed += _ => PointerClickAttack();
+        inputs.Player.Skill1.performed += _ => PressSkill(0);
+        inputs.Player.Skill2.performed += _ => PressSkill(1);
+        inputs.Player.Skill3.performed += _ => PressSkill(2);
 
-			mainHero.MoveAction(hit.point);
+        inputs.Player.ChangeCharacter.performed += _ =>
+        {
+            if (mainHero.Scheduler.GetCurrentAction() == null || mainHero.Scheduler.GetCurrentAction() is HeroMoveAction)
+                heroManager.ChangeCharacter();
+        };
+    }
 
-		}
-	}
-	public void PointerClickAttack()
-	{
-		if (!canControl)
-			return;
 
-		//if (SceneLoader.Instance.GetSceneType() == EnumType.SceneType.Village)
-		//    return;
+    private void OnEnable()
+    {
+        if (inputs == null)
+        {
+            inputs = new PlayerControls();
+        }
+        inputs.Enable();
 
-		mainHero.AttackAction(PointerToTarget());
+    }
+    private void OnDisable()
+    {
+        if (inputs != null)
+        {
+            inputs.Disable();
+        }
+    }
+    private void Update()
+    {
 
-	}
-	public void PressSkill1()
-	{
+        mainHero?.Scheduler.ProcessAction();
+    }
+    public void PointerClickMove()
+    {
+        if (!canControl)
+            return;
 
-	}
-	private Vector3 PointerToTarget()
-	{
-		Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
 
-		screenPos.z = 0f;
-		Vector3 mousePos = Mouse.current.position.value;
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("Ground")))
+        {
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
 
-		Vector3 direction = (mousePos - screenPos).normalized;
+                moveArrowEffect.Play(hit.point);
+                mainHero.MoveAction(hit.point);
+            }
+        }
+    }
+    public void PointerClickAttack()
+    {
+        if (!canControl)
+            return;
+        if (EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            mainHero.AttackAction(PointerToTarget());
+        }
 
-		return new Vector3(direction.x, 0f, direction.y);
-	}
+
+    }
+    public void PressSkill(int skillIndex)
+    {
+        if (GetComponent<SkillManager>().CanUseSkill(mainHero, skillIndex))
+        {
+            mainHero.SkillAction(skillIndex, PointerToTarget());
+        }
+    }
+    private Vector3 PointerToTarget()
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
+        screenPos.z = 0f;
+        Vector3 mousePos = Mouse.current.position.value;
+        Vector3 direction = (mousePos - screenPos).normalized;
+        return new Vector3(direction.x, 0f, direction.y);
+    }
 }
