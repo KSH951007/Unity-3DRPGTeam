@@ -12,14 +12,27 @@ public class SkillSlotControlUI : MonoBehaviour
     private void Awake()
     {
         skillSlots = transform.Find("Slots").GetComponentsInChildren<SkillSlotUI>();
+        for (int i = 0; i < skillSlots.Length; i++)
+        {
+            skillSlots[i].InIt(i);
+        }
     }
     private void Start()
     {
         skillManager = GameObject.Find("Player").transform.Find("Heros").GetComponent<SkillManager>();
         heroManager = skillManager.GetComponent<HeroManager>();
 
-        //skillManager.GetSkill(heroManager.GetMainHero(), 0).SkillData.GetIcon();
+        SetSKillSlot();
+        heroManager.onChangeCharacter += SetSKillSlot;
 
-
+    }
+    public void SetSKillSlot()
+    {
+        Hero mainHero = heroManager.GetMainHero();
+        for (int i = 0; i < skillSlots.Length; i++)
+        {
+            Skill skill = skillManager.GetSkill(mainHero, i);
+            skillSlots[i].ChangeSkillSlotUI(skill);
+        }
     }
 }

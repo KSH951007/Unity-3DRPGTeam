@@ -14,7 +14,6 @@ public class HeroManager : MonoBehaviour
     [SerializeField] private ChangeEffect changeEffect;
 
 
-    private float changeTime;
 
     private int maxStorageHerosCount;
     private int maxPlayHeroCount;
@@ -27,11 +26,11 @@ public class HeroManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera playerCamera;
 
 
+    public float ChangeCooldown { get { return changeCooldown; } }
 
     private void Awake()
     {
 
-        changeTime = 2f;
         maxStorageHerosCount = 50;
         maxPlayHeroCount = 3;
         changeCooldown = 5f;
@@ -62,6 +61,9 @@ public class HeroManager : MonoBehaviour
     {
         return selectHeros[mainHeroIndex];
     }
+    public int GetMainHeroIndex() { return mainHeroIndex; }
+    public Hero GetSelectHero(int index) { return selectHeros[index]; }
+
     public void AddStorageHero()
     {
 
@@ -108,15 +110,15 @@ public class HeroManager : MonoBehaviour
         currentChangeCooldown = 0f;
 
     }
-    public int nextCharacter()
+    public int nextHeroIndex(int index)
     {
-        mainHeroIndex++;
-        if (mainHeroIndex >= maxPlayHeroCount)
+        index++;
+        if (index >= maxPlayHeroCount)
         {
-            mainHeroIndex = 0;
+            index = 0;
         }
 
-        return mainHeroIndex;
+        return index;
     }
     private void SceneChangeHeroSetting()
     {

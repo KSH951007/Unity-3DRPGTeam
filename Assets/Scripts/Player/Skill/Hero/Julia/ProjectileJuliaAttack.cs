@@ -26,10 +26,8 @@ public class ProjectileJuliaAttack : MonoBehaviour
     }
     private IEnumerator FireRoutine()
     {
-        Debug.Log(transform.position);
         while (Vector3.Distance(startPos, transform.position) < distance)
         {
-            Debug.Log(transform.forward);
             rb.MovePosition(rb.position + transform.forward * moveSpeed*Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();
         }

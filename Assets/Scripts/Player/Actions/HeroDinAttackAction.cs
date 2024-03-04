@@ -50,7 +50,6 @@ public class HeroDinAttackAction : HeroAttackAction
                     if (hitObject.transform.gameObject.TryGetComponent(out IHitable enemy))
                     {
                         enemy.TakeHit(512, IHitable.HitType.None);
-                        Debug.Log("asd");
                     }
                 }
 

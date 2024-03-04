@@ -8,6 +8,7 @@ using UnityEngine;
 public class HeroSO : ScriptableObject
 {
     [SerializeField] protected Sprite heroIcon;
+    [SerializeField] protected string heroName;
     [SerializeField] protected int level;
     [SerializeField] protected int maxHealth;
     [SerializeField] protected int maxMana;
@@ -17,6 +18,7 @@ public class HeroSO : ScriptableObject
     [SerializeField] protected SkillSO[] skillDatas = new SkillSO[3];
 
     public Sprite GetIcon() { return heroIcon; }
+    public string GetName() { return heroName;}
     public int GetLevel() { return level; }
     public int GetMaxHealth() { return maxHealth; }
     public int GetMaxMana() { return maxMana; }

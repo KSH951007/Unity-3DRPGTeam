@@ -11,8 +11,9 @@ public abstract class Skill : MonoBehaviour
     protected int skillLevel;
     protected float currentCooldown;
     protected float cooldownFillAmount;
+    public event Action<float, float> onStartCooldown;
 
-    public SkillSO SkillData {  get { return skillData; } }
+    public SkillSO SkillData { get { return skillData; } }
     public float CurrentCooldown
     {
         get => currentCooldown;
@@ -20,11 +21,16 @@ public abstract class Skill : MonoBehaviour
         {
             currentCooldown = value;
             cooldownFillAmount = currentCooldown / skillData.GetCoolDown();
+            onStartCooldown?.Invoke(currentCooldown, skillData.GetCoolDown());
         }
     }
     protected virtual void Awake()
     {
         CurrentCooldown = 0f;
+    }
+    private void OnDisable()
+    {
+        onStartCooldown = null;
     }
     public virtual bool CanUseSkill()
     {

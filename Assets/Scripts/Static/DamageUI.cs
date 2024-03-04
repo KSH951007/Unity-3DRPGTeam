@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DamageUI : MonoBehaviour
 {
 
-    private static int count;
+    private static int count = 0;
     [SerializeField] private Sprite[] damageFonts;
     private List<Image> images;
     private float moveSpeed;
@@ -20,7 +20,7 @@ public class DamageUI : MonoBehaviour
     void Awake()
     {
         canvas = GetComponent<Canvas>();
-        count = 0;
+
         images = new List<Image>();
         activeDamageFontTr = this.transform.GetChild(0);
         Transform fonts = transform.Find("DamageImages").transform;
@@ -33,6 +33,7 @@ public class DamageUI : MonoBehaviour
         moveSpeed = 1f;
 
         offsetX = images[0].rectTransform.rect.width / 2;
+        Debug.Log(count);
     }
     private void OnEnable()
     {
