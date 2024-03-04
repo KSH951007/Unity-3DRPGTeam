@@ -84,7 +84,7 @@ public class DialogueWindow : MonoBehaviour
         isTyping = true;
         StartCoroutine(Typing(diaText));
     }
-    public void OnDialogue() //onclick 이벤트
+    public void OnDialogue()
     {
         if (GameManager.Instance.plin.playerID >= talkData.questID)
         {
@@ -118,11 +118,11 @@ public class DialogueWindow : MonoBehaviour
         else if (questSentence.Count == 0)
         {
             isQuit();
-            questAcceptWindow.SetActive(true); // TODO : 퀘스트 수락 onclicked 이벤트 사용 사용후 questaccpetwindow는 비활성
+            questAcceptWindow.SetActive(true);
             transform.gameObject.SetActive(false);
         }
     }
-    public void isQuit()
+    public void isQuit() // 온클릭 이벤트
     {
         otherText = "";
         curText = "";
