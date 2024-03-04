@@ -8,9 +8,9 @@
 	}
 
 	SubShader{
-		GrabPass{
-			"_GrabTexture"
-			}
+		//GrabPass{
+		//	"Texture"
+		//	}
 
 			Tags{ "Queue" = "Transparent"  "IgnoreProjector" = "True"  "RenderType" = "Transparent" }
 			Blend SrcAlpha OneMinusSrcAlpha
@@ -35,7 +35,7 @@
 
 				struct v2f {
 					float4 vertex : POSITION;
-					float4 uvgrab : TEXCOORD0;
+					//float4 uvgrab : TEXCOORD0;
 					float2 uvnormal : TEXCOORD1;
 					float2 uvmask : TEXCOORD2;
 					fixed4 color : COLOR;
@@ -48,14 +48,14 @@
 
 				sampler2D _Mask;
 				sampler2D _NormalMap;
-				sampler2D _GrabTexture;
+				//sampler2D _GrabTexture;
 
 				float _DistortFactor;
 				float _ColorFactor;			
 
 				float4 _NormalMap_ST;
 				float4 _Mask_ST;
-				float4 _GrabTexture_TexelSize;
+				/float4 _GrabTexture_TexelSize;
 
 				v2f vert (appdata_t v)
 				{
@@ -75,8 +75,8 @@
 					#endif
 
 					//Set uvgrab value 
-					o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y * scale) + o.vertex.w) * 0.5;
-					o.uvgrab.zw = o.vertex.zw;
+					//o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y * scale) + o.vertex.w) * 0.5;
+					//o.uvgrab.zw = o.vertex.zw;
 
 					o.uvnormal = TRANSFORM_TEX( v.texcoord, _NormalMap );
 					o.uvmask = TRANSFORM_TEX(v.texcoord,_Mask);
@@ -99,17 +99,17 @@
 							//Set normal tex
 							half2 normal = UnpackNormal(tex2D(_NormalMap, i.uvnormal)).rg;
 							//Set distort factor using normal, GrabTexture
-							half2 distortValue = normal * _DistortFactor * _GrabTexture_TexelSize.xy;
+							//half2 distortValue = normal * _DistortFactor * _GrabTexture_TexelSize.xy;
 							//Amplify distort offset factor if graphic API is DX11 or METAL.
 							//OpenGLCore or OpenGL don't need this
 							#if defined(SHADER_API_D3D11) || defined(SHADER_API_METAL) 
 							distortValue *= 10;
 							#endif
 							//Add new distort data to original grab value
-							i.uvgrab.xy = (distortValue * i.uvgrab.z) + i.uvgrab.xy;
+							//i.uvgrab.xy = (distortValue * i.uvgrab.z) + i.uvgrab.xy;
 
 							//Sample GrabTexture using updated grab value
-							half4 distort = tex2Dproj(_GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
+							//half4 distort = tex2Dproj(_GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
 							half4 mask = tex2D(_Mask, i.uvmask);
 
 							half4 res = distort;

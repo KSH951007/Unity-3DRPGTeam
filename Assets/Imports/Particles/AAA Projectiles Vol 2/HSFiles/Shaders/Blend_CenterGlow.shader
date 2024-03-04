@@ -68,7 +68,8 @@ Shader "Hovl/Particles/Blend_CenterGlow"
 				};		
 				
 				#if UNITY_VERSION >= 560
-				UNITY_DECLARE_DEPTH_TEXTURE( _CameraDepthTexture );
+				UNITY_DECLARE_DEPTH_TEXTURE( _CameraDepth
+				);
 				#else
 				uniform sampler2D_float _CameraDepthTexture;
 				#endif
