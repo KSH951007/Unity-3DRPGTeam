@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9011355094059038504}
   - component: {fileID: 8839937263422418899}
   - component: {fileID: 8505759089530075030}
+  - component: {fileID: 3223033426087408305}
   m_Layer: 5
   m_Name: Quest Tracker View
   m_TagString: Untagged
@@ -33,7 +34,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -118,3 +118,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &3223033426087408305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7797695316319455904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0183c9f4cb40d94abc7f837990f1e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questTrackerPrefab: {fileID: -6238522650019823287, guid: f8c10ee090874944aa565620dbc17e3a,
+    type: 3}
+  categoryColors: []

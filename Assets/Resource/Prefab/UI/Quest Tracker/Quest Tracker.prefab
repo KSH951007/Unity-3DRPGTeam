@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7458780784621002416}
   - component: {fileID: 4962079914590526416}
-  - component: {fileID: 1928395253517069001}
+  - component: {fileID: -6238522650019823287}
   m_Layer: 5
   m_Name: Quest Tracker
   m_TagString: Untagged
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1928395253517069001
+--- !u!114 &-6238522650019823287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,14 +73,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6512913422224335911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ce1ded93d05974985faf363c40ef1b, type: 3}
+  m_Script: {fileID: 11500000, guid: fd51aef101a4a2542b6a1d71b895b87c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  normalColor: {r: 0, g: 0, b: 0, a: 0}
-  taskCompletionColor: {r: 0, g: 0, b: 0, a: 0}
-  taskSuccessCountColor: {r: 0, g: 0, b: 0, a: 0}
-  strikeThroughColor: {r: 0, g: 0, b: 0, a: 0}
+  questTitleText: {fileID: 3842680392208543818}
+  taskDescriptorPrefab: {fileID: -7972107097467251652, guid: 4508a58558c732646bca9eec8d65848f,
+    type: 3}
 --- !u!1 &7910898280022624133
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,8 +171,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

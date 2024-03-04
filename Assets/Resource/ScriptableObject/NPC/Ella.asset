@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9c4efc7760ad34696c10ec47bedbbe, type: 3}
   m_Name: Ella
   m_EditorClassIdentifier: 
-  npcID: 0
+  questID: 0
   Name: Ella
   introduce: Hello
-  des: w
-  dialogue: w
+  des: e
   dialogues:
   - q
   - w
   - e
+  questDialogue:
+  - hello there
+  - i am  ella
+  - and i told you something
+  - this world got problem
+  - Kill
+  - the
+  - monster
+  npcSubQuest: {fileID: 11400000, guid: 416ba364676351b42a6abe911a3525d2, type: 2}
