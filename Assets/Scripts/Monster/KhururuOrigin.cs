@@ -23,7 +23,7 @@ public class KhururuOrigin : BossMonsters
 	{
 		base.OnEnable();
 		nav.isStopped = true;
-		maxShieldAmount = 15;
+		maxShieldAmount = 2500;
 	}
 
 	private void OnDisable()

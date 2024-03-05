@@ -13,7 +13,7 @@ public class TrashMob : MonoBehaviour, IHitable
 	private float moveSpeed = 2f;
 	private float comebackSpeed = 10f;
 	[SerializeField] private SphereCollider detectCollider;
-	[SerializeField] private Transform spawnedPoint;        // Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
+	[SerializeField] protected Transform spawnedPoint;        // Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
 	[SerializeField] private GameObject hpBarUI;
 
 	public LayerMask attackTargetLayer;
