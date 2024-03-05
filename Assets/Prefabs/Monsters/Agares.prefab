@@ -106,9 +106,14 @@ MonoBehaviour:
   t_skill2_2Collider: {fileID: 0}
   t_skill3Collider: {fileID: 0}
   t_skill4Collider: {fileID: 0}
+  u_attackCollider: {fileID: 0}
+  u_skill3Collider: {fileID: 0}
+  ondead:
+    m_PersistentCalls:
+      m_Calls: []
   attackTargetLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   isStunned: 0
   isDead: 0
   hasAttacked: 0
