@@ -14,8 +14,8 @@ public class Stylish : Skill
     }
     public override void UseSkill()
     {
+        base.UseSkill();
         StartCoroutine(StylishRoutin());
-        CurrentCooldown = skillData.GetCoolDown();
     }
 
 

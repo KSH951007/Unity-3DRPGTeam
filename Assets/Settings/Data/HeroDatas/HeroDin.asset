@@ -15,9 +15,11 @@ MonoBehaviour:
   heroIcon: {fileID: 21300000, guid: d5d06e8a94d4a7548889203990ba7c9e, type: 3}
   heroName: "\uB518"
   level: 1
-  maxHealth: 1000
+  maxHealth: 2000
+  regenerationHealth: 0.009
   maxMana: 500
-  defensivePercent: 0
+  regenerationMana: 0.007
+  defensivePercent: 0.3
   baseDamage: 90
   maxAttackCombo: 3
   skillDatas:

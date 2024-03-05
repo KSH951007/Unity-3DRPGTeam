@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
@@ -107,10 +106,12 @@ public class PlayerController : MonoBehaviour
     }
     private Vector3 PointerToTarget()
     {
+        //TODO: 나중에 마우스위치 수정
         Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
-        screenPos.z = 0f;
+
         Vector3 mousePos = Mouse.current.position.value;
         Vector3 direction = (mousePos - screenPos).normalized;
+
         return new Vector3(direction.x, 0f, direction.y);
     }
 }

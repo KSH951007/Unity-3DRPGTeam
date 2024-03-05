@@ -11,6 +11,7 @@ public class ProjectileForestAura : MonoBehaviour
     private int computeDamage;
     private float currentDurationTime;
     private ParticleSystem particle;
+    private Hero hero;
     private void Awake()
     {
         maxDurationTime = 10f;
@@ -31,17 +32,22 @@ public class ProjectileForestAura : MonoBehaviour
     {
         if (particle.isPlaying)
             particle.Pause();
+
+        hero = null;
     }
-    public void Init(Transform parent, int damage)
+    public void Init(Hero hero, int damage)
     {
-        transform.SetParent(parent);
-        transform.localPosition = Vector3.up;
+        this.hero = hero;
+        transform.position = this.hero.transform.position + Vector3.up;
         computeDamage = (int)(damage * damagePercent);
         particle.Play();
     }
     private void Update()
     {
+
+        transform.position = this.hero.transform.position + Vector3.up;
         currentDurationTime += Time.deltaTime;
+        
         if (currentDurationTime > maxDurationTime|| currentCount <= 0)
         {
             Stop();

@@ -11,9 +11,7 @@ public class ForestAura : Skill
 
     public override void UseSkill()
     {
-        Debug.Log("use");
-
-
+        base.UseSkill();
         GameObject projectile = PoolManager.Instance.Get("ProjectileForestAura");
         if (projectile != null)
         {
@@ -24,13 +22,10 @@ public class ForestAura : Skill
                     transform.GetChild(i).GetComponent<ProjectileForestAura>().Stop();
                 }
             }
-            projectile.GetComponent<ProjectileForestAura>().Init(transform, hero.GetHeroData().GetDamage());
-            Debug.Log(projectile);
+            projectile.GetComponent<ProjectileForestAura>().Init(hero, hero.GetHeroData().GetDamage());
+          
         }
 
-
-
-        CurrentCooldown = skillData.GetCoolDown();
     }
 
     public override void UpdateSkill()

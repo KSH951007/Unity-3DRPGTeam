@@ -34,14 +34,14 @@ public class HeroUI : MonoBehaviour
     {
         Hero hero = heroManager.GetMainHero();
 
-        slots[0].ChangeSlotInfo(hero.GetHeroData());
+        slots[0].ChangeSlotInfo(hero);
 
         int index = heroManager.nextHeroIndex(heroManager.GetMainHeroIndex());
 
         for (int i = 1; i < slots.Length; i++)
         {
             hero = heroManager.GetSelectHero(index);
-            slots[i].ChangeSlotInfo(hero.GetHeroData());
+            slots[i].ChangeSlotInfo(hero);
             index = heroManager.nextHeroIndex(index);
         }
     }
@@ -49,6 +49,6 @@ public class HeroUI : MonoBehaviour
     {
         ChangeSlots();
         timerUI.SetTimer(heroManager.ChangeCooldown);
-
     }
+
 }

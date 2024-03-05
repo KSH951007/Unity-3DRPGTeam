@@ -8,6 +8,7 @@ public class DamageUI : MonoBehaviour
 {
 
     private static int count = 0;
+    private static float damageFontSize = 0.5f;
     [SerializeField] private Sprite[] damageFonts;
     private List<Image> images;
     private float moveSpeed;
@@ -16,10 +17,12 @@ public class DamageUI : MonoBehaviour
     private float offsetX;
     private int damageCount;
     [SerializeField] private Transform origineTr;
+    private RectTransform rectTr;
     private Canvas canvas;
     void Awake()
     {
         canvas = GetComponent<Canvas>();
+        rectTr = GetComponent<RectTransform>();
 
         images = new List<Image>();
         activeDamageFontTr = this.transform.GetChild(0);
@@ -33,8 +36,12 @@ public class DamageUI : MonoBehaviour
         moveSpeed = 1f;
 
         offsetX = images[0].rectTransform.rect.width / 2;
-        Debug.Log(count);
     }
+    public static void SetSize(float newSize)
+    {
+        damageFontSize = newSize;
+    }
+
     private void OnEnable()
     {
         for (int i = 0; i < images.Count; i++)
@@ -43,6 +50,7 @@ public class DamageUI : MonoBehaviour
         }
         count++;
         canvas.sortingOrder = count;
+        rectTr.sizeDelta = new Vector2(damageFontSize, damageFontSize);
     }
     private void OnDisable()
     {

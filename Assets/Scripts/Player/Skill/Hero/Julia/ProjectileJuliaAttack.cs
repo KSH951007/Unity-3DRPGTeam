@@ -14,7 +14,7 @@ public class ProjectileJuliaAttack : MonoBehaviour
 
     private void Awake()
     {
-        moveSpeed = 30f;
+        moveSpeed = 15f;
         distance = 10f;
         rb = GetComponent<Rigidbody>();
     }

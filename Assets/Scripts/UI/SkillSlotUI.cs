@@ -11,6 +11,7 @@ public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler
     private Image IconImage;
     private Image cooldownImage;
     private TextMeshProUGUI cooldownText;
+    private Skill skill;
 
     public void InIt(int slotIndex)
     {
@@ -22,19 +23,20 @@ public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler
         IconImage = transform.GetChild(0).GetComponent<Image>();
         cooldownImage = IconImage.transform.GetChild(0).GetComponentInChildren<Image>();
         cooldownText = IconImage.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-
-
     }
-
-    public void ChangeSkillSlotUI(Skill skill)
+    public void ChangeSkillSlotUI(Skill newskill)
     {
+        if(skill != null)
+        {
+            skill.onCooldownAction -= UpdateCooldown;
+        }
+        skill = newskill;
         IconImage.sprite = skill.SkillData.GetIcon();
         UpdateCooldown(skill.CurrentCooldown, skill.SkillData.GetCoolDown());
-        skill.onStartCooldown += UpdateCooldown;
+        skill.onCooldownAction += UpdateCooldown;
     }
     public void UpdateCooldown(float currentCooldown, float maxCooldown)
     {
-        Debug.Log(currentCooldown);
         cooldownImage.fillAmount = (currentCooldown / maxCooldown);
         cooldownText.text = currentCooldown.ToString("F1");
         if (cooldownImage.fillAmount <= 0f)

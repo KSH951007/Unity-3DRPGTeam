@@ -12,11 +12,11 @@ public class ChargeSlash : Skill
     }
     public override void UseSkill()
     {
+        base.UseSkill();
         GameObject projectileSlash = PoolManager.Instance.Get("ProjectileChargeSlash");
-
+      
         projectileSlash.GetComponent<ProjectileChargeSlash>().Init(transform.position, hero.transform.forward, hero.GetHeroData().GetDamage());
 
-        CurrentCooldown = skillData.GetCoolDown();
     }
 
     public override void UpdateSkill()

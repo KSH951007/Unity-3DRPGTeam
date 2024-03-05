@@ -6,11 +6,11 @@ public class MeteoShower : Skill
 {
     public override void UseSkill()
     {
+        base.UseSkill();
         GameObject projectile = PoolManager.Instance.Get("ProjectileMeteoShower");
         if (projectile != null)
         {
-            projectile.GetComponent<ProjectileMeteoShower>().Init(hero.AttackPoint.position, hero.AttackPoint.rotation, hero.GetHeroData().GetDamage());
-            CurrentCooldown = skillData.GetCoolDown();
+            projectile.GetComponent<ProjectileMeteoShower>().Init(hero.AttackPoint.position, hero.AttackPoint.rotation, hero.GetHeroData().GetDamage(),hero.HeroAnimator);            
         }
 
     }

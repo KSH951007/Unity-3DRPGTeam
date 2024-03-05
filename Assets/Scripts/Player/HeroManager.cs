@@ -24,7 +24,8 @@ public class HeroManager : MonoBehaviour
     private float currentChangeCooldown;
     public event Action onChangeCharacter;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
-
+    private float currentRegenerationTime;
+    private float regenerationTime;
 
     public float ChangeCooldown { get { return changeCooldown; } }
 
@@ -49,12 +50,29 @@ public class HeroManager : MonoBehaviour
 
         playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
         playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
-
+        regenerationTime = 1f;
+        currentRegenerationTime = 0f;
     }
     private void Start()
     {
         SceneChangeHeroSetting();
         SceneLoader.Instance.onSceneChanged += SceneChangeHeroSetting;
+
+    }
+    private void Update()
+    {
+        currentRegenerationTime += Time.deltaTime;
+        if (currentRegenerationTime >= regenerationTime)
+        {
+            for (int i = 0; i < selectHeros.Length; i++)
+            {
+                if (i == mainHeroIndex)
+                    continue;
+
+                selectHeros[i].NoneActiveHero();
+            }
+            currentRegenerationTime = 0f;
+        }
 
     }
     public Hero GetMainHero()
