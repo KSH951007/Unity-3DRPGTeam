@@ -21,7 +21,10 @@ public class NPC : MonoBehaviour
     
     public GameObject pressSpace;
     public NPCData nTD;
-
+    
+    public bool questCompleteNow;
+    public GameObject CompleteQuest;
+    public GameObject RunningQuest;
     public DialogueWindow dia;
 
     private void Awake()
@@ -36,15 +39,28 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        //if(false == nTD.npcSubQuest.IsComplatable && GameManager.Instance.plin.playerID >= nTD.questID)
-        //{
-             // 퀘스트 관련 알림
-        //}
+        if(this.nTD.npcSubQuest.IsComplatable)
+        {
+            this.CompleteQuest.SetActive(true);
+        }
+        else
+        {
+            this.CompleteQuest.SetActive(false);
+
+        }
+
+        if (this.nTD.questID <= GameManager.Instance.plin.playerID && !nTD.npcSubQuest.IsComplete && !nTD.npcSubQuest.IsComplatable)
+        {
+            this.RunningQuest.SetActive(true);
+        }
+        else
+        {
+            this.RunningQuest.SetActive(false);
+        }
 
         if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player 클래스
         {
             this.pressSpace.SetActive(true);
-
         }
         else
         {
@@ -72,7 +88,6 @@ public class NPC : MonoBehaviour
             yield return null;
         }
     }
-
 
 
     public void Ontalk(NPC npc) // 대화
