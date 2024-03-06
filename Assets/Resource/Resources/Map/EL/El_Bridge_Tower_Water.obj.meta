@@ -3,12 +3,17 @@ guid: b452d8a007d3960478eabab0b6922b86
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: El_Bridge_Tower_Water_0Mat
+    second: {fileID: 2100000, guid: f14f142d509805649b2bf4550fd534f1, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
