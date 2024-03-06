@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestGiver : MonoBehaviour
 {
     [SerializeField]
-    private Quest[] quests;
+    private List<Quest> quests;
 
     private void Start()
     {
@@ -16,4 +16,9 @@ public class QuestGiver : MonoBehaviour
         }
     }
 
+    public void addQuest(Quest quest)
+    {
+        if (quest.IsAcceptable && !QuestSystem.Instance.ContainsInActiveAchievements(quest))
+            quests.Add(quest);   
+    }   
 }
