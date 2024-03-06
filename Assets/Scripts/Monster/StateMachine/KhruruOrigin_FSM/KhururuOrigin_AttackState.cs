@@ -19,7 +19,7 @@ public class KhururuOrigin_AttackState : BaseState
 
 	private float totalWeight;
 
-	bool shieldOn;
+	public bool shieldOn;
 	bool attacked = false;
 
 	public override void OnStateEnter()

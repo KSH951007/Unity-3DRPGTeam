@@ -19,7 +19,7 @@ public class KhururuTrans : BossMonsters
 
     private void Start()
     {
-        timeForNextChange = Time.time + 1f;
+        timeForNextChange = Time.time + 3f;
         _curState = State.Appear;
         _fsm = new FSM(new KhururuTrans_AppearState(this));
     }
@@ -44,7 +44,9 @@ public class KhururuTrans : BossMonsters
             case State.Idle:
                 if (CanSeePlayer() && NextChangeCoolTime())
                 {
-                    ChangeState(State.Chase);
+					bossHpBarUI.SetActive(true);
+
+					ChangeState(State.Chase);
                 }
                 break;
 
