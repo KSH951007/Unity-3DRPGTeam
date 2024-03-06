@@ -8,8 +8,7 @@ using UnityEngine.UIElements;
 public enum NPCState
 {
     Idle = 0,
-    Walk = 1 ,
-    Talk = 2
+    Talk = 1
 }
 public class NPC : MonoBehaviour
 {
@@ -24,8 +23,6 @@ public class NPC : MonoBehaviour
     public NPCData nTD;
 
     public DialogueWindow dia;
-
-    private int rndInt;
 
     private void Awake()
     {
@@ -44,7 +41,7 @@ public class NPC : MonoBehaviour
              // 퀘스트 관련 알림
         //}
 
-        if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange)
+        if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player 클래스
         {
             this.pressSpace.SetActive(true);
 
@@ -60,21 +57,13 @@ public class NPC : MonoBehaviour
     {
         while (true)
         {
-            state = NPCState.Idle;
             switch (state)
             {
                 case NPCState.Idle: // 0
-                    if(nTD.isMove)
-                    {
-                        this.rndInt = Random.Range(0, moveRnd.Length - 1);
-                        Vector3 TarPos = moveRnd[rndInt].position;
-                        Vector3 Dir = (TarPos - transform.position).normalized;
-                        this.transform.LookAt(TarPos);
-                        yield return new WaitForSeconds(3f);
-                    }
+                    
                     break;
-                case NPCState.Talk: // 2
-                    Vector3 dir = GameManager.Instance.plin.transform.position - transform.position;
+                case NPCState.Talk: // 1
+                    Vector3 dir = GameManager.Instance.plin.transform.position - transform.position;// TODO : player 클래스
                     dir.y = 0;
                     transform.rotation = Quaternion.LookRotation(dir).normalized;
                     state = NPCState.Idle;
@@ -91,6 +80,4 @@ public class NPC : MonoBehaviour
         npc.dia.GiveComponent(npc.nTD);
         npc.state = NPCState.Talk;
     }
-
-
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
-    public Canvas canvas;
-    public QuestUi QUI;
     private void Awake()
     {
     }

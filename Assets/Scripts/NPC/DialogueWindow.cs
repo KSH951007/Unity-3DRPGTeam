@@ -98,7 +98,7 @@ public class DialogueWindow : MonoBehaviour
     }
     public void OnDialogue()
     {
-        if (GameManager.Instance.plin.playerID >= talkData.questID)
+        if (GameManager.Instance.plin.playerID >= talkData.questID)// TODO : player 클래스
         {
             dialogueFlow();
         }
@@ -122,7 +122,7 @@ public class DialogueWindow : MonoBehaviour
     }
     public void dialogueFlow()
     {
-        if (GameManager.Instance.plin.playerID >= talkData.questID)
+        if (GameManager.Instance.plin.playerID >= talkData.questID)// TODO : player 클래스
         {
             if (questSentence.Count > 0)
             {
