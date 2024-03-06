@@ -38,7 +38,6 @@ public class ProjectileFlowerSlash : MonoBehaviour
 
                     for (int i = 0; i < hitCollider.Length; i++)
                     {
-                        Debug.Log(hitCollider.Length);
                         if (hitCollider[i] != null)
                         {
                             if (hitCollider[i].gameObject.layer == LayerMask.NameToLayer("Enemy"))

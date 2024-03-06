@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: HeroAaren
   m_EditorClassIdentifier: 
   heroIcon: {fileID: 21300000, guid: 6130691d0fec21541adc89a3992bbad1, type: 3}
+  heroName: "\uC544\uB80C"
   level: 1
-  maxHealth: 1000
-  maxMana: 500
-  defensive: 5
+  maxHealth: 800
+  regenerationHealth: 0.005
+  maxMana: 1000
+  regenerationMana: 0.008
+  defensivePercent: 0.3
   baseDamage: 20
   maxAttackCombo: 2
   skillDatas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 574b37837ea5dde42af78b5de7bd0ea2, type: 2}
+  - {fileID: 11400000, guid: 5e134749223322443a7efc7fbe609f84, type: 2}
+  - {fileID: 11400000, guid: 61fed145d3fd4d542b397b8d282200b6, type: 2}

@@ -14,7 +14,6 @@ public class HeroManager : MonoBehaviour
     [SerializeField] private ChangeEffect changeEffect;
 
 
-    private float changeTime;
 
     private int maxStorageHerosCount;
     private int maxPlayHeroCount;
@@ -25,13 +24,14 @@ public class HeroManager : MonoBehaviour
     private float currentChangeCooldown;
     public event Action onChangeCharacter;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
+    private float currentRegenerationTime;
+    private float regenerationTime;
 
-
+    public float ChangeCooldown { get { return changeCooldown; } }
 
     private void Awake()
     {
 
-        changeTime = 2f;
         maxStorageHerosCount = 50;
         maxPlayHeroCount = 3;
         changeCooldown = 5f;
@@ -50,7 +50,8 @@ public class HeroManager : MonoBehaviour
 
         playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
         playerCamera.m_LookAt = selectHeros[mainHeroIndex].transform;
-
+        regenerationTime = 1f;
+        currentRegenerationTime = 0f;
     }
     private void Start()
     {
@@ -58,10 +59,29 @@ public class HeroManager : MonoBehaviour
         SceneLoader.Instance.onSceneChanged += SceneChangeHeroSetting;
 
     }
+    private void Update()
+    {
+        currentRegenerationTime += Time.deltaTime;
+        if (currentRegenerationTime >= regenerationTime)
+        {
+            for (int i = 0; i < selectHeros.Length; i++)
+            {
+                if (i == mainHeroIndex)
+                    continue;
+
+                selectHeros[i].NoneActiveHero();
+            }
+            currentRegenerationTime = 0f;
+        }
+
+    }
     public Hero GetMainHero()
     {
         return selectHeros[mainHeroIndex];
     }
+    public int GetMainHeroIndex() { return mainHeroIndex; }
+    public Hero GetSelectHero(int index) { return selectHeros[index]; }
+
     public void AddStorageHero()
     {
 
@@ -108,15 +128,15 @@ public class HeroManager : MonoBehaviour
         currentChangeCooldown = 0f;
 
     }
-    public int nextCharacter()
+    public int nextHeroIndex(int index)
     {
-        mainHeroIndex++;
-        if (mainHeroIndex >= maxPlayHeroCount)
+        index++;
+        if (index >= maxPlayHeroCount)
         {
-            mainHeroIndex = 0;
+            index = 0;
         }
 
-        return mainHeroIndex;
+        return index;
     }
     private void SceneChangeHeroSetting()
     {

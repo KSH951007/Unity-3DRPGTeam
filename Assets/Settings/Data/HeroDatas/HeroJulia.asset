@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: HeroJulia
   m_EditorClassIdentifier: 
   heroIcon: {fileID: 21300000, guid: 26d941ad6591bc840811fc1329c403f5, type: 3}
+  heroName: "\uC904\uB9AC\uC544"
   level: 1
-  maxHealth: 1000
-  maxMana: 500
-  defensive: 5
+  maxHealth: 1500
+  regenerationHealth: 0.009
+  maxMana: 700
+  regenerationMana: 0.009
+  defensivePercent: 0.3
   baseDamage: 40
   maxAttackCombo: 2
   skillDatas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1fbaf52b7b1412b478faa0d9a18fc99c, type: 2}
+  - {fileID: 11400000, guid: 2921b3b2fa0b66c4b9e61385ed1a2a23, type: 2}
+  - {fileID: 11400000, guid: 3f4c20671fb02194b9d4375252d9cae5, type: 2}

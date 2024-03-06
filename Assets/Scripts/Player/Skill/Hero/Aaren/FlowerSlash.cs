@@ -12,11 +12,12 @@ public class FlowerSlash : Skill
     }
     public override void UseSkill()
     {
+        base.UseSkill();
         GameObject projectile = PoolManager.Instance.Get("ProjectileFlowerSlash");
         if (projectile != null)
         {
             projectile.GetComponent<ProjectileFlowerSlash>().Init(transform.position,hero.GetHeroData().GetDamage());
-            CurrentCooldown = skillData.GetCoolDown();
+           
         }
     }
     public override void UpdateSkill()

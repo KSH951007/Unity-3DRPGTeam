@@ -21,8 +21,10 @@ public abstract class Hero : MonoBehaviour
     protected HeroSkillAction[] skillAction;
     protected NavMeshAgent agent;
     protected ActionScheduler scheduler;
-    protected SkillManager skillManager;
+    protected ManaSystem manaSystem;
 
+
+    public ManaSystem GetManaSystem() { return manaSystem; }
     public NavMeshAgent Agent { get { return agent; } }
     public EnumType.HeroAnimType GetAnimType() { return animType; }
     public Animator HeroAnimator { get => animator; }
@@ -34,6 +36,7 @@ public abstract class Hero : MonoBehaviour
     public Transform AttackPoint { get => attackPoint; }
     public HeroSO GetHeroData() { return heroData; }
 
+   
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -42,12 +45,34 @@ public abstract class Hero : MonoBehaviour
         animType = EnumType.HeroAnimType.Base;
         ChangeAnimatorController(EnumType.HeroAnimType.Base);
         animEnvent = GetComponentInChildren<HeroAnimEvent>();
-        skillManager = GetComponentInParent<SkillManager>();
 
+        manaSystem = GetComponent<ManaSystem>();
+        manaSystem.Init(heroData.GetMaxMana(), heroData.GetRegenerationMana());
+        GetComponent<Health>().SetHealth(heroData.GetMaxHealth(), heroData.GetRegenerationHealth(), heroData.GetDefensive());
         scheduler = new ActionScheduler();
 
-    }
+        moveAction = new HeroMoveAction(scheduler, animator, this, agent, 3.5f);
 
+    }
+    protected virtual void Start()
+    {
+        Transform skillsTr = transform.Find("Skills");
+        Skill[] skills = new Skill[3];
+        for (int i = 0; i < skills.Length; i++)
+        {
+            skills[i] = skillsTr.GetChild(i).GetComponent<Skill>();
+        }
+        SkillManager skillManager = GetComponentInParent<SkillManager>();
+        skillManager.AddSkill(this, skills);
+        skillAction = new HeroSkillAction[skillsTr.childCount];
+        skillAction[0] = new HeroSkillAction(scheduler, skillManager, 0, animator, this);
+        skillAction[1] = new HeroSkillAction(scheduler, skillManager, 1, animator, this);
+        skillAction[2] = new HeroSkillAction(scheduler, skillManager, 2, animator, this);
+    }
+    public void NoneActiveHero()
+    {
+        manaSystem.Regenerat();
+    }
     public void ChangeAnimatorController(EnumType.HeroAnimType newAnimType)
     {
         animType = newAnimType;
@@ -85,11 +110,12 @@ public abstract class Hero : MonoBehaviour
     public IEnumerator TargetToLoock(Vector3 targetPos, float smoothTime)
     {
         Vector3 velocity = Vector3.zero;
-        while (Vector3.Dot(transform.forward, targetPos) <= 0.99f)
+
+        while (Vector3.SignedAngle(transform.forward, targetPos,Vector3.up) > 0.01f)
         {
             transform.forward = Vector3.SmoothDamp(transform.forward, targetPos, ref velocity, smoothTime);
-
             yield return null;
         }
+        transform.forward = targetPos;
     }
 }

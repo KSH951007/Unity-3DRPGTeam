@@ -15,9 +15,8 @@ public class HeroAarenAttackAction : HeroAttackAction
         GameObject projectile = PoolManager.Instance.Get("ProjectileAarenAttack",owner.AttackPoint.position,owner.AttackPoint.rotation);
         if (projectile != null)
         {
-            Debug.Log(projectile.transform.position);
             projectile.GetComponent<ProjectileAarenAttack>().Init(owner.GetHeroData().GetDamage(), owner.AttackPoint.position, owner.transform.forward);
-            Debug.Log(projectile.transform.position);
+
 
         }
 

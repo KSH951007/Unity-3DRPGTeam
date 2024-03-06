@@ -6,16 +6,19 @@ using UnityEngine;
 public class Health : MonoBehaviour, IHitable
 {
 
-    [SerializeField] private int helath;
+    [SerializeField] private int currentHealth;
+    private int maxHeath;
+    private float regenerationHealth;
     private float defensivePercent;
     private Collider myCollider;
 
+    public event Action<int, int> onChangeHealth;
 
-    public event Action onHit;
     public event Action onDie;
-    public event Action onDown;
 
     private bool isinvincibility;
+    public int CurrentHealth { get { return currentHealth; } }
+    public int MaxHealth { get { return maxHeath; } }
     public bool IsInvincibility { get { return isinvincibility; } set => isinvincibility = value; }
     private void Awake()
     {
@@ -25,26 +28,29 @@ public class Health : MonoBehaviour, IHitable
     {
         myCollider.enabled = true;
     }
-    public void SetHealth(int newHealth,float newDefensivePercent)
+    public void SetHealth(int newHealth, float newRegenerationHealth, float newDefensivePercent)
     {
-        helath = newHealth;
-        this.defensivePercent = newDefensivePercent;
+        currentHealth = newHealth;
+        maxHeath = newHealth;
+        regenerationHealth = newRegenerationHealth;
+        defensivePercent = newDefensivePercent;
     }
-    public void TakeHit(int damage, IHitable.HitType hitType= IHitable.HitType.None, GameObject hitParticle = null)
+    public void TakeHit(int damage, IHitable.HitType hitType = IHitable.HitType.None, GameObject hitParticle = null)
     {
         if (isinvincibility)
             return;
 
         int compueDamage = damage - (int)(damage * defensivePercent);
 
-        helath = Mathf.Max(helath - compueDamage, 0);
+        currentHealth = Mathf.Max(currentHealth - compueDamage, 0);
         GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
         damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
 
-        if (helath <= 0)
+        if (currentHealth <= 0)
         {
             myCollider.enabled = false;
             onDie?.Invoke();
+            onChangeHealth?.Invoke(currentHealth, maxHeath);
             return;
         }
         if (hitParticle != null)
@@ -52,7 +58,7 @@ public class Health : MonoBehaviour, IHitable
 
         }
 
-        onHit?.Invoke();
+        onChangeHealth?.Invoke(currentHealth, maxHeath);
     }
 
 }

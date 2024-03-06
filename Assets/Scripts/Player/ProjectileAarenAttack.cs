@@ -24,8 +24,6 @@ public class ProjectileAarenAttack : MonoBehaviour
         this.startPos = startPos;
         this.damage = damage;
         this.direction = direction;
-        Debug.Log(this.gameObject.activeSelf);
-        Debug.Log(transform.position);
     }
     private void OnDisable()
     {
@@ -43,7 +41,6 @@ public class ProjectileAarenAttack : MonoBehaviour
             }
             else if (Vector3.Distance(startPos, transform.position) >= distance)
             {
-                Debug.Log(transform.position);
                 PoolManager.Instance.ReturnPool(gameObject);
 
                 return;

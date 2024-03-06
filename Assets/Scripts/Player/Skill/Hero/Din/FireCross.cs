@@ -12,11 +12,12 @@ public class FireCross : Skill
     }
     public override void UseSkill()
     {
+        base.UseSkill();
         GameObject projectileFireCross = PoolManager.Instance.Get("ProjectileFireCross");
         projectileFireCross.transform.position = hero.transform.position;
         projectileFireCross.transform.rotation = Quaternion.FromToRotation(projectileFireCross.transform.forward, hero.transform.forward);
         projectileFireCross.GetComponent<ProjectileFireCross>().Init(hero.GetHeroData().GetDamage());
-        CurrentCooldown = skillData.GetCoolDown();
+
     }
 
     public override void UpdateSkill()

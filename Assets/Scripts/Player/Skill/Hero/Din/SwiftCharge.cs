@@ -22,11 +22,10 @@ public class SwiftCharge : Skill
     }
     public override void UseSkill()
     {
+        base.UseSkill();
         startPos = hero.transform.position;
-        Debug.Log(projectileSwiftChage);
         projectileSwiftChage.Init(operationTime, hero.GetHeroData().GetDamage());
         projectileSwiftChage.gameObject.SetActive(true);
-        CurrentCooldown = skillData.GetCoolDown();
         StartCoroutine(SwiftChargeRoutine());
     }
     IEnumerator SwiftChargeRoutine()

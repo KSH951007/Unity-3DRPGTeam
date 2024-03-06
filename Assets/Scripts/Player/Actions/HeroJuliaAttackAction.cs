@@ -18,7 +18,7 @@ public class HeroJuliaAttackAction : HeroAttackAction
         if (projectile != null)
         {
             projectile.GetComponent<ProjectileJuliaAttack>().Init(owner.AttackPoint.position, owner.GetHeroData().GetDamage());
-            Debug.Log("attack");
+       
         }
 
     }
