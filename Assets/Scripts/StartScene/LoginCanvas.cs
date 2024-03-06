@@ -6,12 +6,14 @@ public class LoginCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject quitWindow;
     [SerializeField] private GameObject soundWindow;
+    public AudioSource soundSource;
 
     public void ClickQuitButton()
     {
         if (!quitWindow.activeSelf)
         {
 			quitWindow.SetActive(true);
+			soundSource.Play();
 		}
 	}
 
@@ -20,6 +22,7 @@ public class LoginCanvas : MonoBehaviour
         if (!soundWindow.activeSelf)
         {
             soundWindow.SetActive(true);
+            soundSource.Play();
         }
     }
 

@@ -34,7 +34,7 @@ public class SoundSlider : MonoBehaviour
 
 	private void Update()
 	{
-		int volume = (int)(slider.value * 100);
+		int volume = (int)(slider.value * 100f);
 		volumeScale.text = $"{volume}";
 		ChangeState(volume);
 	}
@@ -45,14 +45,14 @@ public class SoundSlider : MonoBehaviour
 		{
 			case State.Mute:
 				mute.SetActive(true);
-				if (volume > 0)
+				if (volume > 0.1)
 				{
 					mute.SetActive(false);
 					state = State.Quiet;
 				}
 				break;
 			case State.Quiet:
-				if (volume == 0)
+				if (volume < 0.1)
 				{
 					state = State.Mute;
 				}
