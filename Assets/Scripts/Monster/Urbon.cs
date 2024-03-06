@@ -43,6 +43,8 @@ public class Urbon : BossMonsters
 			case State.Idle:
 				if (CanSeePlayer() && NextChangeCoolTime())
 				{
+					bossHpBarUI.SetActive(true);
+
 					ChangeState(State.Chase);
 				}
 				break;

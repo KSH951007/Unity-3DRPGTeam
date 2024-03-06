@@ -58,6 +58,8 @@ public class KhururuOrigin : BossMonsters
 			case State.Idle:
 				if (CanSeePlayer() && NextChangeCoolTime())
 				{
+					bossHpBarUI.SetActive(true);
+
 					ChangeState(State.Chase);
 				}
 				break;
