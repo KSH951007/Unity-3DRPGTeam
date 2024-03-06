@@ -31134,6 +31134,7 @@ GameObject:
   - component: {fileID: 7349878111087008647}
   - component: {fileID: 3458755664377991923}
   - component: {fileID: 8241942290810724784}
+  - component: {fileID: -3606145172449916111}
   m_Layer: 7
   m_Name: KhururuOrigin
   m_TagString: Enemy
@@ -31215,13 +31216,13 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: -3606145172449916111}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -31274,6 +31275,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3606145172449916111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740991827424344357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 7af7a5840b58843428a300e648c9ebaa, type: 2}
+  target: {fileID: 11400000, guid: 3d0c08eb88aef2f468b38a158d651637, type: 2}
+  successCount: 1
+  colliderTags:
+  - Player
 --- !u!1 &5839964203835245217
 GameObject:
   m_ObjectHideFlags: 0
