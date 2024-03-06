@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        if(this.nTD.npcSubQuest.IsComplatable)
+        if(nTD.npcSubQuest.IsComplatable)
         {
             this.CompleteQuest.SetActive(true);
         }
@@ -49,11 +49,11 @@ public class NPC : MonoBehaviour
 
         }
 
-        if (this.nTD.questID <= GameManager.Instance.plin.playerID && !nTD.npcSubQuest.IsComplete && !nTD.npcSubQuest.IsComplatable)
+        if (nTD.questID <= GameManager.Instance.plin.playerID && !nTD.npcSubQuest.IsComplete && !nTD.npcSubQuest.IsComplatable)
         {
             this.RunningQuest.SetActive(true);
         }
-        else
+        else 
         {
             this.RunningQuest.SetActive(false);
         }
