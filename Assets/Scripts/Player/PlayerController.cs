@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
             return;
         if (EventSystem.current.IsPointerOverGameObject() == false)
         {
+            
             mainHero.AttackAction(PointerToTarget());
         }
 

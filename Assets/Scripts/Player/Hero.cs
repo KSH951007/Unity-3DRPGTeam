@@ -83,6 +83,7 @@ public abstract class Hero : MonoBehaviour
     {
         moveAction.SetMovePoint(targetPosition);
         scheduler.AddAction(moveAction);
+    
     }
     public void AttackAction(Vector3 newDirection)
     {
@@ -91,6 +92,7 @@ public abstract class Hero : MonoBehaviour
 
         if (!attackAction.IsLastAttack())
         {
+            
             attackAction.SetTargetTo(newDirection);
             scheduler.AddAction(attackAction);
         }
