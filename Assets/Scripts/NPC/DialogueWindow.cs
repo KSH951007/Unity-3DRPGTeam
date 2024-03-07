@@ -74,12 +74,6 @@ public class DialogueWindow : MonoBehaviour
                 curText += letter;
                 yield return new WaitForSeconds(.2f);
             }
-            //else // TODO : ½ºÅµ »ç¿ë
-            //{
-            //    curText = "";
-            //    curText = st;
-            //}
-            //yield return null;
         }
         if(!isTyping)
         {

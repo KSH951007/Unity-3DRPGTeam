@@ -62,6 +62,7 @@ public class QuestSystem : MonoBehaviour
     public IReadOnlyList<Quest> ActiveAchievements => activeAchievements;
     public IReadOnlyList<Quest> CompletedAchievements => completedAchievements;
 
+
     private void Awake()
     {
         questDatatabase = Resources.Load<QuestDatabase>("QuestDatabase");
@@ -72,6 +73,11 @@ public class QuestSystem : MonoBehaviour
             foreach (var achievement in achievementDatabase.Quests)
                 Register(achievement);
         }
+        if (!Load())
+        {
+            foreach (var achievement in questDatatabase.Quests)
+                Register(achievement);
+        }
     }
 
     private void OnApplicationQuit()
@@ -80,22 +86,24 @@ public class QuestSystem : MonoBehaviour
         Save();
     }
 
+    //[SerializeField]
+    //private QuestCanceledNotice notice;
     public Quest Register(Quest quest)
     {
         foreach(var clearQuest in completedQuests)
         {
             if(clearQuest.CodeName == quest.CodeName)
             {
+                //notice.Notify(true);
                 return null;
-                // TODO : UI 持失
             }
         }
         foreach(var runningQuest in activeQuests)
         {
             if(runningQuest.CodeName == quest.CodeName)
             {
+                //notice.Notify(false);
                 return null;
-                // TODO : UI 持失
             }
         }
 

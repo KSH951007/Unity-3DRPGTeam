@@ -39,23 +39,30 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        if(nTD.npcSubQuest.State == QuestState.Complete)
+        if (nTD.questID >= GameManager.Instance.plin.playerID)
         {
-            this.CompleteQuest.SetActive(true);
+            CompleteQuest.SetActive(false);
+            RunningQuest.SetActive(false);
+
+
+        }
+        if (nTD.npcSubQuest.IsRegistered)
+        {
+            print("register");
+            CompleteQuest.SetActive(true);
         }
         else
         {
-            this.CompleteQuest.SetActive(false);
-
+            CompleteQuest.SetActive(false);
         }
 
         if (nTD.questID <= GameManager.Instance.plin.playerID && !nTD.npcSubQuest.IsComplete && !nTD.npcSubQuest.IsRegistered)
         {
-            this.RunningQuest.SetActive(true);
+            RunningQuest.SetActive(true);
         }
         else 
         {
-            this.RunningQuest.SetActive(false);
+            RunningQuest.SetActive(false);
         }
 
         if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player Å¬·¡½º
