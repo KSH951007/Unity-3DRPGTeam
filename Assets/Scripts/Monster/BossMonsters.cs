@@ -129,6 +129,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 			else if (currentHp - damage <= 0)
 			{
 				currentHp = 0;
+				nav.enabled = false;
 				bossCollider.enabled = false;
 				isDead = true;
 				StartCoroutine(Die());

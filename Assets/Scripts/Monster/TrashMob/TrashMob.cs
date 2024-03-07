@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class TrashMob : MonoBehaviour, IHitable
 {
-    private NavMeshAgent nav;
+    protected NavMeshAgent nav;
 	private Transform target;
 	private Animator animator;
 	private float moveSpeed = 2f;
@@ -234,6 +234,7 @@ public class TrashMob : MonoBehaviour, IHitable
             if (currentHp <= 0)
             {
                 target = null;
+				nav.enabled = false;
 				mobCollider.enabled = false;
 				cancelWait = true;
                 ChangeState(State.KILLED);
