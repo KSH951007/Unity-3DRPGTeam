@@ -28,13 +28,12 @@ public class BossAreaEnterTrigger : MonoBehaviour
         //    if (director.time >= director.duration * 0.99)
         //    {
         //        Debug.Log("paused");
-        //        for (int i = 0; i < 3; i++)
-        //        {
-        //            Transform heroTr = heroManager.GetSelectHero(i).transform;
-        //            heroTr.localPosition = Vector3.zero;
-        //            heroTr.localRotation = Quaternion.identity;
-        //            isStart = false;
-        //        }
+
+        //        Transform heroTr = heroManager.GetMainHero().transform;
+        //        heroTr.localPosition = Vector3.zero;
+        //        heroTr.localRotation = Quaternion.identity;
+        //        //obstacle.enabled = true;
+        //        isStart = false;
 
         //    }
 
@@ -47,7 +46,7 @@ public class BossAreaEnterTrigger : MonoBehaviour
         {
             director.gameObject.SetActive(true);
             director.Play();
-            obstacle.enabled = true;
+            //obstacle.enabled = true;
             myCollider.enabled = false;
         }
     }
@@ -58,5 +57,13 @@ public class BossAreaEnterTrigger : MonoBehaviour
             isStart = true;
             return;
         }
+    }
+    public void ConfirmationHeroPosition()
+    {
+        Transform heroTr = heroManager.GetMainHero().transform;
+        heroTr.localPosition = Vector3.zero;
+        heroTr.localRotation = Quaternion.identity;
+        //obstacle.enabled = true;
+        Debug.Log("asdsadsad");
     }
 }
