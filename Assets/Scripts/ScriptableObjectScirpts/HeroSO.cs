@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Hero", menuName = "ScriptableObject/HeroData")]
 public class HeroSO : ScriptableObject
 {
+    [SerializeField] protected int heroID;
     [SerializeField] protected Sprite heroIcon;
     [SerializeField] protected string heroName;
     [SerializeField] protected int level;
@@ -19,6 +20,8 @@ public class HeroSO : ScriptableObject
     [SerializeField] protected int maxAttackCombo;
     [SerializeField] protected SkillSO[] skillDatas = new SkillSO[3];
 
+
+    public int GetHeroID() {  return heroID; }
     public Sprite GetIcon() { return heroIcon; }
     public string GetName() { return heroName;}
     public int GetLevel() { return level; }
