@@ -21,7 +21,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] public float timeForNextIdle;
     [SerializeField] public float timeForNextChange;
 	[SerializeField] protected GameObject bossHpBarUI;
-	private Collider bossCollider;
+	private CapsuleCollider bossCollider;
 
     public float maxShieldAmount = 2500;
 	public float curShieldAmount;
@@ -74,7 +74,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 		animator = GetComponentInChildren<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-		bossCollider = GetComponent<Collider>();
+		bossCollider = GetComponent<CapsuleCollider>();
 	}
 
 	protected virtual void OnEnable()

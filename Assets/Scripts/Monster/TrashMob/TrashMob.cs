@@ -16,6 +16,7 @@ public class TrashMob : MonoBehaviour, IHitable
 	[SerializeField] private SphereCollider attackCollider;
 	[SerializeField] protected Transform spawnedPoint;        // Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
 	[SerializeField] private GameObject hpBarUI;
+	CapsuleCollider mobCollider;
 
 	public LayerMask attackTargetLayer;
     private bool cancelWait;
@@ -40,6 +41,7 @@ public class TrashMob : MonoBehaviour, IHitable
 
 	protected virtual void Start()
 	{		
+		mobCollider = GetComponent<CapsuleCollider>();
 		animator = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 
@@ -232,7 +234,8 @@ public class TrashMob : MonoBehaviour, IHitable
             if (currentHp <= 0)
             {
                 target = null;
-                cancelWait = true;
+				mobCollider.enabled = false;
+				cancelWait = true;
                 ChangeState(State.KILLED);
             }
             else
