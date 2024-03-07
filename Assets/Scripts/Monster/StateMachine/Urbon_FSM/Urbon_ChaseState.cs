@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Urbon_ChaseState : BaseState
@@ -9,10 +10,7 @@ public class Urbon_ChaseState : BaseState
 	public override void OnStateEnter()
 	{
 		_monster.SetChasingTime();
-
 		_monster.timeForNextChange = _monster.chasingTime - 2f;
-		//Debug.Log(_monster.chasingTime);
-		//Debug.Log(_monster.timeForNextChange);
 
 		_monster.nav.isStopped = false;
 		_monster.animator.SetBool("Move", true);

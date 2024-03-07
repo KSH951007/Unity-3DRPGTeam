@@ -8,7 +8,9 @@ public class KhururuTrans_Bullet : MonoBehaviour
     public Transform handPosition;
     public bool shot;   // 애니메이션 이벤트로 shot을 바꿔줌
     private float shotSpeed = 20;
+    private int skillDamage = 30;
     SphereCollider sphereCollider;
+    public LayerMask attackTargetLayer;
 
 	private void OnEnable()
 	{
@@ -33,16 +35,26 @@ public class KhururuTrans_Bullet : MonoBehaviour
 
             // TODO : 플레이어나 벽에 닿으면 소멸
 			Vector3 collCenter = sphereCollider.transform.position + sphereCollider.center;
-			//Physics.OverlapSphere(collCenter, sphereCollider.radius, );
-
-			//if (Physics.OverlapSphere)
-        }
+			Collider[] detectedColl =
+			Physics.OverlapSphere(collCenter, sphereCollider.radius, attackTargetLayer);
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skillDamage);
+                    gameObject.SetActive(false);
+				}
+			}
+		}
     }
 
     private IEnumerator Reset()
     {
         yield return new WaitForSeconds(3f);
-        sphereCollider.enabled = false;
-        gameObject.SetActive(false);
+        if (gameObject.activeSelf)
+        {
+			sphereCollider.enabled = false;
+			gameObject.SetActive(false);
+		}
     }
 }
