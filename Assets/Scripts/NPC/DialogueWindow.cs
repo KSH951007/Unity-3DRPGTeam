@@ -25,9 +25,7 @@ public class DialogueWindow : MonoBehaviour
     public Queue<string> questSentence;
 
     public GameObject questAcceptWindow;
-    public QuestView questWindow;
-    //public DialogueWindowView window;
-
+    public QuestGiver giver;
     public void GiveComponent(NPCData Data)
     {
         Data.Run();
@@ -152,6 +150,7 @@ public class DialogueWindow : MonoBehaviour
     public void QuestAccept()
     {
         QuestSystem.Instance.Register(talkData.npcSubQuest);
+        giver.giveQuest(talkData.npcSubQuest);
         otherText = "";
         curText = "";
         isTyping = false;

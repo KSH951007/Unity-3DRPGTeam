@@ -1,4 +1,4 @@
-public struct QuestSaveDataTest
+public struct QuestSaveData
 {
     public string codeName;
     public QuestState state;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,23 @@ public class QuestSystem : MonoBehaviour
 
     public Quest Register(Quest quest)
     {
+        foreach(var clearQuest in completedQuests)
+        {
+            if(clearQuest.CodeName == quest.CodeName)
+            {
+                return null;
+                // TODO : UI 持失
+            }
+        }
+        foreach(var runningQuest in activeQuests)
+        {
+            if(runningQuest.CodeName == quest.CodeName)
+            {
+                return null;
+                // TODO : UI 持失
+            }
+        }
+
         var newQuest = quest.Clone();
 
         if (newQuest is Achievement)
@@ -96,7 +114,6 @@ public class QuestSystem : MonoBehaviour
         {
             newQuest.onCompleted += OnQuestCompleted;
             newQuest.onCanceled += OnQuestCanceled;
-
             activeQuests.Add(newQuest);
 
             newQuest.OnRegister();
@@ -139,6 +156,8 @@ public class QuestSystem : MonoBehaviour
     public bool ContainsInCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
 
 
+
+
     public void Save()
     {
         var root = new JObject();
@@ -146,6 +165,8 @@ public class QuestSystem : MonoBehaviour
         root.Add(kCompletedQuestsSavePath, CreateSaveDatas(completedQuests));
         root.Add(kActiveAchievementsSavePath, CreateSaveDatas(activeAchievements));
         root.Add(kCompletedAchievementsSavePath, CreateSaveDatas(completedAchievements));
+        string jsonString = root.ToString();
+        print("Saved data: " + jsonString);
 
         PlayerPrefs.SetString(kSaveRootPath, root.ToString());
         PlayerPrefs.Save();
@@ -159,7 +180,6 @@ public class QuestSystem : MonoBehaviour
 
             LoadSaveDatas(root[kActiveQuestsSavePath], questDatatabase, LoadActiveQuest);
             LoadSaveDatas(root[kCompletedQuestsSavePath], questDatatabase, LoadCompletedQuest);
-
             LoadSaveDatas(root[kActiveAchievementsSavePath], achievementDatabase, LoadActiveQuest);
             LoadSaveDatas(root[kCompletedAchievementsSavePath], achievementDatabase, LoadCompletedQuest);
 
@@ -175,7 +195,11 @@ public class QuestSystem : MonoBehaviour
         foreach (var quest in quests)
         {
             if (quest.IsSavable)
-                saveDatas.Add(JObject.FromObject(quest.ToSaveData()));
+            {
+                var jobj = JObject.FromObject(quest.ToSaveData());
+                print(jobj);
+                saveDatas.Add(jobj);
+            }
         }
         return saveDatas;
     }

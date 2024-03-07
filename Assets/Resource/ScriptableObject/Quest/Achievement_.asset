@@ -9,24 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e0e47d5126b74428167787852d48a3, type: 3}
-  m_Name: Nomal_monster_Girl
+  m_Script: {fileID: 11500000, guid: 71ca48e7da80de1468fe9bc5f5815900, type: 3}
+  m_Name: Achievement_
   m_EditorClassIdentifier: 
-  category: {fileID: 11400000, guid: 684bd0823441e2d4ea510b94fd6453d4, type: 2}
+  category: {fileID: 11400000, guid: 9d92ed8a9fc31c84ab0143ad22947647, type: 2}
   icon: {fileID: 0}
-  codeName: Kill_Monster_nomal_Girl
-  displayName: Kill monster
-  description: 'you have to kill monster.
-
-    and save the world
-
-    say yes'
+  codeName: Its_Achievement
+  displayName: upjuck
+  description: Get a Achievement Reward!!
   taskGroups:
-  - tasks:
-    - {fileID: 11400000, guid: a6d5dc7e7f202f64fa64ed5a76cf54e9, type: 2}
+  - tasks: []
   rewards: []
   useAutoComplete: 0
   isCancelable: 0
-  isSavable: 1
+  isSavable: 0
   acceptionConditions: []
   cancelConditions: []

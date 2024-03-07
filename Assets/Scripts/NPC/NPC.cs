@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        if(nTD.npcSubQuest.IsComplatable)
+        if(nTD.npcSubQuest.State == QuestState.Complete)
         {
             this.CompleteQuest.SetActive(true);
         }

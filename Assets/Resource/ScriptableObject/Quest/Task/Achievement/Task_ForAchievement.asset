@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a2477701e6d4644b8054ec34a81af17, type: 3}
-  m_Name: killmonster Madam
+  m_Name: Task_ForAchievement
   m_EditorClassIdentifier: 
-  category: {fileID: 11400000, guid: 684bd0823441e2d4ea510b94fd6453d4, type: 2}
-  codeName: Kill_the_Monster_8
-  description: you have to kill enemy 8
+  category: {fileID: 11400000, guid: 9d92ed8a9fc31c84ab0143ad22947647, type: 2}
+  codeName: AchieveMent
+  description: Achievement
   action: {fileID: 11400000, guid: ea800d85d5cbf924b8ad0a080ad9e84c, type: 2}
   targets:
   - {fileID: 11400000, guid: 3d0c08eb88aef2f468b38a158d651637, type: 2}
   initialSuccessValue: {fileID: 0}
-  needSuccessToComplete: 8
+  needSuccessToComplete: 1000
   canReceiveReportsDuringCompletion: 0

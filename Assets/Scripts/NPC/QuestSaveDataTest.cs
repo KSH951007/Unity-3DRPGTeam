@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestSaveData : MonoBehaviour
+public class QuestSaveDataTest : MonoBehaviour
 {
     [SerializeField]
     private Quest quest;
@@ -35,6 +35,10 @@ public class QuestSaveData : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             QuestSystem.Instance.ReceiveReport(category, target, 1);
+            QuestSystem.Instance.CompleteWaitingQuests();
+        }
+
     }
 }
