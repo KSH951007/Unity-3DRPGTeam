@@ -23,7 +23,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] protected GameObject bossHpBarUI;
 	private Collider bossCollider;
 
-    public float maxShieldAmount = 15;
+    public float maxShieldAmount = 2500;
 	public float curShieldAmount;
 
 	protected GameObject[] dropItem;

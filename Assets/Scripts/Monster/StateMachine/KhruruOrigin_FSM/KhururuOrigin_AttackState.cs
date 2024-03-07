@@ -85,7 +85,7 @@ public class KhururuOrigin_AttackState : BaseState
 		{
 			_monster.animator.SetTrigger("Skill2");
 			_monster.curShieldAmount = _monster.maxShieldAmount;
-			_monster.currentHp += _monster.maxShieldAmount;
+			//_monster.currentHp += _monster.maxShieldAmount;
 			shieldOn = true;
 		}
 		else
