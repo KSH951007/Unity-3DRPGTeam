@@ -21,7 +21,13 @@ public class NPC : MonoBehaviour
     
     public GameObject pressSpace;
     public NPCData nTD;
+    
+    private bool questComplete;
+    private bool questRunning;
+    private bool canQuestAccept;
 
+    public GameObject CompleteQuest;
+    public GameObject RunningQuest;
     public DialogueWindow dia;
 
     private void Awake()
@@ -36,15 +42,73 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        //if(false == nTD.npcSubQuest.IsComplatable && GameManager.Instance.plin.playerID >= nTD.questID)
-        //{
-             // 퀘스트 관련 알림
-        //}
+        if (nTD.questID <= GameManager.Instance.plin.playerID)
+        {
+            canQuestAccept = true;
+
+            foreach (var clearQuest in QuestSystem.Instance.CompletedQuests)
+            {
+                if (clearQuest.CodeName == nTD.npcSubQuest.CodeName)
+                {
+                    questComplete = true;
+                    questRunning = false;
+                }
+                else
+                {
+                    questComplete = false;
+                }
+            }
+            foreach (var runningQuest in QuestSystem.Instance.ActiveQuests)
+            {
+                if (runningQuest.CodeName == nTD.npcSubQuest.CodeName)
+                {
+                    questRunning = true;
+                    questComplete = false;
+                }
+                else
+                {
+                    questRunning = false;
+                }
+            }
+        }
+        else
+        {
+            canQuestAccept = false;
+        }
+
+        if(canQuestAccept && questRunning)
+        {
+            RunningQuest.SetActive(true);
+        }
+        else if (canQuestAccept && !questRunning && !questComplete)
+        {
+            RunningQuest.SetActive(true);
+        }
+        else
+        {
+            RunningQuest.SetActive(false);
+        }
+
+        if(!canQuestAccept)
+        {
+            RunningQuest.SetActive(false);
+            CompleteQuest.SetActive(false);
+        }
+
+        if(nTD.npcSubQuest.IsComplatable)
+        {
+            CompleteQuest.SetActive(true);
+        }
+        else
+        {
+            CompleteQuest.SetActive(false);
+        }
+
+
 
         if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player 클래스
         {
             this.pressSpace.SetActive(true);
-
         }
         else
         {
@@ -73,7 +137,10 @@ public class NPC : MonoBehaviour
         }
     }
 
-
+    public void subQuestComplete()
+    {
+        nTD.npcSubQuest.Complete();
+    }
 
     public void Ontalk(NPC npc) // 대화
     {

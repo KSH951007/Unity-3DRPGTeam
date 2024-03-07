@@ -23,6 +23,9 @@ public class DialogueWindow : MonoBehaviour
     string diaText;
     string otherText;
     public Queue<string> questSentence;
+    
+    [SerializeField]
+    private QuestCanceledNotice notice;
 
     public GameObject questAcceptWindow;
     public QuestGiver giver;
@@ -74,12 +77,6 @@ public class DialogueWindow : MonoBehaviour
                 curText += letter;
                 yield return new WaitForSeconds(.2f);
             }
-            //else // TODO : 스킵 사용
-            //{
-            //    curText = "";
-            //    curText = st;
-            //}
-            //yield return null;
         }
         if(!isTyping)
         {
@@ -98,11 +95,25 @@ public class DialogueWindow : MonoBehaviour
     {
         if (GameManager.Instance.plin.playerID >= talkData.questID)// TODO : player 클래스
         {
+            foreach (var clearQuest in QuestSystem.Instance.CompletedQuests)
+            {
+                if (clearQuest.CodeName == talkData.npcSubQuest.CodeName)
+                {
+                    notice.Notify(true);
+                    gameObject.SetActive(false);
+                    return;
+                }
+            }
+            foreach (var runningQuest in QuestSystem.Instance.ActiveQuests)
+            {
+                if (runningQuest.CodeName == talkData.npcSubQuest.CodeName)
+                {
+                    notice.Notify(false);
+                    gameObject.SetActive(false);
+                    return;
+                }
+            }
             dialogueFlow();
-        }
-        else if(talkData.npcSubQuest.IsComplete)
-        {
-            curText = "completed quest.";
         }
         else
         {
@@ -150,7 +161,7 @@ public class DialogueWindow : MonoBehaviour
     public void QuestAccept()
     {
         QuestSystem.Instance.Register(talkData.npcSubQuest);
-        giver.addQuest(talkData.npcSubQuest);
+        giver.giveQuest(talkData.npcSubQuest);
         otherText = "";
         curText = "";
         isTyping = false;

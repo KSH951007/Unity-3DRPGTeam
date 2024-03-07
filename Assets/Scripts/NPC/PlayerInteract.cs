@@ -10,6 +10,8 @@ public class PlayerInteract : MonoBehaviour, IInteractable
 
     float InteractRange = 2f;
     bool isDialogue = false; // TODO : true 일때 움직임 제한
+    int EXP;
+    int Gold;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) //TODO : 인풋 시스템 적용//  병합 되기전까지 사용
@@ -29,6 +31,10 @@ public class PlayerInteract : MonoBehaviour, IInteractable
         {
             if (collider.TryGetComponent(out NPC npc))
             {
+                if (npc.nTD.npcSubQuest.IsComplatable)
+                {
+                    npc.nTD.npcSubQuest.Complete();
+                }
                 isDialogue = true;
                 GameManager.Instance.qui.showConversation();
                 npc.Ontalk(npc);
@@ -40,4 +46,14 @@ public class PlayerInteract : MonoBehaviour, IInteractable
         npc.Ontalk(npc);
     }
 
+    public int GetEXP(int i) // ToDo : 퀘스트 보상 // 인벤토리 추가후 사용
+    {
+        EXP = i + EXP;
+        return EXP;
+    }
+    public int GetGold(int i)
+    {
+        Gold = i + Gold;
+        return Gold;
+    }
 }
