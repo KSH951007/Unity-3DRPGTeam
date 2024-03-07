@@ -18,6 +18,7 @@ public class Urbon_AttackState : BaseState
 	private float totalWeight;
 
 	private bool Onskill3;
+	private bool attacked;
 
 	public override void OnStateEnter()
 	{
@@ -35,7 +36,10 @@ public class Urbon_AttackState : BaseState
 
 	public override void OnStateUpdate()
 	{
-		DetectSkillCollider();
+		if (!attacked)
+		{
+			DetectSkillCollider();
+		}
 
 		_monster.nav.SetDestination(_monster.target.position);
 
@@ -113,5 +117,7 @@ public class Urbon_AttackState : BaseState
 		{
 			return;
 		}
+
+		attacked = true;
 	}
 }
