@@ -7,7 +7,8 @@ public class TrashMob_Kkaebuli : TrashMob
     protected override void Start()
     {
         maxHp = 500;
-        transform.position = spawnedPoint.position;
+		damage = 5;
+		transform.position = spawnedPoint.position;
 
         base.Start();
     }

@@ -13,6 +13,7 @@ public class TrashMob : MonoBehaviour, IHitable
 	private float moveSpeed = 2f;
 	private float comebackSpeed = 10f;
 	[SerializeField] private SphereCollider detectCollider;
+	[SerializeField] private SphereCollider attackCollider;
 	[SerializeField] protected Transform spawnedPoint;        // Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
 	[SerializeField] private GameObject hpBarUI;
 
@@ -24,6 +25,7 @@ public class TrashMob : MonoBehaviour, IHitable
 
 	public float maxHp;
 	public float currentHp;
+	public int damage;
 	public float lostDistance;		// lostDistance는 반드시 DetectRange보다 멀게 설정
 
 	enum State
@@ -247,8 +249,20 @@ public class TrashMob : MonoBehaviour, IHitable
     protected virtual void AnimHit()
     {
         if (target == null) return;
-		// TODO : 플레이어에게 데미지 가함 TakeHit();
-		print("적 공격함");
+		else
+		{
+			Vector3 collCenter = attackCollider.transform.position + attackCollider.center;
+
+			Collider[] detectedColl =
+			Physics.OverlapSphere(collCenter, attackCollider.radius, attackTargetLayer);
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(damage);
+				}
+			}
+		}
     }
 
 	void StopWhileTakeHit()
