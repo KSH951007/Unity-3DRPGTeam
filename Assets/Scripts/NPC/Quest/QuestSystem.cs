@@ -121,7 +121,7 @@ public class QuestSystem : MonoBehaviour
             quest.ReceiveReport(category, target, successCount);
     }
 
-    public void CompleteWaitingQuests()
+    public void CompleteWaitingQuests() // TODO : 유니티 이벤트 퀘스트 완료용
     {
         foreach (var quest in activeQuests.ToList())
         {

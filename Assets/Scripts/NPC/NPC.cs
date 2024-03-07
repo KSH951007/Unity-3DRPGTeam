@@ -89,6 +89,10 @@ public class NPC : MonoBehaviour
         }
     }
 
+    public void subQuestComplete()
+    {
+        nTD.npcSubQuest.Complete();
+    }
 
     public void Ontalk(NPC npc) // ¥Î»≠
     {
