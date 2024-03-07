@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
             return;
         if (EventSystem.current.IsPointerOverGameObject() == false)
         {
-            
             mainHero.AttackAction(PointerToTarget());
         }
 
@@ -109,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         //TODO: 나중에 마우스위치 수정
         Vector3 screenPos = Camera.main.WorldToScreenPoint(mainHero.transform.position);
-
+        screenPos.z = 0f;
         Vector3 mousePos = Mouse.current.position.value;
         Vector3 direction = (mousePos - screenPos).normalized;
 

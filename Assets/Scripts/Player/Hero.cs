@@ -52,10 +52,6 @@ public abstract class Hero : MonoBehaviour
         scheduler = new ActionScheduler();
 
         moveAction = new HeroMoveAction(scheduler, animator, this, agent, 3.5f);
-
-    }
-    protected virtual void Start()
-    {
         Transform skillsTr = transform.Find("Skills");
         Skill[] skills = new Skill[3];
         for (int i = 0; i < skills.Length; i++)
@@ -68,6 +64,11 @@ public abstract class Hero : MonoBehaviour
         skillAction[0] = new HeroSkillAction(scheduler, skillManager, 0, animator, this);
         skillAction[1] = new HeroSkillAction(scheduler, skillManager, 1, animator, this);
         skillAction[2] = new HeroSkillAction(scheduler, skillManager, 2, animator, this);
+
+    }
+    protected virtual void Start()
+    {
+       
     }
     public void NoneActiveHero()
     {

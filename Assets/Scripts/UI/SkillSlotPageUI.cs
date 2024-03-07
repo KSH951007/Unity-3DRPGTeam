@@ -23,6 +23,7 @@ public class SkillSlotPageUI : MonoBehaviour
         heroManager = skillManager.GetComponent<HeroManager>();
 
         SetSKillSlot();
+        Debug.Log("start");
         heroManager.onChangeCharacter += SetSKillSlot;
 
     }
@@ -31,11 +32,10 @@ public class SkillSlotPageUI : MonoBehaviour
         Hero mainHero = heroManager.GetMainHero();
         for (int i = 0; i < skillSlots.Length; i++)
         {
-
             Skill skill = skillManager.GetSkill(mainHero, i);
+            Debug.Log(skill);
             if (skill != null)
             {
-                
                 skillSlots[i].ChangeSkillSlotUI(skill);
             }
         }

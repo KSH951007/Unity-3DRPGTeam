@@ -37,6 +37,7 @@ public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler
     }
     public void UpdateCooldown(float currentCooldown, float maxCooldown)
     {
+        Debug.Log("asd");
         cooldownImage.fillAmount = (currentCooldown / maxCooldown);
         cooldownText.text = currentCooldown.ToString("F1");
         if (cooldownImage.fillAmount <= 0f)
