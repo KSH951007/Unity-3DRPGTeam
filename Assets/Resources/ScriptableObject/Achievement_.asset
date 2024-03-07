@@ -18,10 +18,11 @@ MonoBehaviour:
   displayName: upjuck
   description: Get a Achievement Reward!!
   taskGroups:
-  - tasks: []
+  - tasks:
+    - {fileID: 11400000, guid: 3cc21c1104fdc0845adf8aed62ddc3cf, type: 2}
   rewards: []
-  useAutoComplete: 0
+  useAutoComplete: 1
   isCancelable: 0
-  isSavable: 0
+  isSavable: 1
   acceptionConditions: []
   cancelConditions: []

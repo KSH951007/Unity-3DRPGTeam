@@ -73,11 +73,6 @@ public class QuestSystem : MonoBehaviour
             foreach (var achievement in achievementDatabase.Quests)
                 Register(achievement);
         }
-        if (!Load())
-        {
-            foreach (var achievement in questDatatabase.Quests)
-                Register(achievement);
-        }
     }
 
     private void OnApplicationQuit()
@@ -87,7 +82,7 @@ public class QuestSystem : MonoBehaviour
     }
 
     //[SerializeField]
-    //private QuestCanceledNotice notice;
+   //private QuestCanceledNotice notice;
     public Quest Register(Quest quest)
     {
         foreach(var clearQuest in completedQuests)
