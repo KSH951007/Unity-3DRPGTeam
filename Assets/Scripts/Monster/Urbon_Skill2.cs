@@ -6,7 +6,7 @@ using UnityEngine;
 public class Urbon_Skill2 : MonoBehaviour
 {
 	private Vector3 targetPos;
-	private int skillDamage;
+	private int skillDamage = 50;
 
 	public Transform alertPos;
 	public Transform particlePos;
@@ -48,8 +48,6 @@ public class Urbon_Skill2 : MonoBehaviour
 
 		if (hitPlayer.Length != 0 && hitPlayer[0] != null)
 		{
-			Debug.Log("ÇÃ·¹ÀÌ¾î ºÎµúÈû");
-
 			if (hitPlayer[0].transform.gameObject.TryGetComponent(out IHitable health))
 			{
 				health.TakeHit(skillDamage, IHitable.HitType.None);

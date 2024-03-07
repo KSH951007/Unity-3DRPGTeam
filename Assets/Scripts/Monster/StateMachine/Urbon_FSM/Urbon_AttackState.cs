@@ -7,6 +7,9 @@ public class Urbon_AttackState : BaseState
 {
 	public Urbon_AttackState(BossMonsters monster) : base(monster) { }
 
+	private int attackDamage;
+	private int skill3Damage;
+
 	private float attackWeight = 0.3f;
 	private float skill1Weight = 0.3f;
 	private float skill2Weight = 0.3f;
@@ -18,6 +21,9 @@ public class Urbon_AttackState : BaseState
 
 	public override void OnStateEnter()
 	{
+		attackDamage = 40;
+		skill3Damage = 2;
+
 		_monster.nav.isStopped = true;
 
 		_monster.timeForNextChange = Time.time + 4f;
@@ -81,10 +87,12 @@ public class Urbon_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.u_attackCollider.radius, _monster.attackTargetLayer);
-			Debug.Log("Attack 공격 실행");
-			if (detectedColl.Length > 0)
+			if (detectedColl.Length != 0)
 			{
-				Debug.Log("피격 : " + detectedColl[0].name);
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(attackDamage);
+				}
 			}
 		}
 		else if (_monster.u_skill3Collider.enabled)
@@ -93,11 +101,13 @@ public class Urbon_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.u_skill3Collider.radius, _monster.attackTargetLayer);
-			//Debug.Log("skill3 공격 실행");
-			//if (detectedColl.Length > 0)
-			//{
-			//	Debug.Log("피격 : " + detectedColl[0].name);
-			//}
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skill3Damage);
+				}
+			}
 		}
 		else
 		{

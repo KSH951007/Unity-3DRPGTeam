@@ -11,7 +11,6 @@ public class BossMonsters : MonoBehaviour, IHitable
 {
 	public float maxHp;
 	[SerializeField] public float currentHp;
-	public float basicDamage;
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected float exp;
 	[SerializeField] public Transform target;
@@ -22,7 +21,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] public float timeForNextIdle;
     [SerializeField] public float timeForNextChange;
 	[SerializeField] protected GameObject bossHpBarUI;
-
+	private Collider bossCollider;
 
     public float maxShieldAmount = 15;
 	public float curShieldAmount;
@@ -75,11 +74,12 @@ public class BossMonsters : MonoBehaviour, IHitable
 		animator = GetComponentInChildren<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+		bossCollider = GetComponent<Collider>();
 	}
 
 	protected virtual void OnEnable()
 	{
-		animator.SetTrigger("Appear");
+		//animator.SetTrigger("Appear");
 		nav.isStopped = true;
 	}
 
@@ -129,6 +129,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 			else if (currentHp - damage <= 0)
 			{
 				currentHp = 0;
+				bossCollider.enabled = false;
 				isDead = true;
 				StartCoroutine(Die());
 			}
