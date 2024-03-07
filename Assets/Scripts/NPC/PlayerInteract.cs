@@ -31,10 +31,13 @@ public class PlayerInteract : MonoBehaviour, IInteractable
         {
             if (collider.TryGetComponent(out NPC npc))
             {
+                if (npc.nTD.npcSubQuest.IsComplatable)
+                {
+                    npc.nTD.npcSubQuest.Complete();
+                }
                 isDialogue = true;
                 GameManager.Instance.qui.showConversation();
                 npc.Ontalk(npc);
-                
             }
         }
     }

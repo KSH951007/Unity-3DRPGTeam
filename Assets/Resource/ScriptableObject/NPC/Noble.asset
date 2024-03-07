@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9c4efc7760ad34696c10ec47bedbbe, type: 3}
   m_Name: Noble
   m_EditorClassIdentifier: 
-  npcID: 1
+  questID: 0
   Name: noble
   introduce: welcome to City!!!
   des: haha
-  dialogue: b
   dialogues:
   - haha
   - I'm hungry
   - I'm noble
+  isMove: 0
+  questDialogue: []
+  npcSubQuest: {fileID: 11400000, guid: 59da0e83a9227a240851588572c5843e, type: 2}

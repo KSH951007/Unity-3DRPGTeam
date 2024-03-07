@@ -49,7 +49,7 @@ public class NPC : MonoBehaviour
 
         }
 
-        if (nTD.questID <= GameManager.Instance.plin.playerID && !nTD.npcSubQuest.IsComplete && !nTD.npcSubQuest.IsComplatable)
+        if (nTD.questID <= GameManager.Instance.plin.playerID && !nTD.npcSubQuest.IsComplete && !nTD.npcSubQuest.IsRegistered)
         {
             this.RunningQuest.SetActive(true);
         }
