@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7938021279507889406}
   - component: {fileID: 2723321588103026515}
   - component: {fileID: 2207123655130411171}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4867419086114251122}
   - component: {fileID: 7687322861511687748}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: DetectCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8106255485252689380}
   - component: {fileID: 4335687518923513723}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3417758166861693015}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,6 +663,7 @@ MonoBehaviour:
       m_Calls: []
   maxHp: 0
   currentHp: 0
+  damage: 0
   lostDistance: 6
 --- !u!195 &548775516869173220
 NavMeshAgent:
@@ -741,7 +742,7 @@ GameObject:
   - component: {fileID: 2846824291527685827}
   - component: {fileID: 1992052828753603884}
   - component: {fileID: 7466592522376612744}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +817,7 @@ GameObject:
   - component: {fileID: 5785616559421056721}
   - component: {fileID: 368441368131230347}
   - component: {fileID: 7013912130239448958}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CurrentHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1283,7 +1284,7 @@ GameObject:
   - component: {fileID: 1332738850517117662}
   - component: {fileID: 7998952864210857555}
   - component: {fileID: 778221984573914840}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HpBarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1395,7 +1396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9030832731125275721}
   - component: {fileID: 6487396891561172293}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TrashMobHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

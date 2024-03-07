@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 2919563399177100267}
   - component: {fileID: 7583761013672919679}
   - component: {fileID: 3142367899821771247}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HpBarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6156746088990950492}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122208930154429439}
   - component: {fileID: 677980338621597821}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TrashMobHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1145,7 +1145,7 @@ GameObject:
   - component: {fileID: 1772032688898770749}
   - component: {fileID: 6441331702201770199}
   - component: {fileID: 1347558668177742076}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 8083027485955489396}
   - component: {fileID: 9158776932989609758}
   - component: {fileID: 8552260927997446015}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2024,7 @@ GameObject:
   - component: {fileID: 4813097410470974021}
   - component: {fileID: 2232536614887234122}
   - component: {fileID: 1750188664817887655}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CurrentHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2365,6 +2365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectCollider: {fileID: 3290096183679491642}
+  attackCollider: {fileID: 0}
   spawnedPoint: {fileID: 0}
   hpBarUI: {fileID: 2139730013096724637}
   attackTargetLayer:
@@ -2375,6 +2376,7 @@ MonoBehaviour:
       m_Calls: []
   maxHp: 0
   currentHp: 0
+  damage: 0
   lostDistance: 10
 --- !u!195 &6528338339364637656
 NavMeshAgent:

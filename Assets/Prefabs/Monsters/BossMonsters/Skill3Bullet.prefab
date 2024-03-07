@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5113004691995821731}
   - component: {fileID: 6242387427211520513}
   - component: {fileID: 8322787793862205354}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 362405018174938975}
   - component: {fileID: 1015509209438141807}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Skill3Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,3 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e986e9db101164bbe72babbcd41177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handPosition: {fileID: 0}
+  shot: 0
+  attackTargetLayer:
+    serializedVersion: 2
+    m_Bits: 0

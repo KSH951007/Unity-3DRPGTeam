@@ -17,14 +17,23 @@ public class BossHpBarUI : MonoBehaviour
 
     private void Update()
     {
-        UpdateHpBar(boss.maxHp, boss.currentHp);
+        UpdateHpBar(boss.maxHp, boss.currentHp, boss.curShieldAmount);
     }
 
-    public void UpdateHpBar(float maxHp, float currentHp)
+    public void UpdateHpBar(float maxHp, float currentHp, float currentShieldAmount)
     {
-        fillArea.transform.localScale = new Vector3(currentHp / maxHp, 1, 1);
-        int intPercent = (int)((currentHp / maxHp) * 100);
-        text.text = $"{(int)currentHp} / {(int)maxHp}  ({intPercent} %)";
+        if (currentShieldAmount > 0)
+        {
+            fillArea.transform.localScale = new Vector3((currentHp + currentShieldAmount) / (maxHp + currentShieldAmount), 1, 1);
+            int percent = (int)((currentHp / maxHp) * 100);
+            text.text = $"{(int)currentHp} (+{(int)currentShieldAmount}) / {(int)maxHp}  ({percent} %)";
+		}
+        else
+        {
+			fillArea.transform.localScale = new Vector3(currentHp / maxHp, 1, 1);
+			int intPercent = (int)((currentHp / maxHp) * 100);
+			text.text = $"{(int)currentHp} / {(int)maxHp}  ({intPercent} %)";
+		}
     }
 
 }
