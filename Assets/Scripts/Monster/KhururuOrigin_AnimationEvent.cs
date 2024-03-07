@@ -9,6 +9,10 @@ public class KhururuOrigin_AnimationEvent : MonoBehaviour
     public SphereCollider attack1Collider;
     public BoxCollider skill1Collider;
     public GameObject skill1Alert;
+<<<<<<< HEAD
+=======
+    public GameObject skill2Shield;
+>>>>>>> Sample
     public SphereCollider skill3Collider;
 
     public void OnAttack1Collider()
@@ -31,7 +35,16 @@ public class KhururuOrigin_AnimationEvent : MonoBehaviour
         skill1Alert.SetActive(false);
     }
 
+<<<<<<< HEAD
     public void OnSkill3Collider()
+=======
+    public void OnSkill2Shield()
+    {
+		skill2Shield.SetActive(true);
+	}
+
+	public void OnSkill3Collider()
+>>>>>>> Sample
     {
         skill3Collider.enabled = true;
     }

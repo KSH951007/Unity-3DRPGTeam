@@ -17,8 +17,11 @@ public class QuestUi : MonoBehaviour
     GameObject QuestAccept;
     bool qaIsOpen = false;
 
+<<<<<<< HEAD
     QuestDetailView detailView;
 
+=======
+>>>>>>> Sample
     public DialogueWindow dia;
     private void Awake()
     {

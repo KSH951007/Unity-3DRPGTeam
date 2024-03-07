@@ -7,6 +7,15 @@ public class KhururuTrans_AttackState : BaseState
 {
     public KhururuTrans_AttackState(BossMonsters monster) : base(monster) { }
 
+<<<<<<< HEAD
+=======
+	private int attack1Damage = 10;
+	private int attack2Damage = 15;
+	private int skill1Damage = 100;
+	private int skill2Damage = 50;
+	private int skill4Damage = 100;
+
+>>>>>>> Sample
 	private float attack1Weight = 0.2f;
 	private float attack2Weight = 0.2f;
 	private float skill1Weight = 0.15f;
@@ -93,8 +102,18 @@ public class KhururuTrans_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.t_attack1Collider.radius, _monster.attackTargetLayer);
+<<<<<<< HEAD
 			Debug.Log("Attack1 공격 실행");
 			//Debug.Log("피격 : " + detectedColl[0].name);
+=======
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(attack1Damage);
+				}
+			}
+>>>>>>> Sample
 		}
 		else if (_monster.t_attack2Collider.enabled)
 		{
@@ -102,8 +121,18 @@ public class KhururuTrans_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.t_attack2Collider.radius, _monster.attackTargetLayer);
+<<<<<<< HEAD
 			Debug.Log("Attack2 공격 실행");
 			//Debug.Log("피격 : " + detectedColl[0].name);
+=======
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(attack2Damage);
+				}
+			}
+>>>>>>> Sample
 		}
 		else if (_monster.t_skill1Collider.enabled)
 		{
@@ -111,8 +140,18 @@ public class KhururuTrans_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.t_skill1Collider.radius, _monster.attackTargetLayer);
+<<<<<<< HEAD
 			Debug.Log("Skill1 공격 실행");
 			//Debug.Log("피격 : " + detectedColl[0].name);
+=======
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skill1Damage);
+				}
+			}
+>>>>>>> Sample
 		}
 		else if (_monster.t_skill2_1Collider.enabled && !combo)
 		{
@@ -120,9 +159,21 @@ public class KhururuTrans_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.t_skill2_1Collider.radius, _monster.attackTargetLayer);
+<<<<<<< HEAD
 			Debug.Log("Skill2_1 공격 실행");
 			combo = true;
 			//Debug.Log("피격 : " + detectedColl[0].name);
+=======
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skill2Damage);
+				}
+			}
+			combo = true;
+
+>>>>>>> Sample
 		}
 		else if (_monster.t_skill2_2Collider.enabled)
 		{
@@ -132,6 +183,7 @@ public class KhururuTrans_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapBox(collCenter, collHalfExtents, Quaternion.identity, _monster.attackTargetLayer);
+<<<<<<< HEAD
 			Debug.Log("Skill2_2 공격 실행");
 			//Debug.Log("피격 : " + detectedColl[0].name);
 		}
@@ -140,6 +192,19 @@ public class KhururuTrans_AttackState : BaseState
 
 			Debug.Log("Skill3 공격 실행");
 			//Debug.Log("피격 : " + detectedColl[0].name);
+=======
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skill2Damage);
+				}
+			}
+		}
+		else if (_monster.t_skill3Collider.enabled)
+		{
+			return;
+>>>>>>> Sample
 		}
 		else if (_monster.t_skill4Collider.enabled)
 		{
@@ -149,8 +214,18 @@ public class KhururuTrans_AttackState : BaseState
 
 			Collider[] detectedColl =
 			Physics.OverlapBox(collCenter, collHalfExtents, Quaternion.identity, _monster.attackTargetLayer);
+<<<<<<< HEAD
 			Debug.Log("Skill4 공격 실행");
 			Debug.Log("피격 : " + detectedColl[0].name);
+=======
+			if (detectedColl.Length != 0)
+			{
+				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skill4Damage);
+				}
+			}
+>>>>>>> Sample
 			combo = true;
 		}
 		else

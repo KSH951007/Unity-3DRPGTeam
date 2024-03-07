@@ -5,7 +5,11 @@ using UnityEngine;
 public class Urbon_Skill1 : MonoBehaviour
 {
 	private int skillDamage = 1;
+<<<<<<< HEAD
 	private float moveSpeed = 4f;
+=======
+	public float moveSpeed = 20f;
+>>>>>>> Sample
 	private Transform player;
 	public Transform startPoint;
 	private Vector3 moveDir;
@@ -16,6 +20,10 @@ public class Urbon_Skill1 : MonoBehaviour
 
 	private void OnEnable()
 	{
+<<<<<<< HEAD
+=======
+		startPoint = GameObject.Find("Skill1StartPoint").transform;
+>>>>>>> Sample
 		transform.position = startPoint.position;
 		skill1Collider = GetComponentInChildren<SphereCollider>();
 		StartCoroutine(ResetSkill());
@@ -37,10 +45,16 @@ public class Urbon_Skill1 : MonoBehaviour
 
 			if (detectedColl.Length != 0)
 			{
+<<<<<<< HEAD
 				Debug.Log("데미지 가함");
 				if(detectedColl[0].transform.gameObject.TryGetComponent(out IHitable_Monster health))
 				{
 					health.TakeHit(skillDamage, HitType.None);
+=======
+				if(detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				{
+					health.TakeHit(skillDamage);
+>>>>>>> Sample
 				}
 			}
 		}

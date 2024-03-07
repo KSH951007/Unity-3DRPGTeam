@@ -7,11 +7,18 @@ using UnityEngine.Events;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
+<<<<<<< HEAD
 public class BossMonsters : MonoBehaviour, IHitable_Monster
 {
 	[SerializeField] protected float maxHp;
 	[SerializeField] public float currentHp;
 	public float basicDamage;
+=======
+public class BossMonsters : MonoBehaviour, IHitable
+{
+	public float maxHp;
+	[SerializeField] public float currentHp;
+>>>>>>> Sample
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected float exp;
 	[SerializeField] public Transform target;
@@ -21,9 +28,16 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	[SerializeField] public float timeForNextAttack;
 	[SerializeField] public float timeForNextIdle;
     [SerializeField] public float timeForNextChange;
+<<<<<<< HEAD
 
 	
     public float maxShieldAmount = 15;
+=======
+	[SerializeField] protected GameObject bossHpBarUI;
+	private Collider bossCollider;
+
+    public float maxShieldAmount = 2500;
+>>>>>>> Sample
 	public float curShieldAmount;
 
 	protected GameObject[] dropItem;
@@ -35,6 +49,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	public SphereCollider detectColl;
 
 	[Header("KhururuOrigin's Colliders")]
+<<<<<<< HEAD
     public SphereCollider attack1Collider;
     public BoxCollider skill1Collider;
 	public SphereCollider skill3Collider;
@@ -57,6 +72,28 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 
 	[Header("ForQuest")]
 	public UnityEvent ondead;
+=======
+	[HideInInspector] public SphereCollider attack1Collider;
+	[HideInInspector] public BoxCollider skill1Collider;
+	[HideInInspector] public SphereCollider skill3Collider;
+	[Space(10)]
+
+	[Header("KhururuTrans's Colliders")]
+	[HideInInspector] public SphereCollider t_attack1Collider;
+	[HideInInspector] public SphereCollider t_attack2Collider;
+	[HideInInspector] public SphereCollider t_skill1Collider;
+	[HideInInspector] public SphereCollider t_skill2_1Collider;
+	[HideInInspector] public MeshCollider t_skill2_2Collider;
+	[HideInInspector] public SphereCollider t_skill3Collider;
+	[HideInInspector] public MeshCollider t_skill4Collider;
+	[Space(10)]
+
+	[Header("Urbon's Colliders")]
+	[HideInInspector] public SphereCollider u_attackCollider;
+	[HideInInspector] public SphereCollider u_skill3Collider;
+	[Space(10)]
+
+>>>>>>> Sample
 
 	public LayerMask attackTargetLayer;
 	protected SkinnedMeshRenderer skinnedMeshRenderer;
@@ -67,6 +104,11 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	public bool hasAttacked;
 	public bool shieldBroken;
 
+<<<<<<< HEAD
+=======
+	public UnityEvent onDead;
+
+>>>>>>> Sample
 	[SerializeField] public GameObject hitParticle;
 
 	protected void Awake()
@@ -74,11 +116,20 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		animator = GetComponentInChildren<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+<<<<<<< HEAD
+=======
+		bossCollider = GetComponent<Collider>();
+>>>>>>> Sample
 	}
 
 	protected virtual void OnEnable()
 	{
+<<<<<<< HEAD
 		animator.SetTrigger("Appear");
+=======
+		//animator.SetTrigger("Appear");
+		nav.isStopped = true;
+>>>>>>> Sample
 	}
 
 	public float GetHp()
@@ -95,8 +146,15 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		chasingTime = Time.time + Random.Range(3f, 6f);
 	}
 
+<<<<<<< HEAD
 	public void TakeHit(float damage, HitType hitType, GameObject hitParticle = null)
 	{
+=======
+	public void TakeHit(int damage, IHitable.HitType hitType, GameObject hitParticle = null)
+	{
+		bossHpBarUI.SetActive(true);
+
+>>>>>>> Sample
         if (patience != 0)
         {
 			patience--;
@@ -118,14 +176,26 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 					curShieldAmount--;
 				}
 				currentHp -= damage;
+<<<<<<< HEAD
 				StartCoroutine(ChangeMat());
+=======
+                GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
+                damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
+                StartCoroutine(ChangeMat());
+>>>>>>> Sample
 			}
 			else if (currentHp - damage <= 0)
 			{
 				currentHp = 0;
+<<<<<<< HEAD
 				isDead = true;
 				StartCoroutine(Die());
 			
+=======
+				bossCollider.enabled = false;
+				isDead = true;
+				StartCoroutine(Die());
+>>>>>>> Sample
 			}
 		}
 	}
@@ -143,6 +213,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 		animator.SetTrigger("Die");
 		yield return new WaitForSeconds(2.5f);
 		gameObject.SetActive(false);
+<<<<<<< HEAD
         ondead.Invoke(); // 유니티 이벤트 ondead 발생
 
         //드랍 아이템
@@ -154,6 +225,18 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
     /// <param name="dropCoin">각 보스몬스터의 보상코인</param>
     /// <returns></returns>
     protected float DropItem(float dropCoin)
+=======
+		onDead.Invoke();
+		//드랍 아이템
+	}
+
+	/// <summary>
+	/// 보스몬스터를 잡으면 아이템과 코인을 떨어트리는 함수
+	/// </summary>
+	/// <param name="dropCoin">각 보스몬스터의 보상코인</param>
+	/// <returns></returns>
+	protected float DropItem(float dropCoin)
+>>>>>>> Sample
 	{
 		foreach(GameObject items in dropItem)
 		{
@@ -162,6 +245,7 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 
 		return dropCoin;
 	}
+<<<<<<< HEAD
 
 	// KhururuTrans의 skill4 범위 확인
 	//private void OnDrawGizmos()
@@ -173,4 +257,6 @@ public class BossMonsters : MonoBehaviour, IHitable_Monster
 	//		Gizmos.DrawWireCube(t_skill4Collider.transform.position + temp, t_skill4Collider.bounds.extents * 1.6f);
 	//	}
 	//}
+=======
+>>>>>>> Sample
 }

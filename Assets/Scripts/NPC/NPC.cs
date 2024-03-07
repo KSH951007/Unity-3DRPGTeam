@@ -21,10 +21,14 @@ public class NPC : MonoBehaviour
     
     public GameObject pressSpace;
     public NPCData nTD;
+<<<<<<< HEAD
     
     public bool questCompleteNow;
     public GameObject CompleteQuest;
     public GameObject RunningQuest;
+=======
+
+>>>>>>> Sample
     public DialogueWindow dia;
 
     private void Awake()
@@ -39,6 +43,7 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
+<<<<<<< HEAD
         if (nTD.questID >= GameManager.Instance.plin.playerID)
         {
             CompleteQuest.SetActive(false);
@@ -64,10 +69,20 @@ public class NPC : MonoBehaviour
         {
             RunningQuest.SetActive(false);
         }
+=======
+        //if(false == nTD.npcSubQuest.IsComplatable && GameManager.Instance.plin.playerID >= nTD.questID)
+        //{
+             // 퀘스트 관련 알림
+        //}
+>>>>>>> Sample
 
         if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player 클래스
         {
             this.pressSpace.SetActive(true);
+<<<<<<< HEAD
+=======
+
+>>>>>>> Sample
         }
         else
         {
@@ -96,10 +111,14 @@ public class NPC : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void subQuestComplete()
     {
         nTD.npcSubQuest.Complete();
     }
+=======
+
+>>>>>>> Sample
 
     public void Ontalk(NPC npc) // 대화
     {

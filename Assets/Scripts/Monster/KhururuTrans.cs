@@ -44,7 +44,13 @@ public class KhururuTrans : BossMonsters
             case State.Idle:
                 if (CanSeePlayer() && NextChangeCoolTime())
                 {
+<<<<<<< HEAD
                     ChangeState(State.Chase);
+=======
+					bossHpBarUI.SetActive(true);
+
+					ChangeState(State.Chase);
+>>>>>>> Sample
                 }
                 break;
 
