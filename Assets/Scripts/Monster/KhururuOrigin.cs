@@ -22,12 +22,7 @@ public class KhururuOrigin : BossMonsters
 	protected override void OnEnable()
 	{
 		base.OnEnable();
-<<<<<<< HEAD
 		maxShieldAmount = 15;
-=======
-		nav.isStopped = true;
-		maxShieldAmount = 2500;
->>>>>>> Sample
 	}
 
 	private void OnDisable()
@@ -46,10 +41,6 @@ public class KhururuOrigin : BossMonsters
 	{
 		if (isDead)
 		{
-<<<<<<< HEAD
-=======
-			nav.isStopped = true;
->>>>>>> Sample
 			_curState = State.None;
 		}
 
@@ -65,11 +56,6 @@ public class KhururuOrigin : BossMonsters
 			case State.Idle:
 				if (CanSeePlayer() && NextChangeCoolTime())
 				{
-<<<<<<< HEAD
-=======
-					bossHpBarUI.SetActive(true);
-
->>>>>>> Sample
 					ChangeState(State.Chase);
 				}
 				break;
@@ -210,12 +196,9 @@ public class KhururuOrigin : BossMonsters
 	{
 		// TODO : 카운터 판정 콜라이더 끄기
 	}
-<<<<<<< HEAD
 	public void willDead()
 	{
 		Debug.Log("123");
 		ondead.Invoke();
 	}
-=======
->>>>>>> Sample
 }

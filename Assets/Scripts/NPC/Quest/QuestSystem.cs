@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 using System;
-=======
->>>>>>> Sample
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,10 +62,7 @@ public class QuestSystem : MonoBehaviour
     public IReadOnlyList<Quest> ActiveAchievements => activeAchievements;
     public IReadOnlyList<Quest> CompletedAchievements => completedAchievements;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> Sample
     private void Awake()
     {
         questDatatabase = Resources.Load<QuestDatabase>("QuestDatabase");
@@ -79,14 +73,11 @@ public class QuestSystem : MonoBehaviour
             foreach (var achievement in achievementDatabase.Quests)
                 Register(achievement);
         }
-<<<<<<< HEAD
         if (!Load())
         {
             foreach (var achievement in questDatatabase.Quests)
                 Register(achievement);
         }
-=======
->>>>>>> Sample
     }
 
     private void OnApplicationQuit()
@@ -95,7 +86,6 @@ public class QuestSystem : MonoBehaviour
         Save();
     }
 
-<<<<<<< HEAD
     //[SerializeField]
     //private QuestCanceledNotice notice;
     public Quest Register(Quest quest)
@@ -117,10 +107,6 @@ public class QuestSystem : MonoBehaviour
             }
         }
 
-=======
-    public Quest Register(Quest quest)
-    {
->>>>>>> Sample
         var newQuest = quest.Clone();
 
         if (newQuest is Achievement)
@@ -136,10 +122,6 @@ public class QuestSystem : MonoBehaviour
         {
             newQuest.onCompleted += OnQuestCompleted;
             newQuest.onCanceled += OnQuestCanceled;
-<<<<<<< HEAD
-=======
-
->>>>>>> Sample
             activeQuests.Add(newQuest);
 
             newQuest.OnRegister();
@@ -164,11 +146,7 @@ public class QuestSystem : MonoBehaviour
             quest.ReceiveReport(category, target, successCount);
     }
 
-<<<<<<< HEAD
     public void CompleteWaitingQuests() // TODO : 유니티 이벤트 퀘스트 완료용
-=======
-    public void CompleteWaitingQuests()
->>>>>>> Sample
     {
         foreach (var quest in activeQuests.ToList())
         {
@@ -186,11 +164,8 @@ public class QuestSystem : MonoBehaviour
     public bool ContainsInCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> Sample
     public void Save()
     {
         var root = new JObject();
@@ -198,11 +173,8 @@ public class QuestSystem : MonoBehaviour
         root.Add(kCompletedQuestsSavePath, CreateSaveDatas(completedQuests));
         root.Add(kActiveAchievementsSavePath, CreateSaveDatas(activeAchievements));
         root.Add(kCompletedAchievementsSavePath, CreateSaveDatas(completedAchievements));
-<<<<<<< HEAD
         string jsonString = root.ToString();
         print("Saved data: " + jsonString);
-=======
->>>>>>> Sample
 
         PlayerPrefs.SetString(kSaveRootPath, root.ToString());
         PlayerPrefs.Save();
@@ -216,10 +188,6 @@ public class QuestSystem : MonoBehaviour
 
             LoadSaveDatas(root[kActiveQuestsSavePath], questDatatabase, LoadActiveQuest);
             LoadSaveDatas(root[kCompletedQuestsSavePath], questDatatabase, LoadCompletedQuest);
-<<<<<<< HEAD
-=======
-
->>>>>>> Sample
             LoadSaveDatas(root[kActiveAchievementsSavePath], achievementDatabase, LoadActiveQuest);
             LoadSaveDatas(root[kCompletedAchievementsSavePath], achievementDatabase, LoadCompletedQuest);
 
@@ -235,15 +203,11 @@ public class QuestSystem : MonoBehaviour
         foreach (var quest in quests)
         {
             if (quest.IsSavable)
-<<<<<<< HEAD
             {
                 var jobj = JObject.FromObject(quest.ToSaveData());
                 print(jobj);
                 saveDatas.Add(jobj);
             }
-=======
-                saveDatas.Add(JObject.FromObject(quest.ToSaveData()));
->>>>>>> Sample
         }
         return saveDatas;
     }

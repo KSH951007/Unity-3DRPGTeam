@@ -74,15 +74,6 @@ public class DialogueWindow : MonoBehaviour
                 curText += letter;
                 yield return new WaitForSeconds(.2f);
             }
-<<<<<<< HEAD
-=======
-            //else // TODO : ½ºÅµ »ç¿ë
-            //{
-            //    curText = "";
-            //    curText = st;
-            //}
-            //yield return null;
->>>>>>> Sample
         }
         if(!isTyping)
         {
@@ -153,11 +144,7 @@ public class DialogueWindow : MonoBehaviour
     public void QuestAccept()
     {
         QuestSystem.Instance.Register(talkData.npcSubQuest);
-<<<<<<< HEAD
         giver.giveQuest(talkData.npcSubQuest);
-=======
-        giver.addQuest(talkData.npcSubQuest);
->>>>>>> Sample
         otherText = "";
         curText = "";
         isTyping = false;

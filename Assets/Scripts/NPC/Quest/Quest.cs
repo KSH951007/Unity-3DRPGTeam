@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-<<<<<<< HEAD
 using Unity.VisualScripting.FullSerializer;
-=======
->>>>>>> Sample
 using UnityEngine;
 
 using Debug = UnityEngine.Debug;

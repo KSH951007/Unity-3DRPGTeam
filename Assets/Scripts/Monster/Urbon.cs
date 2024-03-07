@@ -18,11 +18,7 @@ public class Urbon : BossMonsters
 
 	protected override void OnEnable()
 	{
-<<<<<<< HEAD
 		timeForNextChange = Time.time + 3f;
-=======
-		timeForNextChange = Time.time + 0.5f;
->>>>>>> Sample
 		_curState = State.Appear;
 		_fsm = new FSM(new Urbon_AppearState(this));
 	}
@@ -47,11 +43,6 @@ public class Urbon : BossMonsters
 			case State.Idle:
 				if (CanSeePlayer() && NextChangeCoolTime())
 				{
-<<<<<<< HEAD
-=======
-					bossHpBarUI.SetActive(true);
-
->>>>>>> Sample
 					ChangeState(State.Chase);
 				}
 				break;
@@ -68,11 +59,7 @@ public class Urbon : BossMonsters
 				break;
 
 			case State.Attack:
-<<<<<<< HEAD
 				if (hasAttacked && NextChangeCoolTime())
-=======
-				if (hasAttacked && NextChangeCoolTime() && nav.isStopped)
->>>>>>> Sample
 				{
 					ChangeState(State.Idle);
 				}
@@ -81,11 +68,7 @@ public class Urbon : BossMonsters
 
 		_fsm.UpdateState();
 		//print(_curState);
-<<<<<<< HEAD
 		//print(nav.remainingDistance);
-=======
-		//print(timeForNextChange);
->>>>>>> Sample
 	}
 
 	private void ChangeState(State nextState)
@@ -124,11 +107,7 @@ public class Urbon : BossMonsters
 	private bool ShortDistancePlayer()
 	{
 		// TODO:: 사정거리 체크 구현
-<<<<<<< HEAD
 		if (nav.remainingDistance < 2f)
-=======
-		if (nav.remainingDistance < 3f)
->>>>>>> Sample
 		{
 			return true;
 		}

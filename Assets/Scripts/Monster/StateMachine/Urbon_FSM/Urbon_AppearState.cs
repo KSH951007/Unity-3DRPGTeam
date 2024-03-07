@@ -16,9 +16,5 @@ public class Urbon_AppearState : BaseState
 
 	public override void OnStateExit()
 	{
-<<<<<<< HEAD
-=======
-
->>>>>>> Sample
 	}
 }
