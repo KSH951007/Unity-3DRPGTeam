@@ -126,7 +126,8 @@ public class KhururuOrigin_AttackState : BaseState
             Vector3 collCenter = _monster.skill1Collider.transform.position + _monster.skill1Collider.center;
 
             Collider[] detectedColl =
-            Physics.OverlapBox(collCenter, _monster.skill1Collider.center, Quaternion.identity, _monster.attackTargetLayer);
+            Physics.OverlapBox(collCenter, _monster.skill1Collider.bounds.extents * 2, Quaternion.identity, _monster.attackTargetLayer);
+			Debug.Log(detectedColl[0].name);
 			if (detectedColl.Length != 0)
 			{
 				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))

@@ -33,10 +33,12 @@ public class KhururuTrans_AnimationEvent : MonoBehaviour
 	public void TranslateBoss()
 	{
 		// skill2 사용 후 보스를 unitsphere 범위에서 랜덤한 위치로 이동
-		Vector3 targetPos = transform.position + Random.insideUnitSphere;
-		targetPos.y = 0;
+		//Vector3 targetPos = transform.position + Random.insideUnitSphere * 2;
+		//targetPos.y = 0;
 
-		transform.position = targetPos;
+		//gameObject.GetComponentInParent<Transform>().position = targetPos;
+
+		
 	}
 	/******************************************************/
 	public void OnAttack1()
@@ -54,11 +56,10 @@ public class KhururuTrans_AnimationEvent : MonoBehaviour
 	public void OnAttack2()
 	{
 		attack2Collider.enabled = true;
-
 	}
 	public void OffAttack2()
 	{
-		attack2Collider.enabled = true;
+		attack2Collider.enabled = false;
 
 	}
 	/******************************************************/

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class TrashMob : MonoBehaviour, IHitable
 {
-    private NavMeshAgent nav;
+    protected NavMeshAgent nav;
 	private Transform target;
 	private Animator animator;
 	private float moveSpeed = 2f;
@@ -16,6 +16,7 @@ public class TrashMob : MonoBehaviour, IHitable
 	[SerializeField] private SphereCollider attackCollider;
 	[SerializeField] protected Transform spawnedPoint;        // Chase하다가 플레이어를 놓치면 맨 처음 위치로 되돌아가기
 	[SerializeField] private GameObject hpBarUI;
+	CapsuleCollider mobCollider;
 
 	public LayerMask attackTargetLayer;
     private bool cancelWait;
@@ -44,6 +45,7 @@ public class TrashMob : MonoBehaviour, IHitable
 
 	protected virtual void Start()
 	{		
+		mobCollider = GetComponent<CapsuleCollider>();
 		animator = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 
@@ -171,7 +173,6 @@ public class TrashMob : MonoBehaviour, IHitable
 
 	IEnumerator KILLED()
 	{
-        nav.isStopped = true;
         animator.Play("Die", -1, 0);
 		onDead.Invoke();
         yield return new WaitForSeconds(5f);
@@ -235,8 +236,11 @@ public class TrashMob : MonoBehaviour, IHitable
 
             if (currentHp <= 0)
             {
+				currentHp = 0;
                 target = null;
-                cancelWait = true;
+				nav.enabled = false;
+				mobCollider.enabled = false;
+				cancelWait = true;
                 ChangeState(State.KILLED);
             }
             else

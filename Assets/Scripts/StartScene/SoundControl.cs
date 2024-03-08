@@ -26,6 +26,6 @@ public class SoundControl : MonoBehaviour
 	{
 		sfxVolume = sfxSlider.value;
 
-		sfxMixer.SetFloat("BGM", Mathf.Log10(sfxVolume) * 20);
+		sfxMixer.SetFloat("SFX", Mathf.Log10(sfxVolume) * 20);
 	}
 }
