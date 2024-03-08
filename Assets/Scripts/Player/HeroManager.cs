@@ -56,7 +56,7 @@ public class HeroManager : MonoBehaviour
     private void Start()
     {
         SceneChangeHeroSetting();
-        SceneLoader.Instance.onSceneChanged += SceneChangeHeroSetting;
+        //SceneLoader.Instance.onSceneChanged += SceneChangeHeroSetting;
 
     }
     private void Update()

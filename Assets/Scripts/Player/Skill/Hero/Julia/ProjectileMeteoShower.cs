@@ -69,6 +69,7 @@ public class ProjectileMeteoShower : MonoBehaviour
         {
             if (target.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
+                Debug.Log("3"+target.name);
                 if (target.gameObject.TryGetComponent(out IHitable enemy))
                 {
                     Debug.Log(LayerMask.LayerToName(target.gameObject.layer));

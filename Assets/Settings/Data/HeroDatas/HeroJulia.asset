@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5020e214f5b547488a8df71000eee00, type: 3}
   m_Name: HeroJulia
   m_EditorClassIdentifier: 
+  heroID: 2
   heroIcon: {fileID: 21300000, guid: 26d941ad6591bc840811fc1329c403f5, type: 3}
   heroName: "\uC904\uB9AC\uC544"
   level: 1
@@ -20,7 +21,7 @@ MonoBehaviour:
   maxMana: 700
   regenerationMana: 0.009
   defensivePercent: 0.3
-  baseDamage: 40
+  baseDamage: 900
   maxAttackCombo: 2
   skillDatas:
   - {fileID: 11400000, guid: 1fbaf52b7b1412b478faa0d9a18fc99c, type: 2}
