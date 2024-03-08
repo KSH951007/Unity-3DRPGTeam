@@ -29,6 +29,7 @@ public class LoginCanvas : MonoBehaviour
     public void ClickGuestLogin()
     {
         // TODO : 게임씬으로 넘어가기
+        StartCoroutine(SceneLoader.Instance.LoadScene(1));
         print("게임씬 LoadScene");
     }
 }

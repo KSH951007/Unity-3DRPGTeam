@@ -198,7 +198,7 @@ public class QuestSystem : MonoBehaviour
             if (quest.IsSavable)
             {
                 var jobj = JObject.FromObject(quest.ToSaveData());
-                print(jobj);
+           
                 saveDatas.Add(jobj);
             }
         }
