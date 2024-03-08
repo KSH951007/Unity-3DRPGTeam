@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class KhururuTrans : BossMonsters
 {
-
     private enum State
     {
         None,
@@ -19,7 +18,7 @@ public class KhururuTrans : BossMonsters
 
     private void Start()
     {
-        timeForNextChange = Time.time + 3f;
+        timeForNextChange = Time.time + 0.5f;
         _curState = State.Appear;
         _fsm = new FSM(new KhururuTrans_AppearState(this));
     }
@@ -28,7 +27,6 @@ public class KhururuTrans : BossMonsters
     {
         if (isDead)
         {
-            nav.isStopped = true;
             _curState = State.None;
         }
 

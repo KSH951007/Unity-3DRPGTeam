@@ -27,7 +27,6 @@ public class Urbon : BossMonsters
 	{
 		if (isDead)
 		{
-			nav.isStopped = true;
 			_curState = State.None;
 		}
 

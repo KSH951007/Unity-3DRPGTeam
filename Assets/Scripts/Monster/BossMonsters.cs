@@ -21,7 +21,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 	[SerializeField] public float timeForNextIdle;
     [SerializeField] public float timeForNextChange;
 	[SerializeField] protected GameObject bossHpBarUI;
-	private Collider bossCollider;
+	private CapsuleCollider bossCollider;
 
     public float maxShieldAmount = 2500;
 	public float curShieldAmount;
@@ -74,7 +74,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 		animator = GetComponentInChildren<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-		bossCollider = GetComponent<Collider>();
+		bossCollider = GetComponent<CapsuleCollider>();
 	}
 
 	protected virtual void OnEnable()
@@ -119,16 +119,20 @@ public class BossMonsters : MonoBehaviour, IHitable
 			{
 				if (curShieldAmount > 0)
 				{
-					curShieldAmount--;
+					curShieldAmount -= damage;
 				}
-				currentHp -= damage;
-                GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
+				else
+				{
+					currentHp -= damage;
+				}
+				GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
                 damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
                 StartCoroutine(ChangeMat());
 			}
 			else if (currentHp - damage <= 0)
 			{
 				currentHp = 0;
+				nav.enabled = false;
 				bossCollider.enabled = false;
 				isDead = true;
 				StartCoroutine(Die());
@@ -146,6 +150,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 
 	protected IEnumerator Die()
 	{
+		nav.isStopped = true;
 		animator.SetTrigger("Die");
 		yield return new WaitForSeconds(2.5f);
 		gameObject.SetActive(false);
