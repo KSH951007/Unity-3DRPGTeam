@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryToggleController : MonoBehaviour
+public class CategoryToggleController : MonoBehaviour
 {
     [SerializeField] private Sprite disableSprite;
     [SerializeField] private Sprite enableSprite;
     private ToggleGroup toggleGroup;
-    private InventoryToggle[] toggles;
+    private CategoryToggle[] toggles;
     private void Awake()
     {
         toggleGroup = GetComponent<ToggleGroup>();
-        toggles = new InventoryToggle[transform.childCount];
+        toggles = new CategoryToggle[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
-            toggles[i] = transform.GetChild(i).GetComponent<InventoryToggle>();
+            toggles[i] = transform.GetChild(i).GetComponent<CategoryToggle>();
         }
     }
     private void Start()

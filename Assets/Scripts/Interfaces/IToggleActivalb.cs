@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class VillageActiveUIToggleGroup : MonoBehaviour
+public interface IToggleActivalb
 {
-   
+
+    public void ActiveToggle(bool active);
 }

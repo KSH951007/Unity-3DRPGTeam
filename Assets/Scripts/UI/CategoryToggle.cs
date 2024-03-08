@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryToggle : MonoBehaviour
+public class CategoryToggle : MonoBehaviour
 {
    
     private Image backgroundImage;
