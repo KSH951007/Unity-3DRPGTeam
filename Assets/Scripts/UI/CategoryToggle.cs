@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class CategoryToggle : MonoBehaviour
 {
    
-    private Image backgroundImage;
-    private Toggle toggle;
-    private void Awake()
+    protected Image backgroundImage;
+    protected Toggle toggle;
+    protected virtual void Awake()
     {
         backgroundImage = this.transform.GetChild(0).GetComponent<Image>();
         toggle = GetComponent<Toggle>();
