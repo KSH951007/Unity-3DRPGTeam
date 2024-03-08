@@ -18,10 +18,6 @@ public class CategoryToggleController : MonoBehaviour
             toggles[i] = transform.GetChild(i).GetComponent<CategoryToggle>();
         }
     }
-    private void Start()
-    {
-
-    }
 
     public void ActiveToggle(bool active)
     {
