@@ -13,35 +13,68 @@ public class ShopItemSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemSummaryText;
     [SerializeField] private TextMeshProUGUI itemPriceText;
     [SerializeField] private GameObject selectFrame;
+    private Toggle itemSelectToggle;
     private int slotIndex;
-    private bool isSelect;
-    public bool IsSelect { get { return isSelect; } }
+    private int itemIndex;
+
+
+    public int ItemIndex { get { return itemIndex; } }
+    public bool IsSelect { get => itemSelectToggle.isOn; }
+
+    public Sprite ItemRatingSprite { get => itemRatingBackgroundImage.sprite; }
     private void Awake()
     {
-        isSelect = false;
+        itemSelectToggle = GetComponent<Toggle>();
+        itemSelectToggle.group = transform.parent.GetComponent<ToggleGroup>();
+    }
+    private void OnEnable()
+    {
+        itemSelectToggle.isOn = false;
+    }
+    public void SetItemSlotIndex(int newIndex)
+    {
+        slotIndex = newIndex;
     }
 
-    public void SetItemInfo(int newSlotIndex, Item.ItemRatingType itemRatingType, Sprite IconSprite, string itemName, string itemSummary, string itemPrice)
+    public void SetItemInfo(int newItemIndex, ItemSO itemData)
     {
-        slotIndex = newSlotIndex;
-        if (itemRatingType == Item.ItemRatingType.Normal)
+        if (itemData == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+                return;
+            }
+        }
+
+        itemIndex = newItemIndex;
+        if (itemData.GetRatingType() == Item.ItemRatingType.Normal)
             itemRatingBackgroundImage.sprite = ratingSprites[0];
-        else if (itemRatingType == Item.ItemRatingType.Rair)
+        else if (itemData.GetRatingType() == Item.ItemRatingType.Rair)
             itemRatingBackgroundImage.sprite = ratingSprites[1];
-        else if (itemRatingType == Item.ItemRatingType.Unique)
+        else if (itemData.GetRatingType() == Item.ItemRatingType.Unique)
             itemRatingBackgroundImage.sprite = ratingSprites[2];
-        else if (itemRatingType == Item.ItemRatingType.Legenery)
+        else if (itemData.GetRatingType() == Item.ItemRatingType.Legenery)
             itemRatingBackgroundImage.sprite = ratingSprites[3];
 
-        itemIconImage.sprite = IconSprite;
-        itemNameText.text = itemName;
-        itemSummaryText.text = itemSummary;
-        itemPriceText.text = $"가격 : {itemPrice}";
+        itemIconImage.sprite = itemData.GetItemIcon();
+        itemNameText.text = itemData.GetItemName();
+        itemSummaryText.text = itemData.GetSummary();
+        itemPriceText.text = $"가격 : {itemData.GetItemBuyPrice()}";
+    }
+    public void isEmptySlot()
+    {
+
+
     }
     public void SelectItem(bool isOn)
     {
-        isSelect = isOn;
-        selectFrame.SetActive(isSelect);
+        selectFrame.SetActive(isOn);
     }
 
 
