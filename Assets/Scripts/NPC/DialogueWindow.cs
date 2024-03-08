@@ -142,13 +142,13 @@ public class DialogueWindow : MonoBehaviour
             {
                 isQuit();
                 questAcceptWindow.SetActive(true);
-                transform.gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
         else
         {
             isQuit();
-            transform.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
     public void isQuit() // 온클릭 이벤트

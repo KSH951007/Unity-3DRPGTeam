@@ -41,6 +41,7 @@ public class QuestTracker : MonoBehaviour
 
         targetQuest.onNewTaskGroup += UpdateTaskDescriptos;
         targetQuest.onCompleted += DestroySelf;
+        targetQuest.onCanceled += DestroySelf;
 
         var taskGroups = targetQuest.TaskGroups;
         UpdateTaskDescriptos(targetQuest, taskGroups[0]); 
@@ -56,6 +57,11 @@ public class QuestTracker : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void TargetQuest_onCanceled(Quest quest)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void UpdateTaskDescriptos(Quest quest, TaskGroup currentTaskGroup, TaskGroup prevTaskGroup = null)

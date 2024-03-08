@@ -119,6 +119,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -4583,7 +4596,7 @@ TextureImporter:
         width: 92
         height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -4591,6 +4604,48 @@ TextureImporter:
       bones: []
       spriteID: 79b9bacc9a230124387ae53da7b6e3b6
       internalID: 1622696639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Item_213
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 881
+        width: 88
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e8408969cd40347ab91a16c5d48ff8
+      internalID: 461595266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Atlas_Item_214
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 2253
+        width: 79
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71895c6d9a471604eb88f06aec2779db
+      internalID: -1070963046
       vertices: []
       indices: 
       edges: []
@@ -4734,6 +4789,8 @@ TextureImporter:
       UI_Atlas_Item_210: 570326543
       UI_Atlas_Item_211: 1778282927
       UI_Atlas_Item_212: 1622696639
+      UI_Atlas_Item_213: 461595266
+      UI_Atlas_Item_214: -545149085
       UI_Atlas_Item_22: -340698347
       UI_Atlas_Item_23: -102413815
       UI_Atlas_Item_24: 2043519135

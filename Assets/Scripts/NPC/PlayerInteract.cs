@@ -12,38 +12,35 @@ public class PlayerInteract : MonoBehaviour, IInteractable
     bool isDialogue = false; // TODO : true 일때 움직임 제한
     int EXP;
     int Gold;
+    Transform heroTr;
+
+    public Transform MainHeroTranform { set => heroTr = value; }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) //TODO : 인풋 시스템 적용//  병합 되기전까지 사용
         {
             GameManager.Instance.qui.showQW();
         }
-        if (Input.GetKeyDown(KeyCode.R)) //TODO : 인풋 시스템 적용 //  병합 되기전까지 사용
-        {
-            Interact();
-        }
     }
 
     public void Interact() // WillDo: 인풋 시스템으로 함수만 가져오게 될것
     {
-        Collider[] colliderArray = Physics.OverlapSphere(transform.position, InteractRange);
+        Collider[] colliderArray = Physics.OverlapSphere(heroTr.position, InteractRange);
         foreach (Collider collider in colliderArray)
         {
             if (collider.TryGetComponent(out NPC npc))
             {
-                if (npc.nTD.npcSubQuest.IsComplatable)
-                {
-                    npc.nTD.npcSubQuest.Complete();
-                }
+                //if (npc.nTD.npcSubQuest.IsComplatable)
+                //{
+                //    npc.nTD.npcSubQuest.Complete();
+                //}
                 isDialogue = true;
-                GameManager.Instance.qui.showConversation();
                 npc.Ontalk(npc);
+                print(npc.nTD.name);
+                GameManager.Instance.qui.showConversation();
             }
         }
-    }
-    public void nextDialogue(NPC npc)
-    {
-        npc.Ontalk(npc);
     }
 
     public int GetEXP(int i) // ToDo : 퀘스트 보상 // 인벤토리 추가후 사용

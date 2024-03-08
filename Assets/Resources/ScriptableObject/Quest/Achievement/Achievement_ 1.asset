@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ca48e7da80de1468fe9bc5f5815900, type: 3}
+  m_Name: Achievement_ 1
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 9d92ed8a9fc31c84ab0143ad22947647, type: 2}
+  icon: {fileID: 21300000, guid: 6b6a3765273c87d448a027cad843170c, type: 3}
+  codeName: Acheivement1
+  displayName: "\uB358\uC804\uC744 \uD0D0\uC0AC\uD558\uB77C"
+  description: "\uB358\uC804\uC744 \uD0D0\uC0AC\uD558\uC5EC \uB358\uC804\uC5D0 \uC788\uB294
+    \uC11D\uC0C1\uB4E4\uC744 \uCC3E\uC544\uB0B4\uC790"
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: 9c1ed056a520e6243a71e6afacb13143, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 851ca82d44b43ff458c4d72793c118cd, type: 2}
+  useAutoComplete: 1
+  isCancelable: 0
+  isSavable: 1
+  acceptionConditions: []
+  cancelConditions: []

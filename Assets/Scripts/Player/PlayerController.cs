@@ -16,10 +16,11 @@ public class PlayerController : MonoBehaviour
     private bool canControl;
 
     private Hero mainHero;
-
+    private PlayerInteract interact;
     private void Awake()
     {
         heroManager = GetComponent<HeroManager>();
+        interact = GetComponent<PlayerInteract>();
         canControl = true;
 
 
@@ -39,6 +40,11 @@ public class PlayerController : MonoBehaviour
         inputs.Player.Skill1.performed += _ => PressSkill(0);
         inputs.Player.Skill2.performed += _ => PressSkill(1);
         inputs.Player.Skill3.performed += _ => PressSkill(2);
+        inputs.Player.Interact.performed += _ =>
+        {
+            interact.MainHeroTranform = heroManager.GetMainHero().transform;
+            interact.Interact();
+        };
 
         inputs.Player.ChangeCharacter.performed += _ =>
         {
