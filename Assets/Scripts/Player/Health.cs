@@ -44,7 +44,7 @@ public class Health : MonoBehaviour, IHitable
 
         currentHealth = Mathf.Max(currentHealth - compueDamage, 0);
         GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
-        damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
+        damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, compueDamage);
 
         if (currentHealth <= 0)
         {

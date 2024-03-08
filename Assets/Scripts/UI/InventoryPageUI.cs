@@ -16,5 +16,4 @@ public class InventoryPageUI : MonoBehaviour
         }
     }
 
-   
 }
