@@ -16,9 +16,8 @@ public class QuestGiver : MonoBehaviour
         }
     }
 
-    public void addQuest(Quest quest)
+    public void giveQuest(Quest quest)
     {
-        if (quest.IsAcceptable && !QuestSystem.Instance.ContainsInActiveAchievements(quest))
-            quests.Add(quest);   
-    }   
+        quests.Add(quest);
+    }
 }
