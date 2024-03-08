@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Urbon_Skill2 : MonoBehaviour
 {
-	private Vector3 targetPos;
+	[SerializeField] private Transform targetPos;
+	private Vector3 fallPos;
 	private int skillDamage = 50;
 
 	public Transform alertPos;
@@ -19,6 +20,8 @@ public class Urbon_Skill2 : MonoBehaviour
 
 	private void OnEnable()
 	{
+		targetPos = GameObject.Find("Heros").transform;
+
 		Randomize();
 		StartCoroutine(RockFall());
 		StartCoroutine(OutMap());
@@ -32,33 +35,38 @@ public class Urbon_Skill2 : MonoBehaviour
 	{
 		float randSize = Random.Range(0.3f, 2f);
 		transform.localScale = new Vector3(randSize, randSize, randSize);
-		targetPos = GameObject.Find("Player").transform.position + (Random.insideUnitSphere * 4);
-		targetPos.y = 6f;
+		fallPos = targetPos.position + (Random.insideUnitSphere * 3);
+		fallPos.y = 6f;
 
-		transform.position = targetPos;
-		alertPos.position = new Vector3(targetPos.x, 0.01f, targetPos.z);
-		particlePos.position = new Vector3(targetPos.x, 0.01f, targetPos.z);
+		transform.position = fallPos;
+		alertPos.position = new Vector3(fallPos.x, 0.8f, fallPos.z);
+		particlePos.position = new Vector3(fallPos.x, 0.8f, fallPos.z);
 	}
 
 	IEnumerator RockFall()
 	{
 		yield return new WaitForSeconds(clip.length);
 		particle.Play();
-		yield return null;
+		yield return new WaitForSeconds(0.7f);
 
 		if (hitPlayer.Length != 0 && hitPlayer[0] != null)
 		{
 			if (hitPlayer[0].transform.gameObject.TryGetComponent(out IHitable health))
 			{
 				health.TakeHit(skillDamage, IHitable.HitType.None);
-				gameObject.SetActive(false);
+				yield return new WaitForSeconds(0.1f);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
+				yield return new WaitForSeconds(0.1f);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
+				yield return new WaitForSeconds(0.1f);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
 			}
 		}
 	}
 
 	IEnumerator OutMap()
 	{
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(2f);
 		if (gameObject.activeSelf)
 		{
 			gameObject.SetActive(false);
@@ -67,11 +75,11 @@ public class Urbon_Skill2 : MonoBehaviour
 
 	private void DetectPlayer()
 	{
-		damageCollider.transform.position = new Vector3(targetPos.x, 0.01f, targetPos.z);
-
+		damageCollider.transform.position = new Vector3(fallPos.x, 0.8f, fallPos.z);
+		
 		Vector3 collCenter = damageCollider.transform.position + damageCollider.center;
 
 		hitPlayer =
-			Physics.OverlapSphere(collCenter, damageCollider.radius, playerLayer);
+			Physics.OverlapSphere(collCenter, damageCollider.radius * transform.localScale.x, playerLayer);
 	}
 }
