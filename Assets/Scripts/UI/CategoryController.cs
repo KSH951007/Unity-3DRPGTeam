@@ -3,19 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CategoryToggleController : MonoBehaviour
+public class CategoryController : MonoBehaviour
 {
-    [SerializeField] private Sprite disableSprite;
-    [SerializeField] private Sprite enableSprite;
+    [SerializeField] protected Sprite disableSprite;
+    [SerializeField] protected Sprite enableSprite;
     private ToggleGroup toggleGroup;
     private CategoryToggle[] toggles;
     private void Awake()
     {
         toggleGroup = GetComponent<ToggleGroup>();
         toggles = new CategoryToggle[transform.childCount];
+
+    }
+    private void Start()
+    {
         for (int i = 0; i < transform.childCount; i++)
         {
             toggles[i] = transform.GetChild(i).GetComponent<CategoryToggle>();
+            if (toggles[i].IsOn())
+            {
+                toggles[i].ChangeBackgroundImage(enableSprite);
+            }
+            else
+            {
+                toggles[i].ChangeBackgroundImage(disableSprite);
+
+            }
+            
         }
     }
 
@@ -25,13 +39,14 @@ public class CategoryToggleController : MonoBehaviour
         {
             if (toggles[i].IsOn())
             {
+
                 toggles[i].ChangeBackgroundImage(enableSprite);
             }
             else
             {
                 toggles[i].ChangeBackgroundImage(disableSprite);
             }
-           
+
 
         }
     }

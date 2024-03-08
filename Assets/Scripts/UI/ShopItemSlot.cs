@@ -12,7 +12,14 @@ public class ShopItemSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemSummaryText;
     [SerializeField] private TextMeshProUGUI itemPriceText;
+    [SerializeField] private GameObject selectFrame;
     private int slotIndex;
+    private bool isSelect;
+    public bool IsSelect { get { return isSelect; } }
+    private void Awake()
+    {
+        isSelect = false;
+    }
 
     public void SetItemInfo(int newSlotIndex, Item.ItemRatingType itemRatingType, Sprite IconSprite, string itemName, string itemSummary, string itemPrice)
     {
@@ -31,5 +38,11 @@ public class ShopItemSlot : MonoBehaviour
         itemSummaryText.text = itemSummary;
         itemPriceText.text = $"АЁАн : {itemPrice}";
     }
+    public void SelectItem(bool isOn)
+    {
+        isSelect = isOn;
+        selectFrame.SetActive(isSelect);
+    }
+
 
 }
