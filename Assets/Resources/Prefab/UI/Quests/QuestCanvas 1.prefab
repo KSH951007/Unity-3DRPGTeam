@@ -2162,10 +2162,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 714877225227308414}
-        m_TargetAssemblyTypeName: QuestUi, Assembly-CSharp
-        m_MethodName: talkWithNPC
-        m_Mode: 1
+      - m_Target: {fileID: 3024969547434880673}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3099,8 +3099,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Notifier
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8661c6ab885912c4dbc608d0205c0afa, type: 2}
-  m_sharedMaterial: {fileID: -8945748170348041830, guid: 8661c6ab885912c4dbc608d0205c0afa,
+  m_fontAsset: {fileID: 11400000, guid: 15fc374cdc9528d448e42a565f64803e, type: 2}
+  m_sharedMaterial: {fileID: -8945748170348041830, guid: 15fc374cdc9528d448e42a565f64803e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4119,13 +4119,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+      objectReference: {fileID: 11400000, guid: 15fc374cdc9528d448e42a565f64803e,
         type: 2}
     - target: {fileID: 8013784643114395929, guid: 1773de88f083a28408e16fdee9aa4c33,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -8945748170348041830, guid: 15fc374cdc9528d448e42a565f64803e,
+        type: 2}
     - target: {fileID: 8127720892224849315, guid: 1773de88f083a28408e16fdee9aa4c33,
         type: 3}
       propertyPath: m_text
@@ -4372,15 +4373,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306516734096981960, guid: a8c5c69d1813ede489153d415887fb47,
         type: 3}
+      propertyPath: m_text
+      value: "\uBAA8\uD5D8\uAC00 \uC5C5\uC801"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306516734096981960, guid: a8c5c69d1813ede489153d415887fb47,
+        type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+      objectReference: {fileID: 11400000, guid: 15fc374cdc9528d448e42a565f64803e,
         type: 2}
     - target: {fileID: 8306516734096981960, guid: a8c5c69d1813ede489153d415887fb47,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -8945748170348041830, guid: 15fc374cdc9528d448e42a565f64803e,
+        type: 2}
     - target: {fileID: 9140225607327874467, guid: a8c5c69d1813ede489153d415887fb47,
         type: 3}
       propertyPath: m_Name

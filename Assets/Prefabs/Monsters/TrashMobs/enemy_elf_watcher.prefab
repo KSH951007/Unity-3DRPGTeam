@@ -2326,6 +2326,8 @@ GameObject:
   - component: {fileID: 6528338339364637656}
   - component: {fileID: 2610085914310910848}
   - component: {fileID: 8881353003539728763}
+  - component: {fileID: 2133137261493608580}
+  - component: {fileID: 4324211643633424886}
   m_Layer: 7
   m_Name: enemy_elf_watcher
   m_TagString: Enemy
@@ -2373,7 +2375,31 @@ MonoBehaviour:
     m_Bits: 64
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2133137261493608580}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4324211643633424886}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maxHp: 0
   currentHp: 0
   damage: 0
@@ -2444,6 +2470,38 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &2133137261493608580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567897868600741809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 94989298b04c5b74eab6b6b5a5246902, type: 2}
+  target: {fileID: 11400000, guid: de32b187c2e51ef4f9a5328617e30fd8, type: 2}
+  successCount: 1
+  colliderTags: []
+--- !u!114 &4324211643633424886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567897868600741809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 9d92ed8a9fc31c84ab0143ad22947647, type: 2}
+  target: {fileID: 11400000, guid: de32b187c2e51ef4f9a5328617e30fd8, type: 2}
+  successCount: 1
+  colliderTags: []
 --- !u!1 &9092557943848622287
 GameObject:
   m_ObjectHideFlags: 0

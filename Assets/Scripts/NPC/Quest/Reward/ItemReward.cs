@@ -9,5 +9,6 @@ public class ItemReward : Reward
 
     public override void Give(Quest quest)
     {
+
     }
 }

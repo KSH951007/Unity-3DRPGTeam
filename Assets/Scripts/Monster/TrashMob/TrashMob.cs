@@ -21,14 +21,18 @@ public class TrashMob : MonoBehaviour, IHitable
     private bool cancelWait;
 	private bool invincible;
 
-    [HideInInspector] public UnityEvent onDead;
+	[Header("Event")]
+    public UnityEvent onDead;
 
-	public float maxHp;
+
+    public float maxHp;
 	public float currentHp;
 	public int damage;
 	public float lostDistance;		// lostDistance는 반드시 DetectRange보다 멀게 설정
 
-	enum State
+
+
+    enum State
 	{
 		IDLE,
 		CHASE,

@@ -613,6 +613,8 @@ GameObject:
   - component: {fileID: 548775516869173220}
   - component: {fileID: 1020003831083236500}
   - component: {fileID: 8040216798899478717}
+  - component: {fileID: 3099436349062891724}
+  - component: {fileID: 3267694546352774120}
   m_Layer: 7
   m_Name: Enemy_Kkaebuli
   m_TagString: Enemy
@@ -660,7 +662,31 @@ MonoBehaviour:
     m_Bits: 64
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3099436349062891724}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3267694546352774120}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maxHp: 0
   currentHp: 0
   damage: 0
@@ -731,6 +757,38 @@ CapsuleCollider:
   m_Height: 1.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &3099436349062891724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467685966996734953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 9d92ed8a9fc31c84ab0143ad22947647, type: 2}
+  target: {fileID: 11400000, guid: 4766030ed1ff56146a6bb17e2204b889, type: 2}
+  successCount: 1
+  colliderTags: []
+--- !u!114 &3267694546352774120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467685966996734953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 94989298b04c5b74eab6b6b5a5246902, type: 2}
+  target: {fileID: 11400000, guid: de32b187c2e51ef4f9a5328617e30fd8, type: 2}
+  successCount: 1
+  colliderTags: []
 --- !u!1 &5548333383898488291
 GameObject:
   m_ObjectHideFlags: 0

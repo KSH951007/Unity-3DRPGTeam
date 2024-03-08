@@ -6,10 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Armor", menuName = "ScriptableObject/Item/Armor")]
 public class ArmorSO : EquipmentItemSO
 {
+    [SerializeField] private float defensivePercent;
+    [SerializeField] private DefensiveItemType defensiveType;
     public override Item CreateItem()
     {
         return new Armor(this);
     }
 
-   
+
 }
