@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
-    public enum SceneType { Village, Dungeon }
+
+    [SerializeField] private LoadingUI loadingUI;
+    public enum SceneType { None, Village, Dungeon }
     private SceneType sceneType;
     [SerializeField] private SceneSO[] sceneDatas;
     public event Action onSceneChanged;
@@ -43,5 +45,32 @@ public class SceneLoader : Singleton<SceneLoader>
             }
         }
         onSceneChanged?.Invoke();
+    }
+    public IEnumerator LoadScene(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        operation.allowSceneActivation = false;
+        loadingUI.StartLoadingUI();
+        float currentTIme = 0f;
+        float maxTime = 10f;
+        while (!operation.isDone)
+        {
+            float percent = currentTIme / maxTime;
+            float result = Mathf.Min(percent, operation.progress * maxTime);
+
+            loadingUI.LoadingProgress(result);
+
+
+            if(currentTIme >= maxTime)
+            {
+                operation.allowSceneActivation = true;
+                break;
+            }
+
+            currentTIme += Time.deltaTime;
+            yield return null;
+        }
+
+        loadingUI.gameObject.SetActive(false);
     }
 }

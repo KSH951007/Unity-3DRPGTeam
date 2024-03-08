@@ -74,7 +74,6 @@ public class QuestSystem : MonoBehaviour
                 Register(achievement);
         }
     }
-
     private void OnApplicationQuit()
     {
         isApplicationQuitting = true;
@@ -216,7 +215,7 @@ public class QuestSystem : MonoBehaviour
             onSuccess.Invoke(saveData, quest);
         }
     }
-    
+
     private void LoadActiveQuest(QuestSaveData saveData, Quest quest)
     {
         var newQuest = Register(quest);

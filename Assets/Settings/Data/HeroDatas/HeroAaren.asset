@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5020e214f5b547488a8df71000eee00, type: 3}
   m_Name: HeroAaren
   m_EditorClassIdentifier: 
+  heroID: 1
   heroIcon: {fileID: 21300000, guid: 6130691d0fec21541adc89a3992bbad1, type: 3}
   heroName: "\uC544\uB80C"
   level: 1
@@ -20,7 +21,7 @@ MonoBehaviour:
   maxMana: 1000
   regenerationMana: 0.008
   defensivePercent: 0.3
-  baseDamage: 20
+  baseDamage: 850
   maxAttackCombo: 2
   skillDatas:
   - {fileID: 11400000, guid: 574b37837ea5dde42af78b5de7bd0ea2, type: 2}

@@ -31,11 +31,9 @@ public class SkillSlotPageUI : MonoBehaviour
         Hero mainHero = heroManager.GetMainHero();
         for (int i = 0; i < skillSlots.Length; i++)
         {
-
             Skill skill = skillManager.GetSkill(mainHero, i);
             if (skill != null)
             {
-                
                 skillSlots[i].ChangeSkillSlotUI(skill);
             }
         }
