@@ -42,7 +42,6 @@ public class KhururuOrigin : BossMonsters
 	{
 		if (isDead)
 		{
-			nav.isStopped = true;
 			_curState = State.None;
 		}
 
@@ -87,6 +86,12 @@ public class KhururuOrigin : BossMonsters
 		_fsm.UpdateState();
 		//print(_curState);
 	}
+
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawCube(skill1Collider.transform.position + skill1Collider.center, skill1Collider.bounds.extents * 2);
+	//}
 
 	private void ChangeState(State nextState)
 	{

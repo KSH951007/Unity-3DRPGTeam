@@ -24,6 +24,9 @@ public class KhururuTrans_AttackState : BaseState
 
 	bool attacked = false;
 	bool combo = false;
+	private int attackCount = 0;
+	private float skill4Range = 4.9f;
+	private int sectorAngle = 70;
 
 	public override void OnStateEnter()
     {
@@ -42,7 +45,7 @@ public class KhururuTrans_AttackState : BaseState
 		{
 			DetectSkillCollider();
 		}
-		else if (combo)
+		else if (combo && attackCount < 2)
 		{
 			DetectSkillCollider();
 		}
@@ -53,6 +56,7 @@ public class KhururuTrans_AttackState : BaseState
 		_monster.hasAttacked = false;
 		attacked = false;
 		combo = false;
+		attackCount = 0;
 	}
 
 	private void PlayRandomSkill()
@@ -120,9 +124,12 @@ public class KhururuTrans_AttackState : BaseState
 					health.TakeHit(attack2Damage);
 				}
 			}
+			attackCount++;
+			combo = true;
 		}
 		else if (_monster.t_skill1Collider.enabled)
 		{
+			_monster.nav.velocity = Vector3.zero;
 			Vector3 collCenter = _monster.t_skill1Collider.transform.position + _monster.t_skill1Collider.center;
 
 			Collider[] detectedColl =
@@ -148,6 +155,8 @@ public class KhururuTrans_AttackState : BaseState
 					health.TakeHit(skill2Damage);
 				}
 			}
+			attackCount++;
+
 			combo = true;
 
 		}
@@ -166,6 +175,8 @@ public class KhururuTrans_AttackState : BaseState
 					health.TakeHit(skill2Damage);
 				}
 			}
+			attackCount++;
+
 		}
 		else if (_monster.t_skill3Collider.enabled)
 		{
@@ -173,20 +184,17 @@ public class KhururuTrans_AttackState : BaseState
 		}
 		else if (_monster.t_skill4Collider.enabled)
 		{
-			Vector3 collCenter = _monster.t_skill4Collider.transform.position + _monster.t_skill4Collider.bounds.center + new Vector3(0, 0, 2);
-
-			Vector3 collHalfExtents = _monster.t_skill4Collider.bounds.extents * 1.6f;
-
-			Collider[] detectedColl =
-			Physics.OverlapBox(collCenter, collHalfExtents, Quaternion.identity, _monster.attackTargetLayer);
-			if (detectedColl.Length != 0)
+			Vector3 dir = _monster.target.position - _monster.transform.position;
+			float angle = Vector3.Angle(dir, _monster.transform.forward);
+			if (dir.magnitude <= skill4Range && Mathf.Abs(angle) <= sectorAngle)
 			{
-				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
+				if(_monster.target.gameObject.TryGetComponent(out IHitable health))
 				{
 					health.TakeHit(skill4Damage);
 				}
 			}
 			combo = true;
+			attackCount++;
 		}
 		else
 		{

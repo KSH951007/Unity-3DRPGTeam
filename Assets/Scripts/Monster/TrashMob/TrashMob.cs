@@ -169,7 +169,6 @@ public class TrashMob : MonoBehaviour, IHitable
 
 	IEnumerator KILLED()
 	{
-        nav.isStopped = true;
         animator.Play("Die", -1, 0);
 		onDead.Invoke();
         yield return new WaitForSeconds(5f);
@@ -233,6 +232,7 @@ public class TrashMob : MonoBehaviour, IHitable
 
             if (currentHp <= 0)
             {
+				currentHp = 0;
                 target = null;
 				nav.enabled = false;
 				mobCollider.enabled = false;

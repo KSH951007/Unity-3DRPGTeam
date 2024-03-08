@@ -119,10 +119,13 @@ public class BossMonsters : MonoBehaviour, IHitable
 			{
 				if (curShieldAmount > 0)
 				{
-					curShieldAmount--;
+					curShieldAmount -= damage;
 				}
-				currentHp -= damage;
-                GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
+				else
+				{
+					currentHp -= damage;
+				}
+				GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
                 damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
                 StartCoroutine(ChangeMat());
 			}
@@ -147,6 +150,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 
 	protected IEnumerator Die()
 	{
+		nav.isStopped = true;
 		animator.SetTrigger("Die");
 		yield return new WaitForSeconds(2.5f);
 		gameObject.SetActive(false);
