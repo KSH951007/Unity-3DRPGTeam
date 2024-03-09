@@ -1,28 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryPageUI : MonoBehaviour
+public class InventoryPageUI : CategoryPageUI
 {
     public enum InventoryPageType { All, EquipItemPage, UsableItemPage, MiscItemPage, Size }
+    public enum InventorySortType { NameSort, RatingSort }
+    public enum InventoryControlButtonType { Sort, MultiSelect, Use, Sell }
     private InventoryPageType inventoryPageType;
+    private InventorySortType inventorySortType;
     [SerializeField] private GameObject InventroySlotPrefab;
     [SerializeField] private Transform slotParentTr;
     private InventorySlotUI[] slots;
     [SerializeField] private Toggle[] itemPageToggle;
+    [SerializeField] private Toggle[] inventorySortToggles;
+    [SerializeField] private Button[] inventoryControlButtons;
+    [SerializeField] private RenderModelViewUI renderModelViewUI;
+    [SerializeField] private HeroSelectUI heroSelectUI;
     [SerializeField] private Inventory inventory;
-
-
+    private bool IsMultiSelect;
     private void OnEnable()
     {
         inventoryPageType = InventoryPageType.All;
+        inventorySortType = InventorySortType.NameSort;
+        inventorySortToggles[(int)inventorySortType].isOn = true;
+        IsMultiSelect = false;
         if (slots != null)
         {
             ChangeInventoryPage(inventoryPageType);
-
         }
 
+        renderModelViewUI.ActiveModel(RenderTexModel.PreviewModelType.InvenNPC);   
+        renderModelViewUI.SetTalkText("¾î¼­¿Í","Awake");
+
+    }
+    private void OnDisable()
+    {
+        IsMultiSelect = false;
+        inventoryControlButtons[(int)InventoryControlButtonType.Use].interactable = true;
     }
     private void Start()
     {
@@ -58,7 +75,6 @@ public class InventoryPageUI : MonoBehaviour
             switch (inventoryPageType)
             {
                 case InventoryPageType.All:
-
                     slots[i].SetInventorySlot(i, inventory.InventroyItems[i]);
                     break;
                 case InventoryPageType.EquipItemPage:
@@ -82,6 +98,13 @@ public class InventoryPageUI : MonoBehaviour
                     //    slots[slotIndex].SetInventorySlot(i, inventory.InventroyItems[i]);
                     //}
                     break;
+            }
+            if (slots[i].ItemIndex == -1)
+            {
+                if (slots[i].isActiveSelect)
+                {
+                    slots[i].ActiveSelectToggle();
+                }
             }
         }
         if (slotIndex != -1)
@@ -114,6 +137,83 @@ public class InventoryPageUI : MonoBehaviour
             }
 
         }
+    }
+    public void PressMultiSelectButton()
+    {
+        if (IsMultiSelect)
+            IsMultiSelect = false;
+        else
+        {
+            IsMultiSelect = true;
+        }
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].ItemIndex == -1)
+                continue;
+
+            slots[i].ActiveSelectToggle();
+        }
+
+        if (IsMultiSelect)
+        {
+            inventoryControlButtons[(int)InventoryControlButtonType.Use].interactable = false;
+        }
+        else
+        {
+            inventoryControlButtons[(int)InventoryControlButtonType.Use].interactable = true;
+            Debug.Log("active");
+        }
+    }
+    public void PressSellButton()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].isActiveSelect)
+            {
+                if (slots[i].isSelectToggleOn)
+                {
+                    int conut = 1;
+                    CountableItem countableItem = inventory.InventroyItems[slots[i].ItemIndex] as CountableItem;
+                    if (countableItem != null)
+                    {
+                        conut = countableItem.Count;
+                    }
+                    inventory.SellItem(slots[i].ItemIndex, conut);
+
+                }
+                slots[i].ActiveSelectToggle();
+            }
+        }
+
+        inventory.ProgressSortByDefault();
+        ChangeInventoryPage(inventoryPageType);
+
+    }
+    public void PressEquipITemButton()
+    {
+        //heroSelectUI.ActiveHeroSelectUI();
+    }
+    public void ActiveSordToggle(int index)
+    {
+        if (inventorySortToggles[index].isOn)
+        {
+            inventorySortType = (InventorySortType)index;
+        }
+
+
+    }
+    public void PressSortButton()
+    {
+        if (inventorySortType == InventorySortType.NameSort)
+        {
+            inventory.ProgressSortByName();
+        }
+        else if (inventorySortType == InventorySortType.RatingSort)
+        {
+            inventory.ProgressSortByRating();
+        }
+            ChangeInventoryPage(inventoryPageType);
     }
 
 }

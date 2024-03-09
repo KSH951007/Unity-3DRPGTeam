@@ -4,9 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopPageUI : MonoBehaviour
+public class ShopPageUI : CategoryPageUI
 {
     public enum ShopPageType { All, WeaponPage, ArmorPage, PortionPage }
+
 
     [SerializeField] private List<ItemSO> itemDatas;
     [SerializeField] private Transform itemParent;
@@ -16,8 +17,9 @@ public class ShopPageUI : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private ScrollRect pageScrollRect;
-    [SerializeField] private Toggle[] pageToggle;
+    [SerializeField] private Toggle[] pageToggles;
     [SerializeField] private CountItemBuyActionUI countItemBuyActionUI;
+    [SerializeField] private RenderModelViewUI renderModelViewUI;
     private void Awake()
     {
         CreateSlots();
@@ -25,7 +27,11 @@ public class ShopPageUI : MonoBehaviour
     }
     private void OnEnable()
     {
+        renderModelViewUI.ActiveModel(RenderTexModel.PreviewModelType.ShopNPC);
+        renderModelViewUI.SetTalkText("반가워", "Awake");
+        Debug.Log("enable");
     }
+  
     private void Start()
     {
         goldText.text = inventory.Gold.ToString();
@@ -56,7 +62,10 @@ public class ShopPageUI : MonoBehaviour
             {
                 int itemIndex = itemSlots[i].ItemIndex;
                 if (!inventory.HasGold(itemDatas[itemIndex].GetItemBuyPrice()))
+                {
+                    renderModelViewUI.SetTalkText("돈이 없는거 같아!!");
                     return;
+                }
 
                 ItemSO buyItem = itemDatas[itemIndex];
 
@@ -64,12 +73,12 @@ public class ShopPageUI : MonoBehaviour
                 {
                     int maxCount = Mathf.Min(inventory.Gold / buyItem.GetItemBuyPrice(), 99);
 
-
-                    countItemBuyActionUI.SetItemInfo(itemSlots[i].ItemRatingSprite, buyItem, maxCount, inventory.AddBuyItem);
+                    countItemBuyActionUI.SetItemInfo(itemSlots[i].ItemRatingSprite, buyItem, maxCount, BuyItem);
                 }
                 else
                 {
-                    inventory.AddBuyItem(buyItem);
+                    BuyItem(buyItem);
+
                 }
 
 
@@ -78,9 +87,26 @@ public class ShopPageUI : MonoBehaviour
 
         }
     }
+    public void BuyItem(ItemSO itemData, int count = 1)
+    {
+
+        Inventory.ItemBuyResultType type = inventory.AddBuyItem(itemData);
+        switch (type)
+        {
+            case Inventory.ItemBuyResultType.Success:
+                renderModelViewUI.SetTalkText("고마워~@@", "Awake");
+                break;
+            case Inventory.ItemBuyResultType.TribeSlot:
+                renderModelViewUI.SetTalkText("아이템 공간이\n 부족한거같아!!");
+                break;
+            case Inventory.ItemBuyResultType.TribeGold:
+                renderModelViewUI.SetTalkText("돈이 없는거 같아!!");
+                break;
+        }
+    }
     public void ToggleItemPage(int typeIndex)
     {
-        if (pageToggle[typeIndex].isOn)
+        if (pageToggles[typeIndex].isOn)
         {
             ChangeItemSlot((ShopPageType)typeIndex);
         }

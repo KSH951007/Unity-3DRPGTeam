@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public enum ItemBuyResultType { Success, TribeSlot, TribeGold }
     private int gold;
     private int maxSlotCount;
     private Item[] items;
@@ -29,11 +31,11 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
-    public void AddBuyItem(ItemSO itemData, int count = 1)
+    public ItemBuyResultType AddBuyItem(ItemSO itemData, int count = 1)
     {
 
         if (!HasGold(itemData.GetItemBuyPrice()))
-            return;
+            return ItemBuyResultType.TribeGold;
 
         if (itemData is CountableItemSO)
         {
@@ -93,6 +95,7 @@ public class Inventory : MonoBehaviour
                 else
                 {
                     Debug.Log("공간없음");
+                    return ItemBuyResultType.TribeSlot;
                 }
 
             }
@@ -108,15 +111,53 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                Debug.Log("아이템공간 부족");
-                //TODO : 메세지박스(팝업UI) 띄울예정
-                return;
+                return ItemBuyResultType.TribeSlot;
             }
 
         }
 
         Gold -= itemData.GetItemBuyPrice() * count;
-        // onItemUpdate?.Invoke();
+
+        return ItemBuyResultType.Success;
+    }
+    public void SellItem(int index, int Count = 1)
+    {
+        int sellPrice = (int)(items[index].itemData.GetItemBuyPrice() * 0.5f) * Count;
+
+        Gold += sellPrice;
+
+
+
+        items[index] = null;
+        //Array.Sort(items, (x, y) =>
+        //{
+        //    if (y == null)
+        //        return 1;
+        //    else
+        //        return -1;
+        //});
+        onItemUpdate?.Invoke(index);
+
+
+    }
+    public void ProgressSortByDefault()
+    {
+        Array.Sort(items, (x, y) =>
+        {
+            if (x == null && y == null)
+                return 0;
+            else if (x == null && y != null)
+                return 1;
+            else if (y == null && x != null)
+                return -1;
+            else
+                return 0;
+
+        });
+        for (int i = 0; i < items.Length; i++)
+        {
+            onItemUpdate?.Invoke(i);
+        }
     }
     public bool HasItem(ItemSO itemData, out int index)
     {
@@ -149,4 +190,64 @@ public class Inventory : MonoBehaviour
         index = 0;
         return false;
     }
+    public void ProgressSortByName()
+    {
+        CompareInfo compareInfo = CultureInfo.GetCultureInfo("ko-KR").CompareInfo;
+        Array.Sort(items, (item1, item2) =>
+        {
+            if (item1 == null && item2 == null)
+                return 0;
+            else if (item1 == null && item2 != null)
+                return 1;
+            else if (item2 == null && item1 != null)
+                return -1;
+            else
+            {
+                return compareInfo.Compare(item1.itemData.GetItemName(), item2.itemData.GetItemName());
+
+            }
+
+        });
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            onItemUpdate?.Invoke(i);
+        }
+    }
+    public void ProgressSortByRating()
+    {
+        Array.Sort(items, (item1, item2) =>
+        {
+            if (item1 == null && item2 == null)
+                return 0;
+            else if (item1 == null && item2 != null)
+                return 1;
+            else if (item2 == null && item1 != null)
+                return -1;
+            else
+            {
+                if (item1.itemData.GetRatingType() < item2.itemData.GetRatingType())
+                {
+                    return -1;
+                }
+                else if (item1.itemData.GetRatingType() == item2.itemData.GetRatingType())
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+
+            }
+
+        });
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            onItemUpdate?.Invoke(i);
+        }
+    }
+
+
 }

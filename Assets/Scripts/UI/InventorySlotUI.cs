@@ -14,16 +14,16 @@ public class InventorySlotUI : MonoBehaviour
     private int itemIndex;
     private Image ratingImage;
     private Image itemIconImage;
-    private GameObject lockImage;
     private Toggle SelectToggle;
 
     public int ItemIndex { get => itemIndex; }
+    public bool isActiveSelect { get => SelectToggle.gameObject.activeSelf; }
+    public bool isSelectToggleOn { get => SelectToggle.isOn; }
     private void Awake()
     {
         ratingImage = GetComponent<Image>();
         itemIconImage = transform.Find("Icon").GetComponent<Image>();
-        lockImage = transform.Find("LockImage").gameObject;
-        SelectToggle = itemIconImage.transform.Find("SelectToggle").GetComponent<Toggle>();
+        SelectToggle = transform.Find("SelectToggle").GetComponent<Toggle>();
         itemIconImage.enabled = false;
         SelectToggle.gameObject.SetActive(false);
     }
@@ -31,6 +31,11 @@ public class InventorySlotUI : MonoBehaviour
     {
         SelectToggle.isOn = false;
 
+    }
+    private void OnDisable()
+    {
+        if (isActiveSelect)
+            ActiveSelectToggle();
     }
     public void SetItemSlotIndex(int index)
     {
@@ -51,7 +56,7 @@ public class InventorySlotUI : MonoBehaviour
         {
             this.itemIndex = itemIndex;
 
-            if(item is CountableItem)
+            if (item is CountableItem)
             {
                 countPanel.SetActive(true);
                 countText.text = ((CountableItem)item).Count.ToString();
