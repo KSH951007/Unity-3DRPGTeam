@@ -228,7 +228,7 @@ public class TrashMob : MonoBehaviour, IHitable
         if (!invincible)
         {
             GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
-            damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, (int)damage);
+            damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
 
             hpBarUI.SetActive(true);
 

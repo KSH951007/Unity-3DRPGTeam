@@ -60,7 +60,7 @@ public class Urbon : BossMonsters
 				break;
 
 			case State.Attack:
-				if (hasAttacked && NextChangeCoolTime() && nav.isStopped)
+				if (hasAttacked && NextChangeCoolTime() && nav.isStopped && !u_skill3Collider.enabled)
 				{
 					ChangeState(State.Idle);
 				}
@@ -68,7 +68,7 @@ public class Urbon : BossMonsters
 		}
 
 		_fsm.UpdateState();
-		//print(_curState);
+		print(_curState);
 		//print(timeForNextChange);
 	}
 

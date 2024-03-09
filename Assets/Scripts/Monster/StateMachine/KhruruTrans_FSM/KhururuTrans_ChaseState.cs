@@ -20,9 +20,12 @@ public class KhururuTrans_ChaseState : BaseState
 
     public override void OnStateUpdate()
     {
-		_monster.nav.SetDestination(_monster.target.position);
+        if (_monster.nav.enabled)
+        {
+            _monster.nav.SetDestination(_monster.target.position);
+        }
 
-		FaceTarget();
+        FaceTarget();
 	}
 
 	public override void OnStateExit()

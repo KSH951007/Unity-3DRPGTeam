@@ -20,13 +20,15 @@ public class KhururuTrans_AttackState : BaseState
 	private float skill3Weight = 0.15f;
 	private float skill4Weight = 0.15f;
 
-	private float totalWeight;
+    private float totalWeight;
 
 	bool attacked = false;
 	bool combo = false;
 	private int attackCount = 0;
 	private float skill4Range = 4.9f;
 	private int sectorAngle = 70;
+	private float comboTime;
+	private bool triple;
 
 	public override void OnStateEnter()
     {
@@ -45,11 +47,17 @@ public class KhururuTrans_AttackState : BaseState
 		{
 			DetectSkillCollider();
 		}
-		else if (combo && attackCount < 2)
+		else if (combo && attackCount < 2 && comboTime < Time.time)
 		{
 			DetectSkillCollider();
 		}
-	}
+		else if (triple && comboTime < Time.time)
+		{
+            DetectSkillCollider();
+        }
+
+        SetTarget();
+    }
 
 	public override void OnStateExit()
 	{
@@ -57,6 +65,7 @@ public class KhururuTrans_AttackState : BaseState
 		attacked = false;
 		combo = false;
 		attackCount = 0;
+		triple = false;
 	}
 
 	private void PlayRandomSkill()
@@ -124,6 +133,7 @@ public class KhururuTrans_AttackState : BaseState
 					health.TakeHit(attack2Damage);
 				}
 			}
+			comboTime = Time.time + 0.3f;
 			attackCount++;
 			combo = true;
 		}
@@ -155,10 +165,6 @@ public class KhururuTrans_AttackState : BaseState
 					health.TakeHit(skill2Damage);
 				}
 			}
-			attackCount++;
-
-			combo = true;
-
 		}
 		else if (_monster.t_skill2_2Collider.enabled)
 		{
@@ -193,8 +199,13 @@ public class KhururuTrans_AttackState : BaseState
 					health.TakeHit(skill4Damage);
 				}
 			}
-			combo = true;
+            comboTime = Time.time + 0.1f;
+            combo = true;
 			attackCount++;
+			if (attackCount == 2)
+			{
+				triple = true;
+			}
 		}
 		else
 		{
@@ -203,4 +214,20 @@ public class KhururuTrans_AttackState : BaseState
 
 		attacked = true;
 	}
+
+    private void SetTarget()
+    {
+        Vector3 collCenter = _monster.detectColl.transform.position + _monster.detectColl.center;
+        if (Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer).Length >= 1)
+        {
+            Collider[] detectedColl =
+            Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer);
+            _monster.target = detectedColl[0].transform;
+            //Debug.Log(detectedColl[0].name);
+        }
+        else
+        {
+            return;
+        }
+    }
 }
