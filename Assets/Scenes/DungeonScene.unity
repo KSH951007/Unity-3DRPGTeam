@@ -6573,6 +6573,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418330179}
   m_Mesh: {fileID: -8485818012607861341, guid: d407a46d32a9ca346b75f6e53c1cc12d, type: 3}
+--- !u!1 &421931947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 421931949}
+  - component: {fileID: 421931948}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &421931948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421931947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa305e846ab76e7459896dcc46e5ef7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &421931949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421931947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 85.99526, y: -19.737265, z: 97.31054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &422989466
 GameObject:
   m_ObjectHideFlags: 0
@@ -9519,12 +9563,12 @@ PrefabInstance:
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002163656
+      value: -0.000000021636557
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011134561
+      value: 0.000000011134559
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
@@ -24763,6 +24807,50 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8485818012607861341, guid: d407a46d32a9ca346b75f6e53c1cc12d, type: 3}
+--- !u!1 &1382118068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382118070}
+  - component: {fileID: 1382118069}
+  m_Layer: 0
+  m_Name: SoundSources
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1382118069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382118068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1479086aaee7d44ab0ca9d23a0babc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1382118070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382118068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 85.99526, y: -19.737265, z: 97.31054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387357512
 GameObject:
   m_ObjectHideFlags: 0
@@ -41024,12 +41112,12 @@ PrefabInstance:
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002163656
+      value: -0.000000021636557
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011134561
+      value: 0.000000011134559
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
@@ -43922,3 +44010,5 @@ SceneRoots:
   - {fileID: 1839892066}
   - {fileID: 1968270882}
   - {fileID: 1467997700}
+  - {fileID: 421931949}
+  - {fileID: 1382118070}

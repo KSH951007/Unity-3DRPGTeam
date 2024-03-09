@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundTestScript : MonoBehaviour
+public class SoundSources : MonoBehaviour
 {
     private void Start()
     {
