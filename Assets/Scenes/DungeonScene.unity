@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 49629102}
   - component: {fileID: 49629104}
   - component: {fileID: 49629103}
+  - component: {fileID: 49629105}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (3)
   m_TagString: Untagged
@@ -518,6 +519,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49629101}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &49629105
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49629101}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &50085622
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +942,7 @@ GameObject:
   - component: {fileID: 65535384}
   - component: {fileID: 65535386}
   - component: {fileID: 65535385}
+  - component: {fileID: 65535387}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (14)
   m_TagString: Untagged
@@ -997,6 +1015,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65535383}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &65535387
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65535383}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &73943436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,6 +1987,7 @@ GameObject:
   - component: {fileID: 133361356}
   - component: {fileID: 133361358}
   - component: {fileID: 133361357}
+  - component: {fileID: 133361359}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (13)
   m_TagString: Untagged
@@ -2025,6 +2060,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133361355}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &133361359
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133361355}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1001 &142438201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2109,6 +2160,7 @@ GameObject:
   - component: {fileID: 149846249}
   - component: {fileID: 149846251}
   - component: {fileID: 149846250}
+  - component: {fileID: 149846252}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (5)
   m_TagString: Untagged
@@ -2181,6 +2233,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149846248}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &149846252
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149846248}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &150474265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,6 +4236,7 @@ GameObject:
   - component: {fileID: 277251530}
   - component: {fileID: 277251532}
   - component: {fileID: 277251531}
+  - component: {fileID: 277251533}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (14)
   m_TagString: Untagged
@@ -4240,6 +4309,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277251529}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &277251533
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277251529}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &279920108
 GameObject:
   m_ObjectHideFlags: 0
@@ -8092,6 +8177,7 @@ GameObject:
   - component: {fileID: 468041981}
   - component: {fileID: 468041983}
   - component: {fileID: 468041982}
+  - component: {fileID: 468041984}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (4)
   m_TagString: Untagged
@@ -8164,6 +8250,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468041980}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &468041984
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468041980}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &469103614
 GameObject:
   m_ObjectHideFlags: 0
@@ -9392,17 +9494,17 @@ PrefabInstance:
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.8
+      value: 42.7
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0700002
+      value: 0.8000002
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.82
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
@@ -9417,12 +9519,12 @@ PrefabInstance:
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000002163656
+      value: 0.00000002163656
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000011134561
+      value: -0.000000011134561
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
@@ -9911,6 +10013,7 @@ GameObject:
   - component: {fileID: 609080681}
   - component: {fileID: 609080683}
   - component: {fileID: 609080682}
+  - component: {fileID: 609080684}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (2)
   m_TagString: Untagged
@@ -9983,6 +10086,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609080680}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &609080684
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609080680}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &613152705
 GameObject:
   m_ObjectHideFlags: 0
@@ -10077,6 +10196,7 @@ GameObject:
   - component: {fileID: 614051909}
   - component: {fileID: 614051911}
   - component: {fileID: 614051910}
+  - component: {fileID: 614051912}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (10)
   m_TagString: Untagged
@@ -10149,6 +10269,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614051908}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &614051912
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614051908}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &615074581
 GameObject:
   m_ObjectHideFlags: 0
@@ -11036,6 +11172,7 @@ GameObject:
   - component: {fileID: 638764321}
   - component: {fileID: 638764323}
   - component: {fileID: 638764322}
+  - component: {fileID: 638764324}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (13)
   m_TagString: Untagged
@@ -11108,6 +11245,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638764320}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &638764324
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638764320}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &639930691
 GameObject:
   m_ObjectHideFlags: 0
@@ -11525,6 +11678,7 @@ GameObject:
   - component: {fileID: 661810801}
   - component: {fileID: 661810803}
   - component: {fileID: 661810802}
+  - component: {fileID: 661810804}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (2)
   m_TagString: Untagged
@@ -11597,6 +11751,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661810800}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &661810804
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661810800}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &662926645
 GameObject:
   m_ObjectHideFlags: 0
@@ -13350,6 +13520,7 @@ GameObject:
   - component: {fileID: 754872509}
   - component: {fileID: 754872511}
   - component: {fileID: 754872510}
+  - component: {fileID: 754872512}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (13)
   m_TagString: Untagged
@@ -13422,6 +13593,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754872508}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &754872512
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754872508}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &761835542
 GameObject:
   m_ObjectHideFlags: 0
@@ -13916,6 +14103,7 @@ GameObject:
   - component: {fileID: 798825660}
   - component: {fileID: 798825662}
   - component: {fileID: 798825661}
+  - component: {fileID: 798825663}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (4)
   m_TagString: Untagged
@@ -13988,6 +14176,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798825659}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &798825663
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798825659}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &802175640
 GameObject:
   m_ObjectHideFlags: 0
@@ -13999,6 +14203,7 @@ GameObject:
   - component: {fileID: 802175641}
   - component: {fileID: 802175643}
   - component: {fileID: 802175642}
+  - component: {fileID: 802175644}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (13)
   m_TagString: Untagged
@@ -14071,6 +14276,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802175640}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &802175644
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802175640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &806840344
 GameObject:
   m_ObjectHideFlags: 0
@@ -17396,6 +17617,7 @@ GameObject:
   - component: {fileID: 1015778178}
   - component: {fileID: 1015778180}
   - component: {fileID: 1015778179}
+  - component: {fileID: 1015778181}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (10)
   m_TagString: Untagged
@@ -17468,6 +17690,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015778177}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1015778181
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015778177}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!4 &1022578528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3869468363897078385, guid: 3f0ae119683bfeb4da8727eb6a3cf500,
@@ -17591,6 +17829,7 @@ GameObject:
   - component: {fileID: 1024489690}
   - component: {fileID: 1024489692}
   - component: {fileID: 1024489691}
+  - component: {fileID: 1024489693}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (12)
   m_TagString: Untagged
@@ -17663,6 +17902,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024489689}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1024489693
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024489689}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1025085494
 GameObject:
   m_ObjectHideFlags: 0
@@ -23681,6 +23936,7 @@ GameObject:
   - component: {fileID: 1344924273}
   - component: {fileID: 1344924275}
   - component: {fileID: 1344924274}
+  - component: {fileID: 1344924276}
   m_Layer: 0
   m_Name: CH_BossStage_Side_0 (1)
   m_TagString: Untagged
@@ -23753,6 +24009,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344924272}
   m_Mesh: {fileID: -4559104418662483203, guid: 11673eb6abdaa9c40be81ed9ef2479f3, type: 3}
+--- !u!208 &1344924276
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344924272}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.269, y: 3.0070002, z: 2.9410002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.011000001, y: 3.0070002, z: 0.008}
+  m_TimeToStationary: 0.5
 --- !u!1 &1350918722
 GameObject:
   m_ObjectHideFlags: 0
@@ -24162,6 +24434,7 @@ GameObject:
   - component: {fileID: 1373664885}
   - component: {fileID: 1373664887}
   - component: {fileID: 1373664886}
+  - component: {fileID: 1373664888}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (5)
   m_TagString: Untagged
@@ -24234,6 +24507,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373664884}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1373664888
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373664884}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1377509389
 GameObject:
   m_ObjectHideFlags: 0
@@ -24245,6 +24534,7 @@ GameObject:
   - component: {fileID: 1377509390}
   - component: {fileID: 1377509392}
   - component: {fileID: 1377509391}
+  - component: {fileID: 1377509393}
   m_Layer: 0
   m_Name: CH_BossStage_Side_0
   m_TagString: Untagged
@@ -24317,6 +24607,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377509389}
   m_Mesh: {fileID: -4559104418662483203, guid: 11673eb6abdaa9c40be81ed9ef2479f3, type: 3}
+--- !u!208 &1377509393
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377509389}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.269, y: 3.0070002, z: 2.9410002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.011000001, y: 3.0070002, z: 0.008}
+  m_TimeToStationary: 0.5
 --- !u!1 &1380556918
 GameObject:
   m_ObjectHideFlags: 0
@@ -25662,6 +25968,7 @@ GameObject:
   - component: {fileID: 1465615992}
   - component: {fileID: 1465615994}
   - component: {fileID: 1465615993}
+  - component: {fileID: 1465615995}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (9)
   m_TagString: Untagged
@@ -25734,6 +26041,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465615991}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1465615995
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465615991}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1467997698
 GameObject:
   m_ObjectHideFlags: 0
@@ -27036,6 +27359,7 @@ GameObject:
   - component: {fileID: 1521207065}
   - component: {fileID: 1521207067}
   - component: {fileID: 1521207066}
+  - component: {fileID: 1521207068}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (6)
   m_TagString: Untagged
@@ -27108,6 +27432,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521207064}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1521207068
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521207064}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1521483052
 GameObject:
   m_ObjectHideFlags: 0
@@ -28342,6 +28682,7 @@ GameObject:
   - component: {fileID: 1581143352}
   - component: {fileID: 1581143354}
   - component: {fileID: 1581143353}
+  - component: {fileID: 1581143355}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (11)
   m_TagString: Untagged
@@ -28414,6 +28755,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581143351}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1581143355
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581143351}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1585639545
 GameObject:
   m_ObjectHideFlags: 0
@@ -29325,6 +29682,7 @@ GameObject:
   - component: {fileID: 1628084717}
   - component: {fileID: 1628084719}
   - component: {fileID: 1628084718}
+  - component: {fileID: 1628084720}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (14)
   m_TagString: Untagged
@@ -29397,6 +29755,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628084716}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1628084720
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628084716}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1628372730
 GameObject:
   m_ObjectHideFlags: 0
@@ -29836,6 +30210,7 @@ GameObject:
   - component: {fileID: 1644329691}
   - component: {fileID: 1644329693}
   - component: {fileID: 1644329692}
+  - component: {fileID: 1644329694}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (4)
   m_TagString: Untagged
@@ -29908,6 +30283,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644329690}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1644329694
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644329690}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1649457039
 GameObject:
   m_ObjectHideFlags: 0
@@ -30204,6 +30595,7 @@ GameObject:
   - component: {fileID: 1663459169}
   - component: {fileID: 1663459171}
   - component: {fileID: 1663459170}
+  - component: {fileID: 1663459172}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (7)
   m_TagString: Untagged
@@ -30276,6 +30668,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663459168}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1663459172
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663459168}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1663681880
 GameObject:
   m_ObjectHideFlags: 0
@@ -31502,6 +31910,7 @@ GameObject:
   - component: {fileID: 1716655839}
   - component: {fileID: 1716655841}
   - component: {fileID: 1716655840}
+  - component: {fileID: 1716655842}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (4)
   m_TagString: Untagged
@@ -31574,6 +31983,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716655838}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1716655842
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716655838}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1719849329
 GameObject:
   m_ObjectHideFlags: 0
@@ -32430,6 +32855,7 @@ GameObject:
   - component: {fileID: 1749046296}
   - component: {fileID: 1749046298}
   - component: {fileID: 1749046297}
+  - component: {fileID: 1749046299}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (2)
   m_TagString: Untagged
@@ -32502,6 +32928,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749046295}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1749046299
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749046295}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1751077654
 GameObject:
   m_ObjectHideFlags: 0
@@ -33934,6 +34376,7 @@ GameObject:
   - component: {fileID: 1836638927}
   - component: {fileID: 1836638929}
   - component: {fileID: 1836638928}
+  - component: {fileID: 1836638930}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (4)
   m_TagString: Untagged
@@ -34006,6 +34449,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836638926}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1836638930
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836638926}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1837301861
 GameObject:
   m_ObjectHideFlags: 0
@@ -34513,6 +34972,7 @@ GameObject:
   - component: {fileID: 1853080909}
   - component: {fileID: 1853080911}
   - component: {fileID: 1853080910}
+  - component: {fileID: 1853080912}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (14)
   m_TagString: Untagged
@@ -34585,6 +35045,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853080908}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1853080912
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853080908}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1864129131
 GameObject:
   m_ObjectHideFlags: 0
@@ -35284,6 +35760,7 @@ GameObject:
   - component: {fileID: 1914188671}
   - component: {fileID: 1914188673}
   - component: {fileID: 1914188672}
+  - component: {fileID: 1914188674}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (2)
   m_TagString: Untagged
@@ -35356,6 +35833,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914188670}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1914188674
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914188670}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1930880301
 GameObject:
   m_ObjectHideFlags: 0
@@ -36549,6 +37042,7 @@ GameObject:
   - component: {fileID: 1996750302}
   - component: {fileID: 1996750304}
   - component: {fileID: 1996750303}
+  - component: {fileID: 1996750305}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (8)
   m_TagString: Untagged
@@ -36621,6 +37115,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996750301}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &1996750305
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996750301}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &1998634361
 GameObject:
   m_ObjectHideFlags: 0
@@ -37902,6 +38412,7 @@ GameObject:
   - component: {fileID: 2051996366}
   - component: {fileID: 2051996368}
   - component: {fileID: 2051996367}
+  - component: {fileID: 2051996369}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (1)
   m_TagString: Untagged
@@ -37974,6 +38485,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051996365}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &2051996369
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051996365}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &2054337633
 GameObject:
   m_ObjectHideFlags: 0
@@ -38286,6 +38813,7 @@ GameObject:
   - component: {fileID: 2078165763}
   - component: {fileID: 2078165765}
   - component: {fileID: 2078165764}
+  - component: {fileID: 2078165766}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (2)
   m_TagString: Untagged
@@ -38358,6 +38886,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078165762}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &2078165766
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078165762}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &2079084539
 GameObject:
   m_ObjectHideFlags: 0
@@ -38403,6 +38947,7 @@ GameObject:
   - component: {fileID: 2082529440}
   - component: {fileID: 2082529442}
   - component: {fileID: 2082529441}
+  - component: {fileID: 2082529443}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (10)
   m_TagString: Untagged
@@ -38475,6 +39020,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082529439}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &2082529443
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082529439}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &2084786418
 GameObject:
   m_ObjectHideFlags: 0
@@ -38901,6 +39462,7 @@ GameObject:
   - component: {fileID: 2102505617}
   - component: {fileID: 2102505619}
   - component: {fileID: 2102505618}
+  - component: {fileID: 2102505620}
   m_Layer: 0
   m_Name: CH_Wall_02_0 (10)
   m_TagString: Untagged
@@ -38973,6 +39535,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102505616}
   m_Mesh: {fileID: 4240197821478852659, guid: ce45305f1318e5a40a972cc43d9bc487, type: 3}
+--- !u!208 &2102505620
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102505616}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5830001, y: 1.5510001, z: 0.614}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5500001, z: 0.007}
+  m_TimeToStationary: 0.5
 --- !u!1 &2103349244
 GameObject:
   m_ObjectHideFlags: 0
@@ -40446,12 +41024,12 @@ PrefabInstance:
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000002163656
+      value: 0.00000002163656
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000011134561
+      value: -0.000000011134561
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
@@ -40491,17 +41069,17 @@ PrefabInstance:
     - target: {fileID: 8663804752716486803, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.8
+      value: 42.7
       objectReference: {fileID: 0}
     - target: {fileID: 8663804752716486803, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.93
+      value: -6.2
       objectReference: {fileID: 0}
     - target: {fileID: 8663804752716486803, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.82
+      value: -39
       objectReference: {fileID: 0}
     - target: {fileID: 8663804752716486803, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}

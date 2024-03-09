@@ -10,14 +10,20 @@ public class Urbon_AttackState : BaseState
 	private int attackDamage;
 	private int skill3Damage;
 
-	private float attackWeight = 0.3f;
-	private float skill1Weight = 0.3f;
-	private float skill2Weight = 0.3f;
-	private float skill3Weight = 0.1f;
+	//private float attackWeight = 0.3f;
+	//private float skill1Weight = 0.3f;
+	//private float skill2Weight = 0.3f;
+	//private float skill3Weight = 0.1f;
+
+	private float attackWeight = 0f;
+	private float skill1Weight = 0f;
+	private float skill2Weight = 0f;
+	private float skill3Weight = 1f;
 
 	private float totalWeight;
 
 	private bool Onskill3;
+	private bool combo;
 	private bool attacked;
 
 	public override void OnStateEnter()
@@ -36,7 +42,13 @@ public class Urbon_AttackState : BaseState
 
 	public override void OnStateUpdate()
 	{
+		SetTarget();
+
 		if (!attacked)
+		{
+			DetectSkillCollider();
+		}
+		else if (combo)
 		{
 			DetectSkillCollider();
 		}
@@ -99,6 +111,7 @@ public class Urbon_AttackState : BaseState
 				}
 			}
 		}
+		// TODO : skill3 데미지 넣는건 따로 빼서 코루틴으로 만들기
 		else if (_monster.u_skill3Collider.enabled)
 		{
 			Vector3 collCenter = _monster.u_skill3Collider.transform.position + _monster.u_skill3Collider.center;
@@ -119,5 +132,21 @@ public class Urbon_AttackState : BaseState
 		}
 
 		attacked = true;
+	}
+
+	private void SetTarget()
+	{
+		Vector3 collCenter = _monster.detectColl.transform.position + _monster.detectColl.center;
+		if (Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer).Length >= 1)
+		{
+			Collider[] detectedColl =
+			Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer);
+			_monster.target = detectedColl[0].transform;
+			//Debug.Log(detectedColl[0].name);
+		}
+		else
+		{
+			return;
+		}
 	}
 }

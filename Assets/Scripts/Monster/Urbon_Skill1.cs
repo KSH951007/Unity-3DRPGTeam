@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Urbon_Skill1 : MonoBehaviour
 {
-	private int skillDamage = 1;
+	private int skillDamage = 6;
 	public float moveSpeed = 20f;
-	private Transform player;
+	[SerializeField] private Transform player;
 	public Transform startPoint;
 	private Vector3 moveDir;
 	private SphereCollider skill1Collider;
 	public AnimationClip clip;
+	[SerializeField] private bool gaveDamage = false;
+	Collider[] hitPlayer = new Collider[1];
 
 	public LayerMask attackTargetLayer;
 
 	private void OnEnable()
 	{
+		gaveDamage = false;
 		startPoint = GameObject.Find("Skill1StartPoint").transform;
 		transform.position = startPoint.position;
 		skill1Collider = GetComponentInChildren<SphereCollider>();
@@ -24,24 +27,21 @@ public class Urbon_Skill1 : MonoBehaviour
 
 	private void Update()
 	{
-		player = GameObject.Find("Player").transform;
-		moveDir = (player.position - transform.localPosition).normalized;
+		player = GameObject.Find("Urbon (1)").GetComponent<BossMonsters>().target;
+		moveDir = (player.position - transform.position).normalized;
 
-		transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+		transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
 
 		if (skill1Collider.enabled)
 		{
 			Vector3 collCenter = skill1Collider.transform.position + skill1Collider.center;
 
-			Collider[] detectedColl =
+			hitPlayer =
 			Physics.OverlapSphere(collCenter, skill1Collider.radius, attackTargetLayer);
-
-			if (detectedColl.Length != 0)
+			if(!gaveDamage)
 			{
-				if(detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
-				{
-					health.TakeHit(skillDamage);
-				}
+				gaveDamage = true;
+				StartCoroutine(GiveDamage());
 			}
 		}
 	}
@@ -50,6 +50,24 @@ public class Urbon_Skill1 : MonoBehaviour
 	{
 		yield return new WaitForSeconds(clip.length * 3);
 		gameObject.SetActive(false);
+	}
+
+	private IEnumerator GiveDamage()
+	{
+		if (hitPlayer.Length != 0)
+		{
+			if (hitPlayer[0].transform.gameObject.TryGetComponent(out IHitable health))
+			{
+				health.TakeHit(skillDamage, IHitable.HitType.None);
+				yield return new WaitForSeconds(0.2f);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
+				yield return new WaitForSeconds(0.2f);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
+				yield return new WaitForSeconds(0.1f);
+				health.TakeHit(skillDamage, IHitable.HitType.None);
+			}
+		}
+		gaveDamage = false;
 	}
 
 }
