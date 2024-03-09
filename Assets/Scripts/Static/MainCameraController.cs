@@ -24,8 +24,8 @@ public class MainCameraController : MonoBehaviour
        
         if (other.gameObject.TryGetComponent(out Renderer renderer))
         {
-            Color fadeColor = renderer.material.color;
-            renderer.material.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0.5f);
+             Color fadeColor = renderer.material.color;
+             renderer.material.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0.5f);
         }
     }
     private void OnTriggerExit(Collider other)

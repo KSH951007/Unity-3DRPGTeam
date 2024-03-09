@@ -18,7 +18,7 @@ public class KhururuOrigin_AppearState : BaseState
 
 	public override void OnStateExit()
 	{
-		_monster.animator.SetTrigger("FirstHit");
-		_monster.animator.SetTrigger("Trip");
+		//_monster.animator.SetTrigger("FirstHit");
+		//_monster.animator.SetTrigger("Trip");
 	}
 }

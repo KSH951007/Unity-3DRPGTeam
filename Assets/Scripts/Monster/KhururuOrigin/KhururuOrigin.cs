@@ -28,11 +28,11 @@ public class KhururuOrigin : BossMonsters
 
 	private void OnDisable()
 	{
-		khururuTransPrefab.transform.position = transform.position;
-		khururuTransPrefab.SetActive(true);
-	}
+        khururuTransPrefab.transform.position = transform.position;
+        khururuTransPrefab.SetActive(true);
+    }
 
-	private void Start()
+    private void Start()
 	{
 		_curState = State.Appear;
 		_fsm = new FSM(new KhururuOrigin_AppearState(this));

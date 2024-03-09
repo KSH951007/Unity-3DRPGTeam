@@ -20,7 +20,7 @@ public class Urbon_Skill2 : MonoBehaviour
 
 	private void OnEnable()
 	{
-		targetPos = GameObject.Find("Heros").transform;
+		targetPos = GetComponentInParent<BossMonsters>().target;
 
 		Randomize();
 		StartCoroutine(RockFall());

@@ -8,7 +8,7 @@ public class KhururuTrans_Bullet : MonoBehaviour
     public Transform handPosition;
     [SerializeField] private Transform attackTarget;
     public bool shot;   // 애니메이션 이벤트로 shot을 바꿔줌
-    private float shotSpeed = 10;
+    private float shotSpeed = 7;
     private int skillDamage = 30;
     SphereCollider sphereCollider;
     public LayerMask attackTargetLayer;

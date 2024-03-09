@@ -66,6 +66,7 @@ public class BossMonsters : MonoBehaviour, IHitable
 	public bool shieldBroken;
 
 	public UnityEvent onDead;
+	bool changingMat;
 
 	[SerializeField] public GameObject hitParticle;
 
@@ -127,8 +128,11 @@ public class BossMonsters : MonoBehaviour, IHitable
 				}
 				GameObject damageUI = PoolManager.Instance.Get("DamageFontUI");
                 damageUI.GetComponent<DamageUI>().GetDamageFont(transform.position, damage);
-                StartCoroutine(ChangeMat());
-			}
+				if (!changingMat)
+				{
+                    StartCoroutine(ChangeMat());
+                }
+            }
 			else if (currentHp - damage <= 0)
 			{
 				currentHp = 0;
@@ -142,19 +146,21 @@ public class BossMonsters : MonoBehaviour, IHitable
 
 	protected IEnumerator ChangeMat()
 	{
-		Material originalMat = skinnedMeshRenderer.material;
+		changingMat = true;
+        Material originalMat = skinnedMeshRenderer.material;
 		skinnedMeshRenderer.material = takeHitMat;
 		yield return new WaitForSeconds(0.1f);
 		skinnedMeshRenderer.material = originalMat;
+		changingMat = false;
 	}
 
 	protected IEnumerator Die()
 	{
-		nav.isStopped = true;
+		isDead = true;
 		animator.SetTrigger("Die");
-		yield return new WaitForSeconds(2.5f);
-		gameObject.SetActive(false);
-		onDead.Invoke();
+		yield return new WaitForSeconds(3.5f);
+        onDead.Invoke();
+        gameObject.SetActive(false);
 		//드랍 아이템
 	}
 

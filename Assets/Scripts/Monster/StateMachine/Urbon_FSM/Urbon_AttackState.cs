@@ -2,34 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Urbon_AttackState : BaseState
 {
 	public Urbon_AttackState(BossMonsters monster) : base(monster) { }
 
 	private int attackDamage;
-	private int skill3Damage;
 
-	//private float attackWeight = 0.3f;
-	//private float skill1Weight = 0.3f;
-	//private float skill2Weight = 0.3f;
-	//private float skill3Weight = 0.1f;
+	private float attackWeight = 0.3f;
+	private float skill1Weight = 0.3f;
+	private float skill2Weight = 0.3f;
+	private float skill3Weight = 0.1f;
 
-	private float attackWeight = 0f;
-	private float skill1Weight = 0f;
-	private float skill2Weight = 0f;
-	private float skill3Weight = 1f;
-
-	private float totalWeight;
+    private float totalWeight;
 
 	private bool Onskill3;
 	private bool combo;
 	private bool attacked;
+	private int attackCount = 0;
+
+	private float comboTime;
 
 	public override void OnStateEnter()
 	{
 		attackDamage = 40;
-		skill3Damage = 2;
 
 		_monster.nav.isStopped = true;
 
@@ -48,16 +45,20 @@ public class Urbon_AttackState : BaseState
 		{
 			DetectSkillCollider();
 		}
-		else if (combo)
+		else if (combo && attackCount < 2 && comboTime < Time.time)
 		{
 			DetectSkillCollider();
 		}
 
-		_monster.nav.SetDestination(_monster.target.position);
+		if (_monster.nav.enabled)
+		{
+            _monster.nav.SetDestination(_monster.target.position);
+        }
 
-		if (Onskill3 && _monster.timeForNextChange - 3f < Time.time)
+        if (Onskill3 && _monster.timeForNextChange < Time.time && !_monster.hasAttacked)
 		{
 			_monster.animator.SetTrigger("ExitSkill3");
+			_monster.timeForNextChange += 2.50f;
 			_monster.hasAttacked = true;
 			Onskill3 = false;
 		}
@@ -65,6 +66,9 @@ public class Urbon_AttackState : BaseState
 
 	public override void OnStateExit()
 	{
+		attacked = false;
+		attackCount = 0;
+		combo = false;
 		_monster.hasAttacked = false;
 	}
 
@@ -91,7 +95,7 @@ public class Urbon_AttackState : BaseState
 		{ 
 			_monster.animator.SetTrigger("Skill3");
 			Onskill3 = true;
-			_monster.timeForNextChange += 6f;
+			_monster.timeForNextChange += 2f;
 		}
 	}
 
@@ -111,27 +115,15 @@ public class Urbon_AttackState : BaseState
 				}
 			}
 		}
-		// TODO : skill3 데미지 넣는건 따로 빼서 코루틴으로 만들기
-		else if (_monster.u_skill3Collider.enabled)
-		{
-			Vector3 collCenter = _monster.u_skill3Collider.transform.position + _monster.u_skill3Collider.center;
-
-			Collider[] detectedColl =
-			Physics.OverlapSphere(collCenter, _monster.u_skill3Collider.radius, _monster.attackTargetLayer);
-			if (detectedColl.Length != 0)
-			{
-				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))
-				{
-					health.TakeHit(skill3Damage);
-				}
-			}
-		}
 		else
 		{
 			return;
 		}
 
-		attacked = true;
+		comboTime = Time.time + 0.3f;
+        combo = true;
+        attackCount++;
+        attacked = true;
 	}
 
 	private void SetTarget()
