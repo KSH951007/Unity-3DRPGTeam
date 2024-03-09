@@ -28,6 +28,7 @@ public class KhururuOrigin : BossMonsters
 
 	private void OnDisable()
 	{
+		onDead.Invoke();
 		khururuTransPrefab.transform.position = transform.position;
 		khururuTransPrefab.SetActive(true);
 	}

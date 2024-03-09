@@ -34931,6 +34931,7 @@ GameObject:
   - component: {fileID: 1549784791639636491}
   - component: {fileID: 3702974784614982983}
   - component: {fileID: 1416378708068808563}
+  - component: {fileID: 4665331522014875068}
   m_Layer: 7
   m_Name: Urbon
   m_TagString: Untagged
@@ -35055,6 +35056,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4665331522014875068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2648686731237022092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 9322520f4bcd47e46aa9f3e587569a98, type: 2}
+  target: {fileID: 0}
+  successCount: 0
+  colliderTags: []
 --- !u!1 &2674639254979379559
 GameObject:
   m_ObjectHideFlags: 0
