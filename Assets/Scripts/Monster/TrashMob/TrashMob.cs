@@ -174,8 +174,8 @@ public class TrashMob : MonoBehaviour, IHitable
 	IEnumerator KILLED()
 	{
         animator.Play("Die", -1, 0);
-		onDead.Invoke();
         yield return new WaitForSeconds(5f);
+		onDead.Invoke();
 		gameObject.SetActive(false);
 	}
 

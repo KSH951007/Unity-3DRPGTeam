@@ -85,11 +85,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c8a49bf33de52f47a29233f14377d6b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1750921500837993302}
+      addedObject: {fileID: 1652417799180537593}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c8a49bf33de52f47a29233f14377d6b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 939519024392030701}
     - targetCorrespondingSourceObject: {fileID: 1899255667077762698, guid: 3c8a49bf33de52f47a29233f14377d6b,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 65820000440687169}
+    - targetCorrespondingSourceObject: {fileID: 1899255667077762698, guid: 3c8a49bf33de52f47a29233f14377d6b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8939880462797118607}
   m_SourcePrefab: {fileID: 100100000, guid: 3c8a49bf33de52f47a29233f14377d6b, type: 3}
 --- !u!1 &244563514443918037 stripped
 GameObject:
@@ -118,13 +126,57 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.7224903, y: 1.8341444, z: 0.6221253}
   m_Center: {x: -0.0000004768373, y: 0.0000002682209, z: -0.00000059604656}
+--- !u!114 &8939880462797118607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244563514443918037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc57170b113d7a34b98a37edffad1e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHere:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1652417799180537593}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 939519024392030701}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  disableParticle: {fileID: 4051424985086102948, guid: 3045c8221dc44334ea040f5d87bd1ba0,
+    type: 3}
+  Player:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1584763625429473550 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c8a49bf33de52f47a29233f14377d6b,
     type: 3}
   m_PrefabInstance: {fileID: 1819278117523563615}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-1750921500837993302
+--- !u!114 &1652417799180537593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,7 +189,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: 9d92ed8a9fc31c84ab0143ad22947647, type: 2}
-  target: {fileID: 11400000, guid: de32b187c2e51ef4f9a5328617e30fd8, type: 2}
+  target: {fileID: 11400000, guid: a01c54cda38496646a8748fa0cba2025, type: 2}
+  successCount: 1
+  colliderTags:
+  - Player
+--- !u!114 &939519024392030701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584763625429473550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 9322520f4bcd47e46aa9f3e587569a98, type: 2}
+  target: {fileID: 11400000, guid: a01c54cda38496646a8748fa0cba2025, type: 2}
   successCount: 1
   colliderTags:
   - Player

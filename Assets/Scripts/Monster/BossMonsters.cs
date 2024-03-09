@@ -153,7 +153,6 @@ public class BossMonsters : MonoBehaviour, IHitable
 		nav.isStopped = true;
 		animator.SetTrigger("Die");
 		yield return new WaitForSeconds(2.5f);
-		print("123");
 		onDead.Invoke();
 		gameObject.SetActive(false);
 		//드랍 아이템
