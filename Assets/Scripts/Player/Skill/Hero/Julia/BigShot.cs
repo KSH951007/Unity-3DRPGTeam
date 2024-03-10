@@ -8,7 +8,7 @@ public class BigShot : Skill
     {
         base.UseSkill();
         GameObject projectil = PoolManager.Instance.Get("ProjectileBigShot");
-        projectil.GetComponent<ProjectileBigShot>().Init(hero.AttackPoint.position,hero.AttackPoint.rotation, hero.data.damage);
+        projectil.GetComponent<ProjectileBigShot>().Init(hero.AttackPoint.position,hero.AttackPoint.rotation, hero.GetHeroData().GetDamage());
       
     }
 }
