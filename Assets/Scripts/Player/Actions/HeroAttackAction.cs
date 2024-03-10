@@ -10,7 +10,7 @@ public abstract class HeroAttackAction : HeroAction
 
     public bool IsLastAttack()
     {
-        return curruntAttackCombo == owner.data.maxAttackCombo;
+        return curruntAttackCombo == owner.GetHeroData().GetMaxAttackCombo();
     }
     public HeroAttackAction(ActionScheduler scheduler, Animator animator, Hero owner) : base(scheduler, animator, owner)
     {
@@ -32,7 +32,7 @@ public abstract class HeroAttackAction : HeroAction
         animator.SetTrigger("Attack");
         isEndAction = false;
         curruntAttackCombo++;
-        if (curruntAttackCombo > owner.data.maxAttackCombo)
+        if (curruntAttackCombo > owner.GetHeroData().GetMaxAttackCombo())
         {
             curruntAttackCombo = 0;
         }

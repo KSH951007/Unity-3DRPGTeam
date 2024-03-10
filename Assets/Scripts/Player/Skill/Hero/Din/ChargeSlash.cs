@@ -15,7 +15,7 @@ public class ChargeSlash : Skill
         base.UseSkill();
         GameObject projectileSlash = PoolManager.Instance.Get("ProjectileChargeSlash");
       
-        projectileSlash.GetComponent<ProjectileChargeSlash>().Init(transform.position, hero.transform.forward, hero.data.damage);
+        projectileSlash.GetComponent<ProjectileChargeSlash>().Init(transform.position, hero.transform.forward, hero.GetHeroData().GetDamage());
 
     }
 
