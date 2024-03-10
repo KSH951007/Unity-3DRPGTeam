@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using System.Xml;
+using UnityEngine.Rendering;
 
 public class DungeonClearTime : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class DungeonClearTime : MonoBehaviour
     private TextMeshProUGUI timeText;
     [SerializeField]
     private TextMeshProUGUI clearTimeText;
+    [SerializeField]
+    private ShowClearDetail detailView;
 
     private float clearTime;
     private int min;
     private float sec;
+    
 
     [HideInInspector]
     public string showClearTime;
@@ -28,9 +32,9 @@ public class DungeonClearTime : MonoBehaviour
     private void FixedUpdate()
     {
         timeF += Time.deltaTime;
-        timeText.text = string.Format("{0:N2}", timeF);
+        showClearTime = string.Format("{0:N2}", timeF);
+        timeText.text = showClearTime;
     }
-
 
     public void StopTimer()
     {
@@ -40,7 +44,9 @@ public class DungeonClearTime : MonoBehaviour
         sec = clearTime - (float)(60 * min);
 
         showClearTime = $"{min}Ка {string.Format("{0:N2}", timeF)}УЪ";
-        clearTimeText.text = showClearTime;
+        //clearTimeText.text = showClearTime;
+        detailView.gameObject.SetActive(true);
+        detailView.getClearTime(showClearTime);
         gameObject.SetActive(false);
     }
 }

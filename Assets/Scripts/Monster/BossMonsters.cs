@@ -26,8 +26,8 @@ public class BossMonsters : MonoBehaviour, IHitable
     public float maxShieldAmount = 2500;
     public float curShieldAmount;
 
-    protected GameObject[] dropItem;
-    protected float dropCoin;
+    public ItemSO[] dropItem;
+    public int dropCoin;
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public NavMeshAgent nav;
@@ -166,13 +166,13 @@ public class BossMonsters : MonoBehaviour, IHitable
     /// </summary>
     /// <param name="dropCoin">각 보스몬스터의 보상코인</param>
     /// <returns></returns>
-    protected float DropItem(float dropCoin)
-    {
-        foreach (GameObject items in dropItem)
-        {
-            Instantiate(items, transform.position, Quaternion.identity);
-        }
+    //protected float DropItem(float dropCoin)
+    //{
+    //    foreach (GameObject items in dropItem)
+    //    {
+    //        Instantiate(items, transform.position, Quaternion.identity);
+    //    }
 
-        return dropCoin;
-    }
+    //    return dropCoin;
+    //}
 }
