@@ -8,7 +8,6 @@ public class MainUI : MonoBehaviour
     private HeroManager heroManager;
     public enum ButtonType { Info, Exit, Setting }
     [SerializeField] private Button[] buttons;
-   
     private void Start()
     {
         Transform hero = GameObject.Find("Player").transform.Find("Heros");

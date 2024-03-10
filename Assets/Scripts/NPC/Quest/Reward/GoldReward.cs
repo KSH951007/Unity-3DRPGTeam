@@ -8,6 +8,6 @@ public class GoldReward : Reward
 {
     public override void Give(Quest quest)
     {
-        GameManager.Instance.plin.GetGold(Quantity);
+        GameManager.Instance.inven.Gold += Quantity;
     }
 }

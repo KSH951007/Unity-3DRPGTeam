@@ -24,7 +24,7 @@ public class SwiftCharge : Skill
     {
         base.UseSkill();
         startPos = hero.transform.position;
-        projectileSwiftChage.Init(operationTime, hero.data.damage);
+        projectileSwiftChage.Init(operationTime, hero.GetHeroData().GetDamage());
         projectileSwiftChage.gameObject.SetActive(true);
         StartCoroutine(SwiftChargeRoutine());
     }

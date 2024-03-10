@@ -16,7 +16,7 @@ public class FireCross : Skill
         GameObject projectileFireCross = PoolManager.Instance.Get("ProjectileFireCross");
         projectileFireCross.transform.position = hero.transform.position;
         projectileFireCross.transform.rotation = Quaternion.FromToRotation(projectileFireCross.transform.forward, hero.transform.forward);
-        projectileFireCross.GetComponent<ProjectileFireCross>().Init(hero.data.damage);
+        projectileFireCross.GetComponent<ProjectileFireCross>().Init(hero.GetHeroData().GetDamage());
 
     }
 
