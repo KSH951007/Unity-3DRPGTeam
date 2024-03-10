@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISavable
 {
     public enum ItemBuyResultType { Success, TribeSlot, TribeGold }
     private int gold;
@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     private Item[] items;
     public event Action<int> onItemUpdate;
     public event Action<int> onGoldUpdate;
-
+    private List<ItemSO> itemDatas;
 
 
     public Item[] InventroyItems { get => items; }
@@ -23,6 +23,38 @@ public class Inventory : MonoBehaviour
         Gold = 50000;
         maxSlotCount = 60;
         items = new Item[maxSlotCount];
+
+
+        int count = DataManager.Instance.GetFileCount("InventoryItems/");
+        Debug.Log(count);
+        for (int i = 0; i < count; i++)
+        {
+            if (DataManager.Instance.LoadData("InventoryItems/Item" + i, out Weapon data))
+            {
+
+                items[i] = data;
+
+                Debug.Log(items[i]);
+            }
+        }
+
+
+       
+
+
+
+
+
+
+        DataManager.Instance.AddSaveHandler(this);
+    }
+    private void Start()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+
+            onItemUpdate?.Invoke(i);
+        }
     }
     public bool HasGold(int gold)
     {
@@ -30,6 +62,33 @@ public class Inventory : MonoBehaviour
             return false;
 
         return true;
+    }
+    public bool HasItem(Item item, out int index)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == item)
+            {
+                index = i;
+                return true;
+            }
+        }
+        index = -1;
+        return false;
+
+    }
+    public void SetItem(Item item)
+    {
+        if (item is EquipmentItem)
+        {
+            if (isEmptySlot(out int index))
+            {
+                items[index] = item;
+                Debug.Log(items[index].itemName);
+                onItemUpdate?.Invoke(index);
+                return;
+            }
+        }
     }
     public ItemBuyResultType AddBuyItem(ItemSO itemData, int count = 1)
     {
@@ -122,23 +181,17 @@ public class Inventory : MonoBehaviour
     }
     public void SellItem(int index, int Count = 1)
     {
-        int sellPrice = (int)(items[index].itemData.GetItemBuyPrice() * 0.5f) * Count;
+        int sellPrice = (int)(items[index].itemBuyPrice * 0.5f) * Count;
 
         Gold += sellPrice;
+        EraseItem(index);
 
 
-
+    }
+    public void EraseItem(int index)
+    {
         items[index] = null;
-        //Array.Sort(items, (x, y) =>
-        //{
-        //    if (y == null)
-        //        return 1;
-        //    else
-        //        return -1;
-        //});
         onItemUpdate?.Invoke(index);
-
-
     }
     public void ProgressSortByDefault()
     {
@@ -167,7 +220,7 @@ public class Inventory : MonoBehaviour
             if (items[i] == null)
                 continue;
 
-            if (items[i].itemData.GetItemID() == itemData.GetItemID())
+            if (items[i].itemID == itemData.GetItemID())
             {
                 index = i;
                 return true;
@@ -203,7 +256,7 @@ public class Inventory : MonoBehaviour
                 return -1;
             else
             {
-                return compareInfo.Compare(item1.itemData.GetItemName(), item2.itemData.GetItemName());
+                return compareInfo.Compare(item1.itemName, item2.itemName);
 
             }
 
@@ -226,11 +279,11 @@ public class Inventory : MonoBehaviour
                 return -1;
             else
             {
-                if (item1.itemData.GetRatingType() < item2.itemData.GetRatingType())
+                if (item1.ratingType < item2.ratingType)
                 {
                     return -1;
                 }
-                else if (item1.itemData.GetRatingType() == item2.itemData.GetRatingType())
+                else if (item1.ratingType == item2.ratingType)
                 {
                     return 0;
                 }
@@ -249,5 +302,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void SaveData()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                DataManager.Instance.SaveData(items[i], $"Item{i}", "InventoryItems/");
 
+        }
+
+    }
 }

@@ -10,6 +10,7 @@ public class ArmorSO : EquipmentItemSO
     [SerializeField] private DefensiveItemType defensiveType;
 
     public DefensiveItemType GetDefensiveItemType() { return defensiveType; }
+    public float GetDefensivePercent() { return defensivePercent; }
     public override Item CreateItem()
     {
         return new Armor(this);

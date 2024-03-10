@@ -6,13 +6,15 @@ public abstract class CountableItem : Item
 {
     public CountableItem(ItemSO itemData, int count) : base(itemData)
     {
+        MaxCount = 99;
         SetCount(count);
     }
 
+    public int MaxCount;
     public int Count { get; protected set; }
-    public int MaxCount => ((CountableItemSO)itemData).MaxCount;
+
     public bool IsEmpty => Count == 0;
-    public bool IsMax => Count >= ((CountableItemSO)itemData).MaxCount;
+    public bool IsMax => Count >= MaxCount;
 
     public void SetCount(int count)
     {
@@ -26,16 +28,4 @@ public abstract class CountableItem : Item
         return (nextCount > MaxCount) ? (nextCount - MaxCount) : 0;
     }
 
-    public CountableItem CountableItemClone(int count)
-    {
-        //if (count <= 1) return null;
-
-        //if(count > Count -1)
-        //    count = Count - 1;
-
-        //Count -= count;
-        return Clone(count);
-    }
-
-    protected abstract CountableItem Clone(int amount);
 }

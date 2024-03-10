@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class InventoryPageUI : CategoryPageUI
     [SerializeField] private Button[] inventoryControlButtons;
     [SerializeField] private RenderModelViewUI renderModelViewUI;
     [SerializeField] private HeroSelectUI heroSelectUI;
+    [SerializeField] private EquipmentManager equipmentManager;
     [SerializeField] private Inventory inventory;
     private bool IsMultiSelect;
     private void OnEnable()
@@ -32,8 +34,8 @@ public class InventoryPageUI : CategoryPageUI
             ChangeInventoryPage(inventoryPageType);
         }
 
-        renderModelViewUI.ActiveModel(RenderTexModel.PreviewModelType.InvenNPC);   
-        renderModelViewUI.SetTalkText("어서와","Awake");
+        renderModelViewUI.ActiveModel(RenderTexModel.PreviewModelType.InvenNPC);
+        renderModelViewUI.SetTalkText("어서와", "Awake");
 
     }
     private void OnDisable()
@@ -50,6 +52,7 @@ public class InventoryPageUI : CategoryPageUI
             slots[i] = Instantiate(InventroySlotPrefab, slotParentTr).GetComponent<InventorySlotUI>();
             slots[i].SetItemSlotIndex(i);
             slots[i].SetInventorySlot(i, inventory.InventroyItems[i]);
+            slots[i].oniSSingleSelected += OnSingleSelected;
         }
         inventory.onItemUpdate += UpdateSlot;
     }
@@ -103,7 +106,7 @@ public class InventoryPageUI : CategoryPageUI
             {
                 if (slots[i].isActiveSelect)
                 {
-                    slots[i].ActiveSelectToggle();
+                    slots[i].ActiveMultiSelectToggle();
                 }
             }
         }
@@ -128,15 +131,16 @@ public class InventoryPageUI : CategoryPageUI
 
     public void UpdateSlot(int itemIndex)
     {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].ItemIndex == itemIndex)
-            {
-                slots[i].SetInventorySlot(itemIndex, inventory.InventroyItems[itemIndex]);
-                return;
-            }
+        ChangeInventoryPage(inventoryPageType);
+        //for (int i = 0; i < slots.Length; i++)
+        //{
+        //    if (slots[i].ItemIndex == itemIndex)
+        //    {
+        //        slots[i].SetInventorySlot(itemIndex, inventory.InventroyItems[itemIndex]);
+        //        return;
+        //    }
 
-        }
+        //}
     }
     public void PressMultiSelectButton()
     {
@@ -152,7 +156,8 @@ public class InventoryPageUI : CategoryPageUI
             if (slots[i].ItemIndex == -1)
                 continue;
 
-            slots[i].ActiveSelectToggle();
+            slots[i].ActiveSingleSelect(false);
+            slots[i].ActiveMultiSelectToggle();
         }
 
         if (IsMultiSelect)
@@ -182,7 +187,7 @@ public class InventoryPageUI : CategoryPageUI
                     inventory.SellItem(slots[i].ItemIndex, conut);
 
                 }
-                slots[i].ActiveSelectToggle();
+                slots[i].ActiveMultiSelectToggle();
             }
         }
 
@@ -190,9 +195,26 @@ public class InventoryPageUI : CategoryPageUI
         ChangeInventoryPage(inventoryPageType);
 
     }
-    public void PressEquipITemButton()
+    public void PressEquipItemButton()
     {
-        //heroSelectUI.ActiveHeroSelectUI();
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].IsActiveSingleSelect)
+            {
+                Item item = inventory.InventroyItems[slots[i].ItemIndex];
+                if (item is PortionItem)
+                {
+
+                }
+                else
+                {
+                    heroSelectUI.ActiveHeroSelectUI(item, equipmentManager.SetEquipment);
+                }
+
+                return;
+            }
+        }
     }
     public void ActiveSordToggle(int index)
     {
@@ -213,7 +235,23 @@ public class InventoryPageUI : CategoryPageUI
         {
             inventory.ProgressSortByRating();
         }
-            ChangeInventoryPage(inventoryPageType);
+        ChangeInventoryPage(inventoryPageType);
     }
+    public void OnSingleSelected(int slotIndex)
+    {
+        if (IsMultiSelect)
+            return;
+
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i == slotIndex)
+                continue;
+
+            slots[i].ActiveSingleSelect(false);
+        }
+
+    }
+   
 
 }

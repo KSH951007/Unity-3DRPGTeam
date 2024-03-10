@@ -17,9 +17,5 @@ public class PortionItem : CountableItem,IUsableItem
         return true;
     }
 
-    protected override CountableItem Clone(int amount)
-    {
-       return new PortionItem(itemData,amount);
-    }
 
 }

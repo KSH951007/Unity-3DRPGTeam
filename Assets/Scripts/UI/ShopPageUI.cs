@@ -29,7 +29,6 @@ public class ShopPageUI : CategoryPageUI
     {
         renderModelViewUI.ActiveModel(RenderTexModel.PreviewModelType.ShopNPC);
         renderModelViewUI.SetTalkText("¹Ý°¡¿ö", "Awake");
-        Debug.Log("enable");
     }
   
     private void Start()

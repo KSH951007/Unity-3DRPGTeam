@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "ScriptableObject/Item/Weapon")]
 public class WeaponSO : EquipmentItemSO
@@ -9,6 +12,7 @@ public class WeaponSO : EquipmentItemSO
     [SerializeField] protected int EquipHeroID;
 
 
+    public int GetEquipHeroID() {  return EquipHeroID; }
     public bool isEquipHero(int heroID) { if (EquipHeroID == heroID) return true; return false; }
     public int GetAttackPower() { return weaponAttackPower; }
     public override Item CreateItem()

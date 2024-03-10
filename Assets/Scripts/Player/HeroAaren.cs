@@ -10,8 +10,5 @@ public class HeroAaren : Hero
         base.Awake();
         attackAction = new HeroAarenAttackAction(scheduler, animator, this);
     }
-    protected override void Start()
-    {
-        base.Start();
-    }
+
 }

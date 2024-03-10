@@ -1,22 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotUI : MonoBehaviour
+public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     [SerializeField] Sprite[] itemRatingSprite;
     [SerializeField] Sprite itemRatingDefaultSprite;
     [SerializeField] GameObject countPanel;
     [SerializeField] TextMeshProUGUI countText;
+    [SerializeField] GameObject singleSelectImage;
     private int slotIndex;
     private int itemIndex;
     private Image ratingImage;
     private Image itemIconImage;
     private Toggle SelectToggle;
+    public event Action<int> oniSSingleSelected;
 
     public int ItemIndex { get => itemIndex; }
+    public bool IsActiveSingleSelect { get => singleSelectImage.activeSelf; }
     public bool isActiveSelect { get => SelectToggle.gameObject.activeSelf; }
     public bool isSelectToggleOn { get => SelectToggle.isOn; }
     private void Awake()
@@ -35,7 +40,7 @@ public class InventorySlotUI : MonoBehaviour
     private void OnDisable()
     {
         if (isActiveSelect)
-            ActiveSelectToggle();
+            ActiveMultiSelectToggle();
     }
     public void SetItemSlotIndex(int index)
     {
@@ -43,12 +48,13 @@ public class InventorySlotUI : MonoBehaviour
     }
     public void SetInventorySlot(int itemIndex, Item item)
     {
+        ActiveSingleSelect(false);
+
         if (item == null)
         {
             ratingImage.sprite = itemRatingDefaultSprite;
             itemIconImage.enabled = false;
             this.itemIndex = -1;
-
             countPanel.SetActive(false);
             return;
         }
@@ -68,13 +74,13 @@ public class InventorySlotUI : MonoBehaviour
 
             itemIconImage.enabled = true;
 
-            if (item.itemData.GetRatingType() == Item.ItemRatingType.Normal)
+            if (item.ratingType == Item.ItemRatingType.Normal)
                 ratingImage.sprite = itemRatingSprite[0];
-            else if (item.itemData.GetRatingType() == Item.ItemRatingType.Rair)
+            else if (item.ratingType == Item.ItemRatingType.Rair)
                 ratingImage.sprite = itemRatingSprite[1];
-            else if (item.itemData.GetRatingType() == Item.ItemRatingType.Unique)
+            else if (item.ratingType == Item.ItemRatingType.Unique)
                 ratingImage.sprite = itemRatingSprite[2];
-            else if (item.itemData.GetRatingType() == Item.ItemRatingType.Legenery)
+            else if (item.ratingType == Item.ItemRatingType.Legenery)
                 ratingImage.sprite = itemRatingSprite[3];
 
             this.itemIconImage.sprite = item.itemData.GetItemIcon();
@@ -83,8 +89,11 @@ public class InventorySlotUI : MonoBehaviour
 
 
     }
-
-    public void ActiveSelectToggle()
+    public void ActiveSingleSelect(bool isOn)
+    {
+        singleSelectImage.SetActive(isOn);
+    }
+    public void ActiveMultiSelectToggle()
     {
         if (SelectToggle.gameObject.activeSelf)
         {
@@ -98,6 +107,31 @@ public class InventorySlotUI : MonoBehaviour
         }
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (itemIndex == -1)
+            return;
 
 
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (itemIndex == -1)
+            return;
+
+
+        oniSSingleSelected?.Invoke(slotIndex);
+
+        if (singleSelectImage.activeSelf)
+        {
+            singleSelectImage.SetActive(false);
+        }
+        else
+        {
+            singleSelectImage.SetActive(true);
+        }
+
+
+    }
 }
