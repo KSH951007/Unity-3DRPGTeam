@@ -65,6 +65,7 @@ public class Inventory : MonoBehaviour, ISavable
             onItemUpdate?.Invoke(i);
         }
     }
+ 
     public bool HasGold(int gold)
     {
         if (this.data.gold < gold)
@@ -79,6 +80,7 @@ public class Inventory : MonoBehaviour, ISavable
             if (items[i] == item)
             {
                 index = i;
+                Debug.Log(index);
                 return true;
             }
         }
@@ -97,6 +99,17 @@ public class Inventory : MonoBehaviour, ISavable
                 onItemUpdate?.Invoke(index);
                 return;
             }
+        }
+        else
+        {
+            
+            if(isEmptySlot(out int index))
+            {
+                items[index] = item;
+                onItemUpdate?.Invoke(index);
+            }
+           
+
         }
     }
     public ItemBuyResultType AddBuyItem(ItemSO itemData, int count = 1)

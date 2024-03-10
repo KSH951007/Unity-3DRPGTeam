@@ -40,10 +40,28 @@ public class Equipment : MonoBehaviour, ISavable
     {
         return equipItems[(int)type];
     }
+    public void ReleaseEquipmentItem(EquipmentSlotType type)
+    {
+        HeroData heroData = GetComponent<Hero>().data;
+
+        if (equipItems[(int)type] is Weapon)
+        {
+            heroData.damage -= ((Weapon)equipItems[(int)type]).weaponAttackPower;
+
+        }
+        else
+        {
+            heroData.defensivePercent -= ((Armor)equipItems[(int)type]).defensivePercent;
+        }
+
+        equipItems[(int)type] = null;
+    }
     public EquipmentResult SetItem(Item item)
     {
 
-        if (item.itemLevel > GetComponent<Hero>().data.level)
+        Hero hero = GetComponent<Hero>();
+
+        if (item.itemLevel > hero.data.level)
         {
             return EquipmentResult.LevelMiss;
         }
@@ -60,7 +78,7 @@ public class Equipment : MonoBehaviour, ISavable
 
 
             Weapon weapon = equipItems[(int)EquipmentSlotType.Weapon] as Weapon;
-           
+
             if (inventory.HasItem(item, out int index))
             {
                 inventory.EraseItem(index);
@@ -68,10 +86,12 @@ public class Equipment : MonoBehaviour, ISavable
             if (weapon != null)
             {
                 inventory.SetItem(weapon);
+                hero.data.damage -= weapon.weaponAttackPower;
             }
-          
+
 
             equipItems[(int)EquipmentSlotType.Weapon] = item as Weapon;
+            hero.data.damage += ((Weapon)equipItems[(int)EquipmentSlotType.Weapon]).weaponAttackPower;
 
         }
         else if (item is Armor)
@@ -82,54 +102,71 @@ public class Equipment : MonoBehaviour, ISavable
 
             if (type == DefensiveItemType.Helmet)
             {
+                int slotType = (int)EquipmentSlotType.Head;
+
                 if (inventory.HasItem(armor, out int index))
                 {
                     inventory.EraseItem(index);
                 }
-                if (equipItems[(int)EquipmentSlotType.Head] != null)
-                { 
-                    inventory.SetItem(armor);
+                if (equipItems[slotType] != null)
+                {
+                    inventory.SetItem(equipItems[slotType]);
+                    hero.data.defensivePercent -= ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
+                    equipItems[slotType] = null;
                 }
-                equipItems[(int)EquipmentSlotType.Head] = armor;
+                equipItems[slotType] = armor;
+                hero.data.defensivePercent += ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
             }
             else if (type == DefensiveItemType.Armor)
             {
-                if (equipItems[(int)EquipmentSlotType.Body] != null)
+                int slotType = (int)EquipmentSlotType.Body;
+
+                if (inventory.HasItem(armor, out int index))
                 {
-                    if (inventory.HasItem(armor, out int index))
-                    {
-                        inventory.EraseItem(index);
-                    }
-                    if (equipItems[(int)EquipmentSlotType.Body] != null)
-                    {
-                        inventory.SetItem(armor);
-                    }
+                    inventory.EraseItem(index);
                 }
-                equipItems[(int)EquipmentSlotType.Body] = armor;
+                if (equipItems[slotType] != null)
+                {
+                    inventory.SetItem(equipItems[slotType]);
+                    hero.data.defensivePercent -= ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
+                    equipItems[slotType] = null;
+                }
+                equipItems[slotType] = armor;
+                hero.data.defensivePercent += ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
             }
             else if (type == DefensiveItemType.Glove)
             {
+                int slotType = (int)EquipmentSlotType.Hand;
+
                 if (inventory.HasItem(armor, out int index))
                 {
                     inventory.EraseItem(index);
                 }
-                if (equipItems[(int)EquipmentSlotType.Hand] != null)
+                if (equipItems[slotType] != null)
                 {
-                    inventory.SetItem(armor);
+                    inventory.SetItem(equipItems[slotType]);
+                    hero.data.defensivePercent -= ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
+                    equipItems[slotType] = null;
                 }
-                equipItems[(int)EquipmentSlotType.Hand] = armor;
+                equipItems[slotType] = armor;
+                hero.data.defensivePercent += ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
             }
             else if (type == DefensiveItemType.Shoes)
             {
+                int slotType = (int)EquipmentSlotType.Foot;
+
                 if (inventory.HasItem(armor, out int index))
                 {
                     inventory.EraseItem(index);
                 }
-                if (equipItems[(int)EquipmentSlotType.Foot] != null)
+                if (equipItems[slotType] != null)
                 {
-                    inventory.SetItem(armor);
+                    inventory.SetItem(equipItems[slotType]);
+                    hero.data.defensivePercent -= ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
+                    equipItems[slotType] = null;
                 }
-                equipItems[(int)EquipmentSlotType.Foot] = armor;
+                equipItems[slotType] = armor;
+                hero.data.defensivePercent += ((ArmorSO)equipItems[slotType].itemData).GetDefensivePercent();
             }
         }
 
@@ -143,19 +180,19 @@ public class Equipment : MonoBehaviour, ISavable
         {
             DataManager.Instance.SaveData(equipItems[(int)EquipmentSlotType.Weapon], "item", path + "/Weapon/");
         }
-        else if (equipItems[(int)EquipmentSlotType.Head] != null)
+        if (equipItems[(int)EquipmentSlotType.Head] != null)
         {
             DataManager.Instance.SaveData(equipItems[(int)EquipmentSlotType.Head], "item", path + "/Head/");
         }
-        else if (equipItems[(int)EquipmentSlotType.Body] != null)
+        if (equipItems[(int)EquipmentSlotType.Body] != null)
         {
             DataManager.Instance.SaveData(equipItems[(int)EquipmentSlotType.Body], "item", path + "/Body/");
         }
-        else if (equipItems[(int)EquipmentSlotType.Hand] != null)
+        if (equipItems[(int)EquipmentSlotType.Hand] != null)
         {
             DataManager.Instance.SaveData(equipItems[(int)EquipmentSlotType.Hand], "item", path + "/Hand/");
         }
-        else if (equipItems[(int)EquipmentSlotType.Foot] != null)
+        if (equipItems[(int)EquipmentSlotType.Foot] != null)
         {
             DataManager.Instance.SaveData(equipItems[(int)EquipmentSlotType.Foot], "item", path + "/Foot/");
         }

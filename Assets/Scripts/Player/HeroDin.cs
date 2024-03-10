@@ -16,6 +16,5 @@ public class HeroDin : Hero
         base.Awake();
         attackAction = new HeroDinAttackAction(attackEffect, scheduler, animator, this);
     }
-    // Start is called before the first frame update
- 
+
 }

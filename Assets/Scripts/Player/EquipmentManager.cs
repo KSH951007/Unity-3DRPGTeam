@@ -9,7 +9,7 @@ public class EquipmentManager : MonoBehaviour
     private PortionItem[] portionItems;
     private int maxPortionItemSlotCount;
     private HeroManager heroManager;
-
+    [SerializeField] private Inventory inventory;
     private void Awake()
     {
         maxPortionItemSlotCount = 6;
@@ -18,6 +18,7 @@ public class EquipmentManager : MonoBehaviour
         heroManager = GetComponent<HeroManager>();
     }
 
+    public PortionItem[] GetPortionItems() { return portionItems; }
     public Equipment.EquipmentResult SetEquipment(Item item, int heroID)
     {
         if (item is EquipmentItem)
@@ -34,6 +35,34 @@ public class EquipmentManager : MonoBehaviour
     }
     public void SetPortionItem(Item item)
     {
+        if (!(item is PortionItem))
+            return;
+
+        bool isEmpty = false;
+        int emptyIndex = 0;
+        for (int i = 0; i < portionItems.Length; i++)
+        {
+            if (portionItems[i] == null)
+            {
+                emptyIndex = i;
+                isEmpty = true;
+                break;
+            }
+
+        }
+        if (isEmpty == false)
+        {
+            Debug.Log("full");
+            return;
+        }
+
+        PortionItem portion = item as PortionItem;
+
+        if (inventory.HasItem(portion, out int index))
+        {
+            inventory.EraseItem(index);
+        }
+        portionItems[emptyIndex] = portion;
 
     }
     public Equipment GetEquipment(int heroIndex)
@@ -42,6 +71,20 @@ public class EquipmentManager : MonoBehaviour
             return null;
 
         return equipments[heroIndex];
+    }
+    public void ReleasePortionItem(int index)
+    {
+        inventory.SetItem(portionItems[index]);
+
+        portionItems[index] = null;
+
+    }
+    public void ReleaseEquipmentItem(int heroIndex, int itemIndex)
+    {
+        EquipmentItem item = equipments[heroIndex].GetEquipmentItem((Equipment.EquipmentSlotType)itemIndex);
+        inventory.SetItem(item);
+        equipments[heroIndex].ReleaseEquipmentItem((Equipment.EquipmentSlotType)itemIndex);
+
     }
 
 }

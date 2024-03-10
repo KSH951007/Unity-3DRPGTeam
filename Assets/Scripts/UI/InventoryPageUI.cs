@@ -172,11 +172,33 @@ public class InventoryPageUI : CategoryPageUI
     }
     public void PressSellButton()
     {
-        for (int i = 0; i < slots.Length; i++)
+        if (IsMultiSelect)
         {
-            if (slots[i].isActiveSelect)
+            for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].isSelectToggleOn)
+                if (slots[i].isActiveSelect)
+                {
+                    if (slots[i].isSelectToggleOn)
+                    {
+                        int conut = 1;
+                        CountableItem countableItem = inventory.InventroyItems[slots[i].ItemIndex] as CountableItem;
+                        if (countableItem != null)
+                        {
+                            conut = countableItem.Count;
+                        }
+                        inventory.SellItem(slots[i].ItemIndex, conut);
+
+                    }
+                    slots[i].DisableMultiSelectToggle();
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+
+                if (slots[i].IsActiveSingleSelect)
                 {
                     int conut = 1;
                     CountableItem countableItem = inventory.InventroyItems[slots[i].ItemIndex] as CountableItem;
@@ -184,13 +206,15 @@ public class InventoryPageUI : CategoryPageUI
                     {
                         conut = countableItem.Count;
                     }
+                    Debug.Log(i);
                     inventory.SellItem(slots[i].ItemIndex, conut);
-
+                    return;
                 }
-                slots[i].ActiveMultiSelectToggle();
+
             }
         }
 
+        IsMultiSelect = false;
         inventory.ProgressSortByDefault();
         ChangeInventoryPage(inventoryPageType);
 
@@ -205,7 +229,8 @@ public class InventoryPageUI : CategoryPageUI
                 Item item = inventory.InventroyItems[slots[i].ItemIndex];
                 if (item is PortionItem)
                 {
-
+                    equipmentManager.SetPortionItem(item);
+                    Debug.Log("asd");
                 }
                 else
                 {
@@ -232,7 +257,7 @@ public class InventoryPageUI : CategoryPageUI
                 break;
             case Equipment.EquipmentResult.SlotFull:
                 renderModelViewUI.SetTalkText("더 넣을 공간이 없어", "Awake");
-                break; 
+                break;
         }
     }
     public void ActiveSordToggle(int index)
