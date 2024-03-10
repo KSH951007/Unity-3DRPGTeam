@@ -19,6 +19,7 @@ public class Health : MonoBehaviour, IHitable
     private bool isinvincibility;
     public int CurrentHealth { get { return currentHealth; } }
     public int MaxHealth { get { return maxHeath; } }
+
     public bool IsInvincibility { get { return isinvincibility; } set => isinvincibility = value; }
     private void Awake()
     {
@@ -34,6 +35,16 @@ public class Health : MonoBehaviour, IHitable
         maxHeath = newHealth;
         regenerationHealth = newRegenerationHealth;
         defensivePercent = newDefensivePercent;
+    }
+    public void Healing(int addHelath)
+    {
+        currentHealth = Mathf.Min(currentHealth + addHelath, maxHeath);
+        onChangeHealth?.Invoke(currentHealth, maxHeath);
+
+    }
+    public bool CanHealing()
+    {
+        return currentHealth < maxHeath;
     }
     public void TakeHit(int damage, IHitable.HitType hitType = IHitable.HitType.None, GameObject hitParticle = null)
     {
