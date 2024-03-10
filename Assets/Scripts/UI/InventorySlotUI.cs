@@ -93,10 +93,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerClic
     {
         singleSelectImage.SetActive(isOn);
     }
-    public void DisableMultiSelectToggle()
-    {
-        SelectToggle.gameObject.SetActive(false);
-    }
     public void ActiveMultiSelectToggle()
     {
         if (SelectToggle.gameObject.activeSelf)

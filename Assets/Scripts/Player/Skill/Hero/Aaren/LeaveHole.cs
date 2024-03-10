@@ -14,7 +14,7 @@ public class LeaveHole : Skill
     {
         base.UseSkill();
         GameObject projectil = PoolManager.Instance.Get("ProjectileLeavesHole");
-        projectil.GetComponent<ProjectileLeaveHole>().Init(transform.position, hero.data.damage);
+        projectil.GetComponent<ProjectileLeaveHole>().Init(transform.position, hero.GetHeroData().GetDamage());
        
     
     }
