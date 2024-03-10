@@ -135,10 +135,10 @@ public class BossMonsters : MonoBehaviour, IHitable
             }
 			else if (currentHp - damage <= 0)
 			{
-				currentHp = 0;
+                isDead = true;
+                currentHp = 0;
 				nav.enabled = false;
 				bossCollider.enabled = false;
-				isDead = true;
 				StartCoroutine(Die());
 			}
 		}
@@ -154,11 +154,10 @@ public class BossMonsters : MonoBehaviour, IHitable
 		changingMat = false;
 	}
 
-	protected IEnumerator Die()
+	protected virtual IEnumerator Die()
 	{
-		isDead = true;
 		animator.SetTrigger("Die");
-		yield return new WaitForSeconds(3.5f);
+		yield return new WaitForSeconds(3.3f);
         onDead.Invoke();
         gameObject.SetActive(false);
 		//드랍 아이템

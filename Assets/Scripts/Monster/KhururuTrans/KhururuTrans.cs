@@ -71,6 +71,13 @@ public class KhururuTrans : BossMonsters
         //print(_curState);
         //print(nav.remainingDistance);
     }
+    protected override IEnumerator Die()
+    {
+        SoundManager.instance.StopSound("TransStep");
+        SoundManager.instance.PlaySound("TransDieVoice");
+        SoundManager.instance.PlaySound("TransDie");
+        yield return StartCoroutine(base.Die());
+    }
 
     private void ChangeState(State nextState)
     {

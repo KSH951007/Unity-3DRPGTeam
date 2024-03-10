@@ -57,7 +57,8 @@ public class Urbon_AttackState : BaseState
 
         if (Onskill3 && _monster.timeForNextChange < Time.time && !_monster.hasAttacked)
 		{
-			_monster.animator.SetTrigger("ExitSkill3");
+            SoundManager.instance.StopSound("UrbonTurn");
+            _monster.animator.SetTrigger("ExitSkill3");
 			_monster.timeForNextChange += 2.50f;
 			_monster.hasAttacked = true;
 			Onskill3 = false;
@@ -84,12 +85,14 @@ public class Urbon_AttackState : BaseState
 		else if (randomValue < attackWeight + skill1Weight)
 		{
 			_monster.animator.SetTrigger("Skill1");
+			SoundManager.instance.PlaySound("UrbonSkill1");
 			_monster.hasAttacked = true;
 		}
 		else if (randomValue < attackWeight + skill1Weight + skill2Weight)
 		{
 			_monster.animator.SetTrigger("Skill2");
-			_monster.hasAttacked = true;
+            SoundManager.instance.PlaySound("UrbonSkill2Fire");
+            _monster.hasAttacked = true;
 		}
 		else
 		{ 
@@ -134,7 +137,6 @@ public class Urbon_AttackState : BaseState
 			Collider[] detectedColl =
 			Physics.OverlapSphere(collCenter, _monster.detectColl.radius, _monster.attackTargetLayer);
 			_monster.target = detectedColl[0].transform;
-			//Debug.Log(detectedColl[0].name);
 		}
 		else
 		{

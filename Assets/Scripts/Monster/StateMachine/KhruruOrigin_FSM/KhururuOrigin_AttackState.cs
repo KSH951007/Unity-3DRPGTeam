@@ -109,6 +109,7 @@ public class KhururuOrigin_AttackState : BaseState
     {
         if (_monster.attack1Collider.enabled)
         {
+			SoundManager.instance.PlaySound("KhururuAttack");
             Vector3 collCenter = _monster.attack1Collider.transform.position + _monster.attack1Collider.center;
 
             Collider[] detectedColl =
@@ -123,6 +124,7 @@ public class KhururuOrigin_AttackState : BaseState
 		}
         else if (_monster.skill1Collider.enabled)
         {
+            SoundManager.instance.PlaySound("KhururuAttackVoice");
             Vector3 collCenter = _monster.skill1Collider.transform.position + _monster.skill1Collider.center;
 
             Collider[] detectedColl =

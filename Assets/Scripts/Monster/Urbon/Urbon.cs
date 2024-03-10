@@ -68,11 +68,18 @@ public class Urbon : BossMonsters
 		}
 
 		_fsm.UpdateState();
-		print(_curState);
+		//print(_curState);
 		//print(timeForNextChange);
 	}
 
-	private void ChangeState(State nextState)
+    protected override IEnumerator Die()
+    {
+        SoundManager.instance.StopSound("UrbonStep");
+        SoundManager.instance.PlaySound("UrbonDie");
+        yield return StartCoroutine(base.Die());
+    }
+
+    private void ChangeState(State nextState)
 	{
 		_curState = nextState;
 		switch (_curState)

@@ -26,13 +26,15 @@ public class SoundWindow : MonoBehaviour
 
 	public void ClickApplyButton()
 	{
-		gameObject.SetActive(false);
+        SoundManager.instance.PlaySound("Apply");
+        gameObject.SetActive(false);
 	}
 
 	public void ClickCancelButton()
 	{
 		BGMSlider.value = originalBGMVolume;
 		EffectSlider.value = originalEffectVolume;
-		gameObject.SetActive(false);
+        SoundManager.instance.PlaySound("Cancel");
+        gameObject.SetActive(false);
 	}
 }
