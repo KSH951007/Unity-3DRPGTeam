@@ -61,7 +61,6 @@ public class ShowClearDetail : MonoBehaviour
     public void gotoHome() // 온클릭 이벤트
     {
         Singleton<SceneLoader>.Instance.LoadScene(0);// 마을
-        gameObject.SetActive(false);
     }
     IEnumerator GetItem()
     {
