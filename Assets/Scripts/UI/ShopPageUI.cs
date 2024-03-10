@@ -89,7 +89,7 @@ public class ShopPageUI : CategoryPageUI
     public void BuyItem(ItemSO itemData, int count = 1)
     {
 
-        Inventory.ItemBuyResultType type = inventory.AddBuyItem(itemData,count);
+        Inventory.ItemBuyResultType type = inventory.AddBuyItem(itemData);
         switch (type)
         {
             case Inventory.ItemBuyResultType.Success:

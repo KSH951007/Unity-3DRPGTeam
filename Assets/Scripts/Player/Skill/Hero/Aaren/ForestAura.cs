@@ -22,7 +22,7 @@ public class ForestAura : Skill
                     transform.GetChild(i).GetComponent<ProjectileForestAura>().Stop();
                 }
             }
-            projectile.GetComponent<ProjectileForestAura>().Init(hero, hero.data.damage);
+            projectile.GetComponent<ProjectileForestAura>().Init(hero, hero.GetHeroData().GetDamage());
           
         }
 

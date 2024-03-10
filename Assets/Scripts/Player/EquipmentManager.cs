@@ -43,16 +43,14 @@ public class EquipmentManager : MonoBehaviour, ISavable
             {
                 if (heroManager.GetSelectHero(i).GetHeroData().GetHeroID() == heroID)
                 {
-                    return equipments[i].SetItem(item);
+                    equipments[i].SetItem(item);
+                    return;
                 }
             }
         }
-        return Equipment.EquipmentResult.Success;
     }
     public void SetPortionItem(Item item)
     {
-        if (!(item is PortionItem))
-            return;
 
         bool isEmpty = false;
         int emptyIndex = 0;

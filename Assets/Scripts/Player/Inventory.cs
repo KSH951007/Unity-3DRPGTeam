@@ -4,58 +4,49 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class InventoyData
-{
-    public int gold;
-}
 public class Inventory : MonoBehaviour, ISavable
 {
     public enum ItemBuyResultType { Success, TribeSlot, TribeGold }
+    private int gold;
     private int maxSlotCount;
     private Item[] items;
     public event Action<int> onItemUpdate;
     public event Action<int> onGoldUpdate;
+    private List<ItemSO> itemDatas;
 
-    public InventoyData data;
+
     public Item[] InventroyItems { get => items; }
     public int MaxCount { get { return maxSlotCount; } }
-    public int Gold { get { return data.gold; } set { data.gold = value; onGoldUpdate?.Invoke(data.gold); } }
+    public int Gold { get { return gold; } set { gold = value; onGoldUpdate?.Invoke(gold); } }
     private void Awake()
     {
+        Gold = 50000;
         maxSlotCount = 60;
         items = new Item[maxSlotCount];
-        data = new InventoyData();
 
-        ItemLoad<Weapon>("InventoryItems/Weapon/");
-        ItemLoad<Armor>("InventoryItems/Armor/");
-        ItemLoad<PortionItem>("InventoryItems/Portion/");
-        if (DataManager.Instance.LoadData<InventoyData>("InventoryGold", out InventoyData gold))
+
+        int count = DataManager.Instance.GetFileCount("InventoryItems/");
+        Debug.Log(count);
+        for (int i = 0; i < count; i++)
         {
-            data = gold;
+            if (DataManager.Instance.LoadData("InventoryItems/Item" + i, out Weapon data))
+            {
+
+                items[i] = data;
+
+                Debug.Log(items[i]);
+            }
         }
-        else
-        {
-            data.gold = 50000;
-        }
+
+
+       
+
+
+
+
 
 
         DataManager.Instance.AddSaveHandler(this);
-    }
-
-    public void ItemLoad<T>(string path) where T : Item
-    {
-        int count = DataManager.Instance.GetFileCount(path);
-        if (count > 0)
-        {
-            for (int i = 0; i < items.Length; i++)
-            {
-                if (DataManager.Instance.LoadData(path + "Item" + i, out T weaponData))
-                {
-                    items[i] = (T)weaponData;
-
-                }
-            }
-        }
     }
     private void Start()
     {
@@ -65,10 +56,9 @@ public class Inventory : MonoBehaviour, ISavable
             onItemUpdate?.Invoke(i);
         }
     }
- 
     public bool HasGold(int gold)
     {
-        if (this.data.gold < gold)
+        if (this.gold < gold)
             return false;
 
         return true;
@@ -80,7 +70,6 @@ public class Inventory : MonoBehaviour, ISavable
             if (items[i] == item)
             {
                 index = i;
-                Debug.Log(index);
                 return true;
             }
         }
@@ -100,17 +89,6 @@ public class Inventory : MonoBehaviour, ISavable
                 return;
             }
         }
-        else
-        {
-            
-            if(isEmptySlot(out int index))
-            {
-                items[index] = item;
-                onItemUpdate?.Invoke(index);
-            }
-           
-
-        }
     }
     public ItemBuyResultType AddBuyItem(ItemSO itemData, int count = 1)
     {
@@ -124,7 +102,6 @@ public class Inventory : MonoBehaviour, ISavable
             bool hasItem = HasItem(itemData, out int index);
 
             int remainingCount = count;
-            Debug.Log(remainingCount);
             if (hasItem)
             {
                 for (int i = index; i < items.Length; i++)
@@ -170,7 +147,6 @@ public class Inventory : MonoBehaviour, ISavable
             {
                 if (isEmptySlot(out int emptyIndex))
                 {
-                    Debug.Log(remainingCount);
                     items[emptyIndex] = itemData.CreateItem();
                     ((CountableItem)items[emptyIndex]).AddCountAndGetExcess(remainingCount);
                     onItemUpdate?.Invoke(emptyIndex);
@@ -188,7 +164,6 @@ public class Inventory : MonoBehaviour, ISavable
         {
             if (isEmptySlot(out int index))
             {
-
                 items[index] = itemData.CreateItem();
                 onItemUpdate?.Invoke(index);
 
@@ -332,19 +307,9 @@ public class Inventory : MonoBehaviour, ISavable
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] != null)
-            {
-                if (items[i] is Weapon)
-                    DataManager.Instance.SaveData(items[i], $"Item{i}", "InventoryItems/Weapon/");
-                else if (items[i] is Armor)
-                    DataManager.Instance.SaveData(items[i], $"Item{i}", "InventoryItems/Armor/");
-                else if (items[i] is PortionItem)
-                    DataManager.Instance.SaveData(items[i], $"Item{i}", "InventoryItems/Portion/");
-
-
-            }
+                DataManager.Instance.SaveData(items[i], $"Item{i}", "InventoryItems/");
 
         }
-        DataManager.Instance.SaveData(data, "InventoryGold");
 
     }
 }

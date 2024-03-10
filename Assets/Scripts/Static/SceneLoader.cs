@@ -65,7 +65,7 @@ public class SceneLoader : Singleton<SceneLoader>
             if(currentTIme >= maxTime)
             {
                 operation.allowSceneActivation = true;
-                loadingUI.ActiveLoadingImage(false);
+                loadingUI.gameObject.SetActive(false);
                 break;
             }
 

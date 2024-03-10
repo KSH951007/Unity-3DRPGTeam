@@ -7,7 +7,7 @@ public class DesertSceneBGM : MonoBehaviour
     [SerializeField] private GameObject bossAppear;
     bool afterSceneLoaded = false;
     bool bgmChanged = false;
-
+    bool bossClear = false;
     private void Update()
     {
         if (!afterSceneLoaded)
@@ -21,6 +21,10 @@ public class DesertSceneBGM : MonoBehaviour
         {
             bgmChanged = true;
             StartCoroutine(EnterBoss());
+        }
+        if(bossClear)
+        {
+            SoundManager.instance.StopSound("BossBGM");
         }
     }
 

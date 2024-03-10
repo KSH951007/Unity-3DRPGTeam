@@ -17,7 +17,7 @@ public class HeroJuliaAttackAction : HeroAttackAction
         GameObject projectile = PoolManager.Instance.Get("ProjectileJuliaAttack",owner.AttackPoint.position,owner.AttackPoint.rotation);
         if (projectile != null)
         {
-            projectile.GetComponent<ProjectileJuliaAttack>().Init(owner.AttackPoint.position, owner.data.damage);
+            projectile.GetComponent<ProjectileJuliaAttack>().Init(owner.AttackPoint.position, owner.GetHeroData().GetDamage());
        
         }
 
