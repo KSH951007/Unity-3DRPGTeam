@@ -148,7 +148,7 @@ public class BossMonsters : MonoBehaviour, IHitable
         skinnedMeshRenderer.material = originalMat;
     }
 
-    protected IEnumerator Die()
+    protected virtual IEnumerator Die()
     {
         if (nav.enabled)
         {
