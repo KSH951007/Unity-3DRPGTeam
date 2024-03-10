@@ -112,9 +112,6 @@ public class EquipmentManager : MonoBehaviour, ISavable
 
 
 
-        Debug.Log(portionItems[index].portionType);
-        Debug.Log(portionItems[index].itemName);
-
         if (portionItems[index].portionType == HealthPortionType.HpPortion)
         {
             Health health = heroManager.GetMainHero().GetComponent<Health>();

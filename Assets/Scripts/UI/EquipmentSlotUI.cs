@@ -41,6 +41,7 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
     }
     public void ActiveToggleSwich()
     {
+
         if (isSelect)
         {
             isSelect = false;
@@ -55,6 +56,7 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
             isSelect = true;
             selectImage.gameObject.SetActive(true);
         }
+        SoundManager.instance.PlaySound("UIToggle");
     }
 
     public void OnPointerClick(PointerEventData eventData)
