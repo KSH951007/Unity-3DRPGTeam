@@ -15,9 +15,7 @@ public class HeroManager : MonoBehaviour
 
 
 
-    private int maxStorageHerosCount;
     private int maxPlayHeroCount;
-    private Hero[] hasHeros;
     private Hero[] selectHeros;
     private int mainHeroIndex;
     private float changeCooldown;
@@ -27,25 +25,20 @@ public class HeroManager : MonoBehaviour
     private float currentRegenerationTime;
     private float regenerationTime;
 
+    public int MaxHeroCount { get => maxPlayHeroCount; }
     public float ChangeCooldown { get { return changeCooldown; } }
 
     private void Awake()
     {
 
-        maxStorageHerosCount = 50;
         maxPlayHeroCount = 3;
         changeCooldown = 5f;
         mainHeroIndex = 0;
         selectHeros = new Hero[maxPlayHeroCount];
-        hasHeros = new Hero[maxStorageHerosCount];
-
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            hasHeros[i] = transform.GetChild(i).GetComponent<Hero>();
-        }
+    
         for (int i = 0; i < selectHeros.Length; i++)
         {
-            selectHeros[i] = hasHeros[i];
+            selectHeros[i] = transform.GetChild(i).GetComponent<Hero>();
         }
 
         playerCamera.m_Follow = selectHeros[mainHeroIndex].transform;
@@ -82,10 +75,6 @@ public class HeroManager : MonoBehaviour
     public int GetMainHeroIndex() { return mainHeroIndex; }
     public Hero GetSelectHero(int index) { return selectHeros[index]; }
 
-    public void AddStorageHero()
-    {
-
-    }
     public void ChangeCharacter()
     {
         int nextIndex = mainHeroIndex + 1;

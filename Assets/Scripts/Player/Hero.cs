@@ -6,8 +6,42 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public abstract class Hero : MonoBehaviour
+
+
+public class HeroData
 {
+    public int heroID;
+    public int level;
+    public int health;
+    public int mana;
+    public int damage;
+    public float regenerationHealth;
+    public float regenerationMana;
+    public float defensivePercent;
+
+    public HeroData()
+    {
+
+    }
+    public HeroData(int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent)
+    {
+        this.level = level;
+        this.health = health;
+        this.mana = mana;
+        this.damage = damage;
+        this.regenerationHealth = regenerationHealth;
+        this.regenerationMana = regenerationMana;
+        this.defensivePercent = defensivePercent;
+    }
+}
+
+public abstract class Hero : MonoBehaviour,ISavable
+{
+
+    protected HeroData data;
+
+
+
     [SerializeField] protected RuntimeAnimatorController[] animContorllers;
     [SerializeField] protected Transform attackPoint;
     protected Animator animator;
@@ -36,7 +70,7 @@ public abstract class Hero : MonoBehaviour
     public Transform AttackPoint { get => attackPoint; }
     public HeroSO GetHeroData() { return heroData; }
 
-   
+
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -45,11 +79,29 @@ public abstract class Hero : MonoBehaviour
         animType = EnumType.HeroAnimType.Base;
         ChangeAnimatorController(EnumType.HeroAnimType.Base);
         animEnvent = GetComponentInChildren<HeroAnimEvent>();
-
         manaSystem = GetComponent<ManaSystem>();
+
         manaSystem.Init(heroData.GetMaxMana(), heroData.GetRegenerationMana());
         GetComponent<Health>().SetHealth(heroData.GetMaxHealth(), heroData.GetRegenerationHealth(), heroData.GetDefensive());
         scheduler = new ActionScheduler();
+
+
+
+        if (DataManager.Instance.LoadData<HeroData>(heroData.GetName(), out HeroData heroInfo))
+        {
+            data = heroInfo;
+        }
+        else
+        {
+            data = new HeroData();
+            data.level = heroData.GetLevel();
+            data.health = heroData.GetMaxHealth();
+            data.mana = heroData.GetMaxMana();
+            data.regenerationHealth = heroData.GetRegenerationHealth();
+            data.regenerationMana = heroData.GetRegenerationMana();
+            data.damage = heroData.GetDamage();
+            data.defensivePercent = heroData.GetDefensive();
+        }
 
         moveAction = new HeroMoveAction(scheduler, animator, this, agent, 3.5f);
         Transform skillsTr = transform.Find("Skills");
@@ -65,10 +117,7 @@ public abstract class Hero : MonoBehaviour
         skillAction[1] = new HeroSkillAction(scheduler, skillManager, 1, animator, this);
         skillAction[2] = new HeroSkillAction(scheduler, skillManager, 2, animator, this);
 
-    }
-    protected virtual void Start()
-    {
-       
+        DataManager.Instance.AddSaveHandler(this);
     }
     public void NoneActiveHero()
     {
@@ -84,7 +133,7 @@ public abstract class Hero : MonoBehaviour
     {
         moveAction.SetMovePoint(targetPosition);
         scheduler.AddAction(moveAction);
-    
+
     }
     public void AttackAction(Vector3 newDirection)
     {
@@ -93,7 +142,7 @@ public abstract class Hero : MonoBehaviour
 
         if (!attackAction.IsLastAttack())
         {
-            
+
             attackAction.SetTargetTo(newDirection);
             scheduler.AddAction(attackAction);
         }
@@ -114,11 +163,17 @@ public abstract class Hero : MonoBehaviour
     {
         Vector3 velocity = Vector3.zero;
 
-        while (Vector3.SignedAngle(transform.forward, targetPos,Vector3.up) > 0.01f)
+        while (Vector3.SignedAngle(transform.forward, targetPos, Vector3.up) > 0.01f)
         {
             transform.forward = Vector3.SmoothDamp(transform.forward, targetPos, ref velocity, smoothTime);
             yield return null;
         }
         transform.forward = targetPos;
     }
+
+    public void SaveData()
+    {
+        DataManager.Instance.SaveData(data, heroData.GetName());
+    }
+   
 }

@@ -50,6 +50,7 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         operation.allowSceneActivation = false;
+       
         loadingUI.StartLoadingUI();
         float currentTIme = 0f;
         float maxTime = 10f;
@@ -64,6 +65,7 @@ public class SceneLoader : Singleton<SceneLoader>
             if(currentTIme >= maxTime)
             {
                 operation.allowSceneActivation = true;
+                loadingUI.gameObject.SetActive(false);
                 break;
             }
 
@@ -71,6 +73,5 @@ public class SceneLoader : Singleton<SceneLoader>
             yield return null;
         }
 
-        loadingUI.gameObject.SetActive(false);
     }
 }

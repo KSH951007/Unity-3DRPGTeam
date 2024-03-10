@@ -167,7 +167,6 @@ public class QuestSystem : MonoBehaviour
         root.Add(kActiveAchievementsSavePath, CreateSaveDatas(activeAchievements));
         root.Add(kCompletedAchievementsSavePath, CreateSaveDatas(completedAchievements));
         string jsonString = root.ToString();
-        print("Saved data: " + jsonString);
 
         PlayerPrefs.SetString(kSaveRootPath, root.ToString());
         PlayerPrefs.Save();
@@ -198,7 +197,7 @@ public class QuestSystem : MonoBehaviour
             if (quest.IsSavable)
             {
                 var jobj = JObject.FromObject(quest.ToSaveData());
-                print(jobj);
+           
                 saveDatas.Add(jobj);
             }
         }
