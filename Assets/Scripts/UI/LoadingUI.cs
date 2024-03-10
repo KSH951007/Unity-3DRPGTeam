@@ -15,18 +15,22 @@ public class LoadingUI : MonoBehaviour
     private void Start()
     {
 
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        ActiveLoadingImage(false);
     }
     public void StartLoadingUI()
     {
         int rand = Random.Range(0, backgrounSprites.Length);
         loadingBackgroundImage.sprite = backgrounSprites[rand];
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        ActiveLoadingImage(true);
         LoadingProgress(0f);
     }
     public void LoadingProgress(float progress)
     {
         loadginImage.fillAmount = progress;
-        loadingText.text = $"Loading...({(progress*100).ToString("F2")}%)";
+        loadingText.text = $"Loading...({(progress * 100).ToString("F2")}%)";
+    }
+    public void ActiveLoadingImage(bool active)
+    {
+        this.transform.GetChild(0).gameObject.SetActive(active);
     }
 }
