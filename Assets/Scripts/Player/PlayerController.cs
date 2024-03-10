@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -17,10 +18,12 @@ public class PlayerController : MonoBehaviour
 
     private Hero mainHero;
     private PlayerInteract interact;
+    private EquipmentManager equipmentManager;
     private void Awake()
     {
         heroManager = GetComponent<HeroManager>();
         interact = GetComponent<PlayerInteract>();
+        equipmentManager = GetComponent<EquipmentManager>();
         canControl = true;
 
 
@@ -51,6 +54,8 @@ public class PlayerController : MonoBehaviour
             if (mainHero.Scheduler.GetCurrentAction() == null || mainHero.Scheduler.GetCurrentAction() is HeroMoveAction)
                 heroManager.ChangeCharacter();
         };
+
+        inputs.Player.ItemUse.performed += (value) => { equipmentManager.UsePortion(Convert.ToInt32(value.control.name) - 1); };
     }
 
 

@@ -89,6 +89,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemUse"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d860cd8-54ba-43f5-9866-ee0e0bb9f40f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,6 +177,61 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""657e1870-1a4b-475b-bf44-8f434473c52b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d82e1675-48b4-46d1-b77f-514ed83ac361"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad10ede0-b71e-466e-91f6-8c977d053727"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d301b1bd-b343-47da-897c-fd34e9a50d99"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f47f55c5-9a6e-491f-a9df-b874fa008bb9"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -183,6 +247,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Skill2 = m_Player.FindAction("Skill2", throwIfNotFound: true);
         m_Player_Skill3 = m_Player.FindAction("Skill3", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_ItemUse = m_Player.FindAction("ItemUse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +316,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Skill2;
     private readonly InputAction m_Player_Skill3;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_ItemUse;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -262,6 +328,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Skill2 => m_Wrapper.m_Player_Skill2;
         public InputAction @Skill3 => m_Wrapper.m_Player_Skill3;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @ItemUse => m_Wrapper.m_Player_ItemUse;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -292,6 +359,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @ItemUse.started += instance.OnItemUse;
+            @ItemUse.performed += instance.OnItemUse;
+            @ItemUse.canceled += instance.OnItemUse;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -317,6 +387,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @ItemUse.started -= instance.OnItemUse;
+            @ItemUse.performed -= instance.OnItemUse;
+            @ItemUse.canceled -= instance.OnItemUse;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -343,5 +416,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSkill2(InputAction.CallbackContext context);
         void OnSkill3(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnItemUse(InputAction.CallbackContext context);
     }
 }
