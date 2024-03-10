@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1202479864601761812}
   - component: {fileID: 4584768047973687648}
   m_Layer: 5
-  m_Name: ClearTime
+  m_Name: ClearTimeShow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,8 +146,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 15fc374cdc9528d448e42a565f64803e, type: 2}
+  m_sharedMaterial: {fileID: -8945748170348041830, guid: 15fc374cdc9528d448e42a565f64803e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -361,7 +362,7 @@ GameObject:
   - component: {fileID: 2356896824416744679}
   - component: {fileID: 8367539836725027520}
   m_Layer: 5
-  m_Name: DamageToBoss
+  m_Name: DamageToBossTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -912,8 +913,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DungeonName
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8661c6ab885912c4dbc608d0205c0afa, type: 2}
-  m_sharedMaterial: {fileID: -8945748170348041830, guid: 8661c6ab885912c4dbc608d0205c0afa,
+  m_fontAsset: {fileID: 11400000, guid: 15fc374cdc9528d448e42a565f64803e, type: 2}
+  m_sharedMaterial: {fileID: -8945748170348041830, guid: 15fc374cdc9528d448e42a565f64803e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -991,13 +992,14 @@ GameObject:
   - component: {fileID: 6878053686969348361}
   - component: {fileID: 3206877079823634330}
   - component: {fileID: 6666309894966925543}
+  - component: {fileID: 4009044794333707713}
   m_Layer: 5
   m_Name: ClearBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6878053686969348361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1005,7 +1007,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4966805593007703537}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
@@ -1057,6 +1059,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4009044794333707713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966805593007703537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae0c42b1af7cc84193d7099ac0a5be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardGroup: {fileID: 2870401113616503126}
+  rewardPrefab: {fileID: -4739182656057016341, guid: 30a5d8cb10350a548b6a50e24ad6c948,
+    type: 3}
+  clearTimeShow: {fileID: 4584768047973687648}
+  dungeonNameShow: {fileID: 1721848136545236379}
+  damageToBoss: {fileID: 8393625612160729167}
+  inven: {fileID: 0}
+  itemArray: []
+  boss: {fileID: 0}
 --- !u!1 &5798704784960645098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1092,7 @@ GameObject:
   - component: {fileID: 1816521946820178285}
   - component: {fileID: 5859344230950557844}
   m_Layer: 5
-  m_Name: ClearTimeTiTle (1)
+  m_Name: GotoHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,8 +1115,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0011978, y: 66.787}
-  m_SizeDelta: {x: 778.27, y: 133.57}
+  m_AnchoredPosition: {x: -119.18874, y: 66.787}
+  m_SizeDelta: {x: 539.8923, y: 133.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1816521946820178285
 CanvasRenderer:
@@ -1158,8 +1181,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1282,7 +1305,7 @@ GameObject:
   - component: {fileID: 2050223400054356122}
   - component: {fileID: 2870072582989346828}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Reward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1441,7 +1464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262.9989, y: -0.0019836426}
+  m_AnchoredPosition: {x: 374, y: 0.0049744}
   m_SizeDelta: {x: 252.2692, y: 133.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8067461843066647090
@@ -1525,7 +1548,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3913936654599894860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4009044794333707713}
+        m_TargetAssemblyTypeName: ShowClearDetail, Assembly-CSharp
+        m_MethodName: gotoHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7256073427827600722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,7 +1673,7 @@ GameObject:
   - component: {fileID: 4022677886170099293}
   - component: {fileID: 8393625612160729167}
   m_Layer: 5
-  m_Name: DamageToBoss (1)
+  m_Name: DamageToBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
