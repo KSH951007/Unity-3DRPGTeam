@@ -19,6 +19,7 @@ public class Health : MonoBehaviour, IHitable
     private bool isinvincibility;
     public int CurrentHealth { get { return currentHealth; } }
     public int MaxHealth { get { return maxHeath; } }
+    
     public bool IsInvincibility { get { return isinvincibility; } set => isinvincibility = value; }
     private void Awake()
     {

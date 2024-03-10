@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,8 @@ public class HeroInfoPageUI : CategoryPageUI
     [SerializeField] private EquipmentSlotUI[] equipmentSlotUI;
     [SerializeField] private PortionSlotUI[] portionSlotUI;
     [SerializeField] private EquipmentManager equipmentManager;
-
+    [SerializeField] private HeroManager heroManager;
+    [SerializeField] private HeroStatViewUI heroStatViewUI;
     private void OnEnable()
     {
         heroInpoType = HeroInpoType.Din;
@@ -34,7 +36,7 @@ public class HeroInfoPageUI : CategoryPageUI
         for (int i = 0; i < equipmentSlotUI.Length; i++)
         {
             equipmentSlotUI[i].SetItemInfo(equipmentManager.GetEquipment(heroIndex).GetEquipmentItem((Equipment.EquipmentSlotType)i));
-       
+
         }
     }
     public void ActiveHeroSelectToggle(int index)
@@ -56,7 +58,7 @@ public class HeroInfoPageUI : CategoryPageUI
             {
                 model.ActvieModel(RenderTexModel.PreviewModelType.HeroAaren);
             }
-
+            heroStatViewUI.SetText(heroManager.GetSelectHero(index));
 
             UpdateEquipmentSlots(index);
             UpdatePortionSlots();
@@ -71,11 +73,11 @@ public class HeroInfoPageUI : CategoryPageUI
             if (equipmentSlotUI[i].IsSelect)
             {
                 equipmentManager.ReleaseEquipmentItem((int)heroInpoType, i);
-               
+
             }
         }
         UpdateEquipmentSlots((int)heroInpoType);
-
+        heroStatViewUI.SetText(heroManager.GetSelectHero((int)heroInpoType));
         for (int i = 0; i < portionSlotUI.Length; i++)
         {
             if (!portionSlotUI[i].IsEmpty)
