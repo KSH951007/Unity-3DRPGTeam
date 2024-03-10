@@ -24,7 +24,6 @@ public class DataManager : Singleton<DataManager>
             Debug.Log("¾øÀ½");
 
         saveData = new List<ISavable>();
-        Debug.Log(path);
         SceneManager.sceneUnloaded += (_) => { ChangeSceneSaveData(); };
     }
     public void SaveData(object saveData, string fileName, string forlderName = "")
@@ -52,7 +51,6 @@ public class DataManager : Singleton<DataManager>
 
 
         string data = File.ReadAllText(path + fileName);
-        Debug.Log(data);
         
         loadData = JsonUtility.FromJson<T>(data);
         return true;

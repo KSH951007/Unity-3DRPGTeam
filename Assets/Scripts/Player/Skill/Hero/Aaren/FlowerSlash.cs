@@ -16,7 +16,7 @@ public class FlowerSlash : Skill
         GameObject projectile = PoolManager.Instance.Get("ProjectileFlowerSlash");
         if (projectile != null)
         {
-            projectile.GetComponent<ProjectileFlowerSlash>().Init(transform.position,hero.GetHeroData().GetDamage());
+            projectile.GetComponent<ProjectileFlowerSlash>().Init(transform.position,hero.data.damage);
            
         }
     }

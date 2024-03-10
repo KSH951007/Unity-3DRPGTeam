@@ -12,19 +12,22 @@ public class SaveFileManager : MonoBehaviour
     public static void RemoveAllSaveFile()
     {
         string path = Application.persistentDataPath + "/";
+        DirectoryInfo directory = new DirectoryInfo(path);
 
-        string[] test = Directory.GetFiles(path);
-
-        for (int i = 0; i < test.Length; i++)
+        foreach (FileInfo file in directory.GetFiles())
         {
-            File.Delete(test[i]);
+            file.Delete();
+        }
+
+        foreach (DirectoryInfo dir in directory.GetDirectories())
+        {
+            dir.Delete(true);
         }
     }
     [MenuItem("Save/OpenFolder")]
     public static void OpenSaveFolder()
-    {   
+    {
         string path = Application.persistentDataPath + "/";
-
         Process.Start(path);
     }
 }

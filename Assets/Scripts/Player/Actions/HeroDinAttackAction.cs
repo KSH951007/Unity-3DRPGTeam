@@ -49,7 +49,7 @@ public class HeroDinAttackAction : HeroAttackAction
                 {
                     if (hitObject.transform.gameObject.TryGetComponent(out IHitable enemy))
                     {
-                        enemy.TakeHit(owner.GetHeroData().GetDamage(), IHitable.HitType.None);
+                        enemy.TakeHit(owner.data.damage, IHitable.HitType.None);
                     }
                 }
 

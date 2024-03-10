@@ -18,12 +18,13 @@ public class HeroData
     public float regenerationHealth;
     public float regenerationMana;
     public float defensivePercent;
+    public int maxAttackCombo;
 
     public HeroData()
     {
 
     }
-    public HeroData(int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent)
+    public HeroData(int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent, int maxAttackCombo)
     {
         this.level = level;
         this.health = health;
@@ -32,13 +33,15 @@ public class HeroData
         this.regenerationHealth = regenerationHealth;
         this.regenerationMana = regenerationMana;
         this.defensivePercent = defensivePercent;
+        this.maxAttackCombo = maxAttackCombo;
+        this.maxAttackCombo = maxAttackCombo;
     }
 }
 
-public abstract class Hero : MonoBehaviour,ISavable
+public abstract class Hero : MonoBehaviour, ISavable
 {
 
-    protected HeroData data;
+    public HeroData data;
 
 
 
@@ -94,6 +97,7 @@ public abstract class Hero : MonoBehaviour,ISavable
         else
         {
             data = new HeroData();
+            data.heroID = heroData.GetHeroID();
             data.level = heroData.GetLevel();
             data.health = heroData.GetMaxHealth();
             data.mana = heroData.GetMaxMana();
@@ -101,6 +105,7 @@ public abstract class Hero : MonoBehaviour,ISavable
             data.regenerationMana = heroData.GetRegenerationMana();
             data.damage = heroData.GetDamage();
             data.defensivePercent = heroData.GetDefensive();
+            data.maxAttackCombo = heroData.GetMaxAttackCombo();
         }
 
         moveAction = new HeroMoveAction(scheduler, animator, this, agent, 3.5f);
@@ -175,5 +180,5 @@ public abstract class Hero : MonoBehaviour,ISavable
     {
         DataManager.Instance.SaveData(data, heroData.GetName());
     }
-   
+
 }

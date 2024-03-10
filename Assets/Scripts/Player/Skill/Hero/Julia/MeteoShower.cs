@@ -10,7 +10,7 @@ public class MeteoShower : Skill
         GameObject projectile = PoolManager.Instance.Get("ProjectileMeteoShower");
         if (projectile != null)
         {
-            projectile.GetComponent<ProjectileMeteoShower>().Init(hero.AttackPoint.position, hero.AttackPoint.rotation, hero.GetHeroData().GetDamage(),hero.HeroAnimator);            
+            projectile.GetComponent<ProjectileMeteoShower>().Init(hero.AttackPoint.position, hero.AttackPoint.rotation, hero.data.damage,hero.HeroAnimator);            
         }
 
     }

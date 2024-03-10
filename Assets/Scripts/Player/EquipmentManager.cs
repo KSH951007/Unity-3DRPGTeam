@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum EquipmentResult {Sucess, TribeLevel,DontSameHero }
 public class EquipmentManager : MonoBehaviour
 {
     private Equipment[] equipments;
@@ -19,7 +18,7 @@ public class EquipmentManager : MonoBehaviour
         heroManager = GetComponent<HeroManager>();
     }
 
-    public void SetEquipment(Item item, int heroID)
+    public Equipment.EquipmentResult SetEquipment(Item item, int heroID)
     {
         if (item is EquipmentItem)
         {
@@ -27,11 +26,11 @@ public class EquipmentManager : MonoBehaviour
             {
                 if (heroManager.GetSelectHero(i).GetHeroData().GetHeroID() == heroID)
                 {
-                    equipments[i].SetItem(item);
-                    return;
+                    return equipments[i].SetItem(item);
                 }
             }
         }
+        return Equipment.EquipmentResult.Success;
     }
     public void SetPortionItem(Item item)
     {
@@ -44,4 +43,5 @@ public class EquipmentManager : MonoBehaviour
 
         return equipments[heroIndex];
     }
+
 }

@@ -18,13 +18,15 @@ public class HeroInfoPageUI : CategoryPageUI
     {
         heroInpoType = HeroInpoType.Din;
         model.ActvieModel(RenderTexModel.PreviewModelType.HeroDin);
+        heroToggles[(int)heroInpoType].isOn = true;
         ActiveHeroSelectToggle((int)heroInpoType);
     }
     public void ActiveHeroSelectToggle(int index)
     {
+    
         heroInpoType = (HeroInpoType)index;
         if (heroToggles[index].isOn)
-        {
+        {   
             if (heroInpoType == HeroInpoType.Din)
             {
                 model.ActvieModel(RenderTexModel.PreviewModelType.HeroDin);
@@ -44,7 +46,9 @@ public class HeroInfoPageUI : CategoryPageUI
             {
                 Equipment equipment = equipmentManager.GetEquipment(index);
                 if (equipment != null)
+                {
                     equipmentSlotUI[i].SetItemInfo(equipment.GetEquipmentItem((Equipment.EquipmentSlotType)i));
+                }
             }
         }
     }

@@ -209,11 +209,30 @@ public class InventoryPageUI : CategoryPageUI
                 }
                 else
                 {
-                    heroSelectUI.ActiveHeroSelectUI(item, equipmentManager.SetEquipment);
+                    heroSelectUI.ActiveHeroSelectUI(item, SetEquipmentResult);
                 }
 
                 return;
             }
+        }
+    }
+    public void SetEquipmentResult(Item item, int heroID)
+    {
+        Equipment.EquipmentResult result = equipmentManager.SetEquipment(item, heroID);
+        switch (result)
+        {
+            case Equipment.EquipmentResult.Success:
+                renderModelViewUI.SetTalkText("장착 성공이야!", "Awake");
+                break;
+            case Equipment.EquipmentResult.TypeMiss:
+                renderModelViewUI.SetTalkText("영웅이 쓸수있는 \n 무기가 아니야!", "Awake");
+                break;
+            case Equipment.EquipmentResult.LevelMiss:
+                renderModelViewUI.SetTalkText("레벨이 부족한걸?!", "Awake");
+                break;
+            case Equipment.EquipmentResult.SlotFull:
+                renderModelViewUI.SetTalkText("더 넣을 공간이 없어", "Awake");
+                break; 
         }
     }
     public void ActiveSordToggle(int index)
@@ -252,6 +271,6 @@ public class InventoryPageUI : CategoryPageUI
         }
 
     }
-   
+
 
 }
