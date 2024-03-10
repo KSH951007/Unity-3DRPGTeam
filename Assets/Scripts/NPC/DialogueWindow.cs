@@ -75,6 +75,7 @@ public class DialogueWindow : MonoBehaviour
             if (isTyping)
             {
                 curText += letter;
+                SoundManager.instance.PlaySound("ChatEffect");
                 yield return new WaitForSeconds(.2f);
             }
         }

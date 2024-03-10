@@ -41,20 +41,24 @@ public class QuestUi : MonoBehaviour
     public void showQW() // npc가 대화 내용과 퀘스트 내용을 가지고 있으면 파라미터를 쓸 필요 없이 사용가능
     {
         qwIsOpen = !qwIsOpen;
+        SoundManager.instance.PlaySound("UIopen");
         questWindow.SetActive(qwIsOpen);
     }
     public void showConversation()
     {
         cmIsOpen = !cmIsOpen;
+        SoundManager.instance.PlaySound("UIopen");
         conversationMenu.SetActive(cmIsOpen);
     }
     public void talkWithNPC()
     {
+        SoundManager.instance.PlaySound("UIopen");
         talkWindow.SetActive(true);
     }
     public void AcceptQuest()
     {
         qaIsOpen = !qaIsOpen;
+        SoundManager.instance.PlaySound("UIopen");
         QuestAccept.SetActive(qaIsOpen);
     }
 }
