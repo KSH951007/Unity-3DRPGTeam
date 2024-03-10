@@ -54,7 +54,7 @@ public class ShowClearDetail : MonoBehaviour
     }
     public void getClearTime(string s)
     {
-        itemArray = boss.dropItem;
+        //itemArray = boss.dropItem;
         ClearTime = s ;
         showDetail();
     }
