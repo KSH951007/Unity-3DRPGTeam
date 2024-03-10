@@ -9,26 +9,32 @@ public class Urbon_ChaseState : BaseState
 
 	public override void OnStateEnter()
 	{
-		_monster.SetChasingTime();
-		_monster.timeForNextChange = _monster.chasingTime - 2f;
+        _monster.animator.SetBool("Move", true);
+        _monster.nav.isStopped = false;
+		SoundManager.instance.PlaySound("UrbonStep");
 
-		_monster.nav.isStopped = false;
-		_monster.animator.SetBool("Move", true);
+        _monster.SetChasingTime();
+		_monster.timeForNextChange = _monster.chasingTime - 1f;
 	}
 
 	public override void OnStateUpdate()
 	{
-		_monster.nav.SetDestination(_monster.target.position);
+		if (_monster.nav.enabled)
+		{
+            _monster.nav.SetDestination(_monster.target.position);
+        }
 
-		FaceTarget();
+        FaceTarget();
 	}
 
 	public override void OnStateExit()
 	{
-		_monster.animator.SetBool("Move", false);
-	}
+        SoundManager.instance.StopSound("UrbonStep");
 
-	private void FaceTarget()
+        _monster.animator.SetBool("Move", false);
+    }
+
+    private void FaceTarget()
 	{
 		var targetDirection = (_monster.nav.steeringTarget - _monster.transform.position).normalized;
 		if (targetDirection != Vector3.zero)

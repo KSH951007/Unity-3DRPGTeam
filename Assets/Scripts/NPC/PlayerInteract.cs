@@ -22,6 +22,7 @@ public class PlayerInteract : MonoBehaviour, IInteractable
         {
             GameManager.Instance.qui.showQW();
         }
+        playerID = QuestSystem.Instance.playerId;
     }
 
     public void Interact() // WillDo: 인풋 시스템으로 함수만 가져오게 될것

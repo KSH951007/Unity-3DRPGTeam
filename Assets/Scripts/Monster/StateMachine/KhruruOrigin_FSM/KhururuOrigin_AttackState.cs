@@ -109,6 +109,7 @@ public class KhururuOrigin_AttackState : BaseState
     {
         if (_monster.attack1Collider.enabled)
         {
+			SoundManager.instance.PlaySound("KhururuAttack");
             Vector3 collCenter = _monster.attack1Collider.transform.position + _monster.attack1Collider.center;
 
             Collider[] detectedColl =
@@ -123,11 +124,11 @@ public class KhururuOrigin_AttackState : BaseState
 		}
         else if (_monster.skill1Collider.enabled)
         {
+            SoundManager.instance.PlaySound("KhururuAttackVoice");
             Vector3 collCenter = _monster.skill1Collider.transform.position + _monster.skill1Collider.center;
 
             Collider[] detectedColl =
-            Physics.OverlapBox(collCenter, _monster.skill1Collider.bounds.extents * 2, Quaternion.identity, _monster.attackTargetLayer);
-			Debug.Log(detectedColl[0].name);
+            Physics.OverlapBox(collCenter, _monster.skill1Collider.bounds.extents, Quaternion.identity, _monster.attackTargetLayer);
 			if (detectedColl.Length != 0)
 			{
 				if (detectedColl[0].transform.gameObject.TryGetComponent(out IHitable health))

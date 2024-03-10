@@ -75,6 +75,7 @@ public class DialogueWindow : MonoBehaviour
             if (isTyping)
             {
                 curText += letter;
+                SoundManager.instance.PlaySound("ChatEffect");
                 yield return new WaitForSeconds(.2f);
             }
         }
@@ -117,7 +118,7 @@ public class DialogueWindow : MonoBehaviour
         }
         else
         {
-            curText = "you can't accept Quest.(Level Issue)";
+            curText = "퀘스트 진행도가 낮아 아직 도전할수 없는 퀘스트 입니다.";
         }
     }
     private void questDialogue(string[]lines)

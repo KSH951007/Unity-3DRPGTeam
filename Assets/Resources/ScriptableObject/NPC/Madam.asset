@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9c4efc7760ad34696c10ec47bedbbe, type: 3}
   m_Name: Madam
   m_EditorClassIdentifier: 
-  questID: 0
-  Name: madam
-  introduce: Take a look
+  questID: 2
+  Name: "\uC8FC\uBAA8"
+  introduce: "\uD558\uD558 \uB9DB\uC788\uB294 \uD0C1\uC8FC\uD55C\uC794 \uD560\uD150\uAC00?"
   des: 
-  dialogues: []
+  dialogues:
+  - "\uC6B0\uB9AC \uAC00\uAC8C \uD0C1\uC8FC\uB294 \uCD5C\uACE0\uC57C!"
+  - "\uAD6D\uBC25\uC740 \uC5B4\uB5A0\uC2E0\uAC00?"
   isMove: 0
-  questDialogue: []
+  questDialogue:
+  - "\uC694\uC998 \uB9C8\uC744 \uC8FC\uBCC0\uC5D0 \uBAAC\uC2A4\uD130\uAC00 \uB108\uBB34
+    \uB9CE\uC544"
+  - "\uB9C8\uC744 \uC8FC\uBCC0\uC758 \uBAAC\uC2A4\uD130 \uC815\uB9AC\uB97C \uBD80\uD0C1\uD560\uAC8C"
   npcSubQuest: {fileID: 11400000, guid: a5c493349a763e04ba57466feb01f108, type: 2}

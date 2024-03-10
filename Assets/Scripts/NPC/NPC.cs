@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,8 +16,6 @@ public class NPC : MonoBehaviour
     NPCState state;
     Animator animator;
 
-    public Transform[] moveRnd; //WILLDO : 총 3방향으로 랜덤 이동 구현 
-    float InteractRange; // 플레이어 상호작용 범위와 같음
     public bool dialogueNow = false;
     
     public GameObject pressSpace;
@@ -28,11 +27,14 @@ public class NPC : MonoBehaviour
 
     public GameObject CompleteQuest;
     public GameObject RunningQuest;
+    public GameObject Canaccept;
     public DialogueWindow dia;
+
+    [SerializeField]
+    private LayerMask Player;
 
     private void Awake()
     {
-        InteractRange = 2f;
         state = NPCState.Idle;
         animator = GetComponent<Animator>();
     }
@@ -42,71 +44,44 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        if (nTD.questID <= GameManager.Instance.plin.playerID)
-        {
-            canQuestAccept = true;
+        CompleteCheck();
+        RunningCheck();
 
-            foreach (var clearQuest in QuestSystem.Instance.CompletedQuests)
+        if (canQuestAccept)
+        {
+            Canaccept.SetActive(false);
+            CompleteQuest.SetActive(false);
+            RunningQuest.SetActive(false);
+
+            if (questRunning && !questComplete) // 퀘스트 진행중
             {
-                if (clearQuest.CodeName == nTD.npcSubQuest.CodeName)
-                {
-                    questComplete = true;
-                    questRunning = false;
-                }
-                else
-                {
-                    questComplete = false;
-                }
+                RunningQuest.SetActive(true);
             }
-            foreach (var runningQuest in QuestSystem.Instance.ActiveQuests)
+            else if (!questRunning && !questComplete) // 퀘스트 수락 가능
             {
-                if (runningQuest.CodeName == nTD.npcSubQuest.CodeName)
-                {
-                    questRunning = true;
-                    questComplete = false;
-                }
-                else
-                {
-                    questRunning = false;
-                }
+                Canaccept.SetActive(true);
+            }
+            else if (questRunning && questComplete) // 퀘스트 클리어 가능
+            {
+                CompleteQuest.SetActive(true);
+            }
+            else
+            {
+                Canaccept.SetActive(false);
+                CompleteQuest.SetActive(false);
+                RunningQuest.SetActive(false);
             }
         }
         else
         {
-            canQuestAccept = false;
-        }
-
-        if(canQuestAccept && questRunning)
-        {
-            RunningQuest.SetActive(true);
-        }
-        else if (canQuestAccept && !questRunning && !questComplete)
-        {
-            RunningQuest.SetActive(true);
-        }
-        else
-        {
+            Canaccept.SetActive(false);
+            CompleteQuest.SetActive(false);
             RunningQuest.SetActive(false);
         }
 
-        if(!canQuestAccept)
-        {
-            RunningQuest.SetActive(false);
-            CompleteQuest.SetActive(false);
-        }
-
-        if(nTD.npcSubQuest.IsComplatable)
-        {
-            CompleteQuest.SetActive(true);
-        }
-        else
-        {
-            CompleteQuest.SetActive(false);
-        }
 
 
-
-        if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player 클래스
+        if (Physics.OverlapSphere(transform.position, 2, Player).Length >= 1)
         {
             this.pressSpace.SetActive(true);
         }
@@ -136,6 +111,42 @@ public class NPC : MonoBehaviour
             yield return null;
         }
     }
+
+    private void CompleteCheck()
+    {
+        foreach (var quest in QuestSystem.Instance.ActiveQuests)
+        {
+            if (nTD.npcSubQuest.CodeName == quest.CodeName)
+            {
+                if (quest.IsComplatable == true)
+                    questComplete = true;
+
+                else
+                    questComplete = false;
+            }
+        }
+    }
+    private void RunningCheck()
+    {
+        if (nTD.questID <= GameManager.Instance.plin.playerID)
+        {
+            canQuestAccept = true;
+
+            foreach (var runningQuest in QuestSystem.Instance.ActiveQuests)
+            {
+                if (runningQuest.CodeName == nTD.npcSubQuest.CodeName)
+                {
+                    questRunning = true;
+                    return;
+                }
+                else
+                    questRunning = false;
+            }
+        }
+        else
+            canQuestAccept = false;
+    }
+
 
     public void subQuestComplete()
     {

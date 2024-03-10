@@ -141,9 +141,9 @@ public class Quest : ScriptableObject
 
         foreach (var reward in rewards)
             reward.Give(this);
-
+        SoundManager.instance.PlaySound("QuestClear");
         onCompleted?.Invoke(this);
-
+        ++QuestSystem.Instance.playerId;
         onTaskSuccessChanged = null;
         onCompleted = null;
         onCanceled = null;
@@ -156,6 +156,7 @@ public class Quest : ScriptableObject
         Debug.Assert(IsCancelable, "This quest can't be canceled");
 
         State = QuestState.Cancel;
+        SoundManager.instance.PlaySound("QuestCancel");
         onCanceled?.Invoke(this);
     }
 

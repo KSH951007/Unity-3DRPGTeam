@@ -15,20 +15,25 @@ public class KhururuTrans_ChaseState : BaseState
 		//Debug.Log(_monster.timeForNextChange);
 
 		_monster.nav.isStopped = false;
+		SoundManager.instance.PlaySound("TransStep");
 		_monster.animator.SetBool("Move", true);
 	}
 
     public override void OnStateUpdate()
     {
-		_monster.nav.SetDestination(_monster.target.position);
+        if (_monster.nav.enabled)
+        {
+            _monster.nav.SetDestination(_monster.target.position);
+        }
 
-		FaceTarget();
+        FaceTarget();
 	}
 
 	public override void OnStateExit()
 	{
 		_monster.animator.SetBool("Move", false);
-		_monster.nav.isStopped = true;
+        SoundManager.instance.StopSound("TransStep");
+        _monster.nav.isStopped = true;
 	}
 
 	private void FaceTarget()

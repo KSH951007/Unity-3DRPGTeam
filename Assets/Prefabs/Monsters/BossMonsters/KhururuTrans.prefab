@@ -20842,7 +20842,7 @@ Transform:
   m_GameObject: {fileID: 3007115227086141631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.001, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33066,6 +33066,7 @@ GameObject:
   - component: {fileID: 5811091068807965449}
   - component: {fileID: 7045776849675290111}
   - component: {fileID: 786430536894460447}
+  - component: {fileID: 7466229437632548919}
   m_Layer: 7
   m_Name: KhururuTrans
   m_TagString: Enemy
@@ -33148,7 +33149,19 @@ MonoBehaviour:
   shieldBroken: 0
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7466229437632548919}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitParticle: {fileID: 0}
 --- !u!136 &7045776849675290111
 CapsuleCollider:
@@ -33195,6 +33208,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7466229437632548919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299342036440000491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 9322520f4bcd47e46aa9f3e587569a98, type: 2}
+  target: {fileID: 11400000, guid: f358559891ac80f4db0884d6a059f85a, type: 2}
+  successCount: 1
+  colliderTags: []
 --- !u!1 &7520344762195973335
 GameObject:
   m_ObjectHideFlags: 0

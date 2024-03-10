@@ -9,21 +9,25 @@ public class KhururuOrigin_ChaseState : BaseState
 	public override void OnStateEnter()
 	{
         _monster.nav.isStopped = false;
-
+		SoundManager.instance.PlaySound("KhururuStep");
         _monster.animator.SetBool("Move", true);
 		_monster.SetChasingTime();
 	}
 
 	public override void OnStateUpdate()
 	{
-        _monster.nav.SetDestination(_monster.target.position);
+		if (_monster.nav.enabled)
+		{
+            _monster.nav.SetDestination(_monster.target.position);
+        }
 
         FaceTarget();
 	}
 
 	public override void OnStateExit()
 	{
-		_monster.animator.SetBool("Move", false);
+        SoundManager.instance.StopSound("KhururuStep");
+        _monster.animator.SetBool("Move", false);
 	}
 
 	private void FaceTarget()

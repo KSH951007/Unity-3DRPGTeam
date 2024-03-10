@@ -31183,7 +31183,7 @@ MonoBehaviour:
   target: {fileID: 0}
   chasingTime: 0
   takeHitMat: {fileID: 2100000, guid: 0c6a786eeb82ad24c9dc1735f664d516, type: 2}
-  patience: 1
+  patience: 0
   timeForNextAttack: 0
   timeForNextIdle: 0
   timeForNextChange: 0
@@ -31286,8 +31286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849674750b700c145a2e16f77ad1e7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  category: {fileID: 0}
-  target: {fileID: 0}
+  category: {fileID: 11400000, guid: 9322520f4bcd47e46aa9f3e587569a98, type: 2}
+  target: {fileID: 11400000, guid: ff3bc6c002985c6498f3074cb0cd5384, type: 2}
   successCount: 1
   colliderTags:
   - Player
@@ -41358,7 +41358,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6921904623261365795
 GameObject:

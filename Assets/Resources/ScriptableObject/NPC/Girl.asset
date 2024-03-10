@@ -12,11 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9c4efc7760ad34696c10ec47bedbbe, type: 3}
   m_Name: Girl
   m_EditorClassIdentifier: 
-  questID: 0
-  Name: Girl
-  introduce: hi
+  questID: 1
+  Name: "\uB9C8\uC744 \uC18C\uB140"
+  introduce: ".... \uC544\uBC84\uC9C0\uAC00 \uC548\uB3CC\uC544\uC640\uC694.."
   des: 
-  dialogues: []
+  dialogues:
+  - "\uC544\uBC84\uC9C0\uAC00 \uB3CC\uC544\uC624\uC9C0 \uC54A\uC544\uC694.."
+  - "\uBB34\uC2A8\uC77C\uC774 \uC788\uB294\uAC70\uACA0\uC8E0..?"
   isMove: 0
-  questDialogue: []
+  questDialogue:
+  - "\uC548\uB155\uD558\uC138\uC694 \uBAA8\uD5D8\uAC00\uB2D8.."
+  - "\uC5D8\uB77C\uB2D8\uC758 \uC758\uB8B0\uB97C \uC644\uB8CC\uD558\uC168\uB2E4\uACE0
+    \uB4E4\uC5C8\uC5B4\uC694.."
+  - "\uC800\uB3C4 \uC758\uB8B0\uD560\uAC8C \uC788\uC5B4\uC694"
+  - "\uB358\uC804\uC5D0 \uC57D\uCD08\uB97C \uCE90\uB7EC\uAC04 \uC544\uBC84\uC9C0\uAC00
+    \uB3CC\uC544\uC624\uC9C0 \uC54A\uC544\uC694"
+  - "\uC544\uBB34\uB798\uB3C4 \uBAAC\uC2A4\uD130\uB4E4\uC5D0\uAC8C \uC2B5\uACA9\uC744
+    \uB2F9\uD55C\uAC70 \uAC19\uC544\uC694"
+  - "\uC544\uBC84\uC9C0\uC758 \uC6D0\uC218\uB97C \uAC1A\uC544\uC8FC\uC138\uC694"
   npcSubQuest: {fileID: 11400000, guid: 758c07e9bcdd6044faf24b51c55c4c10, type: 2}
