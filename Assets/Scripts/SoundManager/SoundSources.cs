@@ -8,4 +8,9 @@ public class SoundSources : MonoBehaviour
     {
         SoundManager.instance.AddAllSounds(gameObject);
     }
+
+    private void Update()
+    {
+        transform.position = Camera.main.transform.position;
+    }
 }

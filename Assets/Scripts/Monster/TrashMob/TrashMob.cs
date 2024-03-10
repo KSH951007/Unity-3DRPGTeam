@@ -20,7 +20,7 @@ public class TrashMob : MonoBehaviour, IHitable
 
 	public LayerMask attackTargetLayer;
     private bool cancelWait;
-	private bool invincible;
+	protected bool invincible;
 
     [HideInInspector] public UnityEvent onDead;
 
@@ -29,7 +29,7 @@ public class TrashMob : MonoBehaviour, IHitable
 	public int damage;
 	public float lostDistance;		// lostDistance는 반드시 DetectRange보다 멀게 설정
 
-	enum State
+	protected enum State
 	{
 		IDLE,
 		CHASE,
@@ -37,7 +37,7 @@ public class TrashMob : MonoBehaviour, IHitable
 		KILLED
 	}
 
-	State state;
+	protected State state;
 
 	protected virtual void Start()
 	{		
@@ -96,7 +96,7 @@ public class TrashMob : MonoBehaviour, IHitable
 		}
 	}
 
-	IEnumerator CHASE()
+    protected virtual IEnumerator CHASE()
 	{
 		nav.isStopped = false;
 		var curAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -142,7 +142,7 @@ public class TrashMob : MonoBehaviour, IHitable
         }
 	}
 
-	IEnumerator ATTACK()
+    protected virtual IEnumerator ATTACK()
 	{
 		nav.isStopped = true;
 		nav.velocity = Vector3.zero;
@@ -167,7 +167,7 @@ public class TrashMob : MonoBehaviour, IHitable
 			yield return StartCoroutine(CancelableWait(curAnimStateInfo.length * 2f));
     }
 
-	IEnumerator KILLED()
+    protected virtual IEnumerator KILLED()
 	{
         animator.Play("Die", -1, 0);
 		onDead.Invoke();
@@ -219,7 +219,7 @@ public class TrashMob : MonoBehaviour, IHitable
             transform.LookAt(target);
     }
 
-    public void TakeHit(int damage, IHitable.HitType hitType, GameObject hitParticle = null)
+    public virtual void TakeHit(int damage, IHitable.HitType hitType, GameObject hitParticle = null)
     {
         if (!invincible)
         {

@@ -48,7 +48,7 @@ public class Urbon_Skill2 : MonoBehaviour
 		yield return new WaitForSeconds(clip.length);
 		particle.Play();
 		yield return new WaitForSeconds(0.7f);
-
+		SoundManager.instance.PlaySound("UrbonSkill2Impact");
 		if (hitPlayer.Length != 0 && hitPlayer[0] != null)
 		{
 			if (hitPlayer[0].transform.gameObject.TryGetComponent(out IHitable health))

@@ -80,16 +80,19 @@ public class KhururuTrans_AttackState : BaseState
 		else if (randomValue < attack1Weight + attack2Weight)
 		{
 			_monster.animator.SetTrigger("Attack2");
+			SoundManager.instance.PlaySound("TransAttack2");
 			_monster.hasAttacked = true;
 		}
 		else if (randomValue < attack1Weight + attack2Weight + skill1Weight)
 		{
 			_monster.animator.SetTrigger("Skill1");
+			SoundManager.instance.PlaySound("TransSkill1");
 			_monster.hasAttacked = true;
 		}
 		else if (randomValue < attack1Weight + attack2Weight + skill1Weight + skill2Weight)
 		{
 			_monster.animator.SetTrigger("Skill2");
+			SoundManager.instance.PlaySound("TransSkill2");
 			_monster.hasAttacked = true;
 		}
 		else if (randomValue < attack1Weight + attack2Weight + skill1Weight + skill2Weight + skill3Weight)
@@ -100,7 +103,8 @@ public class KhururuTrans_AttackState : BaseState
 		else
 		{
 			_monster.animator.SetTrigger("Skill4");
-			_monster.hasAttacked = true;
+            SoundManager.instance.PlaySound("TransSkill4");
+            _monster.hasAttacked = true;
 		}
 	}
 
@@ -108,6 +112,7 @@ public class KhururuTrans_AttackState : BaseState
 	{
 		if (_monster.t_attack1Collider.enabled)
 		{
+			SoundManager.instance.PlaySound("TransAttack1");
 			Vector3 collCenter = _monster.t_attack1Collider.transform.position + _monster.t_attack1Collider.center;
 
 			Collider[] detectedColl =

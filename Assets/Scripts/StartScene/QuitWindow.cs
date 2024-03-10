@@ -19,6 +19,7 @@ public class QuitWindow : MonoBehaviour
 
 	public void ClickNoButton()
 	{
-		gameObject.SetActive(false);
+        SoundManager.instance.PlaySound("Cancel");
+        gameObject.SetActive(false);
 	}
 }

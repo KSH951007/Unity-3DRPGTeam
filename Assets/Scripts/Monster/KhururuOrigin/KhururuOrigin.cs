@@ -87,13 +87,20 @@ public class KhururuOrigin : BossMonsters
 		//print(_curState);
 	}
 
-	//private void OnDrawGizmos()
-	//{
-	//	Gizmos.color = Color.red;
-	//	Gizmos.DrawCube(skill1Collider.transform.position + skill1Collider.center, skill1Collider.bounds.extents * 2);
-	//}
+    //private void OnDrawGizmos()
+    //{
+    //	Gizmos.color = Color.red;
+    //	Gizmos.DrawCube(skill1Collider.transform.position + skill1Collider.center, skill1Collider.bounds.extents * 2);
+    //}
 
-	private void ChangeState(State nextState)
+    protected override IEnumerator Die()
+    {
+        SoundManager.instance.StopSound("KhururuStep");
+        SoundManager.instance.PlaySound("KhururuDie");
+        yield return StartCoroutine(base.Die());
+    }
+
+    private void ChangeState(State nextState)
 	{
 		_curState = nextState;
 		switch (_curState)

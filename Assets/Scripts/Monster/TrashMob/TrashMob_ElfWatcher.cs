@@ -16,6 +16,38 @@ public class TrashMob_ElfWatcher : TrashMob
         base.Start();
     }
 
+    protected override IEnumerator CHASE()
+    {
+        SoundManager.instance.PlaySound("ElfStep");
+        yield return StartCoroutine(base.CHASE());
+        if (state != State.CHASE)
+        {
+            SoundManager.instance.StopSound("ElfStep");
+        }
+    }
+
+    protected override IEnumerator ATTACK()
+    {
+        SoundManager.instance.PlaySound("ElfAttack");
+
+        yield return StartCoroutine(base.ATTACK());
+    }
+
+    protected override IEnumerator KILLED()
+    {
+        SoundManager.instance.PlaySound("ElfDie");
+        yield return StartCoroutine(base.KILLED());
+    }
+
+    public override void TakeHit(int damage, IHitable.HitType hitType, GameObject hitParticle = null)
+    {
+        base.TakeHit(damage, hitType, hitParticle);
+        if (!invincible)
+        {
+            SoundManager.instance.PlaySound("ElfDamaged");
+        }
+    }
+
     public void Attack()
     {
         GameObject projectile = PoolManager.Instance.Get("ElfArrow", attackPoint.position, attackPoint.rotation);

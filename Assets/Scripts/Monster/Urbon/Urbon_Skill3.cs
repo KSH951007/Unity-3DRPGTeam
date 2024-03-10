@@ -9,6 +9,7 @@ public class Urbon_Skill3 : MonoBehaviour
     [SerializeField] private LayerMask attackTargetLayer;
     Coroutine damageCoroutine;
     Collider[] hitPlayer = new Collider[1];
+    bool soundPlayed = false;
 
     private void Update()
     {
@@ -18,9 +19,16 @@ public class Urbon_Skill3 : MonoBehaviour
 
             hitPlayer =
             Physics.OverlapSphere(collCenter, skill3Collider.radius, attackTargetLayer);
+        }
+        else if(soundPlayed && !skill3Collider.enabled)
+        {
+            soundPlayed = false;
+        }
 
-
-            print(hitPlayer.Length);
+        if (skill3Collider.enabled && !soundPlayed)
+        {
+            soundPlayed = true;
+            SoundManager.instance.PlaySound("UrbonTurn");
         }
 
         if (skill3Collider.enabled && damageCoroutine == null)

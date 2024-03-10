@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Member;
 
 public class SoundManager : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class SoundManager : MonoBehaviour
     {
         if (!audioSources.ContainsKey(soundName))
         {
+            audioSource.volume = 0.2f;
             audioSources.Add(soundName, audioSource);
         }
         else
