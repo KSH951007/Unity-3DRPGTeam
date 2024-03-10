@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortionItem : CountableItem,IUsableItem
+public class PortionItem : CountableItem, IUsableItem
 {
-    public PortionItem(ItemSO itemData, int count=1) : base(itemData, count)
+    public int health;
+    public HealthPortionType portionType;
+    public PortionItem(ItemSO itemData, int count = 1) : base(itemData, count)
     {
+        health = ((PortionItemSO)itemData).GetHealth();
+        portionType = ((PortionItemSO)itemData).GetPortionType();
 
     }
 
@@ -13,6 +17,8 @@ public class PortionItem : CountableItem,IUsableItem
     {
         Count--;
 
+        if (Count <= 0)
+            return false;
 
         return true;
     }
