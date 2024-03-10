@@ -17,7 +17,7 @@ public class CountItemBuyActionUI : MonoBehaviour
     private ItemSO buyItemData;
     private int price;
 
-    public void SetItemInfo(Sprite ratingSprite, ItemSO buyItemData,int maxCount, Action<ItemSO, int> buyAction)
+    public void SetItemInfo(Sprite ratingSprite, ItemSO buyItemData, int maxCount, Action<ItemSO, int> buyAction)
     {
         gameObject.SetActive(true);
         this.buyItemData = buyItemData;

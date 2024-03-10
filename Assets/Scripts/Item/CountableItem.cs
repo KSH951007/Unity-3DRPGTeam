@@ -11,7 +11,7 @@ public abstract class CountableItem : Item
     }
 
     public int MaxCount;
-    public int Count { get; protected set; }
+    public int Count;
 
     public bool IsEmpty => Count == 0;
     public bool IsMax => Count >= MaxCount;

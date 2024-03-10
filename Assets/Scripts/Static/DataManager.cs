@@ -52,7 +52,6 @@ public class DataManager : Singleton<DataManager>
 
 
         string data = File.ReadAllText(path + fileName);
-        Debug.Log(data);
         
         loadData = JsonUtility.FromJson<T>(data);
         return true;

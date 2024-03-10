@@ -172,11 +172,33 @@ public class InventoryPageUI : CategoryPageUI
     }
     public void PressSellButton()
     {
-        for (int i = 0; i < slots.Length; i++)
+        if (IsMultiSelect)
         {
-            if (slots[i].isActiveSelect)
+            for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].isSelectToggleOn)
+                if (slots[i].isActiveSelect)
+                {
+                    if (slots[i].isSelectToggleOn)
+                    {
+                        int conut = 1;
+                        CountableItem countableItem = inventory.InventroyItems[slots[i].ItemIndex] as CountableItem;
+                        if (countableItem != null)
+                        {
+                            conut = countableItem.Count;
+                        }
+                        inventory.SellItem(slots[i].ItemIndex, conut);
+
+                    }
+                    slots[i].DisableMultiSelectToggle();
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+
+                if (slots[i].IsActiveSingleSelect)
                 {
                     int conut = 1;
                     CountableItem countableItem = inventory.InventroyItems[slots[i].ItemIndex] as CountableItem;
@@ -184,13 +206,15 @@ public class InventoryPageUI : CategoryPageUI
                     {
                         conut = countableItem.Count;
                     }
+                    Debug.Log(i);
                     inventory.SellItem(slots[i].ItemIndex, conut);
-
+                    return;
                 }
-                slots[i].ActiveMultiSelectToggle();
+
             }
         }
 
+        IsMultiSelect = false;
         inventory.ProgressSortByDefault();
         ChangeInventoryPage(inventoryPageType);
 
@@ -205,15 +229,35 @@ public class InventoryPageUI : CategoryPageUI
                 Item item = inventory.InventroyItems[slots[i].ItemIndex];
                 if (item is PortionItem)
                 {
-
+                    equipmentManager.SetPortionItem(item);
+                    Debug.Log("asd");
                 }
                 else
                 {
-                    heroSelectUI.ActiveHeroSelectUI(item, equipmentManager.SetEquipment);
+                    heroSelectUI.ActiveHeroSelectUI(item, SetEquipmentResult);
                 }
 
                 return;
             }
+        }
+    }
+    public void SetEquipmentResult(Item item, int heroID)
+    {
+        Equipment.EquipmentResult result = equipmentManager.SetEquipment(item, heroID);
+        switch (result)
+        {
+            case Equipment.EquipmentResult.Success:
+                renderModelViewUI.SetTalkText("장착 성공이야!", "Awake");
+                break;
+            case Equipment.EquipmentResult.TypeMiss:
+                renderModelViewUI.SetTalkText("영웅이 쓸수있는 \n 무기가 아니야!", "Awake");
+                break;
+            case Equipment.EquipmentResult.LevelMiss:
+                renderModelViewUI.SetTalkText("레벨이 부족한걸?!", "Awake");
+                break;
+            case Equipment.EquipmentResult.SlotFull:
+                renderModelViewUI.SetTalkText("더 넣을 공간이 없어", "Awake");
+                break;
         }
     }
     public void ActiveSordToggle(int index)
@@ -252,6 +296,6 @@ public class InventoryPageUI : CategoryPageUI
         }
 
     }
-   
+
 
 }

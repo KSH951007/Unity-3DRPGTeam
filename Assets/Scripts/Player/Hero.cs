@@ -23,8 +23,9 @@ public class HeroData
     {
 
     }
-    public HeroData(int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent)
+    public HeroData(int heroID,int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent)
     {
+        this.heroID = heroID;
         this.level = level;
         this.health = health;
         this.mana = mana;
@@ -38,7 +39,7 @@ public class HeroData
 public abstract class Hero : MonoBehaviour,ISavable
 {
 
-    protected HeroData data;
+    public HeroData data;
 
 
 
@@ -94,6 +95,7 @@ public abstract class Hero : MonoBehaviour,ISavable
         else
         {
             data = new HeroData();
+            data.heroID = heroData.GetHeroID();
             data.level = heroData.GetLevel();
             data.health = heroData.GetMaxHealth();
             data.mana = heroData.GetMaxMana();

@@ -6,9 +6,9 @@ using UnityEngine;
 [Serializable]
 public class Weapon : EquipmentItem
 {
-   public int weaponAttackPower;
+    public int weaponAttackPower;
     public int EquipHeroID;
-    
+
     public Weapon(ItemSO itemData) : base(itemData)
     {
         weaponAttackPower = ((WeaponSO)itemData).GetAttackPower();
