@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9c4efc7760ad34696c10ec47bedbbe, type: 3}
   m_Name: Noble
   m_EditorClassIdentifier: 
-  questID: 0
-  Name: noble
-  introduce: welcome to City!!!
+  questID: 4
+  Name: "\uB9C8\uC744 \uADC0\uC871"
+  introduce: "\uC6B0\uB9AC \uB9C8\uC744\uC5D0 \uC5B4\uC11C\uC624\uC2DC\uAC8C!"
   des: haha
   dialogues:
-  - haha
-  - I'm hungry
-  - I'm noble
+  - "\uD558\uD558\uD558!!"
+  - "\uC6B0\uB9AC \uB9C8\uC744\uC740 \uC0B4\uB9CC\uD55C\uAC00?"
+  - "\uBAAC\uC2A4\uD130\uB9CC \uC544\uB2C8\uC5C8\uC74C \uC6B0\uB9AC \uB9C8\uC744\uC740
+    \uD3C9\uD654\uB85C\uC6E0\uC744\uAC70\uC57C!"
   isMove: 0
-  questDialogue: []
+  questDialogue:
+  - "\uC6B0\uB9AC \uB9C8\uC744\uC5D0 \uCCD0\uB4E4\uC5B4\uC628 \uBAAC\uC2A4\uD130\uB97C
+    \uD574\uCE58\uC6CC\uC8FC\uAC8C!"
+  - "\uBCF4\uC0C1\uC740 \uB450\uB451\uD788 \uC8FC\uACA0\uB2E4!"
   npcSubQuest: {fileID: 11400000, guid: 59da0e83a9227a240851588572c5843e, type: 2}

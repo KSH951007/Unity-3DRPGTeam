@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9c4efc7760ad34696c10ec47bedbbe, type: 3}
   m_Name: Merchant
   m_EditorClassIdentifier: 
-  questID: 0
-  Name: merChant
-  introduce: hahaha welcome
+  questID: 3
+  Name: "\uC0C1\uC778"
+  introduce: "\uC9D1\uC5D0 \uAC00\uACE0\uC2F6\uC5B4.."
   des: 
-  dialogues: []
+  dialogues:
+  - ".. \uC9D1\uC5D0 \uAC00\uACE0\uC2F6\uB2E4.."
+  - ".. \uC5EC\uAE34 \uC74C\uC2DD\uB4E4\uC774 \uB9DB\uC774\uC5C6\uC5B4!"
   isMove: 0
-  questDialogue: []
+  questDialogue:
+  - "\uC5B4\uCA4C\uC9C0... \uB358\uC804\uC5D0 \uBAAC\uC2A4\uD130\uAC00 \uB108\uBB34
+    \uB9CE\uC544\uC11C"
+  - "\uB9C8\uC744\uC5D0 \uAC07\uD600 \uBC84\uB838\uC5B4"
+  - "\uB358\uC804\uC5D0 \uC788\uB294 \uBAAC\uC2A4\uD130\uB4E4\uC744 \uD574\uCE58\uC6CC\uC904\uC218
+    \uC788\uB098?"
   npcSubQuest: {fileID: 11400000, guid: 85516e717faa5674a88aad1953a8a53f, type: 2}

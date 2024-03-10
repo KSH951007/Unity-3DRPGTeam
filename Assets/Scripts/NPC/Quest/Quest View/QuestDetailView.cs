@@ -118,6 +118,7 @@ public class QuestDetailView : MonoBehaviour
         }
 
         cancelButton.gameObject.SetActive(quest.IsCancelable && !quest.IsComplete);
+        questClear.gameObject.SetActive(quest.IsCancelable && !quest.IsComplete);
     }
 
     public void Hide()
@@ -125,5 +126,6 @@ public class QuestDetailView : MonoBehaviour
         Target = null;
         displayGroup.SetActive(false);
         cancelButton.gameObject.SetActive(false);
+        questClear.gameObject.SetActive(false);
     }
 }

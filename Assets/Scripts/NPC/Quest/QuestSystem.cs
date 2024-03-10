@@ -41,6 +41,9 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
+    [HideInInspector]
+    public int playerId;
+
     private List<Quest> activeQuests = new List<Quest>();
     private List<Quest> completedQuests = new List<Quest>();
 

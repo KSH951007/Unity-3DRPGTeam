@@ -143,7 +143,7 @@ public class Quest : ScriptableObject
             reward.Give(this);
 
         onCompleted?.Invoke(this);
-
+        ++QuestSystem.Instance.playerId;
         onTaskSuccessChanged = null;
         onCompleted = null;
         onCanceled = null;
