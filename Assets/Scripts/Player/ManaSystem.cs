@@ -22,16 +22,7 @@ public class ManaSystem : MonoBehaviour
         maxMana = newMana;
         regenerationMana = newRegenerationMana;
     }
-    public bool CanHealing()
-    {
-        return CurrentMana < maxMana;
-    }
-    public void Healing(int addMana)
-    {
-        mana = Mathf.Min(mana + addMana, maxMana);
-        Debug.Log(mana);
-        onChangeMana?.Invoke(mana, maxMana);
-    }
+
     public void Regenerat()
     {
         int addMana = (int)(maxMana * regenerationMana);
