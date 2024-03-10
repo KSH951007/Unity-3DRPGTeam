@@ -37,7 +37,7 @@ public class QuestSystemTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.V))
             QuestSystem.Instance.ReceiveReport(category, target, 1);
     }
 }

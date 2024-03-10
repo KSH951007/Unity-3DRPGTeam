@@ -19,7 +19,7 @@ public class InteractKeyObject : MonoBehaviour,IInteractable
     {
         if (!willBeDisappear)
         {
-            if (Physics.OverlapSphere(transform.position, 2, Player).Length >= 1)
+            if (Physics.OverlapSphere(transform.position, 2, Player).Length <= 1)
             {
                 print("123");
                 Interact();

@@ -10,6 +10,8 @@ public class QuestDetailView : MonoBehaviour
     private GameObject displayGroup;
     [SerializeField]
     private Button cancelButton;
+    [SerializeField]
+    private Button questClear;
 
     [Header("Quest Description")]
     [SerializeField]
@@ -48,6 +50,7 @@ public class QuestDetailView : MonoBehaviour
     private void Start()
     {
         cancelButton.onClick.AddListener(CancelQuest);
+        questClear.onClick.AddListener(ClearQuest);
     }
 
     private List<T> CreatePool<T>(T prefab, int count, RectTransform parent)
@@ -63,6 +66,12 @@ public class QuestDetailView : MonoBehaviour
     {
         if (Target.IsCancelable)
             Target.Cancel();
+    }
+
+    private void ClearQuest()
+    {
+        if (Target.IsComplatable)
+            Target.Complete();
     }
 
     public void Show(Quest quest)

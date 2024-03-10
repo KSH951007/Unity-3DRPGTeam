@@ -30,6 +30,9 @@ public class NPC : MonoBehaviour
     public GameObject RunningQuest;
     public DialogueWindow dia;
 
+    [SerializeField]
+    private LayerMask Player;
+
     private void Awake()
     {
         InteractRange = 2f;
@@ -106,7 +109,7 @@ public class NPC : MonoBehaviour
 
 
 
-        if (Vector3.Distance(transform.position, GameManager.Instance.plin.transform.position) < InteractRange) // TODO : player Å¬·¡½º
+        if (Physics.OverlapSphere(transform.position, 4, Player).Length >= 1)
         {
             this.pressSpace.SetActive(true);
         }
