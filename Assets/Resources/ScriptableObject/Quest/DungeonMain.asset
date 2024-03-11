@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37e0e47d5126b74428167787852d48a3, type: 3}
-  m_Name: MainQuest
+  m_Name: DungeonMain
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: 9322520f4bcd47e46aa9f3e587569a98, type: 2}
   icon: {fileID: 0}
@@ -24,13 +24,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 209264ca23f0edb4f969f0d7e1e0f11f, type: 2}
   - tasks:
     - {fileID: 11400000, guid: 1b7c8273ed74a60449f8265f7591c150, type: 2}
-  - tasks:
-    - {fileID: 11400000, guid: 1c9e031d84d0ac94889121015cc38ffd, type: 2}
-    - {fileID: 11400000, guid: 3b9663b1cc3eb804ea5492e85f0f0798, type: 2}
-  - tasks:
-    - {fileID: 11400000, guid: 2737ce16125375048a071a28dcba062d, type: 2}
   rewards:
-  - {fileID: 11400000, guid: efb471f6b960639458ca8e04a1a1b9bc, type: 2}
+  - {fileID: 11400000, guid: 2158e81cd97ec424c9c5c85946488628, type: 2}
   useAutoComplete: 1
   isCancelable: 0
   isSavable: 1

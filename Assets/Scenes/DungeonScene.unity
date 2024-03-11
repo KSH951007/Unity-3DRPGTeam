@@ -10364,12 +10364,12 @@ PrefabInstance:
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000021636557
+      value: -0.00000002163656
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011134559
+      value: 0.000000011134561
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
@@ -44638,12 +44638,12 @@ PrefabInstance:
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000021636557
+      value: -0.00000002163656
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011134559
+      value: 0.000000011134561
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
@@ -44755,6 +44755,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b01d4dfeab95d454199e1a6aa957f3e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2135125428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8612370557310092330, guid: ab9c490b6ea42a745b4c5a512891737c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2121278939}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6cda1cc4c216f4791cf5d409441f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2136203618
@@ -46651,6 +46663,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1631939281289105716, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 300573686}
+    - target: {fileID: 1631939281289105716, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: inven
+      value: 
+      objectReference: {fileID: 2134398787}
     - target: {fileID: 3170126579309366203, guid: dd99a68ca4184a7429d38e6a70e1e436,
         type: 3}
       propertyPath: boss
@@ -46674,10 +46696,21 @@ PrefabInstance:
     - target: {fileID: 7149496762332553056, guid: dd99a68ca4184a7429d38e6a70e1e436,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455279342728565562, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2135125428}
+    - target: {fileID: 7455279342728565562, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PressExitButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1292644568753457961, guid: dd99a68ca4184a7429d38e6a70e1e436, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd99a68ca4184a7429d38e6a70e1e436, type: 3}

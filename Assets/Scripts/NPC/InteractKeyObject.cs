@@ -12,15 +12,23 @@ public class InteractKeyObject : MonoBehaviour,IInteractable
     [SerializeField]
     private LayerMask Player;
 
+    private BoxCollider coll;
+
+
     bool willBeDisappear;
 
+
+    private void Awake()
+    {
+        coll = GetComponent<BoxCollider>();
+    }
     private void Update()
     {
+        Vector3 vec = transform.position + coll.center;
         if (!willBeDisappear)
-        {
-            if (Physics.OverlapSphere(transform.position, 2, Player).Length <= 1)
+        {   
+            if (Physics.OverlapBox(vec, coll.bounds.extents, Quaternion.identity, Player).Length >= 1)
             {
-                print("123");
                 Interact();
             }
         }
@@ -39,4 +47,5 @@ public class InteractKeyObject : MonoBehaviour,IInteractable
         ther.Stop();
         gameObject.SetActive(false);
     }
+
 }

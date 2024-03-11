@@ -20,12 +20,16 @@ public class QuestUi : MonoBehaviour
     QuestDetailView detailView;
 
     public DialogueWindow dia;
+
+    GameObject achievementWin;
+    bool acIsOpen;
     private void Awake()
     {
         questWindow = GameObject.Find("QuestPanel");
         conversationMenu = GameObject.Find("NPCmenu");
         talkWindow = GameObject.Find("TalkWindow");
         QuestAccept = GameObject.Find("QuestAccept");
+        achievementWin = GameObject.Find("AchievementView");
         qwIsOpen = false;
         cmIsOpen = false;
         twIsOpen = false;
@@ -60,5 +64,11 @@ public class QuestUi : MonoBehaviour
         qaIsOpen = !qaIsOpen;
         SoundManager.instance.PlaySound("UIopen");
         QuestAccept.SetActive(qaIsOpen);
+    }
+    public void AchievementShow()
+    {
+        acIsOpen = !acIsOpen;
+        SoundManager.instance.PlaySound("AchievementView");
+        QuestAccept.SetActive(acIsOpen);
     }
 }

@@ -22,7 +22,7 @@ public class TrashMob : MonoBehaviour, IHitable
     private bool cancelWait;
 	protected bool invincible;
 
-    [HideInInspector] public UnityEvent onDead;
+    [SerializeField] public UnityEvent onDead;
 
 	public float maxHp;
 	public float currentHp;
