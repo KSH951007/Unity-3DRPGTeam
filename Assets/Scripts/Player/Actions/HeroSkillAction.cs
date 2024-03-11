@@ -9,6 +9,7 @@ public class HeroSkillAction : HeroAction
     private SkillManager skillmanager;
     private HeroAnimEvent animEvent;
     private int skillIndex;
+    private string heroName;
 
     public HeroSkillAction(ActionScheduler scheduler, SkillManager skillmanager, int skillIndex, Animator animator, Hero owner) : base(scheduler, animator, owner)
     {
@@ -17,7 +18,10 @@ public class HeroSkillAction : HeroAction
         animEvent = animator.gameObject.GetComponent<HeroAnimEvent>();
 
     }
-
+    public void SetHeroName(string heroName)
+    {
+        this.heroName = heroName;
+    }
     public override bool IsCanle(HeroAction action)
     {
         return false;
@@ -30,12 +34,12 @@ public class HeroSkillAction : HeroAction
     public override void StartAction()
     {
         isEndAction = false;
-            
+
         animator.SetTrigger($"Skill{skillIndex + 1}");
         animEvent.onProgressAttack += UseSkill;
         animEvent.onEndAttack += EndAction;
         owner.StartCoroutine(owner.TargetToLoock(target, 0.01f));
-
+        SoundManager.instance.PlaySound(heroName + "SkillVoice" + (skillIndex+1));
     }
 
     public override void StopAction()
@@ -47,7 +51,7 @@ public class HeroSkillAction : HeroAction
 
     public override void UpdateAction()
     {
-        if(isEndAction)
+        if (isEndAction)
         {
             scheduler.ChangeAction();
         }

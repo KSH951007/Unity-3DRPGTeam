@@ -24,7 +24,6 @@ public class DataManager : Singleton<DataManager>
             Debug.Log("¾øÀ½");
 
         saveData = new List<ISavable>();
-        Debug.Log(path);
         SceneManager.sceneUnloaded += (_) => { ChangeSceneSaveData(); };
     }
     public void SaveData(object saveData, string fileName, string forlderName = "")

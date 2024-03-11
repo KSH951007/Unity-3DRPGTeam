@@ -41,6 +41,7 @@ public class ProjectileForestAura : MonoBehaviour
         transform.position = this.hero.transform.position + Vector3.up;
         computeDamage = (int)(damage * damagePercent);
         particle.Play();
+        SoundManager.instance.PlaySound("HeroAarenSkill3");
     }
     private void Update()
     {

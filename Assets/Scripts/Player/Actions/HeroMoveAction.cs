@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class HeroMoveAction : HeroAction
 {
     private NavMeshAgent agent;
     private float moveSpeed;
     private Vector3 targetPoint;
-
-    public HeroMoveAction(ActionScheduler scheduler, Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed) : base(scheduler,animator, owner)
+    private string[] sounds;
+    private int currentSoundIndex;
+    public HeroMoveAction(ActionScheduler scheduler, Animator animator, Hero owner, NavMeshAgent agent, float moveSpeed, int soundCount, string SoundName) : base(scheduler, animator, owner)
     {
         this.agent = agent;
         this.moveSpeed = moveSpeed;
         agent.speed = this.moveSpeed;
+
+        sounds = new string[soundCount];
+        for (int i = 0; i < soundCount; i++)
+        {
+            sounds[i] = SoundName + i;
+        }
     }
 
     public override bool IsCanle(HeroAction action)
@@ -39,6 +47,8 @@ public class HeroMoveAction : HeroAction
         agent.speed = moveSpeed;
         agent.SetDestination(targetPoint);
         animator.SetFloat("Move", agent.remainingDistance);
+        currentSoundIndex = 0;
+        owner.AnimEvent.onStep += StepSound;
     }
 
     public override void StopAction()
@@ -50,7 +60,15 @@ public class HeroMoveAction : HeroAction
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
         }
+        owner.AnimEvent.onStep -= StepSound;
 
+        //for (int i = 0; i < sounds.Length; i++)
+        //{
+        //    if (SoundManager.instance.IsPlaying(sounds[i]))
+        //    {
+        //        SoundManager.instance.StopSound(sounds[i]);
+        //    }
+        //}
     }
 
     public override void UpdateAction()
@@ -60,6 +78,18 @@ public class HeroMoveAction : HeroAction
         {
             scheduler.ChangeAction();
             return;
+        }
+
+
+
+    }
+    public void StepSound()
+    {
+        SoundManager.instance.PlaySound(sounds[currentSoundIndex]);
+        currentSoundIndex++;
+        if (currentSoundIndex >= sounds.Length)
+        {
+            currentSoundIndex = 0;
         }
     }
 }

@@ -26,6 +26,7 @@ public class ProjectileFlowerSlash : MonoBehaviour
         transform.position = position;
         this.damage = damage;
         particle.Play();
+        SoundManager.instance.PlaySound("HeroAarenSkill1");
     }
     private void Update()
     {

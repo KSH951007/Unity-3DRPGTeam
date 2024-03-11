@@ -42,6 +42,7 @@ public class ProjectileMeteoShower : MonoBehaviour
         particle.emission.SetBurst(0, burst);
 
         particle.Play();
+        SoundManager.instance.PlaySound("HeroJuliaSkill1");
     }
     private void OnDisable()
     {

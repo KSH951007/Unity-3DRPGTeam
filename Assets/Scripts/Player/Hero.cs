@@ -105,7 +105,7 @@ public abstract class Hero : MonoBehaviour,ISavable
             data.defensivePercent = heroData.GetDefensive();
         }
 
-        moveAction = new HeroMoveAction(scheduler, animator, this, agent, 3.5f);
+    
         Transform skillsTr = transform.Find("Skills");
         Skill[] skills = new Skill[3];
         for (int i = 0; i < skills.Length; i++)

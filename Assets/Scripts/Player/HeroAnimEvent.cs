@@ -8,6 +8,7 @@ public class HeroAnimEvent : MonoBehaviour
     public event Action onStartAttack;
     public event Action onProgressAttack;
     public event Action onEndAttack;
+    public event Action onStep;
 
     public void StartAttack()
     {
@@ -21,5 +22,9 @@ public class HeroAnimEvent : MonoBehaviour
     public void EndAttack()
     {
         onEndAttack?.Invoke();
+    }
+    public void Step()
+    {
+        onStep?.Invoke();
     }
 }

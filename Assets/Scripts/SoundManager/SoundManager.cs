@@ -66,6 +66,16 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"{soundName}와 같은 이름의 오디오 소스가 존재하지 않습니다.");
         }
     }
+    public bool IsPlaying(string soundName)
+    {
+        if (audioSources.ContainsKey(soundName))
+        {
+            return audioSources[soundName].isPlaying;
+            
+        }
+        else
+            return false;
+    }
 
     /// <summary>
     /// 노래 재생 멈춤

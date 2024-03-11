@@ -31,6 +31,7 @@ public class ProjectileChargeSlash : MonoBehaviour
         transform.rotation = Quaternion.FromToRotation(transform.forward, direction);
         computeDamage = (int)(damage * damagePercent);
         effect.Play();
+        SoundManager.instance.PlaySound("HeroDinSkill1");
     }
     private void OnDisable()
     {

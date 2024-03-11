@@ -21,6 +21,7 @@ public class Stylish : Skill
 
     private IEnumerator StylishRoutin()
     {
+        SoundManager.instance.PlaySound("HeroJuliaSkill3");
         float currentTime = hero.HeroAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         float length = hero.HeroAnimator.GetCurrentAnimatorStateInfo(0).length;
 

@@ -35,6 +35,7 @@ public class ProjectileFireCross : MonoBehaviour
     {
         currentDuration = 0f;
         particle.Play();
+        SoundManager.instance.PlaySound("HeroDinSkill2");
     }
     private void OnDisable()
     {

@@ -13,6 +13,8 @@ public class HeroJuliaAttackAction : HeroAttackAction
     public override void ProgressAttack()
     {
 
+        SoundManager.instance.PlaySound("HeroJuliaAttack" + curruntAttackCombo);
+        SoundManager.instance.PlaySound("HeroJuliaAttackVoice" + curruntAttackCombo);
 
         GameObject projectile = PoolManager.Instance.Get("ProjectileJuliaAttack",owner.AttackPoint.position,owner.AttackPoint.rotation);
         if (projectile != null)
