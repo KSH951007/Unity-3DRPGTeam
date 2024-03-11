@@ -66,4 +66,9 @@ public class BossAreaEnterTrigger : MonoBehaviour
         //obstacle.enabled = true;
         Debug.Log("asdsadsad");
     }
+    public void StartBoss()
+    {
+        SoundManager.instance.StopSound("BGM");
+        Debug.Log("asd123123asd");
+    }
 }
