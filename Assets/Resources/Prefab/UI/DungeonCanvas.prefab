@@ -750,7 +750,22 @@ PrefabInstance:
     - target: {fileID: 4966805593007703537, guid: ea8ca39624421b249a705ac986791189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075932612744789967, guid: ea8ca39624421b249a705ac986791189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075932612744789967, guid: ea8ca39624421b249a705ac986791189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PressExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075932612744789967, guid: ea8ca39624421b249a705ac986791189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6398578776749729289, guid: ea8ca39624421b249a705ac986791189,
         type: 3}
@@ -760,7 +775,7 @@ PrefabInstance:
     - target: {fileID: 6398578776749729289, guid: ea8ca39624421b249a705ac986791189,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 52
+      value: -183.94
       objectReference: {fileID: 0}
     - target: {fileID: 6878053686969348361, guid: ea8ca39624421b249a705ac986791189,
         type: 3}
