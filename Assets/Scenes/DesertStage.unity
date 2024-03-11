@@ -6104,6 +6104,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62c36569a3b480a4f9997cac14c10c37, type: 3}
+--- !u!114 &348035789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8612370557310092330, guid: ab9c490b6ea42a745b4c5a512891737c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1580837605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6cda1cc4c216f4791cf5d409441f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366722994
 GameObject:
   m_ObjectHideFlags: 0
@@ -14102,12 +14114,12 @@ PrefabInstance:
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000033957797
+      value: -0.000000033957797
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000017475289
+      value: 0.000000017475289
       objectReference: {fileID: 0}
     - target: {fileID: 361970516896552049, guid: 8952d818a931007408d912a9415b6795,
         type: 3}
@@ -20987,17 +20999,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1292644568753457961, guid: dd99a68ca4184a7429d38e6a70e1e436,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3170126579309366203, guid: dd99a68ca4184a7429d38e6a70e1e436,
+    - target: {fileID: 1631939281289105716, guid: dd99a68ca4184a7429d38e6a70e1e436,
         type: 3}
       propertyPath: boss
       value: 
       objectReference: {fileID: 1685759176}
-    - target: {fileID: 3170126579309366203, guid: dd99a68ca4184a7429d38e6a70e1e436,
+    - target: {fileID: 1631939281289105716, guid: dd99a68ca4184a7429d38e6a70e1e436,
         type: 3}
       propertyPath: inven
       value: 
@@ -21007,14 +21014,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7149496762332553056, guid: dd99a68ca4184a7429d38e6a70e1e436,
+    - target: {fileID: 7343839929773336836, guid: dd99a68ca4184a7429d38e6a70e1e436,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455279342728565562, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 348035789}
+    - target: {fileID: 7455279342728565562, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PressExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455279342728565562, guid: dd99a68ca4184a7429d38e6a70e1e436,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainUI, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1048699433932611961, guid: dd99a68ca4184a7429d38e6a70e1e436, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd99a68ca4184a7429d38e6a70e1e436, type: 3}
@@ -32057,12 +32078,12 @@ PrefabInstance:
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000033957797
+      value: -0.000000033957797
       objectReference: {fileID: 0}
     - target: {fileID: 2157665862599721114, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000017475289
+      value: 0.000000017475289
       objectReference: {fileID: 0}
     - target: {fileID: 2357932281902806165, guid: a519c14c3bdb4a448a78c0e1a2606fdd,
         type: 3}
