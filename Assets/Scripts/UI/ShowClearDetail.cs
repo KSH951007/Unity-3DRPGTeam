@@ -34,7 +34,7 @@ public class ShowClearDetail : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
     public void showDetail()
     {
