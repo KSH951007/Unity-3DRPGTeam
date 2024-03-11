@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class AreaExit : MonoBehaviour
 {
     [SerializeField] private int nextSceneIndex;
-
+    [SerializeField] private DungeonSelectUI dungeonSelectUI;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            StartCoroutine(SceneLoader.Instance.LoadScene(nextSceneIndex));
+            dungeonSelectUI.gameObject.SetActive(true);
 
         }
     }
