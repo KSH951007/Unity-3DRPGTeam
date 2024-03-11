@@ -35,4 +35,16 @@ public class MainUI : MonoBehaviour
             buttons[(int)ButtonType.Exit].gameObject.SetActive(false);
         }
     }
+    public void PressExitButton()
+    {
+        Debug.Log("s");
+        GameObject masagebox = PoolManager.Instance.Get("MasageBoxUI");
+        if (masagebox != null)
+        {
+            MasageBoxUI masageBoxUI = masagebox.GetComponent<MasageBoxUI>();
+
+            masageBoxUI.SetMesageBox("중단/포기", "정말 포기 하시겠습니까?");
+            masageBoxUI.onAccept += () => { StartCoroutine(SceneLoader.Instance.LoadScene(1)); };
+        }
+    }
 }
