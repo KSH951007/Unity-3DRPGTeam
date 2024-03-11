@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public PlayerInteract plin;
     public QuestUi qui;
+    
+    public Inventory inven;
+
     private void Awake()
     {
         if(Instance == null)

@@ -30,7 +30,7 @@ public class ShopPageUI : CategoryPageUI
         renderModelViewUI.ActiveModel(RenderTexModel.PreviewModelType.ShopNPC);
         renderModelViewUI.SetTalkText("반가워", "Awake");
     }
-  
+
     private void Start()
     {
         goldText.text = inventory.Gold.ToString();
@@ -63,6 +63,7 @@ public class ShopPageUI : CategoryPageUI
                 if (!inventory.HasGold(itemDatas[itemIndex].GetItemBuyPrice()))
                 {
                     renderModelViewUI.SetTalkText("돈이 없는거 같아!!");
+                    SoundManager.instance.PlaySound("ItemBuyFail");
                     return;
                 }
 
@@ -78,6 +79,8 @@ public class ShopPageUI : CategoryPageUI
                 {
                     BuyItem(buyItem);
 
+
+
                 }
 
 
@@ -89,17 +92,20 @@ public class ShopPageUI : CategoryPageUI
     public void BuyItem(ItemSO itemData, int count = 1)
     {
 
-        Inventory.ItemBuyResultType type = inventory.AddBuyItem(itemData,count);
+        Inventory.ItemBuyResultType type = inventory.AddBuyItem(itemData, count);
         switch (type)
         {
             case Inventory.ItemBuyResultType.Success:
                 renderModelViewUI.SetTalkText("고마워~@@", "Awake");
+                SoundManager.instance.PlaySound("ItemBuySuccess");
                 break;
             case Inventory.ItemBuyResultType.TribeSlot:
                 renderModelViewUI.SetTalkText("아이템 공간이\n 부족한거같아!!");
+                SoundManager.instance.PlaySound("ItemBuyFail");
                 break;
             case Inventory.ItemBuyResultType.TribeGold:
                 renderModelViewUI.SetTalkText("돈이 없는거 같아!!");
+                SoundManager.instance.PlaySound("ItemBuyFail");
                 break;
         }
     }
@@ -108,7 +114,9 @@ public class ShopPageUI : CategoryPageUI
         if (pageToggles[typeIndex].isOn)
         {
             ChangeItemSlot((ShopPageType)typeIndex);
+            SoundManager.instance.PlaySound("UIToggle");
         }
+
     }
 
     public void ChangeItemSlot(ShopPageType type)

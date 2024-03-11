@@ -33,6 +33,7 @@ public class HeroInfoPageUI : CategoryPageUI
     }
     public void UpdateEquipmentSlots(int heroIndex)
     {
+
         for (int i = 0; i < equipmentSlotUI.Length; i++)
         {
             equipmentSlotUI[i].SetItemInfo(equipmentManager.GetEquipment(heroIndex).GetEquipmentItem((Equipment.EquipmentSlotType)i));
@@ -41,6 +42,7 @@ public class HeroInfoPageUI : CategoryPageUI
     }
     public void ActiveHeroSelectToggle(int index)
     {
+        SoundManager.instance.PlaySound("UIClick2");
 
         heroInpoType = (HeroInpoType)index;
         if (heroToggles[index].isOn)
@@ -67,26 +69,47 @@ public class HeroInfoPageUI : CategoryPageUI
     public void PressReleaseButton()
     {
         Debug.Log("click");
+        SoundManager.instance.PlaySound("UIClick");
 
+        bool isRelease = false;
+
+        int equitemSelectCount = 0;
         for (int i = 0; i < equipmentSlotUI.Length; i++)
         {
             if (equipmentSlotUI[i].IsSelect)
             {
                 equipmentManager.ReleaseEquipmentItem((int)heroInpoType, i);
-
+                equitemSelectCount++;
+                isRelease = true;
             }
         }
         UpdateEquipmentSlots((int)heroInpoType);
         heroStatViewUI.SetText(heroManager.GetSelectHero((int)heroInpoType));
+        int portionSelectCount = 0;
         for (int i = 0; i < portionSlotUI.Length; i++)
         {
             if (!portionSlotUI[i].IsEmpty)
             {
                 if (portionSlotUI[i].IsSelect)
                 {
-                    Debug.Log("selec");
                     equipmentManager.ReleasePortionItem(i);
+                    portionSelectCount++;
+                    isRelease = true;
                 }
+            }
+        }
+
+
+        if (isRelease)
+        {
+            if (equitemSelectCount <= portionSelectCount)
+            {
+                SoundManager.instance.PlaySound("UIPortionRelease");
+            }
+            else
+            {
+                SoundManager.instance.PlaySound("UIEquipItemRelease");
+
             }
         }
         UpdatePortionSlots();

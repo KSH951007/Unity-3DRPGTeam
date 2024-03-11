@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        SceneManager.sceneLoaded += OnSceneLoaded; // 씬이 로드될 때 OnSceneLoaded함수 호출
+       SceneManager.sceneLoaded += OnSceneLoaded; // 씬이 로드될 때 OnSceneLoaded함수 호출
     }
 
     // 특정 오디오 소스를 딕셔너리에 추가
@@ -65,6 +65,16 @@ public class SoundManager : MonoBehaviour
         {
             Debug.LogWarning($"{soundName}와 같은 이름의 오디오 소스가 존재하지 않습니다.");
         }
+    }
+    public bool IsPlaying(string soundName)
+    {
+        if (audioSources.ContainsKey(soundName))
+        {
+            return audioSources[soundName].isPlaying;
+            
+        }
+        else
+            return false;
     }
 
     /// <summary>

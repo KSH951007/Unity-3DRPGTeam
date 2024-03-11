@@ -43,6 +43,7 @@ public class ProjectileLeaveHole : MonoBehaviour
         attractionDamage = (int)(damage * attractionDamagePercent);
         bombDamage = (int)(damage * bombDamagePercent);
         particle.Play();
+        SoundManager.instance.PlaySound("HeroAarenSkill2");
     }
     public void Update()
     {

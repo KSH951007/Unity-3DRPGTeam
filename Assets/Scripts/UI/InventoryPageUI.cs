@@ -61,6 +61,7 @@ public class InventoryPageUI : CategoryPageUI
         if (itemPageToggle[index].isOn)
         {
             ChangeInventoryPage((InventoryPageType)index);
+            SoundManager.instance.PlaySound("UIClick2");
         }
     }
     public void ChangeInventoryPage(InventoryPageType newType)
@@ -132,15 +133,7 @@ public class InventoryPageUI : CategoryPageUI
     public void UpdateSlot(int itemIndex)
     {
         ChangeInventoryPage(inventoryPageType);
-        //for (int i = 0; i < slots.Length; i++)
-        //{
-        //    if (slots[i].ItemIndex == itemIndex)
-        //    {
-        //        slots[i].SetInventorySlot(itemIndex, inventory.InventroyItems[itemIndex]);
-        //        return;
-        //    }
-
-        //}
+    
     }
     public void PressMultiSelectButton()
     {
@@ -167,11 +160,13 @@ public class InventoryPageUI : CategoryPageUI
         else
         {
             inventoryControlButtons[(int)InventoryControlButtonType.Use].interactable = true;
-            Debug.Log("active");
         }
+        SoundManager.instance.PlaySound("UIClick");
     }
     public void PressSellButton()
     {
+        bool isSell = false;
+        SoundManager.instance.PlaySound("UIClick");
         if (IsMultiSelect)
         {
             for (int i = 0; i < slots.Length; i++)
@@ -187,6 +182,8 @@ public class InventoryPageUI : CategoryPageUI
                             conut = countableItem.Count;
                         }
                         inventory.SellItem(slots[i].ItemIndex, conut);
+                        isSell = true;
+
 
                     }
                     slots[i].DisableMultiSelectToggle();
@@ -208,7 +205,8 @@ public class InventoryPageUI : CategoryPageUI
                     }
                     Debug.Log(i);
                     inventory.SellItem(slots[i].ItemIndex, conut);
-                    return;
+                    isSell = true;
+                    break;
                 }
 
             }
@@ -217,11 +215,16 @@ public class InventoryPageUI : CategoryPageUI
         IsMultiSelect = false;
         inventory.ProgressSortByDefault();
         ChangeInventoryPage(inventoryPageType);
-
+        Debug.Log(isSell);
+        if(isSell == true)
+        {
+            SoundManager.instance.PlaySound("ItemSellSuccess");
+        }
     }
     public void PressEquipItemButton()
     {
 
+        SoundManager.instance.PlaySound("UIClick");
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].IsActiveSingleSelect)
@@ -230,6 +233,9 @@ public class InventoryPageUI : CategoryPageUI
                 if (item is PortionItem)
                 {
                     equipmentManager.SetPortionItem(item);
+
+                    SoundManager.instance.PlaySound("UIClick");
+                    SoundManager.instance.PlaySound("PortionEquip");
                     Debug.Log("asd");
                 }
                 else
@@ -247,15 +253,27 @@ public class InventoryPageUI : CategoryPageUI
         switch (result)
         {
             case Equipment.EquipmentResult.Success:
+                if(item is Weapon)
+                {
+                    SoundManager.instance.PlaySound("WeaponEquip");
+                }
+                else
+                {
+                    SoundManager.instance.PlaySound("ArmorEquip");
+                   
+                }
                 renderModelViewUI.SetTalkText("장착 성공이야!", "Awake");
                 break;
             case Equipment.EquipmentResult.TypeMiss:
+                SoundManager.instance.PlaySound("ItemBuyFail");
                 renderModelViewUI.SetTalkText("영웅이 쓸수있는 \n 무기가 아니야!", "Awake");
                 break;
             case Equipment.EquipmentResult.LevelMiss:
+                SoundManager.instance.PlaySound("ItemBuyFail");
                 renderModelViewUI.SetTalkText("레벨이 부족한걸?!", "Awake");
                 break;
             case Equipment.EquipmentResult.SlotFull:
+                SoundManager.instance.PlaySound("ItemBuyFail");
                 renderModelViewUI.SetTalkText("더 넣을 공간이 없어", "Awake");
                 break;
         }
@@ -265,6 +283,7 @@ public class InventoryPageUI : CategoryPageUI
         if (inventorySortToggles[index].isOn)
         {
             inventorySortType = (InventorySortType)index;
+            SoundManager.instance.PlaySound("UIToggle");
         }
 
 
@@ -280,6 +299,7 @@ public class InventoryPageUI : CategoryPageUI
             inventory.ProgressSortByRating();
         }
         ChangeInventoryPage(inventoryPageType);
+        SoundManager.instance.PlaySound("UIClick");
     }
     public void OnSingleSelected(int slotIndex)
     {

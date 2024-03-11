@@ -62,9 +62,11 @@ public class PortionSlotUI : MonoBehaviour, IPointerClickHandler
         {
             if (isEmpty)
                 return;
+
             isSelect = true;
             selectImage.gameObject.SetActive(true);
         }
+        SoundManager.instance.PlaySound("UIToggle");
     }
 
 

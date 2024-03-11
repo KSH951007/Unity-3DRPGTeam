@@ -75,6 +75,8 @@ public class ShopItemSlot : MonoBehaviour
     public void SelectItem(bool isOn)
     {
         selectFrame.SetActive(isOn);
+        SoundManager.instance.PlaySound("UIShopItemSelect");
+    
     }
 
 

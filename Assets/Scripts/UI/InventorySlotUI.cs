@@ -46,6 +46,10 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerClic
     {
         this.slotIndex = index;
     }
+    public void OnMultiToggle()
+    {
+        SoundManager.instance.PlaySound("UIToggle");
+    }
     public void SetInventorySlot(int itemIndex, Item item)
     {
         ActiveSingleSelect(false);
@@ -108,7 +112,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerClic
             SelectToggle.isOn = false;
             SelectToggle.gameObject.SetActive(true);
 
-        }
+        }      
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -135,6 +140,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerClic
         {
             singleSelectImage.SetActive(true);
         }
+
+        SoundManager.instance.PlaySound("UIShopItemSelect");
 
 
     }

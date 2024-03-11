@@ -12,10 +12,12 @@ public class HeroAarenAttackAction : HeroAttackAction
 
     public override void ProgressAttack()
     {
+        SoundManager.instance.PlaySound("HeroAarenAttack" + curruntAttackCombo);
+        SoundManager.instance.PlaySound("HeroAarenAttackVoice" + curruntAttackCombo);
         GameObject projectile = PoolManager.Instance.Get("ProjectileAarenAttack",owner.AttackPoint.position,owner.AttackPoint.rotation);
         if (projectile != null)
         {
-            projectile.GetComponent<ProjectileAarenAttack>().Init(owner.data.damage, owner.AttackPoint.position, owner.transform.forward);
+            projectile.GetComponent<ProjectileAarenAttack>().Init(owner.GetHeroData().GetDamage(), owner.AttackPoint.position, owner.transform.forward);
 
 
         }

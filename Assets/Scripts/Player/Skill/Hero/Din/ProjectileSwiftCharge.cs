@@ -23,6 +23,7 @@ public class ProjectileSwiftCharge : MonoBehaviour
     private void OnEnable()
     {
         particle.Play();
+        SoundManager.instance.PlaySound("HeroDinSkill3");
     }
     private void OnDisable()
     {
@@ -52,7 +53,6 @@ public class ProjectileSwiftCharge : MonoBehaviour
                 if (other.gameObject.TryGetComponent(out IHitable enemy))
                 {
                     enemy.TakeHit(computeDamage);
-                    Debug.Log(computeDamage);
                 }
             }
           

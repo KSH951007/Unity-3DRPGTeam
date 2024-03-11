@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +32,7 @@ public class ViligeUI : MonoBehaviour
     public void ActiveCategoryToggle(int index)
     {
         categoryType = (CategoryType)index;
-
+        SoundManager.instance.PlaySound("UIClick");
 
         if (categoryToggles[index].isOn)
         {
@@ -48,6 +47,8 @@ public class ViligeUI : MonoBehaviour
     }
     public void PressQuitButton()
     {
+        SoundManager.instance.PlaySound("UIClick");
         gameObject.SetActive(false);
     }
+  
 }

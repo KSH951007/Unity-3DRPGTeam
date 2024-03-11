@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerInteract : MonoBehaviour, IInteractable

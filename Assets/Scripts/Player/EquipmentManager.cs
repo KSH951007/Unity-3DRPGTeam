@@ -1,21 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManager : MonoBehaviour, ISavable
 {
     private Equipment[] equipments;
     private PortionItem[] portionItems;
     private int maxPortionItemSlotCount;
     private HeroManager heroManager;
     [SerializeField] private Inventory inventory;
+    public event Action<int> onPortionItemUpdate;
     private void Awake()
     {
         maxPortionItemSlotCount = 6;
         portionItems = new PortionItem[maxPortionItemSlotCount];
         equipments = GetComponentsInChildren<Equipment>();
         heroManager = GetComponent<HeroManager>();
+
+        for (int i = 0; i < portionItems.Length; i++)
+        {
+
+            if (DataManager.Instance.LoadData("Equipment/Portion/item" + i, out PortionItem portion))
+            {
+                portionItems[i] = portion;
+            }
+
+        }
+
+
+
+        DataManager.Instance.AddSaveHandler(this);
     }
 
     public PortionItem[] GetPortionItems() { return portionItems; }
@@ -63,7 +79,7 @@ public class EquipmentManager : MonoBehaviour
             inventory.EraseItem(index);
         }
         portionItems[emptyIndex] = portion;
-
+        onPortionItemUpdate?.Invoke(emptyIndex);
     }
     public Equipment GetEquipment(int heroIndex)
     {
@@ -77,7 +93,7 @@ public class EquipmentManager : MonoBehaviour
         inventory.SetItem(portionItems[index]);
 
         portionItems[index] = null;
-
+        onPortionItemUpdate?.Invoke(index);
     }
     public void ReleaseEquipmentItem(int heroIndex, int itemIndex)
     {
@@ -86,5 +102,58 @@ public class EquipmentManager : MonoBehaviour
         equipments[heroIndex].ReleaseEquipmentItem((Equipment.EquipmentSlotType)itemIndex);
 
     }
+    public void UsePortion(int index)
+    {
+        if (portionItems[index] == null)
+        {
+            Debug.Log(index);
+            return;
+        }
 
+
+
+        if (portionItems[index].portionType == HealthPortionType.HpPortion)
+        {
+            Health health = heroManager.GetMainHero().GetComponent<Health>();
+            if (health != null)
+            {
+                if (!health.CanHealing())
+                    return;
+
+                health.Healing(portionItems[index].health);
+            }
+        }
+        else
+        {
+            ManaSystem manaSystem = heroManager.GetMainHero().GetComponent<ManaSystem>();
+            if (!manaSystem.CanHealing())
+                return;
+
+            manaSystem.Healing(portionItems[index].health);
+
+        }
+
+
+        if (!portionItems[index].Use())
+        {
+
+            portionItems[index] = null;
+
+        }
+
+
+
+        onPortionItemUpdate?.Invoke(index);
+    }
+
+    public void SaveData()
+    {
+        for (int i = 0; i < portionItems.Length; i++)
+        {
+            if (portionItems[i] == null)
+                continue;
+
+            DataManager.Instance.SaveData(portionItems[i], "Item" + i, "Equipment/Portion/");
+        }
+    }
 }

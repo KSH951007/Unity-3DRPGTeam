@@ -72,6 +72,8 @@ public class Equipment : MonoBehaviour, ISavable
 
             if (((Weapon)item).EquipHeroID != GetComponent<Hero>().data.heroID)
             {
+                Debug.Log(((Weapon)item).EquipHeroID);
+                Debug.Log(GetComponent<Hero>().data.heroID);
                 return EquipmentResult.TypeMiss;
             }
 

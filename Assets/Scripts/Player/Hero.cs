@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -18,14 +17,14 @@ public class HeroData
     public float regenerationHealth;
     public float regenerationMana;
     public float defensivePercent;
-    public int maxAttackCombo;
 
     public HeroData()
     {
 
     }
-    public HeroData(int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent, int maxAttackCombo)
+    public HeroData(int heroID,int level, int health, int mana, int damage, float regenerationHealth, float regenerationMana, float defensivePercent)
     {
+        this.heroID = heroID;
         this.level = level;
         this.health = health;
         this.mana = mana;
@@ -33,12 +32,10 @@ public class HeroData
         this.regenerationHealth = regenerationHealth;
         this.regenerationMana = regenerationMana;
         this.defensivePercent = defensivePercent;
-        this.maxAttackCombo = maxAttackCombo;
-        this.maxAttackCombo = maxAttackCombo;
     }
 }
 
-public abstract class Hero : MonoBehaviour, ISavable
+public abstract class Hero : MonoBehaviour,ISavable
 {
 
     public HeroData data;
@@ -105,10 +102,9 @@ public abstract class Hero : MonoBehaviour, ISavable
             data.regenerationMana = heroData.GetRegenerationMana();
             data.damage = heroData.GetDamage();
             data.defensivePercent = heroData.GetDefensive();
-            data.maxAttackCombo = heroData.GetMaxAttackCombo();
         }
 
-        moveAction = new HeroMoveAction(scheduler, animator, this, agent, 3.5f);
+    
         Transform skillsTr = transform.Find("Skills");
         Skill[] skills = new Skill[3];
         for (int i = 0; i < skills.Length; i++)
@@ -180,5 +176,5 @@ public abstract class Hero : MonoBehaviour, ISavable
     {
         DataManager.Instance.SaveData(data, heroData.GetName());
     }
-
+   
 }

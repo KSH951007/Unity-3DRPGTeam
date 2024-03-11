@@ -11,7 +11,7 @@ public class HeroDinAttackAction : HeroAttackAction
     {
         this.attackEffect = attackEffect;
         slashEffect = GameObject.Instantiate(attackEffect, owner.AttackPoint.position, owner.AttackPoint.rotation).GetComponent<VisualEffect>();
-
+        slashEffect.gameObject.SetActive(false);
         this.scheduler = scheduler;
         curruntAttackCombo = 0;
 
@@ -36,9 +36,15 @@ public class HeroDinAttackAction : HeroAttackAction
     }
     public override void ProgressAttack()
     {
+        if (!slashEffect.gameObject.activeSelf)
+            slashEffect.gameObject.SetActive(true);
         slashEffect.transform.position = owner.AttackPoint.position;
         slashEffect.transform.rotation = owner.AttackPoint.rotation;
         slashEffect.Play();
+
+        SoundManager.instance.PlaySound("HeroDinAttack" + curruntAttackCombo);
+        SoundManager.instance.PlaySound("HeroDinAttackVoice" + curruntAttackCombo);
+        Debug.Log(curruntAttackCombo);
 
         RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.transform.lossyScale / 2, owner.transform.forward, Quaternion.identity, 1f);
         if (hits != null)
@@ -49,7 +55,7 @@ public class HeroDinAttackAction : HeroAttackAction
                 {
                     if (hitObject.transform.gameObject.TryGetComponent(out IHitable enemy))
                     {
-                        enemy.TakeHit(owner.data.damage, IHitable.HitType.None);
+                        enemy.TakeHit(owner.GetHeroData().GetDamage(), IHitable.HitType.None);
                     }
                 }
 

@@ -27,6 +27,7 @@ public class ProjectileBigShot : MonoBehaviour
         transform.rotation = direction;
         computeDamage = (int)(damage * damagePercent);
         particle.Play();
+        SoundManager.instance.PlaySound("HeroJuliaSkill2");
     }
     private void OnEnable()
     {

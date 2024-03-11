@@ -27,7 +27,7 @@ public class LoadingUI : MonoBehaviour
     public void LoadingProgress(float progress)
     {
         loadginImage.fillAmount = progress;
-        loadingText.text = $"Loading...({(progress*100).ToString("F2")}%)";
+        loadingText.text = $"Loading...({(progress * 100).ToString("F2")}%)";
     }
     public void ActiveLoadingImage(bool active)
     {
