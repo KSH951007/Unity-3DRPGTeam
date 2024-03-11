@@ -41,6 +41,7 @@ public class MainUI : MonoBehaviour
         GameObject masagebox = PoolManager.Instance.Get("MasageBoxUI");
         if (masagebox != null)
         {
+            Debug.Log(masagebox);
             MasageBoxUI masageBoxUI = masagebox.GetComponent<MasageBoxUI>();
 
             masageBoxUI.SetMesageBox("중단/포기", "정말 포기 하시겠습니까?");
